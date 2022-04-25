@@ -58,7 +58,7 @@ Image.defaultProps = {
   border: '',
   radius: '',
   shape: '',
-  src: '',
+  src: 'https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927',
   size: '',
   position: false,
   repeat: false,
@@ -94,7 +94,7 @@ const AspectInner = styled.div`
   background-position: ${(props) => props.position};
 `;
 
-//원형
+//원형 
 const ImageCircle = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
