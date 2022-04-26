@@ -3,7 +3,7 @@ import { history } from '../../redux/configureStore';
 
 import { Button, Div, Image, Input, Text } from '../ui';
 
-const TargetCard = () => {
+const CountryCard = () => {
   return (
     <React.Fragment>
       <Div spaceBetween width="60%" margin="150px auto 0px auto">
@@ -23,4 +23,4 @@ const TargetCard = () => {
   );
 };
 
-export default TargetCard;
+export default CountryCard;
