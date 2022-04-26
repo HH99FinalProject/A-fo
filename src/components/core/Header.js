@@ -5,9 +5,6 @@ import { Button, Div, Image, Input, Text } from '../ui';
 const Header = () => {
   return (
     <React.Fragment>
-<<<<<<< HEAD
-      
-=======
       <Div spaceBetween border="1px solid black">
         <Div>
           <Image
@@ -22,7 +19,6 @@ const Header = () => {
           <Button border="1px solid black">Login</Button>
         </Div>
       </Div>
->>>>>>> yoonji
     </React.Fragment>
   );
 };
