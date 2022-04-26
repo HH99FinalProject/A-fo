@@ -1,19 +1,23 @@
 import React from 'react';
 
-import { Div, Image } from '../ui';
+import { Button, Div, Image, Input, Text } from '../ui';
 
 const Header = () => {
   return (
     <React.Fragment>
-      <Div>
-        <Image
-          shape="circle"
-          width="200px"
-          height="200px"
-          size="cover"
-          position="center"
-          src="https://w.namu.la/s/a60874eddb91d70cb5d03f3d8236520d993035a7465207df6afa6709084a992ecf2acb204bdd01bf5b32b634410f33bf9cacd2d1000291925df391b040c01642624e3c66d1832fab9a913823411859b5"
-        />
+      <Div spaceBetween border="1px solid black">
+        <Div>
+          <Image
+            width="50px"
+            height="50px"
+            size="cover"
+            src="https://i.pinimg.com/564x/8d/97/f5/8d97f509fcc73b686f667aef7af09b1d.jpg"
+          />
+        </Div>
+        <Div>
+          <Button border="1px solid black">커뮤니티</Button>
+          <Button border="1px solid black">Login</Button>
+        </Div>
       </Div>
     </React.Fragment>
   );
