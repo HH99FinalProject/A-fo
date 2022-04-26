@@ -171,7 +171,7 @@ const Box = styled.div`
   ${(props) => (props.inline ? 'display:inline-block;' : 'display:block')};
   ${(props) =>
     props.start
-      ? 'display:flex; flex-direction:column; align-items:center; justify-content:flex-start;'
+      ? 'display:flex; flex-direction:row; align-items:center; justify-content:flex-start;'
       : ''};
   ${(props) =>
     props.center
