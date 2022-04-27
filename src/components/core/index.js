@@ -1,7 +1,7 @@
 import Comment from './Comment';
-import Header from './Header';
-import Search from './Search';
 import CountryCard from './CountryCard';
-import TargetInfo from './TargetInfo';
+import Header from './Header';
+import Info from './Info';
+import Search from './Search';
 
-export { Comment, Header, Search, CountryCard, TargetInfo };
+export { Comment, CountryCard, Header, Info, Search };

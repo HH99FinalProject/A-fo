@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Div, Image, Input, Text } from '../ui';
 
-const TargetInfo = () => {
+const Info = () => {
   return (
     <Div width="auto" border="1px solid black">
       <Text center width="100%" border="1px solid black">
@@ -137,4 +137,4 @@ const TargetInfo = () => {
   );
 };
 
-export default TargetInfo;
+export default Info;

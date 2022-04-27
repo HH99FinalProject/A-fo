@@ -1,7 +1,7 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 
-import { Search, TargetInfo } from '../components/core';
+import { Search, Info } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 
 const Detail = () => {
@@ -79,13 +79,13 @@ const Detail = () => {
         <Search />
         <Div spaceBetween margin="50px 0px" border="1px solid black">
           {/* 목적별 시작 */}
-          <TargetInfo />
-          <TargetInfo />
-          <TargetInfo />
+          <Info />
+          <Info />
+          <Info />
           {/* 목적별 끝 */}
           {/* 나라별 시작 */}
-          {/* <TargetInfo />
-          <TargetInfo /> */}
+          {/* <Info />
+          <Info /> */}
           {/* 나라별 끝 */}
         </Div>
       </Div>
