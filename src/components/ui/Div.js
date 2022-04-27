@@ -38,6 +38,7 @@ const Div = (props) => {
     modalBox,
     velogCard,
     _onClick,
+    alignItems,
   } = props;
 
   const styles = {
@@ -75,6 +76,7 @@ const Div = (props) => {
     modalContainer,
     modalBox,
     velogCard,
+    alignItems,
   };
   if (bookMark) {
     return (
@@ -157,6 +159,7 @@ Div.defaultProps = {
   bookMark: false,
   modal: false,
   velogCard: false,
+  alignItems: null,
   _onClick: () => {},
 };
 
