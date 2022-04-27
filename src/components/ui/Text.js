@@ -31,6 +31,7 @@ const Text = (props) => {
     transform,
     transition,
     font,
+    center,
     _onClick,
   } = props;
 
@@ -61,6 +62,7 @@ const Text = (props) => {
     transform,
     transition,
     font,
+    center,
   };
 
   return (
@@ -98,6 +100,7 @@ Text.defaultProps = {
   transform: '',
   transition: '',
   font: false,
+  center: false,
   _onClick: () => {},
 };
 
@@ -130,6 +133,7 @@ const P = styled.p`
   transform: ${(props) => props.transform};
   transition: ${(props) => props.transition};
   font-family: ${(props) => props.font};
+  ${(props) => (props.center ? 'text-align:center;' : '')};
 `;
 
 export default Text;

@@ -22,6 +22,7 @@ const Button = (props) => {
     is_float,
     tagBtn,
     cmtBtn,
+    compareBtn,
     opacity,
     _onClick,
   } = props;
@@ -45,6 +46,7 @@ const Button = (props) => {
     is_float,
     tagBtn,
     cmtBtn,
+    compareBtn,
     opacity,
   };
 
@@ -68,6 +70,16 @@ const Button = (props) => {
     return (
       <React.Fragment>
         <CmtBtn onClick={_onClick}>{text ? text : children}</CmtBtn>
+      </React.Fragment>
+    );
+  }
+
+  if (compareBtn) {
+    return (
+      <React.Fragment>
+        <CompareBtn {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </CompareBtn>
       </React.Fragment>
     );
   }
@@ -101,6 +113,7 @@ Button.defaultProps = {
   is_float: false,
   tagBtn: false,
   cmtBtn: false,
+  compareBtn: false,
   opacity: '',
   _onClick: () => {},
 };
@@ -127,16 +140,14 @@ const ButtonDefault = styled.button`
 
 const FloatButton = styled.button`
   position: fixed;
-  top: 10px;
-  right: 15px;
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  border: 2px solid #63e6be;
-  font-weight: bold;
+  bottom: 60px;
+  right: 50px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid black;
   border-radius: 50%;
-  font-size: 16px;
-  color: #63e6be;
+  font-size: 20px;
+  color: black;
 `;
 
 const TagBtn = styled.button`
@@ -184,6 +195,13 @@ const CmtBtn = styled.button`
   border-top-right-radius: 4px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+`;
+
+const CompareBtn = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: ${(props) => props.border};
 `;
 
 export default Button;

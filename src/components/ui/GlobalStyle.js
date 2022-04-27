@@ -31,7 +31,7 @@ input, textarea{
 button{
     outline: none;
     border:none;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     cursor: pointer;
     background-color: white;
 };

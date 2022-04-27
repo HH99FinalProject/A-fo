@@ -11,6 +11,7 @@ import PostDetail from '../pages/PostDetail';
 import PostWrite from '../pages/PostWrite';
 import SubMain1 from '../pages/SubMain1';
 import SubMain2 from '../pages/SubMain2';
+import WorldMap from '../pages/WorldMap';
 
 import { Div, GlobalStyle } from '../components/ui';
 import { Header } from '../components/core';
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/PostWrite" component={PostWrite} />
           <Route exact path="/SubMain1" component={SubMain1} />
           <Route exact path="/SubMain2" component={SubMain2} />
+          <Route exact path="/WorldMap" component={WorldMap} />
         </ConnectedRouter>
       </Div>
     </React.Fragment>

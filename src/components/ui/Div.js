@@ -7,6 +7,7 @@ const Div = (props) => {
     position,
     display,
     flexDirection,
+    alignItems,
     justifyContent,
     float,
     width,
@@ -28,15 +29,16 @@ const Div = (props) => {
     start,
     center,
     row,
+    rowStart,
     spaceBetween,
     spaceAround,
     textCenter,
     fontSize,
     inline,
-    bookMark,
+    bookmark,
     modalContainer,
     modalBox,
-    velogCard,
+    bottomSheet,
     _onClick,
   } = props;
 
@@ -45,6 +47,7 @@ const Div = (props) => {
     position,
     display,
     flexDirection,
+    alignItems,
     justifyContent,
     float,
     width,
@@ -66,17 +69,18 @@ const Div = (props) => {
     start,
     center,
     row,
+    rowStart,
     spaceBetween,
     spaceAround,
     textCenter,
     fontSize,
     inline,
-    bookMark,
+    bookmark,
     modalContainer,
     modalBox,
-    velogCard,
+    bottomSheet,
   };
-  if (bookMark) {
+  if (bookmark) {
     return (
       <React.Fragment>
         <Bookmark onClick={_onClick} {...styles}>
@@ -106,12 +110,12 @@ const Div = (props) => {
     );
   }
 
-  if (velogCard) {
+  if (bottomSheet) {
     return (
       <React.Fragment>
-        <VelogCard onClick={_onClick} {...styles}>
+        <BottomSheet onClick={_onClick} {...styles}>
           {children}
-        </VelogCard>
+        </BottomSheet>
       </React.Fragment>
     );
   }
@@ -128,6 +132,7 @@ Div.defaultProps = {
   position: '',
   display: '',
   flexDirection: '',
+  alignItems: '',
   justifyContent: '',
   float: false,
   width: '',
@@ -149,14 +154,15 @@ Div.defaultProps = {
   start: '',
   center: false,
   row: false,
+  rowStart: false,
   spaceBetween: false,
   spaceAround: false,
   textCenter: false,
   fontSize: 'false',
   inline: false,
-  bookMark: false,
+  bookmark: false,
   modal: false,
-  velogCard: false,
+  bottomSheet: false,
   _onClick: () => {},
 };
 
@@ -166,9 +172,10 @@ const Box = styled.div`
   position: ${(props) => props.position};
   display: ${(props) => props.display};
   flex-direction: ${(props) => props.flexDirection};
+  align-items: ${(props) => props.alignItems};
   justify-content: ${(props) => props.justifyContent};
   float: ${(props) => props.float};
-  ${(props) => (props.inline ? 'display:inline-block;' : 'display:block')};
+  ${(props) => (props.inline ? 'display:inline-block;' : '')};
   ${(props) =>
     props.start
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:flex-start;'
@@ -180,6 +187,10 @@ const Box = styled.div`
   ${(props) =>
     props.row
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:center;'
+      : ''};
+  ${(props) =>
+    props.rowStart
+      ? 'display:flex; flex-direction:row; align-items:start; justify-content:space-between;'
       : ''};
   ${(props) =>
     props.spaceBetween
@@ -210,13 +221,23 @@ const Box = styled.div`
   }
 `;
 
+// const Route = styled.div`
+
+// `
+
 const Bookmark = styled.div`
-  position: absolute;
-  top: 0;
-  right: 24px;
-  display: block;
-  width: 32px;
-  height: 48px;
+  position: fixed;
+  top: 300px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: auto;
+  padding: 20px 0px;
+  background-color: lightgrey;
+  border: 1px solid black;
 `;
 
 const ModalContainer = styled.div`
@@ -245,22 +266,19 @@ const ModalBox = styled.div`
   border-radius: 10px;
 `;
 
-const VelogCard = styled.div`
+const BottomSheet = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 320px;
-  height: 400px;
-  margin: 16px;
-  border-radius: 4px;
-  background-color: #f8f9fa;
-  box-shadow: rgb(0 0 0 / 7%) 0px 4px 16px 0px;
-  transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
-  overflow: hidden;
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: rgb(0 0 0 / 11%) 0px 12px 20px 0px;
-  }
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 5px 0px;
+  background-color: lightgrey;
+  border: ${(props) => props.border};
 `;
 
 export default Div;
