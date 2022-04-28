@@ -2,6 +2,7 @@ import React from 'react';
 import { history } from '../redux/configureStore';
 
 import { Button, Div, Image, Input, Text } from '../components/ui';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 const SubMain2 = () => {
   return (
@@ -17,7 +18,7 @@ const SubMain2 = () => {
         >
           Home
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain1');
@@ -25,7 +26,7 @@ const SubMain2 = () => {
         >
           목적별
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Text>워홀</Text>
       </Div> */}
       {/* 경로 끝 */}
@@ -255,7 +256,7 @@ const SubMain2 = () => {
         >
           Home
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Text>나라별</Text>
       </Div>
       {/* 경로 끝 */}

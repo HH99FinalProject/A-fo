@@ -3,6 +3,7 @@ import { history } from '../redux/configureStore';
 
 import { Info, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 const Detail = () => {
   return (
@@ -16,7 +17,7 @@ const Detail = () => {
         >
           Home
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain1');
@@ -24,7 +25,7 @@ const Detail = () => {
         >
           목적별
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain2');
@@ -32,7 +33,7 @@ const Detail = () => {
         >
           워홀
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Text>정보</Text>
       </Div> */}
       {/* 목적별 경로 끝 */}
@@ -46,7 +47,7 @@ const Detail = () => {
         >
           Home
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain2');
@@ -54,7 +55,7 @@ const Detail = () => {
         >
           나라별
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain1');
@@ -62,7 +63,7 @@ const Detail = () => {
         >
           호주
         </Button>
-        <Text>/</Text>
+        <MdOutlineKeyboardArrowRight size="15" />
         <Text>정보</Text>
       </Div>
       {/* 나라별 경로 끝 */}
