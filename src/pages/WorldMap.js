@@ -7,7 +7,7 @@ const WorldMap = () => {
   return (
     <React.Fragment>
       {/* 경로 시작 */}
-      <Div start width="1050px" margin=" 10px auto" border="1px solid black">
+      <Div start width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -20,7 +20,7 @@ const WorldMap = () => {
       </Div>
       {/* 경로 끝 */}
       <Div
-        width="1500px"
+        width="1400px"
         height="700px"
         margin="150px auto"
         border="1px solid black"

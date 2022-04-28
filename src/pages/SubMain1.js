@@ -32,8 +32,9 @@ const SubMain1 = () => {
   return (
     <React.Fragment>
       {/* 목적별 시작 */}
+
       {/* 경로 시작 */}
-      {/* <Div start width="1050px" margin=" 10px auto" border="1px solid black">
+      {/* <Div start width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -48,14 +49,14 @@ const SubMain1 = () => {
 
       {/* <Div
         spaceBetween
-        width="1050px"
+        width="1400px"
         margin="200px auto 0px auto"
         border="1px solid black"
       >
         <Div
           center
-          width="250px"
-          height="300px"
+          width="330px"
+          height="400px"
           border="1px solid black"
           cursor="pointer"
           _onClick={() => {
@@ -64,13 +65,13 @@ const SubMain1 = () => {
         >
           <Text>이민</Text>
         </Div>
-        <Div center width="250px" height="300px" border="1px solid black">
+        <Div center width="330px" height="400px" border="1px solid black">
           <Text>유학</Text>
         </Div>
-        <Div center width="250px" height="300px" border="1px solid black">
+        <Div center width="330px" height="400px" border="1px solid black">
           <Text>워홀</Text>
         </Div>
-        <Div center width="250px" height="300px" border="1px solid black">
+        <Div center width="330px" height="400px" border="1px solid black">
           <Text>취업</Text>
         </Div>
       </Div> */}
@@ -78,7 +79,7 @@ const SubMain1 = () => {
 
       {/* 나라별 시작 */}
       {/* 경로 시작 */}
-      <Div start width="1050px" margin=" 10px auto" border="1px solid black">
+      <Div start width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -89,24 +90,16 @@ const SubMain1 = () => {
         <Text>/</Text>
         <Button
           _onClick={() => {
-            history.push('/WorldMap');
+            history.push('/SubMain2');
           }}
         >
           나라별
         </Button>
         <Text>/</Text>
-        <Button
-          _onClick={() => {
-            history.push('/SubMain2');
-          }}
-        >
-          오세아니아
-        </Button>
-        <Text>/</Text>
         <Text>호주</Text>
       </Div>
       {/* 경로 끝 */}
-      <Div width="1050px" margin="200px auto 0px auto" border="1px solid black">
+      <Div width="1400px" margin="200px auto 0px auto" border="1px solid black">
         <Text
           width="100%"
           height="100px"
@@ -119,8 +112,8 @@ const SubMain1 = () => {
         <Div spaceBetween width="100%" border="1px solid black">
           <Div
             center
-            width="250px"
-            height="300px"
+            width="330px"
+            height="400px"
             border="1px solid black"
             backgroundColor={backgroundColor1}
             cursor="pointer"
@@ -130,8 +123,8 @@ const SubMain1 = () => {
           </Div>
           <Div
             center
-            width="250px"
-            height="300px"
+            width="330px"
+            height="400px"
             border="1px solid black"
             backgroundColor={backgroundColor2}
             cursor="pointer"
@@ -141,8 +134,8 @@ const SubMain1 = () => {
           </Div>
           <Div
             center
-            width="250px"
-            height="300px"
+            width="330px"
+            height="400px"
             border="1px solid black"
             backgroundColor={backgroundColor3}
             cursor="pointer"
@@ -152,8 +145,8 @@ const SubMain1 = () => {
           </Div>
           <Div
             center
-            width="250px"
-            height="300px"
+            width="330px"
+            height="400px"
             border="1px solid black"
             backgroundColor={backgroundColor4}
             cursor="pointer"
@@ -166,7 +159,7 @@ const SubMain1 = () => {
 
       {/* 바텀시트 */}
       <Div bottomSheet border="1px solid black">
-        <Div position="relative" center width="1050px" border="1px solid black">
+        <Div position="relative" center width="1400px" border="1px solid black">
           <Text border="1px solid black">유학 + 워홀</Text>
           <Button
             compareBtn
@@ -175,7 +168,7 @@ const SubMain1 = () => {
               history.push('/Detail');
             }}
           >
-            보러가기
+            정보 보러 가기
           </Button>
         </Div>
       </Div>

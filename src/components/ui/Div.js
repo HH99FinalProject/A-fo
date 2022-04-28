@@ -233,7 +233,7 @@ const Bookmark = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: 150px;
   height: auto;
   padding: 20px 0px;
   background-color: lightgrey;

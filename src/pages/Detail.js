@@ -8,7 +8,7 @@ const Detail = () => {
   return (
     <React.Fragment>
       {/* 목적별 경로 시작 */}
-      {/* <Div start width="1050px" margin=" 10px auto" border="1px solid black">
+      {/* <Div start width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -33,12 +33,12 @@ const Detail = () => {
           워홀
         </Button>
         <Text>/</Text>
-        <Text>호주 + 뉴질랜드 + 캐나다</Text>
+        <Text>정보</Text>
       </Div> */}
       {/* 목적별 경로 끝 */}
 
       {/* 나라별 경로 시작 */}
-      <Div start width="1050px" margin=" 10px auto" border="1px solid black">
+      <Div start width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -57,31 +57,25 @@ const Detail = () => {
         <Text>/</Text>
         <Button
           _onClick={() => {
-            history.push('/SubMain2');
-          }}
-        >
-          오세아니아
-        </Button>
-        <Text>/</Text>
-        <Button
-          _onClick={() => {
             history.push('/SubMain1');
           }}
         >
           호주
         </Button>
         <Text>/</Text>
-        <Text>워홀 + 유학</Text>
+        <Text>정보</Text>
       </Div>
       {/* 나라별 경로 끝 */}
 
-      <Div width="1050px" margin="100px auto 0px auto" border="1px solid black">
+      <Div width="1400px" margin="100px auto 0px auto" border="1px solid black">
         <Search />
         <Div spaceBetween margin="50px 0px" border="1px solid black">
           {/* 목적별 시작 */}
           <Info />
           <Info />
           <Info />
+          <Info />
+
           {/* 목적별 끝 */}
           {/* 나라별 시작 */}
           {/* <Info />

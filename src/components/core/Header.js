@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Div
       spaceBetween
-      width="1050px"
+      width="1400px"
       margin="0 auto"
       padding="5px 0px"
       border="1px solid black"
@@ -26,14 +26,53 @@ const Header = () => {
           src="https://i.pinimg.com/564x/8d/97/f5/8d97f509fcc73b686f667aef7af09b1d.jpg"
         />
       </Div>
-      {/* <Div spaceBetween width="150px" border="1px solid black">
-          <Button border="1px solid black">커뮤니티</Button>
-          <Button border="1px solid black">로그인</Button>
-        </Div> */}
+      {/* 로그인 전 */}
+      {/* <Div spaceBetween width="120px" border="1px solid black">
+        <Button
+          border="1px solid black"
+          _onClick={() => {
+            history.push('/Board');
+          }}
+        >
+          커뮤니티
+        </Button>
+        <Button
+          border="1px solid black"
+          _onClick={() => {
+            history.push('/Login');
+          }}
+        >
+          로그인
+        </Button>
+      </Div> */}
+      {/* 로그인 전 */}
+
+      {/* 로그인 후 */}
       <Div spaceBetween width="250px" border="1px solid black">
-        <Button border="1px solid black">커뮤니티</Button>
-        <Button border="1px solid black">마이페이지</Button>
-        <Button border="1px solid black">로그아웃</Button>
+        <Button
+          border="1px solid black"
+          _onClick={() => {
+            history.push('/Board');
+          }}
+        >
+          커뮤니티
+        </Button>
+        <Button
+          border="1px solid black"
+          _onClick={() => {
+            history.push('/MyPage');
+          }}
+        >
+          마이페이지
+        </Button>
+        <Button
+          border="1px solid black"
+          _onClick={() => {
+            history.replace('/');
+          }}
+        >
+          로그아웃
+        </Button>
         <Image
           shape="circle"
           width="35px"
@@ -43,6 +82,7 @@ const Header = () => {
           position="center"
         />
       </Div>
+      {/* 로그인 후 */}
     </Div>
   );
 };

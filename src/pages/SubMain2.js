@@ -7,8 +7,9 @@ const SubMain2 = () => {
   return (
     <React.Fragment>
       {/* 목적별 시작 */}
+
       {/* 경로 시작 */}
-      {/* <Div start width="1050px" margin=" 10px auto" border="1px solid black">
+      {/* <Div start width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -28,17 +29,18 @@ const SubMain2 = () => {
         <Text>워홀</Text>
       </Div> */}
       {/* 경로 끝 */}
+
       {/* <Div
         rowStart
-        width="1050px"
+        width="1400px"
         margin="150px auto 0px auto"
         border="1px solid black"
       >
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89b4ff"
@@ -51,7 +53,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89b4ff"
@@ -64,11 +66,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -77,7 +79,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -86,7 +88,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -95,7 +97,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -104,7 +106,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -113,11 +115,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -126,7 +128,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -135,7 +137,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -144,7 +146,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -153,11 +155,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89ffd1"
@@ -166,7 +168,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89ffd1"
@@ -175,7 +177,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89ffd1"
@@ -184,11 +186,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"
@@ -197,7 +199,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"
@@ -206,7 +208,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"
@@ -215,7 +217,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"
@@ -226,7 +228,7 @@ const SubMain2 = () => {
       </Div> */}
       {/* 바텀시트 */}
       {/* <Div bottomSheet border="1px solid black">
-        <Div position="relative" center width="1050px" border="1px solid black">
+        <Div position="relative" center width="1400px" border="1px solid black">
           <Text border="1px solid black">유학 + 워홀</Text>
           <Button
             compareBtn
@@ -235,7 +237,7 @@ const SubMain2 = () => {
               history.push('/Detail');
             }}
           >
-            보러가기
+            정보 보러 가기
           </Button>
         </Div>
       </Div> */}
@@ -243,8 +245,9 @@ const SubMain2 = () => {
       {/* 목적별 끝  */}
 
       {/* 나라별 시작 */}
+
       {/* 경로 시작 */}
-      <Div start width="1050px" margin=" 10px auto" border="1px solid black">
+      <Div start width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -253,28 +256,20 @@ const SubMain2 = () => {
           Home
         </Button>
         <Text>/</Text>
-        <Button
-          _onClick={() => {
-            history.push('/WorldMap');
-          }}
-        >
-          나라별
-        </Button>
-        <Text>/</Text>
-        <Text>오세아니아</Text>
+        <Text>나라별</Text>
       </Div>
       {/* 경로 끝 */}
       <Div
         rowStart
-        width="1050px"
+        width="1400px"
         margin="150px auto 0px auto"
         border="1px solid black"
       >
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89b4ff"
@@ -287,7 +282,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89b4ff"
@@ -300,11 +295,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -313,7 +308,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -322,7 +317,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -331,7 +326,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -340,7 +335,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffb5d2"
@@ -349,11 +344,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -362,7 +357,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -371,7 +366,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -380,7 +375,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#faff89"
@@ -389,11 +384,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89ffd1"
@@ -402,7 +397,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89ffd1"
@@ -411,7 +406,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#89ffd1"
@@ -420,11 +415,11 @@ const SubMain2 = () => {
           </Div>
         </Div>
 
-        <Div width="200px" border="1px solid black">
+        <Div width="260px" border="1px solid black">
           <Text border="1px solid black">남아메리카</Text>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"
@@ -433,7 +428,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"
@@ -442,7 +437,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"
@@ -451,7 +446,7 @@ const SubMain2 = () => {
           </Div>
           <Div
             width="100%"
-            height="200px"
+            height="260px"
             margin="10px 0px"
             border="1px solid black"
             backgroundColor="#ffc389"

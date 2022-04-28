@@ -7,14 +7,14 @@ const Main = () => {
   return (
     <Div
       spaceBetween
-      width="1050px"
+      width="1400px"
       margin="150px auto 0px auto"
       border="1px solid black"
     >
       <Div
         border="1px solid black"
-        width="500px"
-        height="500px"
+        width="680px"
+        height="680px"
         cursor="pointer"
         _onClick={() => {
           history.push('/SubMain1');
@@ -24,11 +24,11 @@ const Main = () => {
       </Div>
       <Div
         border="1px solid black"
-        width="500px"
-        height="500px"
+        width="680px"
+        height="680px"
         cursor="pointer"
         _onClick={() => {
-          history.push('/WorldMap');
+          history.push('/SubMain2');
         }}
       >
         나라별
