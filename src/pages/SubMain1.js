@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { history } from '../redux/configureStore';
 
+import { CountryCard } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 
 const SubMain1 = () => {
