@@ -158,7 +158,7 @@ Div.defaultProps = {
   spaceBetween: false,
   spaceAround: false,
   textCenter: false,
-  fontSize: 'false',
+  fontSize: '',
   inline: false,
   bookmark: false,
   modal: false,
