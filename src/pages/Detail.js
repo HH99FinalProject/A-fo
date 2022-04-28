@@ -1,7 +1,7 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 
-import { Search, Info } from '../components/core';
+import { Info, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 
 const Detail = () => {
@@ -49,7 +49,7 @@ const Detail = () => {
         <Text>/</Text>
         <Button
           _onClick={() => {
-            history.push('/WorldMap');
+            history.push('/SubMain2');
           }}
         >
           나라별
@@ -67,16 +67,26 @@ const Detail = () => {
       </Div>
       {/* 나라별 경로 끝 */}
 
-      <Div width="1400px" margin="100px auto 0px auto" border="1px solid black">
-        <Search />
-        <Div row margin="50px 0px" border="1px solid black">
+      <Div
+        center
+        width="1400px"
+        margin="100px auto 0px auto"
+        border="1px solid black"
+      >
+        <TabMenu />
+        <Div
+          spaceBetween
+          // width="1400px"
+          margin="50px 0px"
+          border="1px solid black"
+        >
           {/* 목적별 시작 */}
           <Info />
           <Info />
           <Info />
           <Info />
-
           {/* 목적별 끝 */}
+
           {/* 나라별 시작 */}
           {/* <Info />
           <Info /> */}

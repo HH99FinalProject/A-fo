@@ -27,7 +27,7 @@ const Header = () => {
         />
       </Div>
       {/* 로그인 전 */}
-      <Div spaceBetween width="120px" border="1px solid black">
+      {/* <Div spaceBetween width="120px" border="1px solid black">
         <Button
           border="1px solid black"
           _onClick={() => {
@@ -44,11 +44,11 @@ const Header = () => {
         >
           로그인
         </Button>
-      </Div>
+      </Div> */}
       {/* 로그인 전 */}
 
       {/* 로그인 후 */}
-      {/* <Div spaceBetween width="250px" border="1px solid black">
+      <Div spaceBetween width="250px" border="1px solid black">
         <Button
           border="1px solid black"
           _onClick={() => {
@@ -81,7 +81,7 @@ const Header = () => {
           size="cover"
           position="center"
         />
-      </Div> */}
+      </Div>
       {/* 로그인 후 */}
     </Div>
   );

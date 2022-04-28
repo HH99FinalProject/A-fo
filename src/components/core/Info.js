@@ -4,7 +4,7 @@ import { Button, Div, Image, Input, Text } from '../ui';
 
 const Info = () => {
   return (
-    <Div width="330px" margin="0px 10px" border="1px solid black">
+    <Div width="335px" margin="0px 10px" border="1px solid black">
       <Text center width="100%" border="1px solid black">
         호주
       </Text>
