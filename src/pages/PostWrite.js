@@ -6,7 +6,7 @@ import { Text, Div, Button } from '../components/ui';
 const PostWrite = () => {
   return (
     <React.Fragment>
-      <Div width="1080px" margin="20px auto 50px" border="1px solid #000" padding="20px" alignItems="center">
+      <Div width="1400px" margin="20px auto 50px" border="1px solid #000" padding="20px" alignItems="center">
         <select>
           <option>대륙</option>
           <option>아시아</option>
@@ -25,7 +25,7 @@ const PostWrite = () => {
         <input style={{width: '80%', height:"20px", display: 'inline-block'}} placeholder="검색어를 입력해주세요"/>
         <Button backgroundColor="skyblue" width="60px" border="1px solid #eee">검색</Button>
       </Div>
-      <Div width="1080px" margin="80px auto 50px"padding="20px 0" alignItems="center">
+      <Div width="1400px" margin="80px auto 50px"padding="20px 0" alignItems="center">
         <Text textAlign="center" size="36px" bold >자유 게시판</Text>
         <ReturnBtn>목록으로</ReturnBtn>
 
