@@ -13,8 +13,9 @@ import SubMain1 from '../pages/SubMain1';
 import SubMain2 from '../pages/SubMain2';
 import WorldMap from '../pages/WorldMap';
 
-import { Div, GlobalStyle } from '../components/ui';
 import { Header } from '../components/core';
+import Login from '../components/modal/Login';
+import { Div, GlobalStyle } from '../components/ui';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route exact path="/" component={Main} />
+          <Route exact path="/Login" component={Login} />
           <Route exact path="/Board" component={Board} />
           <Route exact path="/Detail" component={Detail} />
           <Route exact path="/MyPage" component={MyPage} />

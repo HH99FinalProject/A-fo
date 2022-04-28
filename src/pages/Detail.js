@@ -69,7 +69,7 @@ const Detail = () => {
 
       <Div width="1400px" margin="100px auto 0px auto" border="1px solid black">
         <Search />
-        <Div spaceBetween margin="50px 0px" border="1px solid black">
+        <Div row margin="50px 0px" border="1px solid black">
           {/* 목적별 시작 */}
           <Info />
           <Info />
