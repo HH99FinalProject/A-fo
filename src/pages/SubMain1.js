@@ -163,7 +163,7 @@ const SubMain1 = () => {
         <Div position="relative" center width="1400px" border="1px solid black">
           <Text border="1px solid black">유학 + 워홀</Text>
           <Button
-            compareBtn
+            absoluteBtn
             border="1px solid black"
             _onClick={() => {
               history.push('/Detail');

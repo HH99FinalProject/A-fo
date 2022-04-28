@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import bookmarkWhite from '../../styles/images/bookmarkWhite.png';
+import bookmarkBlack from '../../styles/images/bookmarkBlack.png';
 
 const Button = (props) => {
   const {
@@ -22,7 +24,9 @@ const Button = (props) => {
     is_float,
     tagBtn,
     cmtBtn,
-    compareBtn,
+    absoluteBtn,
+    bookmarkBtn,
+    complete,
     opacity,
     _onClick,
   } = props;
@@ -46,7 +50,9 @@ const Button = (props) => {
     is_float,
     tagBtn,
     cmtBtn,
-    compareBtn,
+    absoluteBtn,
+    bookmarkBtn,
+    complete,
     opacity,
   };
 
@@ -74,12 +80,22 @@ const Button = (props) => {
     );
   }
 
-  if (compareBtn) {
+  if (absoluteBtn) {
     return (
       <React.Fragment>
-        <CompareBtn {...styles} onClick={_onClick}>
+        <AbsoluteBtn {...styles} onClick={_onClick}>
           {text ? text : children}
-        </CompareBtn>
+        </AbsoluteBtn>
+      </React.Fragment>
+    );
+  }
+
+  if (bookmarkBtn) {
+    return (
+      <React.Fragment>
+        <BookmarkBtn {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </BookmarkBtn>
       </React.Fragment>
     );
   }
@@ -113,7 +129,9 @@ Button.defaultProps = {
   is_float: false,
   tagBtn: false,
   cmtBtn: false,
-  compareBtn: false,
+  absoluteBtn: false,
+  bookmarkBtn: false,
+  complete: false,
   opacity: '',
   _onClick: () => {},
 };
@@ -197,10 +215,25 @@ const CmtBtn = styled.button`
   border-bottom-right-radius: 4px;
 `;
 
-const CompareBtn = styled.button`
+const AbsoluteBtn = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  border: ${(props) => props.border};
+`;
+
+const BookmarkBtn = styled.button`
+  position: absolute;
+  top: -4px;
+  right: 25px;
+  width: 30px;
+  height: 30px;
+  ${(props) =>
+    props.complete
+      ? `background-image: url(${bookmarkBlack});`
+      : `background-image: url(${bookmarkWhite});`};
+  background-size: contain;
+  background-position: center;
   border: ${(props) => props.border};
 `;
 
