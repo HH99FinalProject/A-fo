@@ -8,9 +8,9 @@ import Search from '../components/core/Search';
 const PostWrite = () => {
   return (
     <React.Fragment>
-      <Search />
       <Div width="1400px" margin="80px auto 50px"padding="20px 0" alignItems="center">
         <Text textAlign="center" size="36px" bold >자유 게시판</Text>
+        <Search />
         <ReturnBtn onClick={() => {history.push("/board")}}>목록으로</ReturnBtn>
 
         <Div margin="100px 0 0 0">
@@ -50,7 +50,6 @@ export default PostWrite;
 
 const ReturnBtn = styled.button`
   float: right;
-  margin-top: 30px;
   padding: 5px;
   background: tomato;
   color: #fff;
@@ -88,13 +87,13 @@ const Target = styled.div`
 const Title = styled.input`
   margin: 20px 0;
   width: 100%;
-  font-size: 34px;
-  padding: 10px;
+  font-size: 24px;
+  padding: 15px;
 `;
 
 const Content = styled.textarea`
   font-size: 16px;
-  padding: 20px 10px;
+  padding: 20px 15px;
   width: 100%;
   height: 400px;
   overflow: auto;

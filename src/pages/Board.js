@@ -1,18 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
+import axios from 'axios';
 
 import { Div, Text, Image, Button, Input } from '../components/ui';
 import Search from '../components/core/Search';
+import Article from '../components/core/Article';
+import Pagination from '../components/core/Pagination';
+import Post from '../components/core/Post';
+
 
 const Board = (props) => {
+
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  React.useEffect(() => {
+    // pagination구현 임시로 데이터 넣었음
+    async function fetchData() {
+      setLoading(true);
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      setPosts(response.data);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  console.log(posts);
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
   return (
     <React.Fragment>
-      <Search />
-      <Div width="1400px" margin="100px auto 50px">
+      <Div width="1400px" margin="100px auto 50px auto">
         <Text textAlign="center" size="36px" bold>
           자유 게시판
         </Text>
+        <Search />
         <PostBtn
           onClick={() => {
             history.push('/postwrite');
@@ -22,135 +54,10 @@ const Board = (props) => {
         </PostBtn>
         <Div margin="100px 0 0 0">
           {/* map으로 돌리기 */}
-          <Article
-            onClick={() => {
-              history.push('/postdetail');
-            }}
-          >
-            <Div width="15%">
-              <Text bold size="25px">
-                #오스트리아
-              </Text>
-            </Div>
-            <Div width="57%">
-              <Text size="25px">게시물 제목입니다.</Text>
-            </Div>
-            <Div spaceAround width="20%">
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                목적
-              </Div>
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                오세아니아
-              </Div>
-            </Div>
-            <Div fontSize="13px" width="8%" start>
-              작성시간
-            </Div>
-          </Article>
-          <Article>
-            <Div width="15%">
-              <Text bold size="25px">
-                #오스트리아
-              </Text>
-            </Div>
-            <Div width="57%">
-              <Text size="25px">게시물 제목입니다.</Text>
-            </Div>
-            <Div spaceAround width="20%">
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                목적
-              </Div>
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                오세아니아
-              </Div>
-            </Div>
-            <Div fontSize="13px" width="8%" start>
-              작성시간
-            </Div>
-          </Article>
-          <Article>
-            <Div width="15%">
-              <Text bold size="25px">
-                #오스트리아
-              </Text>
-            </Div>
-            <Div width="57%">
-              <Text size="25px">게시물 제목입니다.</Text>
-            </Div>
-            <Div spaceAround width="20%">
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                목적
-              </Div>
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                오세아니아
-              </Div>
-            </Div>
-            <Div fontSize="13px" width="8%" start>
-              작성시간
-            </Div>
-          </Article>
-          <Article>
-            <Div width="15%">
-              <Text bold size="25px">
-                #오스트리아
-              </Text>
-            </Div>
-            <Div width="57%">
-              <Text size="25px">게시물 제목입니다.</Text>
-            </Div>
-            <Div spaceAround width="20%">
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                목적
-              </Div>
-              <Div
-                fontSize="10px"
-                padding="8px"
-                backgroundColor="#fff"
-                borderRadius="10px"
-              >
-                오세아니아
-              </Div>
-            </Div>
-            <Div fontSize="13px" width="8%" start>
-              작성시간
-            </Div>
-          </Article>
+          <Post posts={currentPosts(posts)} loading={loading}></Post>
+          <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
         </Div>
+
       </Div>
     </React.Fragment>
   );
@@ -160,18 +67,7 @@ export default Board;
 
 const PostBtn = styled.button`
   float: right;
-  margin-top: 30px;
   padding: 5px;
   background: tomato;
   color: #fff;
-`;
-
-const Article = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  background: #eee;
-  margin-bottom: 10px;
-  font-size: 20px;
 `;

@@ -15,6 +15,7 @@ const Div = (props) => {
     margin,
     padding,
     border,
+    borderRight,
     borderRadius,
     shadow,
     boxShadow,
@@ -32,6 +33,7 @@ const Div = (props) => {
     rowStart,
     spaceBetween,
     spaceAround,
+    spaceEvenly,
     textCenter,
     fontSize,
     inline,
@@ -55,6 +57,7 @@ const Div = (props) => {
     margin,
     padding,
     border,
+    borderRight,
     borderRadius,
     shadow,
     boxShadow,
@@ -72,6 +75,7 @@ const Div = (props) => {
     rowStart,
     spaceBetween,
     spaceAround,
+    spaceEvenly,
     textCenter,
     fontSize,
     inline,
@@ -140,6 +144,7 @@ Div.defaultProps = {
   margin: '',
   padding: '',
   border: '',
+  borderRight: '',
   borderRadius: '',
   shadow: false,
   boxShadow: '',
@@ -157,6 +162,7 @@ Div.defaultProps = {
   rowStart: false,
   spaceBetween: false,
   spaceAround: false,
+  spaceEvenly: false,
   textCenter: false,
   fontSize: '',
   inline: false,
@@ -199,6 +205,10 @@ const Box = styled.div`
   ${(props) =>
     props.spaceAround
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:space-around;'
+      : ''};
+      ${(props) =>
+    props.spaceEvenly
+      ? 'display:flex; flex-direction:row; align-items:center; justify-content:space-evenly;'
       : ''};
 
   width: ${(props) => props.width};
