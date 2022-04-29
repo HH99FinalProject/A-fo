@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { Div, Text, Image, Button } from '../components/ui';
+import Article from "../components/core/Article";
+import Bookmark from "../components/core/Bookmark";
 
 const MyPage = () => {
 
@@ -22,33 +24,9 @@ const MyPage = () => {
           <Text bold size="25px" margin="0 0 20px 0">내가 쓴 글</Text>
           <Hr/>
           {/* 내가 쓴 글 리스트 불러와서 map으로 뿌리기 */}
-          <MyComment>
-            <Div width="12%">#오스트리아</Div>
-            <Div width="60%">게시물 제목입니다.</Div>
-            <Div spaceAround width="20%">
-              <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px">목적</Div>
-              <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px">오세아니아</Div>
-            </Div>
-            <Div fontSize="13px" width="8%" start>작성시간</Div>
-          </MyComment>
-          <MyComment>
-            <Div width="12%">#오스트리아</Div>
-            <Div width="60%">게시물 제목입니다.</Div>
-            <Div spaceAround width="20%">
-              <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px">목적</Div>
-              <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px">오세아니아</Div>
-            </Div>
-            <Div fontSize="13px" width="8%" start>작성시간</Div>
-          </MyComment>
-          <MyComment>
-            <Div width="12%">#오스트리아</Div>
-            <Div width="60%">게시물 제목입니다.</Div>
-            <Div spaceAround width="20%">
-              <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px">목적</Div>
-              <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px">오세아니아</Div>
-            </Div>
-            <Div fontSize="13px" width="8%" start>작성시간</Div>
-          </MyComment>
+          <Article />
+          <Article />
+          <Article />
           {/* 페이지네이션 */}
           <Div center margin="10px 0">
             <Text>페이지네이션[1][2][3][4][5][6]</Text>
@@ -60,47 +38,18 @@ const MyPage = () => {
             <Text bold size="25px" margin="0 20px 10px 0">북마크</Text>
             <Div start margin="0 0 10px 0">
               <Div fontSize="14px" padding="10px" backgroundColor="#fff" borderRadius="20px" margin="0 15px 0 0">나라별</Div>
-              <Div fontSize="14px" padding="10px" backgroundColor="#fff" borderRadius="20px">용도별</Div>
+              <Div fontSize="14px" padding="10px" backgroundColor="#fff" borderRadius="20px">목적별</Div>
             </Div>
           </Div>
           <Hr/>
           {/* 북마크한거 map으로 뿌리기 */}
           <FlexWrap>
-            <Marked>
-              <Div center width="10%" fontSize="14px" padding="15px 0" backgroundColor="#fff" borderRadius="50%" margin="0 5% 0 0">워홀</Div>
-              <Div start width="65%" margin="0 5% 0 0">
-                <Div margin="0 10px 0 0"><Text bold size="24px">호주</Text></Div>
-                <Div><Text bold size="24px">뉴질랜드</Text></Div>
-              </Div>
-              <Div width="15%" fontSize="10px" padding="13px" backgroundColor="#fff" borderRadius="10px" center>보러가기</Div>
-            </Marked>
-            <Marked>
-              <Div center width="10%" fontSize="14px" padding="15px 0" backgroundColor="#fff" borderRadius="50%" margin="0 5% 0 0">이민</Div>
-              <Div start width="65%" margin="0 5% 0 0">
-                <Div margin="0 10px 0 0"><Text bold size="24px">영국</Text></Div>
-                <Div margin="0 10px 0 0"><Text bold size="24px">캐나다</Text></Div>
-                <Div><Text bold size="24px">싱가폴</Text></Div>
-              </Div>
-              <Div width="15%" fontSize="10px" padding="13px" backgroundColor="#fff" borderRadius="10px" center>보러가기</Div>
-            </Marked>
-            <Marked>
-              <Div center width="10%" fontSize="14px" padding="15px 0" backgroundColor="#fff" borderRadius="50%" margin="0 5% 0 0">이민</Div>
-              <Div start width="65%" margin="0 5% 0 0">
-                <Div margin="0 10px 0 0"><Text bold size="24px">영국</Text></Div>
-                <Div margin="0 10px 0 0"><Text bold size="24px">캐나다</Text></Div>
-                <Div><Text bold size="24px">싱가폴</Text></Div>
-              </Div>
-              <Div width="15%" fontSize="10px" padding="13px" backgroundColor="#fff" borderRadius="10px" center>보러가기</Div>
-            </Marked>
-            <Marked>
-              <Div center width="10%" fontSize="14px" padding="15px 0" backgroundColor="#fff" borderRadius="50%" margin="0 5% 0 0">이민</Div>
-              <Div start width="65%" margin="0 5% 0 0">
-                <Div margin="0 10px 0 0"><Text bold size="24px">영국</Text></Div>
-                <Div margin="0 10px 0 0"><Text bold size="24px">캐나다</Text></Div>
-                <Div><Text bold size="24px">싱가폴</Text></Div>
-              </Div>
-              <Div width="15%" fontSize="10px" padding="13px" backgroundColor="#fff" borderRadius="10px" center>보러가기</Div>
-            </Marked>
+            <Bookmark />
+            <Bookmark />
+            <Bookmark />
+            <Bookmark />
+            <Bookmark />
+            <Bookmark />
           </FlexWrap>
         </Div>
       </Div>
@@ -124,7 +73,7 @@ const MyComment = styled.div`
 const Marked = styled.div`
   display: flex;
   align-items: center;
-  width: 500px;
+  width: 440px;
   padding: 15px 10px;
   background: #eee;
   margin-bottom: 15px;
