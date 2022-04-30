@@ -9,7 +9,7 @@ const MyPage = () => {
 
   return (
     <React.Fragment>
-      <React.Fragment>
+      
       <Div width="1400px" margin="0 auto">
         <Div start margin="80px 0 50px 0">
           <Image shape="circle" width="163px" height="163px" size="cover" src="https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927"  />
@@ -53,7 +53,6 @@ const MyPage = () => {
           </FlexWrap>
         </Div>
       </Div>
-    </React.Fragment>
     </React.Fragment>
   )
 }
