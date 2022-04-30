@@ -9,6 +9,7 @@ const Info = () => {
         호주
       </Text>
 
+      {/* map돌리기 */}
       <Div
         position="relative"
         width="100%"

@@ -3,7 +3,8 @@ import { history } from '../redux/configureStore';
 
 import { Info, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Detail = () => {
   return (
@@ -17,7 +18,7 @@ const Detail = () => {
         >
           Home
         </Button>
-        <MdOutlineKeyboardArrowRight size="15" />
+        <RiArrowRightSLine size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain1');
@@ -25,7 +26,7 @@ const Detail = () => {
         >
           목적별
         </Button>
-        <MdOutlineKeyboardArrowRight size="15" />
+        <RiArrowRightSLine size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain2');
@@ -33,7 +34,7 @@ const Detail = () => {
         >
           워홀
         </Button>
-        <MdOutlineKeyboardArrowRight size="15" />
+        <RiArrowRightSLine size="15" />
         <Text>정보</Text>
       </Div> */}
       {/* 목적별 경로 끝 */}
@@ -47,7 +48,7 @@ const Detail = () => {
         >
           Home
         </Button>
-        <MdOutlineKeyboardArrowRight size="15" />
+        <RiArrowRightSLine size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain2');
@@ -55,7 +56,7 @@ const Detail = () => {
         >
           나라별
         </Button>
-        <MdOutlineKeyboardArrowRight size="15" />
+        <RiArrowRightSLine size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain1');
@@ -63,11 +64,12 @@ const Detail = () => {
         >
           호주
         </Button>
-        <MdOutlineKeyboardArrowRight size="15" />
+        <RiArrowRightSLine size="15" />
         <Text>정보</Text>
       </Div>
       {/* 나라별 경로 끝 */}
 
+      {/* 정보 시작 */}
       <Div
         center
         width="1400px"
@@ -89,6 +91,7 @@ const Detail = () => {
           {/* 나라별 끝 */}
         </Div>
       </Div>
+      {/* 정보 끝 */}
 
       {/* 북마크 시작 */}
       <Div bookmark>
@@ -140,8 +143,11 @@ const Detail = () => {
         <Button>완료</Button>
       </Div>
       {/* 북마크 끝 */}
+
       {/* 상단으로 가기 시작 */}
-      <Button is_float>↑</Button>
+      <Button is_float>
+        <MdOutlineKeyboardArrowUp />
+      </Button>
       {/* 상단으로 가기 끝 */}
     </React.Fragment>
   );
