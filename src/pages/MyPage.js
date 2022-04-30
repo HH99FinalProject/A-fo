@@ -10,7 +10,7 @@ const MyPage = () => {
   return (
     <React.Fragment>
       <Div width="1400px" margin="0 auto">
-        <Div start margin="80px 0 50px 0">
+        <Div flexStart margin="80px 0 50px 0">
           <Image
             shape="circle"
             width="163px"
@@ -57,7 +57,7 @@ const MyPage = () => {
             borderRadius="10px"
             margin="20px 0 0 0"
           >
-            <Div start margin="0 0 10px 0">
+            <Div flexStart margin="0 0 10px 0">
               <Div
                 fontSize="14px"
                 padding="10px"
@@ -91,7 +91,7 @@ const MyPage = () => {
                 >
                   워홀
                 </Div>
-                <Div start width="65%" margin="0 5% 0 0">
+                <Div flexStart width="65%" margin="0 5% 0 0">
                   <Div margin="0 10px 0 0">
                     <Text bold size="24px">
                       호주
@@ -126,7 +126,7 @@ const MyPage = () => {
                 >
                   이민
                 </Div>
-                <Div start width="65%" margin="0 5% 0 0">
+                <Div flexStart width="65%" margin="0 5% 0 0">
                   <Div margin="0 10px 0 0">
                     <Text bold size="24px">
                       영국
@@ -166,7 +166,7 @@ const MyPage = () => {
                 >
                   이민
                 </Div>
-                <Div start width="65%" margin="0 5% 0 0">
+                <Div flexStart width="65%" margin="0 5% 0 0">
                   <Div margin="0 10px 0 0">
                     <Text bold size="24px">
                       영국
@@ -206,7 +206,7 @@ const MyPage = () => {
                 >
                   이민
                 </Div>
-                <Div start width="65%" margin="0 5% 0 0">
+                <Div flexStart width="65%" margin="0 5% 0 0">
                   <Div margin="0 10px 0 0">
                     <Text bold size="24px">
                       영국

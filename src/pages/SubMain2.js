@@ -11,7 +11,7 @@ const SubMain2 = () => {
     <React.Fragment>
       {/* 목적별 시작 */}
       {/* 경로 시작 */}
-      {/* <Div start width="1400px" margin=" 10px auto" border="1px solid black">
+      {/* <Div flexStart width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -95,7 +95,12 @@ const SubMain2 = () => {
       {/* 목적별 끝  */}
       {/* 나라별 시작 */}
       {/* 경로 시작 */}
-      <Div start width="1400px" margin=" 10px auto" border="1px solid black">
+      <Div
+        flexStart
+        width="1400px"
+        margin=" 10px auto"
+        border="1px solid black"
+      >
         <Button
           _onClick={() => {
             history.push('/');

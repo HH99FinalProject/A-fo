@@ -27,7 +27,7 @@ const Div = (props) => {
     opacity,
     colorHover,
     container,
-    start,
+    flexStart,
     center,
     row,
     rowStart,
@@ -69,7 +69,7 @@ const Div = (props) => {
     opacity,
     colorHover,
     container,
-    start,
+    flexStart,
     center,
     row,
     rowStart,
@@ -156,7 +156,7 @@ Div.defaultProps = {
   opacity: '',
   colorHover: false,
   container: false,
-  start: '',
+  flexStart: false,
   center: false,
   row: false,
   rowStart: false,
@@ -183,7 +183,7 @@ const Box = styled.div`
   float: ${(props) => props.float};
   ${(props) => (props.inline ? 'display:inline-block;' : '')};
   ${(props) =>
-    props.start
+    props.flexStart
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:flex-start;'
       : ''};
   ${(props) =>
@@ -206,7 +206,7 @@ const Box = styled.div`
     props.spaceAround
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:space-around;'
       : ''};
-      ${(props) =>
+  ${(props) =>
     props.spaceEvenly
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:space-evenly;'
       : ''};

@@ -9,9 +9,7 @@ import Article from '../components/core/Article';
 import Pagination from '../components/core/Pagination';
 import Post from '../components/core/Post';
 
-
 const Board = (props) => {
-
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,7 +19,9 @@ const Board = (props) => {
     // pagination구현 임시로 데이터 넣었음
     async function fetchData() {
       setLoading(true);
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      const response = await axios.get(
+        'https://jsonplaceholder.typicode.com/posts'
+      );
       setPosts(response.data);
       setLoading(false);
     }
@@ -55,9 +55,12 @@ const Board = (props) => {
         <Div margin="100px 0 0 0">
           {/* map으로 돌리기 */}
           <Post posts={currentPosts(posts)} loading={loading}></Post>
-          <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={posts.length}
+            paginate={setCurrentPage}
+          ></Pagination>
         </Div>
-
       </Div>
     </React.Fragment>
   );

@@ -8,14 +8,27 @@ import Search from '../components/core/Search';
 const PostWrite = () => {
   return (
     <React.Fragment>
-      <Div width="1400px" margin="80px auto 50px"padding="20px 0" alignItems="center">
-        <Text textAlign="center" size="36px" bold >자유 게시판</Text>
+      <Div
+        width="1400px"
+        margin="80px auto 50px"
+        padding="20px 0"
+        alignItems="center"
+      >
+        <Text textAlign="center" size="36px" bold>
+          자유 게시판
+        </Text>
         <Search />
-        <ReturnBtn onClick={() => {history.push("/board")}}>목록으로</ReturnBtn>
+        <ReturnBtn
+          onClick={() => {
+            history.push('/board');
+          }}
+        >
+          목록으로
+        </ReturnBtn>
 
         <Div margin="100px 0 0 0">
           <Article>
-            <Div start>
+            <Div flexStart>
               <Target>
                 <Div>대륙별</Div>
                 <span>아시아</span>
@@ -33,17 +46,19 @@ const PostWrite = () => {
               </Target>
             </Div>
 
-            <Title placeholder='제목을 입력하세요.' />
-            <Content placeholder='내용을 입력하세요.'/>
+            <Title placeholder="제목을 입력하세요." />
+            <Content placeholder="내용을 입력하세요." />
             <Div spaceBetween>
-              <input type="file" onChange={() => {}}/>
-              <Button padding="10px" radius="10px">작성완료</Button>
+              <input type="file" onChange={() => {}} />
+              <Button padding="10px" radius="10px">
+                작성완료
+              </Button>
             </Div>
           </Article>
         </Div>
       </Div>
     </React.Fragment>
-  )
+  );
 };
 
 export default PostWrite;

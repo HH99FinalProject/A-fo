@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
-import { AiOutlineComment, AiOutlineEye }from "react-icons/ai";
-import { CgHeart }from "react-icons/cg";
+import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
+import { CgHeart } from 'react-icons/cg';
 
 import { Div, Button, Text } from '../components/ui';
 import Search from '../components/core/Search';
@@ -11,51 +11,125 @@ import Comment from '../components/core/Comment';
 const PostDetail = () => {
   return (
     <React.Fragment>
-      <Div width="1400px" margin="80px auto 50px"padding="20px 0" alignItems="center">
-        <Text textAlign="center" size="36px" bold >자유 게시판</Text>
+      <Div
+        width="1400px"
+        margin="80px auto 50px"
+        padding="20px 0"
+        alignItems="center"
+      >
+        <Text textAlign="center" size="36px" bold>
+          자유 게시판
+        </Text>
         <Search />
-        <ReturnBtn onClick={() => { history.push("/board") }}>목록으로</ReturnBtn>
+        <ReturnBtn
+          onClick={() => {
+            history.push('/board');
+          }}
+        >
+          목록으로
+        </ReturnBtn>
 
         <Div margin="100px 0 0 0">
           <Wrap>
-            <Div start>
-              <div style={{width:"10%", borderRight:"1px solid #bdbdbd", padding:"5px 0"}}>
+            <Div flexStart>
+              <div
+                style={{
+                  width: '10%',
+                  borderRight: '1px solid #bdbdbd',
+                  padding: '5px 0',
+                }}
+              >
                 <Text bold size="20px" color="#7b7b7b">
                   #오스트리아
                 </Text>
               </div>
               <Div padding="0 0 0 20px">
-                <Text size="16px" bold>게시물 제목입니다.</Text>
+                <Text size="16px" bold>
+                  게시물 제목입니다.
+                </Text>
               </Div>
               <Div row width="15%">
-                <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px" margin="0 10px 0 0">목적</Div>
-                <Div fontSize="10px" padding="8px" backgroundColor="#fff" borderRadius="10px">오세아니아</Div>
+                <Div
+                  fontSize="10px"
+                  padding="8px"
+                  backgroundColor="#fff"
+                  borderRadius="10px"
+                  margin="0 10px 0 0"
+                >
+                  목적
+                </Div>
+                <Div
+                  fontSize="10px"
+                  padding="8px"
+                  backgroundColor="#fff"
+                  borderRadius="10px"
+                >
+                  오세아니아
+                </Div>
               </Div>
             </Div>
             <Div spaceBetween>
               <Div spaceEvenly margin="20px 0">
-                <div style={{padding:"5px 0", width:"100px"}}>
+                <div style={{ padding: '5px 0', width: '100px' }}>
                   <Text>작성자 이름</Text>
                 </div>
                 <Div spaceEvenly>
                   <Div fontSize="13px" width="50px">
                     몇일전
                   </Div>
-                  <Text><AiOutlineEye /> 155회</Text>
+                  <Text>
+                    <AiOutlineEye /> 155회
+                  </Text>
                 </Div>
               </Div>
               <Div row>
-                <Text><AiOutlineComment /> 10개</Text>
-                <Text margin="0 0 0 20px"><CgHeart /> 10개</Text>
+                <Text>
+                  <AiOutlineComment /> 10개
+                </Text>
+                <Text margin="0 0 0 20px">
+                  <CgHeart /> 10개
+                </Text>
               </Div>
             </Div>
-            <Text size="16px" lineHeight="1.2em" textAlign="justify" letterSpacing="0.02em">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam congue sed et sagittis tellus, pharetra malesuada urna. At integer adipiscing nullam aliquet dis dolor magna tristique amet. Volutpat enim, tincidunt ut neque lorem mi tristique non lorem. Dui consequat faucibus mauris risus. Fames dictum mattis dui viverra a mattis ornare lectus urna. At nunc ut commodo et, odio sit tincidunt. Auctor cursus semper velit sed viverra morbi. Diam sed dapibus bibendum odio ut mattis. Vulputate elit risus elementum iaculis sed ornare. Non risus id elementum, adipiscing diam ipsum velit. Purus etiam quam volutpat tortor, leo. Pellentesque odio condimentum lacus parturient sit ut. Orci, in velit ut pretium auctor diam semper lectus. Dapibus nulla turpis lorem et enim libero.</Text>
+            <Text
+              size="16px"
+              lineHeight="1.2em"
+              textAlign="justify"
+              letterSpacing="0.02em"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam
+              congue sed et sagittis tellus, pharetra malesuada urna. At integer
+              adipiscing nullam aliquet dis dolor magna tristique amet. Volutpat
+              enim, tincidunt ut neque lorem mi tristique non lorem. Dui
+              consequat faucibus mauris risus. Fames dictum mattis dui viverra a
+              mattis ornare lectus urna. At nunc ut commodo et, odio sit
+              tincidunt. Auctor cursus semper velit sed viverra morbi. Diam sed
+              dapibus bibendum odio ut mattis. Vulputate elit risus elementum
+              iaculis sed ornare. Non risus id elementum, adipiscing diam ipsum
+              velit. Purus etiam quam volutpat tortor, leo. Pellentesque odio
+              condimentum lacus parturient sit ut. Orci, in velit ut pretium
+              auctor diam semper lectus. Dapibus nulla turpis lorem et enim
+              libero.
+            </Text>
           </Wrap>
 
           <Wrap>
-            <Text size="20px" margin=" 0 0 20px 0">Comment</Text>
+            <Text size="20px" margin=" 0 0 20px 0">
+              Comment
+            </Text>
             <Content />
-            <button style={{float:"right", padding:"10px", top: '60px', position: 'absolute', borderRadius: '10px', marginLeft: "20px"}}>댓글작성</button>
+            <button
+              style={{
+                float: 'right',
+                padding: '10px',
+                top: '60px',
+                position: 'absolute',
+                borderRadius: '10px',
+                marginLeft: '20px',
+              }}
+            >
+              댓글작성
+            </button>
             <CommentList>
               {/* 댓글 !!작성할때마다!! 리스트 불러와서 map으로 뿌려주기 */}
               <Comment />
@@ -67,7 +141,7 @@ const PostDetail = () => {
         </Div>
       </Div>
     </React.Fragment>
-  )
+  );
 };
 
 export default PostDetail;

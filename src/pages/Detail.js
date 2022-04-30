@@ -10,7 +10,7 @@ const Detail = () => {
   return (
     <React.Fragment>
       {/* 목적별 경로 시작 */}
-      {/* <Div start width="1400px" margin=" 10px auto" border="1px solid black">
+      {/* <Div flexStart width="1400px" margin=" 10px auto" border="1px solid black">
         <Button
           _onClick={() => {
             history.push('/');
@@ -40,7 +40,12 @@ const Detail = () => {
       {/* 목적별 경로 끝 */}
 
       {/* 나라별 경로 시작 */}
-      <Div start width="1400px" margin=" 10px auto" border="1px solid black">
+      <Div
+        flexStart
+        width="1400px"
+        margin=" 10px auto"
+        border="1px solid black"
+      >
         <Button
           _onClick={() => {
             history.push('/');

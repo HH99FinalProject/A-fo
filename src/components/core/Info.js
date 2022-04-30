@@ -31,7 +31,7 @@ const Info = () => {
         {/* <Button bookmarkBtn complete border="1px solid black"></Button> */}
         {/* 북마크 후 */}
 
-        <Div start border="1px solid black">
+        <Div flexStart border="1px solid black">
           <Text width="35px" border="1px solid black">
             비자
           </Text>
@@ -65,7 +65,7 @@ const Info = () => {
         <Button bookmarkBtn complete border="1px solid black"></Button>
         {/* 북마크 후 */}
 
-        <Div start border="1px solid black">
+        <Div flexStart border="1px solid black">
           <Text width="35px" border="1px solid black">
             비자
           </Text>
@@ -94,7 +94,7 @@ const Info = () => {
         <Button bookmarkBtn complete border="1px solid black"></Button>
         {/* 북마크 후 */}
 
-        <Div start border="1px solid black">
+        <Div flexStart border="1px solid black">
           <Text width="35px" border="1px solid black">
             비자
           </Text>
@@ -123,7 +123,7 @@ const Info = () => {
         {/* <Button bookmarkBtn complete border="1px solid black"></Button> */}
         {/* 북마크 후 */}
 
-        <Div start border="1px solid black">
+        <Div flexStart border="1px solid black">
           <Text width="35px" border="1px solid black">
             비자
           </Text>
@@ -152,7 +152,7 @@ const Info = () => {
         {/* <Button bookmarkBtn complete border="1px solid black"></Button> */}
         {/* 북마크 후 */}
 
-        <Div start border="1px solid black">
+        <Div flexStart border="1px solid black">
           <Text width="35px" border="1px solid black">
             비자
           </Text>
@@ -181,7 +181,7 @@ const Info = () => {
         <Button bookmarkBtn complete border="1px solid black"></Button>
         {/* 북마크 후 */}
 
-        <Div start border="1px solid black">
+        <Div flexStart border="1px solid black">
           <Text width="35px" border="1px solid black">
             비자
           </Text>

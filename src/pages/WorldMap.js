@@ -7,7 +7,12 @@ const WorldMap = () => {
   return (
     <React.Fragment>
       {/* 경로 시작 */}
-      <Div start width="1400px" margin=" 10px auto" border="1px solid black">
+      <Div
+        flexStart
+        width="1400px"
+        margin=" 10px auto"
+        border="1px solid black"
+      >
         <Button
           _onClick={() => {
             history.push('/');
