@@ -3,6 +3,7 @@ import { history } from '../redux/configureStore';
 
 import { CountryCard } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain1 = () => {
   const [backgroundColor1, setBackgroundColor1] = React.useState('white');
@@ -43,7 +44,7 @@ const SubMain1 = () => {
         >
           Home
         </Button>
-        <Text>/</Text>
+        <RiArrowRightSLine size="15" />
         <Text>목적별</Text>
       </Div> */}
       {/* 경로 끝 */}
@@ -88,7 +89,7 @@ const SubMain1 = () => {
         >
           Home
         </Button>
-        <Text>/</Text>
+        <RiArrowRightSLine size="15" />
         <Button
           _onClick={() => {
             history.push('/SubMain2');
@@ -96,7 +97,7 @@ const SubMain1 = () => {
         >
           나라별
         </Button>
-        <Text>/</Text>
+        <RiArrowRightSLine size="15" />
         <Text>호주</Text>
       </Div>
       {/* 경로 끝 */}
@@ -163,7 +164,7 @@ const SubMain1 = () => {
         <Div position="relative" center width="1400px" border="1px solid black">
           <Text border="1px solid black">유학 + 워홀</Text>
           <Button
-            compareBtn
+            absoluteBtn
             border="1px solid black"
             _onClick={() => {
               history.push('/Detail');

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+// import arrowRight from '../../styles/images/arrowRight.png';
 
 const Image = (props) => {
   const {
@@ -15,6 +16,7 @@ const Image = (props) => {
     size,
     position,
     repeat,
+    route,
   } = props;
 
   const styles = {
@@ -29,6 +31,7 @@ const Image = (props) => {
     size,
     position,
     repeat,
+    route,
   };
 
   if (shape === 'rectangle') {
@@ -42,6 +45,14 @@ const Image = (props) => {
   if (shape === 'circle') {
     return <ImageCircle {...styles}></ImageCircle>;
   }
+
+  // if (route) {
+  //   return (
+  //     <React.Fragment>
+  //       <Route {...styles}></Route>
+  //     </React.Fragment>
+  //   );
+  // }
 
   return (
     <React.Fragment>
@@ -62,6 +73,7 @@ Image.defaultProps = {
   size: '',
   position: false,
   repeat: false,
+  route: false,
 };
 
 //기본
@@ -94,7 +106,7 @@ const AspectInner = styled.div`
   background-position: ${(props) => props.position};
 `;
 
-//원형 
+//원형
 const ImageCircle = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -105,4 +117,12 @@ const ImageCircle = styled.div`
   background-position: ${(props) => props.position};
 `;
 
+// //화살표
+// const Route = styled.div`
+//   width: 15px;
+//   height: 15px;
+//   background-image: url(${arrowRight});
+//   background-size: cover;
+//   background-position: center;
+// `;
 export default Image;
