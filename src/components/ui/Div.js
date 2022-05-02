@@ -233,13 +233,13 @@ const Box = styled.div`
 
 const Bookmark = styled.div`
   position: fixed;
-  top: 200px;
+  top: 220px;
   right: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 150px;
+  width: 100px;
   height: auto;
   padding: 20px 0px;
   background-color: lightgrey;
