@@ -11,6 +11,7 @@ ${reset};
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+    background-color:#B6A5FB;
     
 };
 
@@ -33,7 +34,6 @@ button{
     border:none;
     /* border-radius: 5px; */
     cursor: pointer;
-    background-color: white;
 };
     
 `;
