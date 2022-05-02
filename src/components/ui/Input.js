@@ -76,7 +76,6 @@ const Input = (props) => {
           <Textarea
             {...styles}
             type={type}
-            rows={rows}
             placeholder={placeholder}
             onChange={_onChange}
           />
