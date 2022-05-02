@@ -6,6 +6,11 @@ import bookmarkBlack from '../../styles/images/bookmarkBlack.png';
 const Button = (props) => {
   const {
     children,
+    position,
+    top,
+    bottom,
+    left,
+    right,
     float,
     width,
     height,
@@ -24,7 +29,7 @@ const Button = (props) => {
     is_float,
     tagBtn,
     cmtBtn,
-    absoluteBtn,
+    bottomSheetBtn,
     bookmarkBtn,
     complete,
     opacity,
@@ -32,6 +37,11 @@ const Button = (props) => {
   } = props;
 
   const styles = {
+    position,
+    top,
+    bottom,
+    left,
+    right,
     float,
     width,
     height,
@@ -50,7 +60,7 @@ const Button = (props) => {
     is_float,
     tagBtn,
     cmtBtn,
-    absoluteBtn,
+    bottomSheetBtn,
     bookmarkBtn,
     complete,
     opacity,
@@ -80,12 +90,12 @@ const Button = (props) => {
     );
   }
 
-  if (absoluteBtn) {
+  if (bottomSheetBtn) {
     return (
       <React.Fragment>
-        <AbsoluteBtn {...styles} onClick={_onClick}>
+        <BottomSheetBtn {...styles} onClick={_onClick}>
           {text ? text : children}
-        </AbsoluteBtn>
+        </BottomSheetBtn>
       </React.Fragment>
     );
   }
@@ -110,6 +120,11 @@ const Button = (props) => {
 };
 
 Button.defaultProps = {
+  position: '',
+  top: '',
+  bottom: '',
+  left: '',
+  right: '',
   children: null,
   float: false,
   width: '',
@@ -129,7 +144,7 @@ Button.defaultProps = {
   is_float: false,
   tagBtn: false,
   cmtBtn: false,
-  absoluteBtn: false,
+  bottomSheetBtn: false,
   bookmarkBtn: false,
   complete: false,
   opacity: '',
@@ -137,6 +152,11 @@ Button.defaultProps = {
 };
 
 const ButtonDefault = styled.button`
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
+  right: ${(props) => props.right};
   float: ${(props) => props.float};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -159,7 +179,7 @@ const ButtonDefault = styled.button`
 const FloatButton = styled.button`
   position: fixed;
   bottom: 60px;
-  right: 45px;
+  right: 50px;
   width: 35px;
   height: 35px;
   border: 1px solid black;
@@ -215,10 +235,11 @@ const CmtBtn = styled.button`
   border-bottom-right-radius: 4px;
 `;
 
-const AbsoluteBtn = styled.button`
+const BottomSheetBtn = styled.button`
   position: absolute;
-  top: 0;
   right: 0;
+  height: 40px;
+  line-height: 40px;
   border: ${(props) => props.border};
 `;
 

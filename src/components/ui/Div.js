@@ -229,6 +229,7 @@ const Box = styled.div`
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
   background-color: ${(props) => props.backgroundColor};
+  overflow: ${(props) => props.overflow};
   ${(props) => (props.textCenter ? `text-align:center;` : '')};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};
@@ -247,10 +248,9 @@ const Bookmark = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 150px;
   height: auto;
-  padding: 20px 0px;
-  background-color: lightgrey;
+  background-color: white;
   border: 1px solid black;
 `;
 

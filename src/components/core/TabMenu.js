@@ -10,16 +10,19 @@ const TabMenu = () => {
         비자
       </Button>
       <Button margin="0px 5px" border="1px solid black">
-        비자
+        휴대전화
       </Button>
       <Button margin="0px 5px" border="1px solid black">
-        비자
+        은행 계좌 개설
       </Button>
       <Button margin="0px 5px" border="1px solid black">
-        비자
+        언어
       </Button>
       <Button margin="0px 5px" border="1px solid black">
-        비자
+        시차
+      </Button>
+      <Button margin="0px 5px" border="1px solid black">
+        교통 정보
       </Button>
     </Div>
   );

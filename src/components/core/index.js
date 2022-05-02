@@ -2,6 +2,7 @@ import Article from './Article';
 import Bookmark from './Bookmark';
 import Comment from './Comment';
 import CountryCard from './CountryCard';
+import Goolgle from './Google';
 import Header from './Header';
 import Info from './Info';
 import Pagenation from './Pagination';
@@ -15,6 +16,7 @@ export {
   Bookmark,
   Comment,
   CountryCard,
+  Goolgle,
   Header,
   Info,
   Pagenation,
