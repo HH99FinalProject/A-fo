@@ -93,12 +93,12 @@ const Profile = ({ onClose }) => {
             <Input
               file
               textarea
-              rows="5"
               placeholder="소개"
               // value={name}
               // _onChange={changeName}
               label="소개"
               width="250px"
+              height="100px"
             />
           </Div>
         </Div>
