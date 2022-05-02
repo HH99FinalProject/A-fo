@@ -171,31 +171,10 @@ const Textarea = styled.textarea`
 `;
 
 const CommentInput = styled.input`
+  width: 1250px;
+  padding: 10px;
+  /* overflow: auto; */
   font-size: 16px;
-  line-height: 28px;
-  text-decoration: none solid rgb(33, 37, 41);
-  white-space: pre-wrap;
-  word-spacing: 0px;
-  background-color: #ffffff;
-  background-position: 0% 0%;
-  color: #212529;
-  height: 98px;
-  width: 100%;
-  border: 1px solid #e7e8e9;
-  border-radius: 5px;
-  margin: 0 0 24px 0;
-  padding: 16px 16px 24px 16px;
-  min-height: 98px;
-  display: inline-block;
-  overflow: auto;
-  cursor: text;
-  box-sizing: border-box;
-  word-wrap: break-word;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  outline: none;
 `;
 
 export default Input;

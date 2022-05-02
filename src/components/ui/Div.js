@@ -220,7 +220,6 @@ const Box = styled.div`
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
   background-color: ${(props) => props.backgroundColor};
-  overflow: hidden;
   ${(props) => (props.textCenter ? `text-align:center;` : '')};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};

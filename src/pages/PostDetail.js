@@ -5,20 +5,24 @@ import { history } from '../redux/configureStore';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
 import { CgHeart } from 'react-icons/cg';
 
-import { Div, Button, Text } from '../components/ui';
+import { Div, Button, Input, Text } from '../components/ui';
 import Search from '../components/core/Search';
 import Comment from '../components/core/Comment';
-import { commentSlice } from '../redux/slice/user';
+import { addComment } from '../redux/modules/comment';
 
 const PostDetail = () => {
   const dispatch = useDispatch();
-  
-  const comments = useSelector((state) => state);
-  console.log(comments);
 
-  const addComment = () => {
-    dispatch(commentSlice());
-  }
+  const comments = useSelector((state) => state.comment.comment);
+
+  const [comment, setCommentText] = React.useState();
+  const onChange = (e) => {
+    setCommentText(e.target.value);
+  };
+  const commentWrite = () => {
+    dispatch(addComment(comment));
+    setCommentText('');
+  };
 
   return (
     <React.Fragment>
@@ -128,26 +132,32 @@ const PostDetail = () => {
             <Text size="20px" margin=" 0 0 20px 0">
               Comment
             </Text>
-            <Content />
-            <button
-              style={{
-                float: 'right',
-                padding: '10px',
-                top: '60px',
-                position: 'absolute',
-                borderRadius: '10px',
-                marginLeft: '20px',
-              }}
-              onClick={() => { addComment(); }}
-            >
-              댓글작성
-            </button>
+            <Div spaceBetween width="100%">
+              <Input
+                placeholder="댓글을 입력해주세요."
+                _onChange={onChange}
+                value={comment}
+                onSubmit={commentWrite}
+                is_submit
+              />
+              <button
+                style={{
+                  padding: '10px',
+                  borderRadius: '10px',
+                }}
+                onClick={() => {
+                  commentWrite();
+                }}
+              >
+                댓글작성
+              </button>
+            </Div>
+
             <CommentList>
               {/* 댓글 !!작성할때마다!! 리스트 불러와서 map으로 뿌려주기 */}
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
+              {comments.map((v, i) => {
+                return <Comment key={v + i} comment={comments[i]} />;
+              })}
             </CommentList>
           </Wrap>
         </Div>
@@ -183,6 +193,7 @@ const Wrap = styled.div`
   background: #eee;
   margin-bottom: 20px;
   font-size: 20px;
+  width: 100%;
 `;
 
 const Content = styled.input`
