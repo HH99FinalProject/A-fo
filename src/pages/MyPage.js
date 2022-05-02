@@ -13,6 +13,7 @@ const MyPage = () => {
   const [openModal, setOpenModal] = React.useState(false);
   return (
     <React.Fragment>
+      
       <Div width="1400px" margin="0 auto">
         <Div flexStart margin="80px 0 50px 0">
           <Image
@@ -268,8 +269,8 @@ const MyPage = () => {
         </Div>
       </Div>
     </React.Fragment>
-  );
-};
+  )
+}
 
 export default MyPage;
 
