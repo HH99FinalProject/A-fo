@@ -3,6 +3,8 @@ import { Div, Text } from './index';
 import styled from 'styled-components';
 
 const Input = (props) => {
+  const _ref = React.useRef(null);
+
   const {
     width,
     height,
@@ -17,10 +19,12 @@ const Input = (props) => {
     type,
     multiLine,
     repeat,
+    file,
     value,
     rows,
     is_submit,
     onSubmit,
+    textarea,
   } = props;
 
   const styles = {
@@ -57,6 +61,34 @@ const Input = (props) => {
           onChange={_onChange}
         />
       </Div>
+    );
+  }
+
+  if (file) {
+    return (
+      <React.Fragment>
+        {label && (
+          <Text float="left" width="100px">
+            {label}
+          </Text>
+        )}
+        {textarea ? (
+          <Textarea
+            {...styles}
+            type={type}
+            rows={rows}
+            placeholder={placeholder}
+            onChange={_onChange}
+          />
+        ) : (
+          <InputDefault
+            {...styles}
+            type={type}
+            placeholder={placeholder}
+            onChange={_onChange}
+          />
+        )}
+      </React.Fragment>
     );
   }
 
@@ -97,12 +129,14 @@ Input.defaultProps = {
   borderRadius: '',
   multiLine: false,
   repeat: false,
+  file: false,
   label: false,
   type: '',
   placeholder: '',
   value: '',
   rows: '',
   is_submit: false,
+  textarea: false,
   onSubmit: () => {},
   _onChange: () => {},
 };
@@ -134,6 +168,7 @@ const Textarea = styled.textarea`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
+  resize: none;
 `;
 
 const CommentInput = styled.input`

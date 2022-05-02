@@ -1,9 +1,12 @@
 import React from 'react';
 import { history } from '../../redux/configureStore';
 
+import Modal from '../../shared/Modal';
+import Login from '../modal/Login';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const Header = () => {
+  const [openModal, setOpenModal] = React.useState(false);
   return (
     <Div
       spaceBetween
@@ -39,12 +42,20 @@ const Header = () => {
         <Button
           border="1px solid black"
           _onClick={() => {
-            history.push('/Login');
+            setOpenModal(true);
           }}
         >
           로그인
         </Button>
-      </Div> */}
+      </Div>
+      <Modal
+        open={openModal}
+        onClose={() => {
+          setOpenModal(false);
+        }}
+      >
+        <Login />
+      </Modal> */}
       {/* 로그인 전 */}
 
       {/* 로그인 후 */}

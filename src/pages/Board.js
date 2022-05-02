@@ -28,8 +28,6 @@ const Board = (props) => {
     fetchData();
   }, []);
 
-  console.log(posts);
-
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
   function currentPosts(tmp) {

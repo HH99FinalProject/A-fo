@@ -7,6 +7,7 @@ const Text = (props) => {
     children,
     display,
     justifyContent,
+    float,
     width,
     height,
     lineHeight,
@@ -38,6 +39,7 @@ const Text = (props) => {
   const styles = {
     display,
     justifyContent,
+    float,
     width,
     height,
     lineHeight,
@@ -76,6 +78,7 @@ Text.defaultProps = {
   children: null,
   display: '',
   justifyContent: '',
+  float: '',
   width: '',
   height: '',
   lingeHeight: '',
@@ -107,6 +110,7 @@ Text.defaultProps = {
 const P = styled.p`
   display: ${(props) => props.display};
   justify-content: ${(props) => props.justifyContent};
+  float: ${(props) => props.float};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   line-height: ${(props) => props.lineHeight};

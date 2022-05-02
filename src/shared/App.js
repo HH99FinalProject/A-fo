@@ -14,8 +14,6 @@ import SubMain2 from '../pages/SubMain2';
 import WorldMap from '../pages/WorldMap';
 
 import { Header } from '../components/core';
-import Login from '../components/modal/Login';
-import Profile from '../components/modal/Profile';
 import { Div, GlobalStyle } from '../components/ui';
 
 function App() {
@@ -26,11 +24,9 @@ function App() {
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route exact path="/" component={Main} />
-          <Route exact path="/Login" component={Login} />
           <Route exact path="/Board" component={Board} />
           <Route exact path="/Detail" component={Detail} />
           <Route exact path="/MyPage" component={MyPage} />
-          <Route exact path="/Profile" component={Profile} />
           <Route exact path="/PostDetail" component={PostDetail} />
           <Route exact path="/PostWrite" component={PostWrite} />
           <Route exact path="/SubMain1" component={SubMain1} />

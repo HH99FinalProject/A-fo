@@ -159,7 +159,7 @@ const ButtonDefault = styled.button`
 const FloatButton = styled.button`
   position: fixed;
   bottom: 60px;
-  right: 50px;
+  right: 45px;
   width: 35px;
   height: 35px;
   border: 1px solid black;

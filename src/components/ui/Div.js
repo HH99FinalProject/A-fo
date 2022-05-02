@@ -38,8 +38,8 @@ const Div = (props) => {
     fontSize,
     inline,
     bookmark,
-    modalContainer,
-    modalBox,
+    overlayModal,
+    modal,
     bottomSheet,
     _onClick,
   } = props;
@@ -80,8 +80,8 @@ const Div = (props) => {
     fontSize,
     inline,
     bookmark,
-    modalContainer,
-    modalBox,
+    overlayModal,
+    modal,
     bottomSheet,
   };
   if (bookmark) {
@@ -94,22 +94,22 @@ const Div = (props) => {
     );
   }
 
-  if (modalContainer) {
+  if (overlayModal) {
     return (
       <React.Fragment>
-        <ModalContainer onClick={_onClick} {...styles}>
+        <OverlayModal onClick={_onClick} {...styles}>
           {children}
-        </ModalContainer>
+        </OverlayModal>
       </React.Fragment>
     );
   }
 
-  if (modalBox) {
+  if (modal) {
     return (
       <React.Fragment>
-        <ModalBox onClick={_onClick} {...styles}>
+        <Modal onClick={_onClick} {...styles}>
           {children}
-        </ModalBox>
+        </Modal>
       </React.Fragment>
     );
   }
@@ -231,14 +231,10 @@ const Box = styled.div`
   }
 `;
 
-// const Route = styled.div`
-
-// `
-
 const Bookmark = styled.div`
   position: fixed;
-  top: 300px;
-  right: 50px;
+  top: 200px;
+  right: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -250,30 +246,27 @@ const Bookmark = styled.div`
   border: 1px solid black;
 `;
 
-const ModalContainer = styled.div`
+const OverlayModal = styled.div`
   position: fixed;
   top: 0;
-  right: 0;
   bottom: 0;
   left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 `;
 
-const ModalBox = styled.div`
-  position: absolute;
-  left: 50%;
+const Modal = styled.div`
+  position: fixed;
   top: 50%;
-  display: flex;
-  width: 1000px;
-  height: 700px;
-  padding: auto 0px;
+  left: 50%;
   transform: translate(-50%, -50%);
-  background: #fff;
+  background-color: white;
   border-radius: 10px;
+  z-index: 1000;
+  overflow: hidden;
 `;
 
 const BottomSheet = styled.div`

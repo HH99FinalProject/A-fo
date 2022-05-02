@@ -17,6 +17,7 @@ const Image = (props) => {
     position,
     repeat,
     route,
+    cursor,
   } = props;
 
   const styles = {
@@ -32,6 +33,7 @@ const Image = (props) => {
     position,
     repeat,
     route,
+    cursor,
   };
 
   if (shape === 'rectangle') {
@@ -74,6 +76,7 @@ Image.defaultProps = {
   position: false,
   repeat: false,
   route: false,
+  cursor: '',
 };
 
 //기본
@@ -89,6 +92,7 @@ const ImageDefault = styled.div`
   background-size: ${(props) => props.size};
   background-position: ${(props) => props.position};
   background-repeat: ${(props) => props.repeat};
+  cursor: ${(props) => props.cursor};
 `;
 
 //4:3비율 직사각형
@@ -114,7 +118,9 @@ const ImageCircle = styled.div`
   border-radius: 50%;
   background-image: url('${(props) => props.src}');
   background-size: ${(props) => props.size};
+  background-repeat: ${(props) => props.repeat};
   background-position: ${(props) => props.position};
+  cursor: ${(props) => props.cursor};
 `;
 
 // //화살표

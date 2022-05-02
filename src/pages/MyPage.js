@@ -1,12 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 
-import { Div, Text, Image, Button } from '../components/ui';
 import Article from '../components/core/Article';
 import Bookmark from '../components/core/Bookmark';
+import Modal from '../shared/Modal';
+import Profile from '../components/modal/Profile';
+
+import styled from 'styled-components';
+import { Div, Text, Image, Button } from '../components/ui';
 
 const MyPage = () => {
+  const [openModal, setOpenModal] = React.useState(false);
   return (
     <React.Fragment>
       <Div width="1400px" margin="0 auto">
@@ -27,14 +31,29 @@ const MyPage = () => {
           <Button
             border="1px solid #b3b3b3"
             padding="3px"
+            size="12px"
+            color="#7b7b7b"
             _onClick={() => {
-              history.push('/Profile');
+              setOpenModal(true);
             }}
           >
-            <Text size="12px" color="#7b7b7b">
-              Edit Profile
-            </Text>
+            Edit Profile
           </Button>
+
+          {/* 프로필 수정 모달 */}
+          <Modal
+            open={openModal}
+            onClose={() => {
+              setOpenModal(false);
+            }}
+          >
+            <Profile
+              onClose={() => {
+                setOpenModal(false);
+              }}
+            />
+          </Modal>
+          {/* 프로필 수정 모달 */}
         </Div>
 
         <Div backgroundColor="#e1e1e1" padding="30px" borderRadius="10px">
