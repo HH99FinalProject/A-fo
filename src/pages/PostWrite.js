@@ -113,4 +113,5 @@ const Content = styled.textarea`
   height: 400px;
   overflow: auto;
   margin-bottom: 20px;
+  resize: none;
 `;
