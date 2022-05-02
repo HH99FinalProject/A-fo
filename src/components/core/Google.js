@@ -7,7 +7,7 @@ export default function GoogleLoginBtn({onGoogleLogin}) {
   const onSuccess = async(response) => {
     const { googleId, profileObj : { email, name } } = response;
     await onGoogleLogin (
-
+      
     );
   }
 

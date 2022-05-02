@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
@@ -7,8 +8,18 @@ import { CgHeart } from 'react-icons/cg';
 import { Div, Button, Text } from '../components/ui';
 import Search from '../components/core/Search';
 import Comment from '../components/core/Comment';
+import { commentSlice } from '../redux/slice/user';
 
 const PostDetail = () => {
+  const dispatch = useDispatch();
+  
+  const comments = useSelector((state) => state);
+  console.log(comments);
+
+  const addComment = () => {
+    dispatch(commentSlice());
+  }
+
   return (
     <React.Fragment>
       <Div
@@ -127,6 +138,7 @@ const PostDetail = () => {
                 borderRadius: '10px',
                 marginLeft: '20px',
               }}
+              onClick={() => { addComment(); }}
             >
               댓글작성
             </button>

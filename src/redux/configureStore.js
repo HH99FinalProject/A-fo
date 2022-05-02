@@ -2,11 +2,14 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
+import user from "./slice/user";
+
 //직접만든 히스토리
 export const history = createBrowserHistory();
 
 //리듀서 만들기
 const rootReducer = combineReducers({
+  user: user,
   router: connectRouter(history),
 });
 
