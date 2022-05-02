@@ -15,6 +15,8 @@ const Div = (props) => {
     margin,
     padding,
     border,
+    borderTop,
+    borderBottom,
     borderRight,
     borderRadius,
     shadow,
@@ -57,6 +59,8 @@ const Div = (props) => {
     margin,
     padding,
     border,
+    borderTop,
+    borderBottom,
     borderRight,
     borderRadius,
     shadow,
@@ -144,6 +148,8 @@ Div.defaultProps = {
   margin: '',
   padding: '',
   border: '',
+  borderTop: '',
+  borderBottom: '',
   borderRight: '',
   borderRadius: '',
   shadow: false,
@@ -216,6 +222,9 @@ const Box = styled.div`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
+  border-top: ${(props) => props.borderTop};
+  border-bottom: ${(props) => props.borderBottom};
+  border-right: ${(props) => props.borderRight};
   border-radius: ${(props) => props.borderRadius};
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
@@ -279,8 +288,8 @@ const BottomSheet = styled.div`
   width: 100%;
   height: 50px;
   padding: 5px 0px;
-  background-color: lightgrey;
   border: ${(props) => props.border};
+  border-top: ${(props) => props.borderTop};
 `;
 
 export default Div;

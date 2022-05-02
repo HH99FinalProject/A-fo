@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import { Div, Text, Image, Button } from '../ui';
 
 const TargetCard = (props) => {
-  const [backgroundColor, setBackgroundColor] = React.useState('white');
+  const [backgroundColor, setBackgroundColor] = React.useState('#B6A5FB');
   const Select = () => {
-    backgroundColor === 'white'
-      ? setBackgroundColor('lightgrey')
-      : setBackgroundColor('white');
+    backgroundColor === '#B6A5FB'
+      ? setBackgroundColor('#FFC6C6')
+      : setBackgroundColor('#B6A5FB');
   };
   return (
     <React.Fragment>
@@ -38,7 +38,7 @@ const TargetCard = (props) => {
         cursor="pointer"
         _onClick={Select}
       >
-        <Text>{props.text}</Text>
+        <Text backgroundColor={backgroundColor}>{props.text}</Text>
       </Div>
       {/* 나라별 */}
     </React.Fragment>

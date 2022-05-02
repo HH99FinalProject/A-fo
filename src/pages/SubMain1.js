@@ -93,7 +93,7 @@ const SubMain1 = () => {
       {/* 목적 선택 끝 */}
 
       {/* 바텀시트 */}
-      <Div bottomSheet border="1px solid black">
+      <Div bottomSheet borderTop="1px solid black">
         <Div position="relative" center width="1400px" border="1px solid black">
           <Text border="1px solid black">유학 + 워홀</Text>
           <Button
