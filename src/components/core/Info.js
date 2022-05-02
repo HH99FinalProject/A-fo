@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const Info = () => {
+
+  const [ visaToggle, setVisaToggle ] = useState(true);
+  const [ phoneToggle, setPhoneToggle ] = useState(false);
+  const [ bankToggle, setBankToggle ] = useState(false);
+  const [ languageToggle, setLanguageToggle ] = useState(false);
+  const [ timeToggle, setTimeToggle ] = useState(false);
+  const [ trafficToggle, setTrafficToggle ] = useState(false);
+
+  const changeVisaToggle = () => {
+    !visaToggle ? setVisaToggle(true) : setVisaToggle(false);
+  }
+  const changePhoneToggle = () => {
+    !phoneToggle ? setPhoneToggle(true) : setPhoneToggle(false);
+  }
+  const changeBankToggle = () => {
+    !bankToggle ? setBankToggle(true) : setBankToggle(false);
+  }
+  const changeLanguageToggle = () => {
+    !languageToggle ? setLanguageToggle(true) : setLanguageToggle(false);
+  }
+  const changeTimeToggle = () => {
+    !timeToggle ? setTimeToggle(true) : setTimeToggle(false);
+  }
+  const changeTrafficToggle = () => {
+    !trafficToggle ? setTrafficToggle(true) : setTrafficToggle(false);
+  }
+
+
   return (
     <Div width="335px" margin="0px 10px" border="1px solid black">
       <Text center width="100%" border="1px solid black">
@@ -35,8 +63,9 @@ const Info = () => {
           <Text width="auto" border="1px solid black">
             비자
           </Text>
-          <Button border="1px solid black">▼</Button>
+          <Button border="1px solid black" _onClick={()=>{ changeVisaToggle(); }}>▼</Button>
         </Div>
+        {visaToggle ? 
         <Div width="100%" margin="5px 0px 0px 0px" border="1px solid black">
           <Text width="100%" border="1px solid black">
             호주 비자에 관한 글입니다. 호주 비자에 관한 글입니다. 호주 비자에
@@ -48,6 +77,7 @@ const Info = () => {
             글입니다.
           </Text>
         </Div>
+        : null}
       </Div>
 
       <Div
@@ -69,8 +99,9 @@ const Info = () => {
           <Text width="auto" border="1px solid black">
             휴대전화 (Mobile Phone)
           </Text>
-          <Button border="1px solid black">▼</Button>
+          <Button border="1px solid black" _onClick={()=>{ changePhoneToggle(); }}>▼</Button>
         </Div>
+        {phoneToggle ? 
         <Div width="100%" margin="5px 0px 0px 0px" border="1px solid black">
           <Text width="100%" border="1px solid black">
             휴대전화 개통방식
@@ -106,6 +137,7 @@ const Info = () => {
             추천한다.)
           </Text>
         </Div>
+        : null}
       </Div>
 
       <Div
@@ -127,8 +159,9 @@ const Info = () => {
           <Text width="auto" border="1px solid black">
             은행 계좌 개설
           </Text>
-          <Button border="1px solid black">▼</Button>
+          <Button border="1px solid black" _onClick={()=>{ changeBankToggle(); }}>▼</Button>
         </Div>
+        {bankToggle ? 
         <Div width="100%" margin="5px 0px 0px 0px" border="1px solid black">
           <Text width="100%" border="1px solid black">
             준비서류
@@ -211,6 +244,7 @@ const Info = () => {
             체크카드처럼 이용가능하다.
           </Text>
         </Div>
+        : null}
       </Div>
 
       <Div
@@ -232,8 +266,9 @@ const Info = () => {
           <Text width="auto" border="1px solid black">
             언어
           </Text>
-          <Button border="1px solid black">▼</Button>
+          <Button border="1px solid black" _onClick={()=>{ changeLanguageToggle(); }}>▼</Button>
         </Div>
+        {languageToggle ? 
         <Div width="100%" margin="5px 0px 0px 0px" border="1px solid black">
           <Text width="100%" border="1px solid black">
             통용어
@@ -242,6 +277,7 @@ const Info = () => {
             영어
           </Text>
         </Div>
+        : null}
       </Div>
 
       <Div
@@ -263,14 +299,16 @@ const Info = () => {
           <Text width="auto" border="1px solid black">
             시차
           </Text>
-          <Button border="1px solid black">▼</Button>
+          <Button border="1px solid black" _onClick={()=>{ changeTimeToggle(); }}>▼</Button>
         </Div>
+        {/* {timeToggle ?  */}
         {/* <Div width="100%" margin="5px 0px 0px 0px" border="1px solid black">
           <Text width="100%" border="1px solid black">
             호주 비자에 관한 글입니다. 호주 비자에 관한 글입니다. 호주 비자에
             관한 글입니다. 호주 비자에 관한 글입니다. 호주 비자에 관한 글입니다.
           </Text>
         </Div> */}
+        {/* : null} */}
       </Div>
 
       <Div
@@ -292,14 +330,16 @@ const Info = () => {
           <Text width="auto" border="1px solid black">
             교통 정보
           </Text>
-          <Button border="1px solid black">▼</Button>
+          <Button border="1px solid black" _onClick={()=>{ changeTrafficToggle(); }}>▼</Button>
         </Div>
+        {/* {trafficToggle ?  */}
         {/* <Div width="100%" margin="5px 0px 0px 0px" border="1px solid black">
           <Text width="100%" border="1px solid black">
             호주 비자에 관한 글입니다. 호주 비자에 관한 글입니다. 호주 비자에
             관한 글입니다. 호주 비자에 관한 글입니다. 호주 비자에 관한 글입니다.
           </Text>
         </Div> */}
+        {/* : null} */}
       </Div>
     </Div>
   );

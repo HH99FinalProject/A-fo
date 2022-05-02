@@ -82,7 +82,7 @@ const Detail = () => {
         border="1px solid black"
       >
         <TabMenu />
-        <Div spaceBetween margin="50px 0px" border="1px solid black">
+        <Div display="flex" flexDirection="row" justifyContent="space-between" margin="50px 0px" border="1px solid black"  alignItems="flex-start">
           {/* 목적별 시작 */}
           <Info />
           <Info />
