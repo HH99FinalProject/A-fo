@@ -19,6 +19,7 @@ export default function GoogleLoginBtn({onGoogleLogin}) {
     <div>
       <GoogleLogin 
       clientId={clientId}
+      buttonText="1초만에 로그인하기"
       responseType={"id_token"}
       onSuccess={onSuccess}
       onFailure={onFailure}/>

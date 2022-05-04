@@ -261,7 +261,7 @@ const Detail = () => {
       {/* 북마크 끝 */}
 
       {/* 상단으로 가기 시작 */}
-      <Button is_float>
+      <Button is_float _onClick={()=>{ window.scrollTo({top:0, left:0, behavior:'smooth'}) }}>
         <MdOutlineKeyboardArrowUp />
       </Button>
       {/* 상단으로 가기 끝 */}
