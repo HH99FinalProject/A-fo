@@ -1,6 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { history } from '../redux/configureStore';
+import { getTargetInfo, setInfo } from '../redux/modules/target';
 
 import { Info, InfoTotal, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
@@ -11,6 +13,22 @@ import australia from '../styles/images/australia.png';
 import Data from '../redux/data';
 
 const Detail = () => {
+  const dispatch = useDispatch();
+  const targetName = '취업';
+  const countryName1 = '중국';
+  const countryName2 = '베트남';
+  const countryName3 = '일본';
+  useEffect(() => {
+    dispatch(
+      getTargetInfo(targetName, countryName1, countryName2, countryName3)
+    );
+    // console.log(targetName, countryName1, countryName2, countryName3);
+    // dispatch(setInfo(targetName, countryName1, countryName2, countryName3));
+  }, []);
+
+  const data = useSelector((state) => state.target);
+  // console.log(data);
+
   // const infoTitle = [
   //   '비자',
   //   // '휴대전화',
@@ -28,7 +46,7 @@ const Detail = () => {
   const country = Data.countryList;
   const countryName = country.map((v) => v.countryName);
   const info = country.map((v) => v.info);
-  console.log(country, countryName, info);
+  // console.log(country, countryName, info);
 
   // 토글
   const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
@@ -279,7 +297,12 @@ const Detail = () => {
       {/* 북마크 끝 */}
 
       {/* 상단으로 가기 시작 */}
-      <Button is_float _onClick={()=>{ window.scrollTo({top:0, left:0, behavior:'smooth'}) }}>
+      <Button
+        is_float
+        _onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }}
+      >
         <MdOutlineKeyboardArrowUp />
       </Button>
       {/* 상단으로 가기 끝 */}

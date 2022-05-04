@@ -17,7 +17,7 @@ const InfoTotal = (props) => {
 
   const country = props.country;
   const info = country.map((v) => v.info);
-  console.log(info);
+  // console.log(info);
 
   return (
     <React.Fragment>

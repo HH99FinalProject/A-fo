@@ -3,6 +3,7 @@ import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
 import commentSlice from './modules/comment';
+import targetSlice from './modules/target';
 
 //직접만든 히스토리
 export const history = createBrowserHistory();
@@ -10,6 +11,7 @@ export const history = createBrowserHistory();
 //리듀서 만들기
 const rootReducer = combineReducers({
   comment: commentSlice,
+  target: targetSlice,
   router: connectRouter(history),
 });
 

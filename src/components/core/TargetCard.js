@@ -14,7 +14,7 @@ const TargetCard = (props) => {
   return (
     <React.Fragment>
       {/* 목적별 */}
-      {/* <Div
+      <Div
         center
         width="330px"
         height="400px"
@@ -25,11 +25,11 @@ const TargetCard = (props) => {
         }}
       >
         <Text>{props.text}</Text>
-      </Div> */}
+      </Div>
       {/* 목적별 */}
 
       {/* 나라별 */}
-      <Div
+      {/* <Div
         center
         width="330px"
         height="400px"
@@ -39,7 +39,7 @@ const TargetCard = (props) => {
         _onClick={Select}
       >
         <Text backgroundColor={backgroundColor}>{props.text}</Text>
-      </Div>
+      </Div> */}
       {/* 나라별 */}
     </React.Fragment>
   );

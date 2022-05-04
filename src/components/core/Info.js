@@ -28,14 +28,31 @@ const Info = (props) => {
   // const changeTrafficToggle = () => {
   //   !trafficToggle ? setTrafficToggle(true) : setTrafficToggle(false);
   // };
-  const title = props.title;
-  console.log(title);
   const infoSubTitle = ['휴대전화 개통방식', '주요 통신사', '추천 요금제'];
+
+  const title = props.title;
+  // console.log(title);
+
+  const subTitle = {
+    visa: ['자격', '방법', '체류 기간'],
+    bank: ['준비서류', '주요은행', '계좌개설 절차', '유의점', '은행계좌종류'],
+  };
+  // console.log(subTitle.visa);
 
   const country = props.country;
   const info = country.map((v) => v.info);
-  const detail = info.map((l) => l.visa);
-  console.log(info, detail);
+  // const detail = info.map((l) => l.visa);
+  // console.log(info, detail);
+  // console.log(info[0]);
+
+  const myKeys = Object.keys(info[0]);
+  // console.log(myKeys);
+
+  // const detail = 0;
+  // for (let i = 0; i < 2; i++) {
+  //   let my_key= Object.keys(info[i])
+  //    return detail=info.map((l) => l.title);
+  // }
 
   return (
     // 목적별
