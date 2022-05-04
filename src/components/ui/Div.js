@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 const Div = (props) => {
   const {
+    top,
+    right,
     children,
     position,
     display,
@@ -30,6 +32,7 @@ const Div = (props) => {
     colorHover,
     container,
     flexStart,
+    flexEnd,
     center,
     row,
     rowStart,
@@ -47,6 +50,8 @@ const Div = (props) => {
   } = props;
 
   const styles = {
+    top,
+    right,
     children,
     position,
     display,
@@ -74,6 +79,7 @@ const Div = (props) => {
     colorHover,
     container,
     flexStart,
+    flexEnd,
     center,
     row,
     rowStart,
@@ -136,6 +142,8 @@ const Div = (props) => {
 };
 
 Div.defaultProps = {
+  top: '',
+  right: '',
   children: null,
   position: '',
   display: '',
@@ -163,6 +171,7 @@ Div.defaultProps = {
   colorHover: false,
   container: false,
   flexStart: false,
+  flexEnd: false,
   center: false,
   row: false,
   rowStart: false,
@@ -191,6 +200,10 @@ const Box = styled.div`
   ${(props) =>
     props.flexStart
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:flex-start;'
+      : ''};
+  ${(props) =>
+    props.flexEnd
+      ? 'display:flex; flex-direction:row; align-items:center; justify-content:flex-end;'
       : ''};
   ${(props) =>
     props.center

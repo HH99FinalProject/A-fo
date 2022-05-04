@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useReducer, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
+import { useDispatch } from 'react-redux';
 
 import { Text, Div, Button } from '../components/ui';
 import Search from '../components/core/Search';
 
 const PostWrite = () => {
+  const dispatch = useDispatch();
+
+  const [titleCount, setTitleCount] = useState(0);
+  const [contentCount, setContentCount] = useState(0);
+
+  const addPost = () => {
+    dispatch();
+  }
+  
   return (
     <React.Fragment>
       <Div
@@ -45,12 +55,16 @@ const PostWrite = () => {
                 <span>유학</span>
               </Target>
             </Div>
-
-            <Title placeholder="제목을 입력하세요." />
-            <Content placeholder="내용을 입력하세요." />
-            <Div spaceBetween>
-              <input type="file" onChange={() => {}} />
-              <Button padding="10px" radius="10px">
+            <Div position="relative">
+              <Title placeholder="제목을 입력하세요." maxLength={30} onChange={(e)=>{ setTitleCount(e.target.value.length); }} />
+              <div style={{position:"absolute", top:"40px", right:"15px"}}>({titleCount}/30)</div>
+            </Div>
+            <Div position="relative">
+              <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} onChange={(e)=>{ setContentCount(e.target.value.length); }} />
+              <div style={{position:"absolute", top:"360px", right:"20px"}}>{contentCount}/500</div>
+            </Div>
+            <Div flexEnd>
+              <Button padding="10px" radius="10px" _onClick={()=>{  }}>
                 작성완료
               </Button>
             </Div>
