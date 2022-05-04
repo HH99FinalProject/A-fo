@@ -13,7 +13,7 @@ const SubMain1 = () => {
       {/* 목적별 시작 */}
 
       {/* 경로 시작 */}
-      {/* <Div
+      <Div
         flexStart
         width="1400px"
         margin=" 10px auto"
@@ -28,11 +28,11 @@ const SubMain1 = () => {
         </Button>
         <RiArrowRightSLine size="15" />
         <Text>목적별</Text>
-      </Div> */}
+      </Div>
       {/* 경로 끝 */}
 
       {/* 목적 선택 시작 */}
-      {/* <Div
+      <Div
         spaceBetween
         width="1400px"
         margin="200px auto 0px auto"
@@ -41,13 +41,13 @@ const SubMain1 = () => {
         {targetList.map((v, i) => {
           return <TargetCard key={v + i} text={v} />;
         })}
-      </Div> */}
+      </Div>
       {/* 목적 선택 끝 */}
       {/* 목적별 끝 */}
 
       {/* 나라별 시작 */}
       {/* 경로 시작 */}
-      <Div
+      {/* <Div
         flexStart
         width="1400px"
         margin=" 10px auto"
@@ -70,11 +70,11 @@ const SubMain1 = () => {
         </Button>
         <RiArrowRightSLine size="15" />
         <Text>호주</Text>
-      </Div>
+      </Div> */}
       {/* 경로 끝 */}
 
       {/* 목적 선택 시작 */}
-      <Div width="1400px" margin="150px auto 0px auto" border="1px solid black">
+      {/* <Div width="1400px" margin="150px auto 0px auto" border="1px solid black">
         <Text
           width="100%"
           height="100px"
@@ -89,11 +89,11 @@ const SubMain1 = () => {
             return <TargetCard key={v + i} text={v} />;
           })}
         </Div>
-      </Div>
+      </Div> */}
       {/* 목적 선택 끝 */}
 
       {/* 바텀시트 */}
-      <Div bottomSheet borderTop="1px solid black">
+      {/* <Div bottomSheet borderTop="1px solid black">
         <Div
           center
           position="relative"
@@ -113,7 +113,7 @@ const SubMain1 = () => {
             정보 보러 가기
           </Button>
         </Div>
-      </Div>
+      </Div> */}
       {/* 바텀시트 끝 */}
       {/* 나라별 끝 */}
     </React.Fragment>

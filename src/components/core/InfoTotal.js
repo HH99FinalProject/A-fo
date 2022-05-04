@@ -15,10 +15,9 @@ const InfoTotal = (props) => {
   //     toggle ? setToggle(false) : setToggle(true);
   //   };
 
-  const country = props.country;   // countryList들어감
-  
-  const info = country.map((v) => v.info);  
-  console.log(info);
+  const country = props.country;
+  const info = country.map((v) => v.info);
+  // console.log(info);
 
   return (
     <React.Fragment>
