@@ -14,7 +14,9 @@ const Comment = (props) => {
           </Text>
         </Div>
         <Div width="80%">
-          <Text>{comment}</Text>
+          <Ellipsis>
+            {comment}
+          </Ellipsis>
         </Div>
         <Div width="10%">
           <Text textAlign="right" margin="0 30px 0 0">
@@ -27,3 +29,9 @@ const Comment = (props) => {
 };
 
 export default Comment;
+
+const Ellipsis = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
