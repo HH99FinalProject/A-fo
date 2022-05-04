@@ -62,7 +62,7 @@ const InfoTotal = (props) => {
             border="1px solid black"
           >
             {country.map((v, i) => {
-              return <Info key={v + i} title={props.textB} country={country} />;
+              return <Info key={v + i} title={props.textB} country={country} {...v} />;
             })}
             {/* <Info />
             <Info />

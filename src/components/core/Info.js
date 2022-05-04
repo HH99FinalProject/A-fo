@@ -54,6 +54,7 @@ const Info = (props) => {
   //    return detail=info.map((l) => l.title);
   // }
 
+
   return (
     // 목적별
     <Div
@@ -114,6 +115,8 @@ const Info = (props) => {
           </Div>
         );
       })}
+
+
     </Div>
 
     // 나라별

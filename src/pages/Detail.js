@@ -22,7 +22,7 @@ const Detail = () => {
     dispatch(
       getTargetInfo(targetName, countryName1, countryName2, countryName3)
     );
-    // console.log(targetName, countryName1, countryName2, countryName3);
+    console.log(targetName, countryName1, countryName2, countryName3);
     // dispatch(setInfo(targetName, countryName1, countryName2, countryName3));
   }, []);
 
@@ -42,6 +42,7 @@ const Detail = () => {
     { korea: '은행', english: 'bank' },
   ];
   const infoTitle = title.map((l, i) => l);
+  // console.log(infoTitle);
 
   const country = Data.countryList;
   const countryName = country.map((v) => v.countryName);
