@@ -1,26 +1,26 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const getTargetInfo = createAsyncThunk(
-  'main/targetInfo',
-  async (targetName, countryName1, countryName2, countryName3, dispatch) => {
+export const getTargetInfo = (targetName, countryName1, countryName2, countryName3) => {
+  return function (dispatch) {
     console.log(targetName, countryName1, countryName2, countryName3);
-    const data = await axios
-      .get(
-        `http://3.36.117.118/filtering/sub2/country?countryName1=${countryName1}&countryName2=${countryName2}&countryName3=${countryName3}&targetName=${targetName}`
-      )
-      .then((res) => {
-        console.log(res);
-        dispatch(setInfo(res.data));
-        return res.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(data);
-    return data;
-  }
-);
+    axios({
+      method: "GET",
+      url: `http://3.36.117.118/filtering/sub2/country?countryName1=${countryName1}&countryName2=${countryName2}&countryName3=${countryName3}&targetName=${targetName}`,
+      data: {
+        targetName: targetName,
+        countryName1: countryName1,
+        countryName2: countryName2,
+        countryName3: countryName3,
+      }
+    }).then((res) => {
+      console.log(res);
+      dispatch(setInfo(res.data));
+    }).catch((err) => {
+      console.log(err);
+    })
+  } 
+}
 
 export const targetSlice = createSlice({
   name: 'target',

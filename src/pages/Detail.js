@@ -22,7 +22,7 @@ const Detail = () => {
     dispatch(
       getTargetInfo(targetName, countryName1, countryName2, countryName3)
     );
-    // console.log(targetName, countryName1, countryName2, countryName3);
+    console.log(targetName, countryName1, countryName2, countryName3);
     // dispatch(setInfo(targetName, countryName1, countryName2, countryName3));
   }, []);
 
