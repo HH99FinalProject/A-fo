@@ -15,8 +15,9 @@ const InfoTotal = (props) => {
   //     toggle ? setToggle(false) : setToggle(true);
   //   };
 
-  const country = props.country;
-  const info = country.map((v) => v.info);
+  const country = props.country;   // countryList들어감
+  
+  const info = country.map((v) => v.info);  
   console.log(info);
 
   return (
@@ -62,7 +63,7 @@ const InfoTotal = (props) => {
             border="1px solid black"
           >
             {country.map((v, i) => {
-              return <Info key={v + i} title={props.textB} country={country} />;
+              return <Info key={v + i} title={props.textB} country={country} {...v} />;
             })}
             {/* <Info />
             <Info />

@@ -24,6 +24,7 @@ const Detail = () => {
     { korea: '은행', english: 'bank' },
   ];
   const infoTitle = title.map((l, i) => l);
+  // console.log(infoTitle);
 
   const country = Data.countryList;
   const countryName = country.map((v) => v.countryName);

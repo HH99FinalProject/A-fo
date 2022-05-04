@@ -32,10 +32,11 @@ const Info = (props) => {
   console.log(title);
   const infoSubTitle = ['휴대전화 개통방식', '주요 통신사', '추천 요금제'];
 
-  const country = props.country;
-  const info = country.map((v) => v.info);
+  const country = props.country;  // 0번,1번인덱스 들어감
+  const info = country.map((v) => v.info); 
   const detail = info.map((l) => l.visa);
   console.log(info, detail);
+
 
   return (
     // 목적별
@@ -97,6 +98,8 @@ const Info = (props) => {
           </Div>
         );
       })}
+
+
     </Div>
 
     // 나라별
