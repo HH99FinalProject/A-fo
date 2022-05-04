@@ -286,7 +286,7 @@ const BottomSheet = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px;
+  height: 80px;
   padding: 5px 0px;
   border: ${(props) => props.border};
   border-top: ${(props) => props.borderTop};

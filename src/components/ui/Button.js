@@ -178,7 +178,7 @@ const ButtonDefault = styled.button`
 
 const FloatButton = styled.button`
   position: fixed;
-  bottom: 60px;
+  bottom: 100px;
   right: 50px;
   width: 35px;
   height: 35px;
@@ -238,22 +238,24 @@ const CmtBtn = styled.button`
 const BottomSheetBtn = styled.button`
   position: absolute;
   right: 0;
-  height: 40px;
-  line-height: 40px;
+  height: 50px;
+  line-height: 50px;
+  /* font-size: 16px; */
   border: ${(props) => props.border};
 `;
 
 const BookmarkBtn = styled.button`
   position: absolute;
   top: -4px;
-  right: 25px;
-  width: 30px;
-  height: 30px;
+  right: 10px;
+  width: 25px;
+  height: 40px;
+  background-color: white;
   ${(props) =>
     props.complete
       ? `background-image: url(${bookmarkBlack});`
       : `background-image: url(${bookmarkWhite});`};
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   border: ${(props) => props.border};
 `;

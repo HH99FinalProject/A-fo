@@ -1,17 +1,30 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 
-import { Info, TabMenu } from '../components/core';
+import { Info, InfoTotal, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import australia from '../styles/images/australia.png';
 
 const Detail = () => {
-  const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
+  // const pickList = ['호주', '일본'];
+  const pickList = ['호주', '일본', '뉴질랜드', '영국'];
+  const infoTitle = [
+    '비자',
+    '휴대전화',
+    '은행 계좌 개설',
+    '언어',
+    '시차',
+    '교통 정보',
+  ];
 
+  // 토글
+  const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
   const changeBookMarkToggle = () => {
     bookMarkToggle ? setBookMarkToggle(false) : setBookMarkToggle(true);
   };
+
   return (
     <React.Fragment>
       {/* 목적별 경로 시작 */}
@@ -79,33 +92,64 @@ const Detail = () => {
       </Div>
       {/* 나라별 경로 끝 */}
 
+      {/* 탭메뉴 */}
+      <TabMenu />
+      {/* 탭메뉴 */}
+
       {/* 정보 시작 */}
       <Div
         center
         width="1400px"
-        margin="100px auto 0px auto"
+        margin="0px auto"
+        padding="30px 0px"
         border="1px solid black"
       >
-        <TabMenu />
-        <Div
-          display="flex"
-          flexDirection="row"
-          alignItems="flex-start"
-          justifyContent="space-between"
-          margin="50px 0px"
-          border="1px solid black"
-        >
-          {/* 목적별 시작 */}
-          <Info />
-          <Info />
-          <Info />
-          <Info />
-          {/* 목적별 끝 */}
+        <Div center width="auto" border="1px solid black">
+          {/* 선택된 목적or나라 */}
+          <Div
+            row
+            width="auto"
+            height="60px"
+            margin="0px 0px 20px 0px"
+            border="1px solid black"
+          >
+            {pickList.map((p, i) => {
+              return (
+                <Div
+                  key={p + i}
+                  row
+                  width="350px"
+                  height="60px"
+                  border="1px solid black"
+                >
+                  <Image
+                    shape="circle"
+                    width="50px"
+                    height="50px"
+                    src={australia}
+                    size="contain"
+                    repeat="no-repeat"
+                    position="center"
+                  />
+                  <Text
+                    margin="0px 0px 0px 10px"
+                    size="20px"
+                    color="white"
+                    bold
+                  >
+                    {p}
+                  </Text>
+                </Div>
+              );
+            })}
+          </Div>
+          {/* 선택된 목적or나라 */}
 
-          {/* 나라별 시작 */}
-          {/* <Info />
-          <Info /> */}
-          {/* 나라별 끝 */}
+          {/* 세부정보 */}
+          {infoTitle.map((t, i) => {
+            return <InfoTotal key={t + i} text={t} />;
+          })}
+          {/* 세부정보 */}
         </Div>
       </Div>
       {/* 정보 끝 */}
@@ -123,7 +167,11 @@ const Detail = () => {
           <Text bold backgroundColor="white" border="1px solid black">
             북마크
           </Text>
-          <Button border="1px solid black" _onClick={changeBookMarkToggle}>
+          <Button
+            backgroundColor="white"
+            border="1px solid black"
+            _onClick={changeBookMarkToggle}
+          >
             ▼
           </Button>
         </Div>
@@ -156,20 +204,38 @@ const Detail = () => {
             </Div> */}
             {/* 목적별 끝 */}
             {/* 나라별 시작 */}
-            <Div width="100%" margin="5px 0px" border="1px solid black">
-              <Text margin="10px" size="20px" bold>
+            <Div
+              width="100%"
+              margin="5px 0px"
+              backgroundColor="#CEC1FF"
+              border="1px solid black"
+            >
+              <Text margin="10px" backgroundColor="#CEC1FF" size="20px" bold>
                 워홀
               </Text>
-              <Text margin="10px">비자</Text>
-              <Text margin="10px">대사관</Text>
+              <Text margin="10px" backgroundColor="#CEC1FF">
+                비자
+              </Text>
+              <Text margin="10px" backgroundColor="#CEC1FF">
+                대사관
+              </Text>
             </Div>
 
-            <Div width="100%" margin="5px 0px" border="1px solid black">
-              <Text margin="10px" size="20px" bold>
+            <Div
+              width="100%"
+              margin="5px 0px"
+              backgroundColor="#CEC1FF"
+              border="1px solid black"
+            >
+              <Text margin="10px" backgroundColor="#CEC1FF" size="20px" bold>
                 유학
               </Text>
-              <Text margin="10px">비자</Text>
-              <Text margin="10px">교통</Text>
+              <Text margin="10px" backgroundColor="#CEC1FF">
+                비자
+              </Text>
+              <Text margin="10px" backgroundColor="#CEC1FF">
+                교통
+              </Text>
             </Div>
             {/* 나라별 끝 */}
             <Div

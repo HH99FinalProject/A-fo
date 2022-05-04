@@ -5,6 +5,7 @@ import CountryCard from './CountryCard';
 import Goolgle from './Google';
 import Header from './Header';
 import Info from './Info';
+import InfoTotal from './InfoTotal';
 import Pagenation from './Pagination';
 import Post from './Post';
 import Search from './Search';
@@ -19,6 +20,7 @@ export {
   Goolgle,
   Header,
   Info,
+  InfoTotal,
   Pagenation,
   Post,
   Search,

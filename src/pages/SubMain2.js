@@ -78,10 +78,17 @@ const SubMain2 = () => {
       </Div> */}
       {/* 바텀시트 시작 */}
       {/* <Div bottomSheet border="1px solid black">
-        <Div position="relative" center width="1400px" border="1px solid black">
+        <Div
+          center
+          position="relative"
+          width="1400px"
+          height="50px"
+          border="1px solid black"
+        >
           <Text border="1px solid black">유학 + 워홀</Text>
           <Button
             bottomSheetBtn
+            height="50px"
             border="1px solid black"
             _onClick={() => {
               history.push('/Detail');

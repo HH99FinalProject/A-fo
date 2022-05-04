@@ -3,27 +3,36 @@ import React from 'react';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const TabMenu = () => {
+  const infoList = [
+    '비자',
+    '휴대전화',
+    '은행 계좌 개설',
+    '언어',
+    '시차',
+    '교통 정보',
+  ];
   return (
-    <Div spaceBetween height="50px" margin="0px auto" border="1px solid black">
+    <Div
+      row
+      height="60px"
+      margin="40px auto"
+      backgroundColor="#CEC1FF"
+      border="1px solid black"
+    >
       {/* map돌리기 */}
-      <Button margin="0px 5px" border="1px solid black">
-        비자
-      </Button>
-      <Button margin="0px 5px" border="1px solid black">
-        휴대전화
-      </Button>
-      <Button margin="0px 5px" border="1px solid black">
-        은행 계좌 개설
-      </Button>
-      <Button margin="0px 5px" border="1px solid black">
-        언어
-      </Button>
-      <Button margin="0px 5px" border="1px solid black">
-        시차
-      </Button>
-      <Button margin="0px 5px" border="1px solid black">
-        교통 정보
-      </Button>
+      {infoList.map((v, i) => {
+        return (
+          <Button
+            key={v + i}
+            margin="0px 20px"
+            backgroundColor="#CEC1FF"
+            border="1px solid black"
+            bold
+          >
+            {v}
+          </Button>
+        );
+      })}
     </Div>
   );
 };

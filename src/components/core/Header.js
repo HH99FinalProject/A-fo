@@ -9,13 +9,12 @@ import { GrNote } from 'react-icons/gr';
 const Header = () => {
   const [openModal, setOpenModal] = React.useState(false);
   return (
-    <Div center width="100%" height="50px" borderBottom="1px solid black">
+    <Div center width="100%" height="80px" borderBottom="1px solid black">
       <Div spaceBetween width="1400px" margin="0 auto" border="1px solid black">
         <Div
           spaceBetween
           width="auto"
-          height="40px"
-          lineHeight="40px"
+          height="50px"
           padding="0px 10px"
           border="1px solid black"
           cursor="pointer"
@@ -23,10 +22,10 @@ const Header = () => {
             history.replace('/');
           }}
         >
-          <Text bold size="24px" margin="0px 5px 0px 0px">
+          <Text bold size="30px" margin="0px 5px 0px 0px">
             A-fo
           </Text>
-          <GrNote size="20px" />
+          <GrNote size="25px" />
           {/* <Image
           width="35px"
           height="35px"
@@ -36,16 +35,15 @@ const Header = () => {
         </Div>
 
         {/* 로그인 전 */}
-        {/* <Div
+        <Div
           spaceBetween
           width="160px"
-          height="40px"
-          lineHeight="40px"
+          height="50px"
+          lineHeight="50px"
           border="1px solid black"
         >
           <Button
-            height="40px"
-            lineHeight="40px"
+            height="50px"
             bold
             border="1px solid black"
             _onClick={() => {
@@ -55,8 +53,7 @@ const Header = () => {
             Community
           </Button>
           <Button
-            height="40px"
-            lineHeight="40px"
+            height="50px"
             bold
             border="1px solid black"
             _onClick={() => {
@@ -73,20 +70,19 @@ const Header = () => {
           }}
         >
           <Login />
-        </Modal> */}
+        </Modal>
         {/* 로그인 전 */}
 
         {/* 로그인 후 */}
-        <Div
+        {/* <Div
           spaceBetween
           width="300px"
-          height="40px"
-          lineHeight="40px"
+          height="50px"
+          lineHeight="50px"
           border="1px solid black"
         >
           <Button
-            height="40px"
-            lineHeight="40px"
+            height="50px"
             bold
             border="1px solid black"
             _onClick={() => {
@@ -96,8 +92,7 @@ const Header = () => {
             Community
           </Button>
           <Button
-            height="40px"
-            lineHeight="40px"
+            height="50px"
             bold
             border="1px solid black"
             _onClick={() => {
@@ -107,8 +102,7 @@ const Header = () => {
             My page
           </Button>
           <Button
-            height="40px"
-            lineHeight="40px"
+            height="50px"
             bold
             border="1px solid black"
             _onClick={() => {
@@ -125,7 +119,7 @@ const Header = () => {
             size="cover"
             position="center"
           />
-        </Div>
+        </Div> */}
         {/* 로그인 후 */}
       </Div>
     </Div>

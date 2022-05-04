@@ -74,7 +74,7 @@ const SubMain1 = () => {
       {/* 경로 끝 */}
 
       {/* 목적 선택 시작 */}
-      <Div width="1400px" margin="200px auto 0px auto" border="1px solid black">
+      <Div width="1400px" margin="150px auto 0px auto" border="1px solid black">
         <Text
           width="100%"
           height="100px"
@@ -98,14 +98,13 @@ const SubMain1 = () => {
           center
           position="relative"
           width="1400px"
-          height="40px"
-          lineHeight="40px"
+          height="50px"
           border="1px solid black"
         >
           <Text border="1px solid black">유학 + 워홀</Text>
           <Button
             bottomSheetBtn
-            height="40px"
+            height="50px"
             border="1px solid black"
             _onClick={() => {
               history.push('/Detail');
