@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Button, Div, Image, Input, Text } from '../ui';
 
-const Info = () => {
+const Info = (props) => {
   // const [visaToggle, setVisaToggle] = useState(true);
   // const [phoneToggle, setPhoneToggle] = useState(false);
   // const [bankToggle, setBankToggle] = useState(false);
@@ -28,8 +28,14 @@ const Info = () => {
   // const changeTrafficToggle = () => {
   //   !trafficToggle ? setTrafficToggle(true) : setTrafficToggle(false);
   // };
-
+  const title = props.title;
+  console.log(title);
   const infoSubTitle = ['휴대전화 개통방식', '주요 통신사', '추천 요금제'];
+
+  const country = props.country;
+  const info = country.map((v) => v.info);
+  const detail = info.map((l) => l.visa);
+  console.log(info, detail);
 
   return (
     // 목적별

@@ -15,6 +15,10 @@ const InfoTotal = (props) => {
   //     toggle ? setToggle(false) : setToggle(true);
   //   };
 
+  const country = props.country;
+  const info = country.map((v) => v.info);
+  console.log(info);
+
   return (
     <React.Fragment>
       <Div center width="100%" border="1px solid black">
@@ -34,7 +38,7 @@ const InfoTotal = (props) => {
             size="16px"
             bold
           >
-            {props.text}
+            {props.textK}
           </Text>
           <Button
             backgroundColor="#CEC1FF"
@@ -57,10 +61,13 @@ const InfoTotal = (props) => {
             justifyContent="space-between"
             border="1px solid black"
           >
+            {country.map((v, i) => {
+              return <Info key={v + i} title={props.textB} country={country} />;
+            })}
+            {/* <Info />
             <Info />
             <Info />
-            <Info />
-            <Info />
+            <Info /> */}
           </Div>
         ) : null}
         {/* 내용 */}

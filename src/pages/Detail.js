@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 
 import { Info, InfoTotal, TabMenu } from '../components/core';
@@ -7,17 +8,27 @@ import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import australia from '../styles/images/australia.png';
 
+import Data from '../redux/data';
+
 const Detail = () => {
-  // const pickList = ['호주', '일본'];
-  const pickList = ['호주', '일본', '뉴질랜드', '영국'];
-  const infoTitle = [
-    '비자',
-    '휴대전화',
-    '은행 계좌 개설',
-    '언어',
-    '시차',
-    '교통 정보',
+  // const infoTitle = [
+  //   '비자',
+  //   // '휴대전화',
+  //   '은행 계좌 개설',
+  //   // '언어',
+  //   // '시차',
+  //   // '교통 정보',
+  // ];
+  const title = [
+    { korea: '비자', english: 'visa' },
+    { korea: '은행', english: 'bank' },
   ];
+  const infoTitle = title.map((l, i) => l);
+
+  const country = Data.countryList;
+  const countryName = country.map((v) => v.countryName);
+  const info = country.map((v) => v.info);
+  console.log(country, countryName, info);
 
   // 토글
   const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
@@ -113,7 +124,7 @@ const Detail = () => {
             margin="0px 0px 20px 0px"
             border="1px solid black"
           >
-            {pickList.map((p, i) => {
+            {countryName.map((p, i) => {
               return (
                 <Div
                   key={p + i}
@@ -147,7 +158,14 @@ const Detail = () => {
 
           {/* 세부정보 */}
           {infoTitle.map((t, i) => {
-            return <InfoTotal key={t + i} text={t} />;
+            return (
+              <InfoTotal
+                key={t + i}
+                textK={t.korea}
+                textB={t.english}
+                country={country}
+              />
+            );
           })}
           {/* 세부정보 */}
         </Div>
