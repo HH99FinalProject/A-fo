@@ -5,8 +5,16 @@ import { Button, Div, Image, Input, Text } from '../ui';
 
 const Search = () => {
   return (
-    <Div width="840px" margin="40px auto 50px" padding="20px" alignItems="center">
-      <input style={{width: '76%', display: 'inline-block', padding: '10px 15px', fontSize: '16px', borderRadius: '20px'}} placeholder="검색어를 입력해주세요"/>
+    <Div width="840px" backgroundColor="#fff" border="1px solid #000" margin="40px auto 50px" padding="10px" alignItems="center">
+      <input style={{
+        width: '76%', 
+        display: 'inline-block', 
+        padding: '10px 15px', 
+        fontSize: '20px', 
+        border: 'none',
+        background: '#fff',
+        outline: 'none'
+        }} placeholder="검색어를 입력해주세요"/>
       <Select>
         <option value="continent">대륙</option>
         <option value="asia">아시아</option>
@@ -31,9 +39,12 @@ export default Search;
 const Select = styled.select`
   padding: 10px;
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  border: none;
+  background: #fff;
   &:focus {
-    border: 1px solid #ccc;
+    border: none;
+  }
+  option {
+    background: #fff;
   }
 `;
