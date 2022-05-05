@@ -4,31 +4,27 @@ import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
 import { getTargetInfo } from '../redux/modules/target';
 
-import { CountryCard } from '../components/core';
+import { CountryCard, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain2 = () => {
-  // const dispatch = useDispatch();
-  // const targetName = '취업';
-  // const countryName1 = '중국';
-  // const countryName2 = '베트남';
-  // const countryName3 = '일본';
-  // const getInfo = () => {
-  //   dispatch(
-  //     getTargetInfo(targetName, countryName1, countryName2, countryName3)
-  //   );
-  // };
-
   const location = useLocation();
-  const country = location.version;
+  const pickCountry = location.version;
+
+  const continentList = [
+    '남아메리카',
+    '북아메리카',
+    '아시아',
+    '오세아니아',
+    '유럽',
+  ];
 
   return (
     <React.Fragment>
-      {/* 목적별 시작 */}
-      {/* 경로 시작 */}
-      {!country && (
+      {/* 목적별 경로 시작 */}
+      {!pickCountry && (
         <Div
           flexStart
           width="1400px"
@@ -54,83 +50,9 @@ const SubMain2 = () => {
           <Text>워홀</Text>
         </Div>
       )}
-      {/* 경로 끝 */}
-      {!country && (
-        <Div
-          rowStart
-          width="1400px"
-          margin="150px auto 0px auto"
-          border="1px solid black"
-        >
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">남아메리카</Text>
-            <CountryCard color={'#ffb5d2'} country={'칠레'} />
-            <CountryCard color={'#ffb5d2'} />
-            <CountryCard color={'#ffb5d2'} />
-            <CountryCard color={'#ffb5d2'} />
-          </Div>
-
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">북아메리카</Text>
-            <CountryCard color={'#faff89'} />
-            <CountryCard color={'#faff89'} />
-            <CountryCard color={'#faff89'} />
-          </Div>
-
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">아시아</Text>
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-          </Div>
-
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">오세아니아</Text>
-            <CountryCard color={'#ffc389'} />
-            <CountryCard color={'#ffc389'} />
-            <CountryCard color={'#ffc389'} />
-            <CountryCard color={'#ffc389'} />
-          </Div>
-
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">유럽</Text>
-            <CountryCard color={'#89b4ff'} />
-            <CountryCard color={'#89b4ff'} />
-          </Div>
-        </Div>
-      )}
-      {/* 바텀시트 시작 */}
-      {!country && (
-        <Div bottomSheet border="1px solid black">
-          <Div
-            center
-            position="relative"
-            width="1400px"
-            height="50px"
-            border="1px solid black"
-          >
-            <Text border="1px solid black">유학 + 워홀</Text>
-            <Button
-              bottomSheetBtn
-              height="50px"
-              border="1px solid black"
-              _onClick={() => {
-                // getInfo(targetName, countryName1, countryName2, countryName3);
-                history.push('/Detail');
-              }}
-            >
-              정보 보러 가기
-            </Button>
-          </Div>
-        </Div>
-      )}
-      {/* 바텀시트 끝 */}
-      {/* 목적별 끝  */}
-      {/* 나라별 시작 */}
-      {/* 경로 시작 */}
-      {country && (
+      {/* 목적별 경로 끝 */}
+      {/* 나라별 경로 시작 */}
+      {pickCountry && (
         <Div
           flexStart
           width="1400px"
@@ -148,57 +70,97 @@ const SubMain2 = () => {
           <Text>나라별</Text>
         </Div>
       )}
-      {/* 경로 끝 */}
-      {country && (
-        <Div
-          rowStart
-          width="1400px"
-          margin="150px auto 0px auto"
-          border="1px solid black"
-        >
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">남아메리카</Text>
-            <CountryCard color={'#ffb5d2'} country={'칠레'} />
-            <CountryCard color={'#ffb5d2'} />
-            <CountryCard color={'#ffb5d2'} />
-            <CountryCard color={'#ffb5d2'} />
-          </Div>
+      {/* 나라별 경로 끝 */}
+      <TabMenu />
+      {/* 나라 리스트 */}
+      <Div center width="1400px" margin="50px auto">
+        {continentList.map((v, i) => {
+          return (
+            <Div
+              key={v + i}
+              center
+              width="100%"
+              margin="50px auto"
+              borderLeft="1px solid black"
+            >
+              <Div
+                width="100%"
+                borderTop="1px solid black"
+                borderRight="1px solid black"
+                borderBottom="1px solid black"
+              >
+                <Text
+                  height="60px"
+                  lineHeight="60px"
+                  center
+                  bold
+                  size="20px"
+                  backgroundColor="#D2DFFF"
+                >
+                  {v}
+                </Text>
+              </Div>
 
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">북아메리카</Text>
-            <CountryCard color={'#faff89'} />
-            <CountryCard color={'#faff89'} />
-            <CountryCard color={'#faff89'} />
-          </Div>
+              <Div flexFlow width="100%">
+                <CountryCard />
+                <CountryCard />
+                <CountryCard />
+                <CountryCard />
+                <CountryCard />
+                <CountryCard />
+                {Array(6)
+                  .fill('')
+                  .map((a, i) => {
+                    return (
+                      <Div key={a + i} preparingCountry>
+                        <Text size="18px" bold margin="0px 0px 20px 0px">
+                          나라 추가중
+                        </Text>
+                        <Text size="14px">업데이트를 기다려 주세요🙂</Text>
+                      </Div>
+                    );
+                  })}
+              </Div>
+            </Div>
+          );
+        })}
+      </Div>
+      {/* 나라 리스트 */}
 
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">아시아</Text>
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-            <CountryCard color={'#89ffd1'} />
-          </Div>
-
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">오세아니아</Text>
-            <CountryCard color={'#ffc389'} />
-            <CountryCard color={'#ffc389'} />
-            <CountryCard color={'#ffc389'} />
-            <CountryCard color={'#ffc389'} />
-          </Div>
-
-          <Div width="260px" border="1px solid black">
-            <Text border="1px solid black">유럽</Text>
-            <CountryCard color={'#89b4ff'} />
-            <CountryCard color={'#89b4ff'} />
-          </Div>
-        </Div>
-      )}
-      {/* 나라별 끝 */};
+      {/* 상단으로 가기 버튼 */}
       <Button is_float>
         <MdOutlineKeyboardArrowUp />
       </Button>
+      {/* 상단으로 가기 버튼 */}
+
+      {/* 바텀시트(목적별 선택시) */}
+      {!pickCountry && (
+        <Div bottomSheet border="1px solid black">
+          <Div
+            center
+            position="relative"
+            width="1400px"
+            height="50px"
+            border="1px solid black"
+          >
+            <Text size="20px" bold border="1px solid black">
+              프랑스 + 호주
+            </Text>
+            <Button
+              bottomSheetBtn
+              height="50px"
+              border="1px solid black"
+              _onClick={() => {
+                // getInfo(targetName, countryName1, countryName2, countryName3);
+                history.push('/Detail');
+              }}
+            >
+              정보 보러 가기
+            </Button>
+          </Div>
+        </Div>
+      )}
+      {/* 바텀시트 끝 */}
     </React.Fragment>
   );
 };

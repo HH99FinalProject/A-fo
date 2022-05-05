@@ -237,10 +237,13 @@ const CmtBtn = styled.button`
 
 const BottomSheetBtn = styled.button`
   position: absolute;
+  width: 150px;
   right: 0;
   height: 50px;
   line-height: 50px;
-  /* font-size: 16px; */
+  font-size: 20px;
+  font-weight: bold;
+  background-color: white;
   border: ${(props) => props.border};
 `;
 

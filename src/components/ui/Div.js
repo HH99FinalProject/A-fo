@@ -11,6 +11,8 @@ const Div = (props) => {
     flexDirection,
     alignItems,
     justifyContent,
+    table,
+    vertical,
     float,
     width,
     height,
@@ -21,9 +23,10 @@ const Div = (props) => {
     borderTop,
     borderBottom,
     borderRight,
+    borderLeft,
+    collapse,
     borderRadius,
     shadow,
-    boxShadow,
     transition,
     backgroundColor,
     src,
@@ -36,6 +39,7 @@ const Div = (props) => {
     opacity,
     colorHover,
     container,
+    flexFlow,
     flexStart,
     flexEnd,
     center,
@@ -51,6 +55,7 @@ const Div = (props) => {
     overlayModal,
     modal,
     bottomSheet,
+    preparingCountry,
     _onClick,
   } = props;
 
@@ -63,6 +68,8 @@ const Div = (props) => {
     flexDirection,
     alignItems,
     justifyContent,
+    table,
+    vertical,
     float,
     width,
     height,
@@ -73,9 +80,10 @@ const Div = (props) => {
     borderTop,
     borderBottom,
     borderRight,
+    borderLeft,
+    collapse,
     borderRadius,
     shadow,
-    boxShadow,
     transition,
     backgroundColor,
     src,
@@ -88,6 +96,7 @@ const Div = (props) => {
     opacity,
     colorHover,
     container,
+    flexFlow,
     flexStart,
     flexEnd,
     center,
@@ -103,6 +112,7 @@ const Div = (props) => {
     overlayModal,
     modal,
     bottomSheet,
+    preparingCountry,
   };
   if (bookmark) {
     return (
@@ -144,6 +154,16 @@ const Div = (props) => {
     );
   }
 
+  if (preparingCountry) {
+    return (
+      <React.Fragment>
+        <PreparingCountry onClick={_onClick} {...styles}>
+          {children}
+        </PreparingCountry>
+      </React.Fragment>
+    );
+  }
+
   return (
     <Box onClick={_onClick} {...styles}>
       {children}
@@ -160,7 +180,9 @@ Div.defaultProps = {
   flexDirection: '',
   alignItems: '',
   justifyContent: '',
-  float: false,
+  table: '',
+  vertical: '',
+  float: '',
   width: '',
   height: '',
   minHeight: '',
@@ -170,9 +192,10 @@ Div.defaultProps = {
   borderTop: '',
   borderBottom: '',
   borderRight: '',
+  borderLeft: '',
+  collapse: '',
   borderRadius: '',
-  shadow: false,
-  boxShadow: '',
+  shadow: '',
   transition: '',
   backgroundColor: '',
   src: '',
@@ -185,6 +208,7 @@ Div.defaultProps = {
   opacity: '',
   colorHover: false,
   container: false,
+  flexFlow: false,
   flexStart: false,
   flexEnd: false,
   center: false,
@@ -199,19 +223,26 @@ Div.defaultProps = {
   bookmark: false,
   modal: false,
   bottomSheet: false,
+  preparingCountry: false,
   _onClick: () => {},
 };
 
 const Box = styled.div`
   ${(props) =>
-    props.container ? 'position:realative; width:100%;margin:0px auto;' : ''};
+    props.container ? 'position:realative; width:100vw; margin:0px auto;' : ''};
   position: ${(props) => props.position};
   display: ${(props) => props.display};
   flex-direction: ${(props) => props.flexDirection};
   align-items: ${(props) => props.alignItems};
   justify-content: ${(props) => props.justifyContent};
+  table-layout: ${(props) => props.table};
+  vertical-align: ${(props) => props.vertical};
   float: ${(props) => props.float};
   ${(props) => (props.inline ? 'display:inline-block;' : '')};
+  ${(props) =>
+    props.flexFlow
+      ? 'display:flex; flex-flow:row wrap; align-items:center; justify-content:flex-start'
+      : ''};
   ${(props) =>
     props.flexStart
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:flex-start;'
@@ -254,6 +285,8 @@ const Box = styled.div`
   border-top: ${(props) => props.borderTop};
   border-bottom: ${(props) => props.borderBottom};
   border-right: ${(props) => props.borderRight};
+  border-left: ${(props) => props.borderLeft};
+  border-collapse: ${(props) => props.collapse};
   border-radius: ${(props) => props.borderRadius};
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
@@ -323,6 +356,20 @@ const BottomSheet = styled.div`
   padding: 5px 0px;
   border: ${(props) => props.border};
   border-top: ${(props) => props.borderTop};
+  background-color: white;
+`;
+
+const PreparingCountry = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 234.17px;
+  height: 234.17px;
+  margin: -1px 0px 0px -1px;
+  background-color: #d5d5d5;
+  border: 1px solid black;
+  opacity: 0.5;
 `;
 
 export default Div;

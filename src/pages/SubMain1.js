@@ -8,7 +8,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain1 = (props) => {
   const location = useLocation();
-  const target = location.version;
+  const pickTarget = location.version;
 
   const targetList = ['이민', '유학', '워홀', '취업'];
 
@@ -17,7 +17,7 @@ const SubMain1 = (props) => {
       {/* 목적별 시작 */}
 
       {/* 경로 시작 */}
-      {target && (
+      {pickTarget && (
         <Div
           flexStart
           width="1400px"
@@ -38,7 +38,7 @@ const SubMain1 = (props) => {
       {/* 경로 끝 */}
 
       {/* 목적 선택 시작 */}
-      {target && (
+      {pickTarget && (
         <Div
           spaceBetween
           width="1400px"
@@ -55,7 +55,7 @@ const SubMain1 = (props) => {
 
       {/* 나라별 시작 */}
       {/* 경로 시작 */}
-      {!target && (
+      {!pickTarget && (
         <Div
           flexStart
           width="1400px"
@@ -84,7 +84,7 @@ const SubMain1 = (props) => {
       {/* 경로 끝 */}
 
       {/* 목적 선택 시작 */}
-      {!target && (
+      {!pickTarget && (
         <Div
           width="1400px"
           margin="150px auto 0px auto"
@@ -109,7 +109,7 @@ const SubMain1 = (props) => {
       {/* 목적 선택 끝 */}
 
       {/* 바텀시트 */}
-      {!target && (
+      {!pickTarget && (
         <Div bottomSheet borderTop="1px solid black">
           <Div
             center

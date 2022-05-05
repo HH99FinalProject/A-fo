@@ -11,12 +11,21 @@ const TabMenu = () => {
     '시차',
     '교통 정보',
   ];
+
+  const continentList = [
+    '남아메리카',
+    '북아메리카',
+    '아시아',
+    '오세아니아',
+    '유럽',
+  ];
   return (
     <Div
       row
+      width="100%"
       height="60px"
-      margin="40px auto"
-      backgroundColor="#CEC1FF"
+      margin="60px auto 30px auto"
+      backgroundColor="#D2DFFF"
       border="1px solid black"
     >
       {/* map돌리기 */}
@@ -25,7 +34,21 @@ const TabMenu = () => {
           <Button
             key={v + i}
             margin="0px 20px"
-            backgroundColor="#CEC1FF"
+            backgroundColor="#D2DFFF"
+            border="1px solid black"
+            bold
+          >
+            {v}
+          </Button>
+        );
+      })}
+
+      {continentList.map((v, i) => {
+        return (
+          <Button
+            key={v + i}
+            margin="0px 20px"
+            backgroundColor="#D2DFFF"
             border="1px solid black"
             bold
           >

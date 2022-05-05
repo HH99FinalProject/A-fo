@@ -2,42 +2,52 @@ import React from 'react';
 import { history } from '../../redux/configureStore';
 
 import { Button, Div, Image, Input, Text } from '../ui';
+import flag from '../../styles/images/australia.png';
 
 const CountryCard = (props) => {
-  const color = props.color;
-  const country = props.country;
   return (
     <React.Fragment>
       {/* 목적별 시작 */}
-      {/* <Div
-        width="100%"
-        height="260px"
-        margin="10px 0px"
+      <Div
+        center
+        width="234.17px"
+        height="234.17px"
+        margin="-1px 0px 0px -1px"
+        backgroundColor="white"
         border="1px solid black"
-        backgroundColor={color}
         cursor="pointer"
         _onClick={() => {
           history.push('/Detail');
         }}
       >
-        <Text>{country}</Text>
-      </Div> */}
+        <Image flag src={flag} />
+        <Text size="18px" bold margin="20px 0px">
+          프랑스
+        </Text>
+        <Text size="16px">France</Text>
+      </Div>
       {/* 목적별 끝 */}
 
       {/* 나라별 */}
-      <Div
-        width="100%"
-        height="260px"
-        margin="10px 0px"
+      {/* <Div
+        center
+        width="234.17px"
+        height="234.17px"
+        margin="-1px 0px 0px -1px"
+        backgroundColor="white"
         border="1px solid black"
-        backgroundColor={color}
+        collapse="collapse"
         cursor="pointer"
         _onClick={() => {
           history.push('/SubMain1');
         }}
       >
-        <Text>{country}</Text>
-      </Div>
+        <Image flag src={flag} />
+        <Text size="16px" margin="20px 0px">
+          프랑스
+        </Text>
+        <Text size="16px">France</Text>
+      </Div> */}
       {/* 나라별 끝 */}
     </React.Fragment>
   );

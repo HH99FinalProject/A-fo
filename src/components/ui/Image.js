@@ -9,6 +9,7 @@ const Image = (props) => {
     maxWidth,
     height,
     maxHeight,
+    margin,
     border,
     radius,
     shape,
@@ -17,6 +18,7 @@ const Image = (props) => {
     position,
     repeat,
     route,
+    flag,
     cursor,
   } = props;
 
@@ -26,6 +28,7 @@ const Image = (props) => {
     maxWidth,
     height,
     maxHeight,
+    margin,
     border,
     radius,
     src,
@@ -33,6 +36,7 @@ const Image = (props) => {
     position,
     repeat,
     route,
+    flag,
     cursor,
   };
 
@@ -46,6 +50,14 @@ const Image = (props) => {
 
   if (shape === 'circle') {
     return <ImageCircle {...styles}></ImageCircle>;
+  }
+
+  if (flag) {
+    return (
+      <React.Fragment>
+        <Flag {...styles}></Flag>
+      </React.Fragment>
+    );
   }
 
   // if (route) {
@@ -68,6 +80,7 @@ Image.defaultProps = {
   maxWidth: '',
   height: '',
   maxHeight: '',
+  margin: '',
   border: '',
   radius: '',
   shape: '',
@@ -76,6 +89,7 @@ Image.defaultProps = {
   position: false,
   repeat: false,
   route: false,
+  flag: false,
   cursor: '',
 };
 
@@ -121,6 +135,17 @@ const ImageCircle = styled.div`
   background-repeat: ${(props) => props.repeat};
   background-position: ${(props) => props.position};
   cursor: ${(props) => props.cursor};
+`;
+
+const Flag = styled.div`
+  width: 50px;
+  height: 50px;
+  margin: ${(props) => props.margin};
+  border-radius: 50%;
+  background-image: url('${(props) => props.src}');
+  background-size: 'contain';
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 // //화살표

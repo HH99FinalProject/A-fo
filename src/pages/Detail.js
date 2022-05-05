@@ -152,15 +152,7 @@ const Detail = () => {
                   height="60px"
                   border="1px solid black"
                 >
-                  <Image
-                    shape="circle"
-                    width="50px"
-                    height="50px"
-                    src={australia}
-                    size="contain"
-                    repeat="no-repeat"
-                    position="center"
-                  />
+                  <Image flag src={australia} />
                   <Text
                     margin="0px 0px 0px 10px"
                     size="20px"

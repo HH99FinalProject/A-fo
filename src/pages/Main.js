@@ -5,8 +5,8 @@ import { Button, Div, Image, Input, Text } from '../components/ui';
 import mainBackground from '../styles/images/mainBackground.png';
 
 const Main = () => {
-  const target = '목적';
-  const country = '나라';
+  const pickTarget = '목적';
+  const pickCountry = '나라';
   return (
     <Div
       minHeight="90vh"
@@ -51,7 +51,7 @@ const Main = () => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain1',
-                version: target,
+                version: pickTarget,
               });
             }}
           >
@@ -80,7 +80,7 @@ const Main = () => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain2',
-                version: country,
+                version: pickCountry,
               });
             }}
           >
