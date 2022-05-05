@@ -50,7 +50,7 @@ const Header = () => {
               history.push('/Board');
             }}
           >
-            Community
+            커뮤니티
           </Button>
           <Button
             height="50px"
@@ -60,7 +60,7 @@ const Header = () => {
               setOpenModal(true);
             }}
           >
-            Sign in
+            로그인
           </Button>
         </Div>
         <Modal
@@ -89,7 +89,7 @@ const Header = () => {
               history.push('/Board');
             }}
           >
-            Community
+            커뮤니티
           </Button>
           <Button
             height="50px"
@@ -99,7 +99,7 @@ const Header = () => {
               history.push('/MyPage');
             }}
           >
-            My page
+            마이페이지
           </Button>
           <Button
             height="50px"
@@ -109,7 +109,7 @@ const Header = () => {
               history.replace('/');
             }}
           >
-            Sign out
+            로그아웃
           </Button>
           <Image
             shape="circle"
