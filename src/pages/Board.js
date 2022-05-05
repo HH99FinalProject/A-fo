@@ -50,16 +50,16 @@ const Board = (props) => {
         >
           작성하기
         </PostBtn>
-        <Div margin="100px 0 0 0">
+        <Div margin="100px 0 0 0" border="1px solid #000">
           {/* map으로 돌리기 */}
           <Post posts={currentPosts(posts)} loading={loading}></Post>
+        </Div>
+      </Div>
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={posts.length}
             paginate={setCurrentPage}
           ></Pagination>
-        </Div>
-      </Div>
     </React.Fragment>
   );
 };
@@ -69,6 +69,6 @@ export default Board;
 const PostBtn = styled.button`
   float: right;
   padding: 5px;
-  background: tomato;
-  color: #fff;
+  background: #fff;
+  color: #7b7b7b;
 `;

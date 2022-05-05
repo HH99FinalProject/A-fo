@@ -34,6 +34,7 @@ const Button = (props) => {
     complete,
     opacity,
     _onClick,
+    className,
   } = props;
 
   const styles = {
@@ -64,6 +65,7 @@ const Button = (props) => {
     bookmarkBtn,
     complete,
     opacity,
+    className,
   };
 
   if (is_float) {
@@ -149,6 +151,7 @@ Button.defaultProps = {
   complete: false,
   opacity: '',
   _onClick: () => {},
+  className: '',
 };
 
 const ButtonDefault = styled.button`

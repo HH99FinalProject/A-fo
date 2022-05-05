@@ -10,12 +10,11 @@ ${reset};
     margin:0;
     padding: 0;
     box-sizing: border-box;
-    background-color:#A08CF1;
-    
 };
 
 html{
     font-family: "";
+    background-color:#9FBAFF;
 }
 
 a{

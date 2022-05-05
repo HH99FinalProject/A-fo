@@ -24,19 +24,11 @@ const PostWrite = () => {
         padding="20px 0"
         alignItems="center"
       >
-        <Text textAlign="center" size="36px" bold>
-          자유 게시판
-        </Text>
-        <Search />
-        <ReturnBtn
-          onClick={() => {
-            history.push('/board');
-          }}
-        >
+        <ReturnBtn onClick={() => {history.push('/board');}}>
           목록으로
         </ReturnBtn>
 
-        <Div margin="100px 0 0 0">
+        <Div margin="30px 0 0 0">
           <Article>
             <Div flexStart>
               <Target>
@@ -57,15 +49,15 @@ const PostWrite = () => {
             </Div>
             <Div position="relative">
               <Title placeholder="제목을 입력하세요." maxLength={30} onChange={(e)=>{ setTitleCount(e.target.value.length); }} />
-              <div style={{position:"absolute", top:"40px", right:"15px"}}>({titleCount}/30)</div>
+              <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div>
             </Div>
             <Div position="relative">
               <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} onChange={(e)=>{ setContentCount(e.target.value.length); }} />
-              <div style={{position:"absolute", top:"360px", right:"20px"}}>{contentCount}/500</div>
+              <div style={{position:"absolute", top:"360px", right:"20px", background: "#fff"}}>{contentCount}/500</div>
             </Div>
             <Div flexEnd>
-              <Button padding="10px" radius="10px" _onClick={()=>{  }}>
-                작성완료
+              <Button padding="10px" border="1px solid #000" _onClick={()=>{  }} backgroundColor="#fff">
+                등록하기
               </Button>
             </Div>
           </Article>
@@ -79,16 +71,16 @@ export default PostWrite;
 
 const ReturnBtn = styled.button`
   float: right;
-  padding: 5px;
-  background: tomato;
-  color: #fff;
+  padding: 10px;
+  margin-right: 20px;
+  background: #fff;
+  border: 1px solid #000;
 `;
 
 const Article = styled.div`
   align-items: center;
   padding: 20px;
   border-radius: 10px;
-  background: #eee;
   margin-bottom: 10px;
   font-size: 20px;
 `;
@@ -101,11 +93,11 @@ const Target = styled.div`
   Div {
     padding: 10px;
     background: #fff;
-    border-radius: 10px;
     margin-right: 10px;
   }
   span {
     margin-right: 10px;
+    color: #fff;
   }
   span:hover {
     color: red;
@@ -114,13 +106,16 @@ const Target = styled.div`
 `;
 
 const Title = styled.input`
+  background: #fff;
   margin: 20px 0;
   width: 100%;
   font-size: 24px;
   padding: 15px;
+  border-radius: 0;
 `;
 
 const Content = styled.textarea`
+  background: #fff;
   font-size: 16px;
   padding: 20px 15px;
   width: 100%;
@@ -128,4 +123,5 @@ const Content = styled.textarea`
   overflow: auto;
   margin-bottom: 20px;
   resize: none;
+  border-radius: 0;
 `;

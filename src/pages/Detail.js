@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { history } from '../redux/configureStore';
@@ -54,6 +54,42 @@ const Detail = () => {
   const changeBookMarkToggle = () => {
     bookMarkToggle ? setBookMarkToggle(false) : setBookMarkToggle(true);
   };
+
+  // 스크롤 이벤트
+  const [scrollY, setScrollY] = useState(0);
+  const [btnStatus, setBtnStatus] = useState(false);
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    if(scrollY > 100) {
+      // 100 이상이면 버튼이 보이게
+      setBtnStatus(true);
+    } else {
+      // 100 이하면 버튼이 사라지게
+      setBtnStatus(false);
+    }
+  }
+  React.useEffect(() => {
+    console.log("ScrollY is ", scrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
+  }, [scrollY])
+
+  const handleTop = () => {  // 클릭하면 스크롤이 위로 올라가는 함수
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    setScrollY(0);  // ScrollY 의 값을 초기화
+    setBtnStatus(false); // BtnStatus의 값을 false로 바꿈 => 버튼 숨김
+  }
+
+  React.useEffect(() => {
+    const watch = () => {
+      window.addEventListener('scroll', handleFollow)
+    }
+    watch();
+    return () => {
+      window.removeEventListener('scroll', handleFollow)
+    }
+  })
 
   return (
     <React.Fragment>
@@ -299,14 +335,21 @@ const Detail = () => {
 
       {/* 상단으로 가기 시작 */}
       <Button
+        className={btnStatus ? "topBtn active" : "topBtn"}
         is_float
         _onClick={() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          handleTop();
         }}
       >
+        { btnStatus &&
+        <Button 
+          className={btnStatus ? "topBtn active" : "topBtn"} 
+          _onClick={() => {
+            handleTop();
+        }}>TOP</Button> }
         <MdOutlineKeyboardArrowUp />
       </Button>
-      {/* 상단으로 가기 끝 */}
+      상단으로 가기 끝
     </React.Fragment>
   );
 };
