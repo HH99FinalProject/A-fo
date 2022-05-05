@@ -8,7 +8,6 @@ export const getTargetInfo = (
   countryName3
 ) => {
   return function (dispatch) {
-    console.log(targetName, countryName1, countryName2, countryName3);
     axios({
       method: 'GET',
       url: `http://3.36.117.118/filtering/sub2/country?countryName1=${countryName1}&countryName2=${countryName2}&countryName3=${countryName3}&targetName=${targetName}`,
@@ -20,7 +19,6 @@ export const getTargetInfo = (
       },
     })
       .then((res) => {
-        console.log(res);
         dispatch(setInfo(res.data));
       })
       .catch((err) => {
@@ -34,7 +32,6 @@ export const targetSlice = createSlice({
   initialState: { countryList: [] },
   reducers: {
     setInfo: (state, action) => {
-      console.log(action.payload);
       const countryList = action.payload.countryList;
       state.countryList = countryList;
     },

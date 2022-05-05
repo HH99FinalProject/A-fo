@@ -20,7 +20,7 @@ function App() {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Div container  backgroundColor="#A08CF1">
+      <Div container>
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route exact path="/" component={Main} />

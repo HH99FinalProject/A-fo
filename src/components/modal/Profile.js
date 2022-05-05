@@ -102,13 +102,7 @@ const Profile = ({ onClose }) => {
             />
           </Div>
         </Div>
-        <Div
-          center
-          width="100%"
-          height="50px"
-          backgroundColor="lightgrey"
-          border="1px solid black"
-        >
+        <Div center width="100%" height="50px" border="1px solid black">
           <Button _onClick={onClose}>프로필 저장</Button>
         </Div>
       </Div>

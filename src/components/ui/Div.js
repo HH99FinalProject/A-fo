@@ -14,6 +14,7 @@ const Div = (props) => {
     float,
     width,
     height,
+    minHeight,
     margin,
     padding,
     border,
@@ -25,6 +26,10 @@ const Div = (props) => {
     boxShadow,
     transition,
     backgroundColor,
+    src,
+    backgroundSize,
+    backgroundPosition,
+    repeat,
     overflow,
     color,
     cursor,
@@ -61,6 +66,7 @@ const Div = (props) => {
     float,
     width,
     height,
+    minHeight,
     margin,
     padding,
     border,
@@ -72,6 +78,10 @@ const Div = (props) => {
     boxShadow,
     transition,
     backgroundColor,
+    src,
+    backgroundSize,
+    backgroundPosition,
+    repeat,
     overflow,
     color,
     cursor,
@@ -153,6 +163,7 @@ Div.defaultProps = {
   float: false,
   width: '',
   height: '',
+  minHeight: '',
   margin: '',
   padding: '',
   border: '',
@@ -164,6 +175,10 @@ Div.defaultProps = {
   boxShadow: '',
   transition: '',
   backgroundColor: '',
+  src: '',
+  backgroundSize: '',
+  backgroundPosition: false,
+  repeat: false,
   overflow: '',
   color: '',
   cursor: '',
@@ -189,7 +204,7 @@ Div.defaultProps = {
 
 const Box = styled.div`
   ${(props) =>
-    props.container ? 'position:realative; width:100%; margin:0px auto;' : ''};
+    props.container ? 'position:realative; width:100%;margin:0px auto;' : ''};
   position: ${(props) => props.position};
   display: ${(props) => props.display};
   flex-direction: ${(props) => props.flexDirection};
@@ -232,6 +247,7 @@ const Box = styled.div`
 
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  min-height: ${(props) => props.minHeight};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
@@ -242,6 +258,10 @@ const Box = styled.div`
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
   background-color: ${(props) => props.backgroundColor};
+  background-image: url('${(props) => props.src}');
+  background-size: ${(props) => props.backgroundSize};
+  background-position: ${(props) => props.backgroundPosition};
+  background-repeat: ${(props) => props.repeat};
   overflow: ${(props) => props.overflow};
   ${(props) => (props.textCenter ? `text-align:center;` : '')};
   font-size: ${(props) => props.fontSize};
@@ -275,7 +295,7 @@ const OverlayModal = styled.div`
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(100, 100, 100, 0.5);
   z-index: 1000;
 `;
 
