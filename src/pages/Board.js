@@ -55,11 +55,13 @@ const Board = (props) => {
           <Post posts={currentPosts(posts)} loading={loading}></Post>
         </Div>
       </Div>
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={posts.length}
-            paginate={setCurrentPage}
-          ></Pagination>
+      <Div margin="0 0 50px 0">
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={posts.length}
+          paginate={setCurrentPage}
+        ></Pagination>
+      </Div>
     </React.Fragment>
   );
 };
@@ -68,7 +70,8 @@ export default Board;
 
 const PostBtn = styled.button`
   float: right;
-  padding: 5px;
+  padding: 10px;
+  border: 1px solid #000;
   background: #fff;
   color: #7b7b7b;
 `;

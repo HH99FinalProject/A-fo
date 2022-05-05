@@ -60,7 +60,7 @@ const Detail = () => {
   const [btnStatus, setBtnStatus] = useState(false);
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
-    if(scrollY > 100) {
+    if(scrollY > 200) {
       // 100 이상이면 버튼이 보이게
       setBtnStatus(true);
     } else {
@@ -334,21 +334,24 @@ const Detail = () => {
       {/* 북마크 끝 */}
 
       {/* 상단으로 가기 시작 */}
-      <Button
+      
+
+        { btnStatus &&
+        <Button
         className={btnStatus ? "topBtn active" : "topBtn"}
         is_float
         _onClick={() => {
           handleTop();
-        }}
-      >
-        { btnStatus &&
-        <Button 
-          className={btnStatus ? "topBtn active" : "topBtn"} 
-          _onClick={() => {
-            handleTop();
-        }}>TOP</Button> }
-        <MdOutlineKeyboardArrowUp />
-      </Button>
+        }}>
+          <Button 
+            className={btnStatus ? "topBtn active" : "topBtn"}
+            backgroundColor= "#fff" 
+            _onClick={() => {
+              handleTop();
+        }}><MdOutlineKeyboardArrowUp size={33}/></Button>
+        </Button> }
+        
+      
       상단으로 가기 끝
     </React.Fragment>
   );

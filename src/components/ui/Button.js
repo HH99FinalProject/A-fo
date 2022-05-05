@@ -183,9 +183,9 @@ const FloatButton = styled.button`
   position: fixed;
   bottom: 100px;
   right: 50px;
-  width: 35px;
-  height: 35px;
-  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  background: #fff;
   border-radius: 50%;
   font-size: 20px;
   color: black;

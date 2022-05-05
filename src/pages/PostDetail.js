@@ -33,10 +33,6 @@ const PostDetail = () => {
         padding="20px 0"
         alignItems="center"
       >
-        <Text textAlign="center" size="36px" bold>
-          자유 게시판
-        </Text>
-        <Search />
         <ReturnBtn
           onClick={() => {
             history.push('/board');
@@ -45,7 +41,7 @@ const PostDetail = () => {
           목록으로
         </ReturnBtn>
 
-        <Div margin="100px 0 0 0">
+        <Div margin="60px 0 0 0">
           <Wrap>
             <Div flexStart>
               <div
@@ -68,8 +64,6 @@ const PostDetail = () => {
                 <Div
                   fontSize="10px"
                   padding="8px"
-                  backgroundColor="#fff"
-                  borderRadius="10px"
                   margin="0 10px 0 0"
                 >
                   목적
@@ -77,8 +71,6 @@ const PostDetail = () => {
                 <Div
                   fontSize="10px"
                   padding="8px"
-                  backgroundColor="#fff"
-                  borderRadius="10px"
                 >
                   오세아니아
                 </Div>
@@ -130,21 +122,19 @@ const PostDetail = () => {
           </Wrap>
 
           <Wrap>
-            <Text size="20px" margin=" 0 0 20px 0">
-              Comment
-            </Text>
             <Div spaceBetween width="100%">
               <Input
-                placeholder="댓글을 입력해주세요."
+                placeholder="댓글 입력란입니다."
                 _onChange={onChange}
                 value={comment}
                 onSubmit={commentWrite}
                 is_submit
-              />
+                borderRadius="0"/>
               <button
                 style={{
                   padding: '10px',
-                  borderRadius: '10px',
+                  background: "#7b7b7b",
+                  color: '#fff',
                 }}
                 onClick={() => {
                   commentWrite();
@@ -181,29 +171,19 @@ export default PostDetail;
 
 const ReturnBtn = styled.button`
   float: right;
-  padding: 5px;
-  background: tomato;
-  color: #fff;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #000;
 `;
 
 const Wrap = styled.div`
   position: relative;
   align-items: center;
   padding: 20px;
-  border-radius: 10px;
-  background: #eee;
+  background: #fff;
   margin-bottom: 20px;
   font-size: 20px;
   width: 100%;
-`;
-
-const Content = styled.input`
-  font-size: 16px;
-  margin-left: 20px;
-  padding: 10px;
-  width: 90%;
-  overflow: auto;
-  margin-bottom: 20px;
 `;
 
 const CommentList = styled.div`
