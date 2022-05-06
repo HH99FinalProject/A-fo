@@ -2,7 +2,7 @@ export const Data = {
   countryList: [
     // 1번째 나라
     {
-      countryName: 'china',
+      countryName: '중국',
       info: {
         bank: {
           bankId: '중국',
@@ -86,10 +86,90 @@ export const Data = {
     },
     // 2번째 나라
     {
-      countryName: 'japan',
+      countryName: '일본',
       info: {
         bank: {
           bankId: '일본',
+          bankRequirePaper: ['...'],
+          mainBank: ['...'],
+          bankStep: ['...'],
+
+          bankCaution: ['...'],
+          accountType: ['...'],
+        },
+        visa: {
+          bankId: '&&',
+          bankRequirePaper: [
+            {
+              설명: {
+                a: '6개월 ... 필요하다.',
+                b: '3개월 ... 필요하다.',
+              },
+            },
+          ],
+          mainBank: [
+            {
+              은행종류: '중국은행',
+              설명: {
+                a: '중국은행 ... 중 하나다.',
+              },
+            },
+            {
+              은행종류: '중국공상은행',
+              설명: {
+                a: '공상은행(工商银行 꽁샹인항)은 ...  중 하나다.',
+              },
+            },
+          ],
+        },
+      },
+    },
+    // 3번째 나라
+    {
+      countryName: '프랑스',
+      info: {
+        bank: {
+          bankId: '프랑스',
+          bankRequirePaper: ['...'],
+          mainBank: ['...'],
+          bankStep: ['...'],
+
+          bankCaution: ['...'],
+          accountType: ['...'],
+        },
+        visa: {
+          bankId: '&&',
+          bankRequirePaper: [
+            {
+              설명: {
+                a: '6개월 ... 필요하다.',
+                b: '3개월 ... 필요하다.',
+              },
+            },
+          ],
+          mainBank: [
+            {
+              은행종류: '중국은행',
+              설명: {
+                a: '중국은행 ... 중 하나다.',
+              },
+            },
+            {
+              은행종류: '중국공상은행',
+              설명: {
+                a: '공상은행(工商银行 꽁샹인항)은 ...  중 하나다.',
+              },
+            },
+          ],
+        },
+      },
+    },
+    // 4번째 나라
+    {
+      countryName: '독일',
+      info: {
+        bank: {
+          bankId: '베트남',
           bankRequirePaper: ['...'],
           mainBank: ['...'],
           bankStep: ['...'],

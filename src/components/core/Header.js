@@ -22,7 +22,7 @@ const Header = () => {
             history.replace('/');
           }}
         >
-          <Text bold size="30px" margin="0px 5px 0px 0px">
+          <Text bold size="40px" margin="0px 5px 0px 0px">
             A-fo
           </Text>
           <GrNote size="25px" />

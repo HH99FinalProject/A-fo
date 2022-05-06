@@ -28,6 +28,7 @@ const Div = (props) => {
     borderRadius,
     shadow,
     transition,
+    background,
     backgroundColor,
     src,
     backgroundSize,
@@ -85,6 +86,7 @@ const Div = (props) => {
     borderRadius,
     shadow,
     transition,
+    background,
     backgroundColor,
     src,
     backgroundSize,
@@ -197,6 +199,7 @@ Div.defaultProps = {
   borderRadius: '',
   shadow: '',
   transition: '',
+  background: '',
   backgroundColor: '',
   src: '',
   backgroundSize: '',
@@ -290,6 +293,7 @@ const Box = styled.div`
   border-radius: ${(props) => props.borderRadius};
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
+  background: ${(props) => props.background};
   background-color: ${(props) => props.backgroundColor};
   background-image: url('${(props) => props.src}');
   background-size: ${(props) => props.backgroundSize};
@@ -307,9 +311,9 @@ const Box = styled.div`
 `;
 
 const Bookmark = styled.div`
-  position: fixed;
-  top: 220px;
-  right: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
