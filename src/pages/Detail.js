@@ -326,8 +326,6 @@ const Detail = () => {
       {/* 북마크 끝 */}
 
       {/* 상단으로 가기 시작 */}
-      
-
         { btnStatus &&
         <Button
         className={btnStatus ? "topBtn active" : "topBtn"}
@@ -342,8 +340,6 @@ const Detail = () => {
               handleTop();
         }}><MdOutlineKeyboardArrowUp size={33}/></Button>
         </Button> }
-        
-      
       상단으로 가기 끝
     </React.Fragment>
   );

@@ -4,17 +4,25 @@ import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 
 import { Text, Div, Button } from '../components/ui';
-import Search from '../components/core/Search';
+import { addPost } from '../redux/modules/post';
 
 const PostWrite = () => {
   const dispatch = useDispatch();
 
   const [titleCount, setTitleCount] = useState(0);
   const [contentCount, setContentCount] = useState(0);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
-  const addPost = () => {
-    dispatch();
+  const setPost = () => {
+    dispatch(addPost(title, content));
+    setTitle('');
+    setContent('');
   }
+
+  React.useEffect(()=> {
+
+  }, [])
   
   return (
     <React.Fragment>
@@ -48,15 +56,18 @@ const PostWrite = () => {
               </Target>
             </Div>
             <Div position="relative">
-              <Title placeholder="제목을 입력하세요." maxLength={30} onChange={(e)=>{ setTitleCount(e.target.value.length); }} />
+              <Title placeholder="제목을 입력하세요." maxLength={30} 
+                onChange={(e)=>{ setTitleCount(e.target.value.length); setTitle(e.target.value) }} />
               <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div>
             </Div>
             <Div position="relative">
-              <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} onChange={(e)=>{ setContentCount(e.target.value.length); }} />
+              <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} 
+                onChange={(e)=>{ setContentCount(e.target.value.length); setContent(e.target.value)}} 
+                value={content}/>
               <div style={{position:"absolute", top:"360px", right:"20px", background: "#fff"}}>{contentCount}/500</div>
             </Div>
             <Div flexEnd>
-              <Button padding="10px" border="1px solid #000" _onClick={()=>{  }} backgroundColor="#fff">
+              <Button padding="10px" border="1px solid #000" _onClick={()=>{ setPost(); }} backgroundColor="#fff">
                 등록하기
               </Button>
             </Div>
@@ -100,7 +111,7 @@ const Target = styled.div`
     color: #fff;
   }
   span:hover {
-    color: red;
+    color: #000;
     cursor: pointer;
   }
 `;

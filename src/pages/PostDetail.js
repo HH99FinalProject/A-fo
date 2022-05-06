@@ -1,15 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
-import { addComment } from '../redux/modules/comment';
-
-import Search from '../components/core/Search';
-import Comment from '../components/core/Comment';
-
 import styled from 'styled-components';
-import { Div, Button, Input, Text } from '../components/ui';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
 import { CgHeart } from 'react-icons/cg';
+
+import { addComment } from '../redux/modules/comment';
+import Comment from '../components/core/Comment';
+import { Div, Button, Input, Text } from '../components/ui';
 
 const PostDetail = () => {
   const dispatch = useDispatch();

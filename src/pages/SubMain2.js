@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
@@ -20,6 +20,42 @@ const SubMain2 = () => {
     '오세아니아',
     '유럽',
   ];
+
+  // 스크롤 이벤트
+  const [scrollY, setScrollY] = useState(0);
+  const [btnStatus, setBtnStatus] = useState(false);
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    if(scrollY > 200) {
+      // 100 이상이면 버튼이 보이게
+      setBtnStatus(true);
+    } else {
+      // 100 이하면 버튼이 사라지게
+      setBtnStatus(false);
+    }
+  }
+  React.useEffect(() => {
+    console.log("ScrollY is ", scrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
+  }, [scrollY])
+
+  const handleTop = () => {  // 클릭하면 스크롤이 위로 올라가는 함수
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    setScrollY(0);  // ScrollY 의 값을 초기화
+    setBtnStatus(false); // BtnStatus의 값을 false로 바꿈 => 버튼 숨김
+  }
+
+  React.useEffect(() => {
+    const watch = () => {
+      window.addEventListener('scroll', handleFollow)
+    }
+    watch();
+    return () => {
+      window.removeEventListener('scroll', handleFollow)
+    }
+  })
 
   return (
     <React.Fragment>
@@ -128,9 +164,19 @@ const SubMain2 = () => {
       {/* 나라 리스트 */}
 
       {/* 상단으로 가기 버튼 */}
-      <Button is_float>
-        <MdOutlineKeyboardArrowUp />
-      </Button>
+      { btnStatus &&
+        <Button
+        className={btnStatus ? "topBtn active" : "topBtn"}
+        is_float
+        _onClick={() => {
+          handleTop();
+        }}>
+          <Button
+            backgroundColor= "#fff" 
+            _onClick={() => {
+              handleTop();
+        }}><MdOutlineKeyboardArrowUp size={33}/></Button>
+        </Button> }
       {/* 상단으로 가기 버튼 */}
 
       {/* 바텀시트(목적별 선택시) */}
