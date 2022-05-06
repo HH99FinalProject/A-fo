@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../shared/App';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
-import { getTargetInfo } from '../redux/modules/target';
 
 import { CountryCard, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
@@ -10,8 +10,20 @@ import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain2 = () => {
+  const version = useContext(AppContext);
   const location = useLocation();
-  const pickCountry = location.version;
+  const pickOneTarget = location.pickTargetKinds;
+
+  // 나라별 경로 저장
+  const [country, setCountry] = React.useState();
+  const pickCountry = location.state;
+  localStorage.setItem('country', JSON.stringify(pickCountry));
+  React.useEffect(() => {
+    const save = localStorage.getItem('country');
+    if (save !== null) {
+      setCountry(save);
+    }
+  }, [pickCountry]);
 
   const continentList = [
     '남아메리카',
@@ -41,13 +53,16 @@ const SubMain2 = () => {
           <RiArrowRightSLine size="15" />
           <Button
             _onClick={() => {
-              history.push('/SubMain1');
+              history.push({
+                pathname: '/SubMain1',
+                state: version.vTarget,
+              });
             }}
           >
             목적별
           </Button>
           <RiArrowRightSLine size="15" />
-          <Text>워홀</Text>
+          <Text>{pickOneTarget}</Text>
         </Div>
       )}
       {/* 목적별 경로 끝 */}
@@ -102,12 +117,12 @@ const SubMain2 = () => {
               </Div>
 
               <Div flexFlow width="100%">
-                <CountryCard />
-                <CountryCard />
-                <CountryCard />
-                <CountryCard />
-                <CountryCard />
-                <CountryCard />
+                <CountryCard pickCountry={pickCountry} />
+                <CountryCard pickCountry={pickCountry} />
+                <CountryCard pickCountry={pickCountry} />
+                <CountryCard pickCountry={pickCountry} />
+                <CountryCard pickCountry={pickCountry} />
+                <CountryCard pickCountry={pickCountry} />
                 {Array(6)
                   .fill('')
                   .map((a, i) => {
@@ -151,8 +166,11 @@ const SubMain2 = () => {
               height="50px"
               border="1px solid black"
               _onClick={() => {
-                // getInfo(targetName, countryName1, countryName2, countryName3);
-                history.push('/Detail');
+                history.push({
+                  pathname: '/Detail',
+                  pickTargetKinds: pickOneTarget,
+                });
+                window.scrollTo(0, 0);
               }}
             >
               정보 보러 가기

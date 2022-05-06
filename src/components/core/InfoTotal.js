@@ -21,19 +21,18 @@ const InfoTotal = (props) => {
 
   return (
     <React.Fragment>
-      <Div center width="100%" border="1px solid black">
+      <Div center width="1400px" border="1px solid black">
         {/* 토글 */}
         <Div
           row
           width="100%"
           height="100px"
-          backgroundColor="#CEC1FF"
+          backgroundColor="#D2DFFF"
           border="1px solid black"
         >
           <Text
             width="auto"
             margin="0px 5px"
-            backgroundColor="#CEC1FF"
             border="1px solid black"
             size="16px"
             bold
@@ -41,7 +40,7 @@ const InfoTotal = (props) => {
             {props.textK}
           </Text>
           <Button
-            backgroundColor="#CEC1FF"
+            backgroundColor="#D2DFFF"
             border="1px solid black"
             _onClick={() => {
               changeToggle();
@@ -55,6 +54,7 @@ const InfoTotal = (props) => {
         {/* 내용 */}
         {toggle ? (
           <Div
+            width="100%"
             display="flex"
             flexDirection="row"
             alignItems="flex-start"
@@ -71,10 +71,6 @@ const InfoTotal = (props) => {
                 />
               );
             })}
-            {/* <Info />
-            <Info />
-            <Info />
-            <Info /> */}
           </Div>
         ) : null}
         {/* 내용 */}

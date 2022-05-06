@@ -58,7 +58,7 @@ const Info = (props) => {
     // 목적별
     <Div
       position="relative"
-      width="350px"
+      width="100%"
       padding="40px 0px"
       overflow="hidden"
       border="1px solid black"
@@ -89,7 +89,7 @@ const Info = (props) => {
               width="100%"
               height="35px"
               padding="5px"
-              backgroundColor="#CEC1FF"
+              backgroundColor="#FEFFCB"
               border="1px solid black"
               size="16px"
               bold
@@ -100,7 +100,7 @@ const Info = (props) => {
               width="100%"
               lineHeight="20px"
               padding="5px"
-              backgroundColor="#CEC1FF"
+              backgroundColor="#FEFFCB"
               border="1px solid black"
             >
               1. 한국에서 이용하던 휴대전화를 그대로 로밍해서 이용 가능하나

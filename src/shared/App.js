@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route } from 'react-router-dom';
 import { history } from '../redux/configureStore';
@@ -16,11 +16,17 @@ import WorldMap from '../pages/WorldMap';
 import { Header } from '../components/core';
 import { Div, GlobalStyle } from '../components/ui';
 
+export const AppContext = createContext();
+
 function App() {
+  const version = {
+    vTarget: '목적',
+    vCountry: '나라',
+  };
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Div container>
+      <AppContext.Provider value={version}>
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route exact path="/" component={Main} />
@@ -33,7 +39,7 @@ function App() {
           <Route exact path="/SubMain2" component={SubMain2} />
           <Route exact path="/WorldMap" component={WorldMap} />
         </ConnectedRouter>
-      </Div>
+      </AppContext.Provider>
     </React.Fragment>
   );
 }
