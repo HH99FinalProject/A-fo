@@ -3,14 +3,7 @@ import React from 'react';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const TabMenu = () => {
-  const infoList = [
-    '비자',
-    '휴대전화',
-    '은행 계좌 개설',
-    '언어',
-    '시차',
-    '교통 정보',
-  ];
+  const infoList = ['비자', '휴대전화', '은행', '언어', '시차', '교통'];
 
   const continentList = [
     '남아메리카',
@@ -19,6 +12,9 @@ const TabMenu = () => {
     '오세아니아',
     '유럽',
   ];
+
+  const SubMain2 = window.location.pathname === '/SubMain2';
+
   return (
     <Div
       row
@@ -28,34 +24,35 @@ const TabMenu = () => {
       backgroundColor="#D2DFFF"
       border="1px solid black"
     >
-      {/* map돌리기 */}
-      {infoList.map((v, i) => {
-        return (
-          <Button
-            key={v + i}
-            margin="0px 20px"
-            backgroundColor="#D2DFFF"
-            border="1px solid black"
-            bold
-          >
-            {v}
-          </Button>
-        );
-      })}
+      {SubMain2 &&
+        continentList.map((v, i) => {
+          return (
+            <Button
+              key={v + i}
+              margin="0px 20px"
+              backgroundColor="#D2DFFF"
+              border="1px solid black"
+              bold
+            >
+              {v}
+            </Button>
+          );
+        })}
 
-      {continentList.map((v, i) => {
-        return (
-          <Button
-            key={v + i}
-            margin="0px 20px"
-            backgroundColor="#D2DFFF"
-            border="1px solid black"
-            bold
-          >
-            {v}
-          </Button>
-        );
-      })}
+      {!SubMain2 &&
+        infoList.map((v, i) => {
+          return (
+            <Button
+              key={v + i}
+              margin="0px 20px"
+              backgroundColor="#D2DFFF"
+              border="1px solid black"
+              bold
+            >
+              {v}
+            </Button>
+          );
+        })}
     </Div>
   );
 };
