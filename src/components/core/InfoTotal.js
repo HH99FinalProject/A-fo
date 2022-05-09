@@ -19,9 +19,13 @@ const InfoTotal = (props) => {
   const info = country.map((v) => v.info);
   // console.log(info);
 
+
+
   return (
     <React.Fragment>
-      <Div center width="1400px" border="1px solid black">
+      <Div center width="1400px" border="1px solid black" _onClick={() => {
+              changeToggle();
+            }} >
         {/* 토글 */}
         <Div
           row
@@ -42,9 +46,6 @@ const InfoTotal = (props) => {
           <Button
             backgroundColor="#D2DFFF"
             border="1px solid black"
-            _onClick={() => {
-              changeToggle();
-            }}
           >
             ▼
           </Button>

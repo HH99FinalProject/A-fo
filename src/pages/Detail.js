@@ -30,21 +30,16 @@ const Detail = () => {
     dispatch(
       getTargetInfo(targetName, countryName1, countryName2, countryName3)
     );
-    console.log(targetName, countryName1, countryName2, countryName3);
   }, []);
-
-  const data = useSelector((state) => state.target);
 
   const title = [
     { korea: '비자', english: 'visa' },
     { korea: '은행', english: 'bank' },
   ];
   const infoTitle = title.map((l, i) => l);
-  // console.log(infoTitle);
 
   const country = Data.countryList;
   const countryName = country.map((v) => v.countryName);
-  const info = country.map((v) => v.info);
 
   // React.useEffect(() => {
   //   localStorage.removeItem('target');
@@ -62,24 +57,18 @@ const Detail = () => {
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
     if (scrollY > 200) {
-      // 100 이상이면 버튼이 보이게
       setBtnStatus(true);
     } else {
-      // 100 이하면 버튼이 사라지게
       setBtnStatus(false);
     }
   };
-  React.useEffect(() => {
-    // console.log('ScrollY is ', scrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
-  }, [scrollY]);
 
   const handleTop = () => {
-    // 클릭하면 스크롤이 위로 올라가는 함수
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-    setScrollY(0); // ScrollY 의 값을 초기화
+    setScrollY(0); 
     setBtnStatus(false); // BtnStatus의 값을 false로 바꿈 => 버튼 숨김
   };
 
@@ -92,6 +81,11 @@ const Detail = () => {
       window.removeEventListener('scroll', handleFollow);
     };
   });
+
+  const [toggle, setToggle] = React.useState(true);
+  const changeToggle = () => {
+    !toggle ? setToggle(true) : setToggle(false);
+  };
 
   return (
     <React.Fragment>
@@ -195,6 +189,7 @@ const Detail = () => {
       >
         <Div row width="1400px" height="60px" border="1px solid black">
           {countryName.map((p, i) => {
+            // console.log(p) // 나라들
             return (
               <Div
                 key={p + i}
@@ -224,6 +219,7 @@ const Detail = () => {
         border="1px solid black"
       >
         {infoTitle.map((t, i) => {
+          // console.log(t) // 비자, 은행
           return (
             <InfoTotal
               key={t + i}
@@ -231,6 +227,22 @@ const Detail = () => {
               textB={t.english}
               country={country}
             />
+            // <React.Fragment>
+            // <Div key={t + i} _onClick={()=>{changeToggle();}} row width="100%" height="100px" backgroundColor="#d2dfff" border="1px solid #000">
+            //   <Text width="auto" margin="0 5px" border="1px solid #000" size="16px" bold>
+            //     {t.korea} ▼
+            //   </Text>
+            // </Div>
+            // {toggle ?
+            //   <Div width="100%" display="flex" flexDirection="row" alignItems="flex-start" justifyContent="space-between">
+            //     {country.map((v, index) => {
+            //       return (
+            //         <Info key={v + index} title={t.english} country={country} {...v} />
+            //       ) 
+            //     })}
+            //   </Div>  
+            // : null}
+            // </React.Fragment>
           );
         })}
 
@@ -336,21 +348,14 @@ const Detail = () => {
 
       {/* 상단으로 가기 시작 */}
         { btnStatus &&
-        <Button
-          className={btnStatus ? 'topBtn active' : 'topBtn'}
-          is_float
-          _onClick={() => {
-            handleTop();
-          }}
-        >
           <Button
             className={btnStatus ? 'topBtn active' : 'topBtn'}
             backgroundColor="#fff"
+            is_float
             _onClick={() => {
               handleTop();
-        }}><MdOutlineKeyboardArrowUp size={33}/></Button>
-        </Button> }
-      상단으로 가기 끝
+        }}><MdOutlineKeyboardArrowUp size={33}/></Button>}
+      {/* 상단으로 가기 끝 */}
     </React.Fragment>
   );
 };

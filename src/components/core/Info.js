@@ -103,8 +103,7 @@ const Info = (props) => {
               backgroundColor="#FEFFCB"
               border="1px solid black"
             >
-              1. 한국에서 이용하던 휴대전화를 그대로 로밍해서 이용 가능하나
-              수수료가 많이 나온다.
+              New Zealand Citizen Family Relationship Visa (Subclass 461) Temporary
               <br /> <br />
               2. 선불결제 휴대폰 <br /> 통화요금이 저렴하고, 기본요금 없고,
               사용할 만큼의 통화요금만 미리 충전시켜 이용한다.
