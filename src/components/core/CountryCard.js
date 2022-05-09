@@ -43,7 +43,7 @@ const CountryCard = (props) => {
       {pickCountry && (
         <Div
           center
-          width="234.17px"
+          width="234px"
           height="234.17px"
           margin="-1px 0px 0px -1px"
           backgroundColor="white"

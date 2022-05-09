@@ -45,6 +45,7 @@ const Div = (props) => {
     colorHover,
     container,
     flexFlow,
+    flexWrap,
     flexStart,
     flexEnd,
     center,
@@ -108,6 +109,7 @@ const Div = (props) => {
     colorHover,
     container,
     flexFlow,
+    flexWrap,
     flexStart,
     flexEnd,
     center,
@@ -226,6 +228,7 @@ Div.defaultProps = {
   colorHover: false,
   container: false,
   flexFlow: false,
+  flexWrap: false,
   flexStart: false,
   flexEnd: false,
   center: false,
@@ -402,7 +405,7 @@ const PreparingCountry = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 234.17px;
+  width: 234px;
   height: 234.17px;
   margin: -1px 0px 0px -1px;
   background-color: #d5d5d5;

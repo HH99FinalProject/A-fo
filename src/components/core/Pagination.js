@@ -37,15 +37,16 @@ const PageUl = styled.ul`
 
 const PageLi = styled.li`
   display: inline-block;
+  text-align: center;
   font-size: 17px;
   font-weight: 600;
   padding: 5px;
-  border-radius: 5px;
   width: 25px;
+  background-color: #fff;
+  border: 1px solid #ccc;
   &:hover {
     cursor: pointer;
-    color: white;
-    background-color: #263a6c;
+    background-color: #dedede;
   }
   &:focus::after {
     color: white;
@@ -54,6 +55,7 @@ const PageLi = styled.li`
 `;
 
 const PageSpan = styled.span`
+  text-align: center;
   &:hover::after,
   &:focus::after {
     border-radius: 100%;
