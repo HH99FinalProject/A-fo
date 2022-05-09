@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import bookmarkWhite from '../../styles/images/bookmarkWhite.png';
-import bookmarkBlack from '../../styles/images/bookmarkBlack.png';
+import bookmark from '../../styles/images/bookmark.png';
+import bookmarkComplete from '../../styles/images/bookmarkComplete.png';
 
 const Button = (props) => {
   const {
@@ -252,15 +252,15 @@ const BottomSheetBtn = styled.button`
 
 const BookmarkBtn = styled.button`
   position: absolute;
-  top: -4px;
-  right: 10px;
-  width: 25px;
-  height: 40px;
+  top: -1px;
+  right: -1px;
+  width: 41px;
+  height: 41px;
   background-color: white;
   ${(props) =>
     props.complete
-      ? `background-image: url(${bookmarkBlack});`
-      : `background-image: url(${bookmarkWhite});`};
+      ? `background-image: url(${bookmarkComplete});`
+      : `background-image: url(${bookmark});`};
   background-size: cover;
   background-position: center;
   border: ${(props) => props.border};

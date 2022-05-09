@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { AppContext } from '../shared/App';
 import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
+import { getTargetInfo } from '../redux/modules/target';
 
-import { TargetCard } from '../components/core';
+import { BottomSheet, TargetCard } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain1 = (props) => {
-  const version = useContext(AppContext);
   // 목적별 경로 저장
   const location = useLocation();
   const [target, setTarget] = React.useState();
@@ -21,8 +22,16 @@ const SubMain1 = (props) => {
     }
   }, [pickTarget]);
 
-  const pickOneCountry = location.pickCountryKinds;
+  // 바텀시트 나타나기
+  const [bottomSheet, setBottomSheet] = React.useState(false);
+  const showBottomSheet = () => {
+    if (!bottomSheet) {
+      return setBottomSheet(true);
+    }
+  };
 
+  const version = useContext(AppContext);
+  const pickOneCountry = location.pickCountryKinds;
   const targetList = ['이민', '유학', '워홀', '취업'];
 
   return (
@@ -103,7 +112,7 @@ const SubMain1 = (props) => {
             나라별
           </Button>
           <RiArrowRightSLine size="15" />
-          <Text>?</Text>
+          <Text>{pickOneCountry}</Text>
         </Div>
       )}
       {/* 경로 끝 */}
@@ -111,25 +120,24 @@ const SubMain1 = (props) => {
       {/* 나라 선택 시작 */}
       {!pickTarget && (
         <Div
+          center
           width="1400px"
           margin="150px auto 0px auto"
           border="1px solid black"
         >
-          <Text
+          <Text size="40px">?의 어떤 정보가 궁금하세요?</Text>
+          <Div
+            spaceBetween
             width="100%"
-            height="100px"
-            lineHeight="100px"
-            center
+            margin="120px auto 0px auto"
             border="1px solid black"
+            _onClick={() => {
+              showBottomSheet();
+            }}
           >
-            ?
-          </Text>
-          <Div spaceBetween width="100%" border="1px solid black">
             {targetList.map((v, i) => {
               localStorage.removeItem('target');
-              return (
-                <TargetCard key={v + i} text={v} pickCountry={pickOneCountry} />
-              );
+              return <TargetCard key={v + i} text={v} />;
             })}
           </Div>
         </Div>
@@ -137,31 +145,11 @@ const SubMain1 = (props) => {
       {/* 나라 선택 끝 */}
 
       {/* 바텀시트 */}
-      {!pickTarget && (
-        <Div bottomSheet borderTop="1px solid black">
-          <Div
-            center
-            position="relative"
-            width="1400px"
-            height="50px"
-            border="1px solid black"
-          >
-            <Text size="20px" bold border="1px solid black">
-              유학 + 워홀
-            </Text>
-            <Button
-              bottomSheetBtn
-              height="50px"
-              border="1px solid black"
-              _onClick={() => {
-                history.push('/Detail');
-              }}
-            >
-              정보 보러 가기
-            </Button>
-          </Div>
-        </Div>
-      )}
+      <BottomSheet
+        bottomSheet={bottomSheet}
+        pickTarget={pickTarget}
+        pickOneCountry={pickOneCountry}
+      />
       {/* 바텀시트 끝 */}
       {/* 나라별 끝 */}
     </React.Fragment>

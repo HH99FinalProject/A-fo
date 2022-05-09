@@ -82,6 +82,15 @@ export const Data = {
             },
           ],
         },
+        time: {
+          bankId: '일본',
+          bankRequirePaper: ['...'],
+          mainBank: ['...'],
+          bankStep: ['...'],
+
+          bankCaution: ['...'],
+          accountType: ['...'],
+        },
       },
     },
     // 2번째 나라
@@ -122,14 +131,8 @@ export const Data = {
             },
           ],
         },
-      },
-    },
-    // 3번째 나라
-    {
-      countryName: '프랑스',
-      info: {
-        bank: {
-          bankId: '프랑스',
+        time: {
+          bankId: '일본',
           bankRequirePaper: ['...'],
           mainBank: ['...'],
           bankStep: ['...'],
@@ -137,33 +140,48 @@ export const Data = {
           bankCaution: ['...'],
           accountType: ['...'],
         },
-        visa: {
-          bankId: '&&',
-          bankRequirePaper: [
-            {
-              설명: {
-                a: '6개월 ... 필요하다.',
-                b: '3개월 ... 필요하다.',
-              },
-            },
-          ],
-          mainBank: [
-            {
-              은행종류: '중국은행',
-              설명: {
-                a: '중국은행 ... 중 하나다.',
-              },
-            },
-            {
-              은행종류: '중국공상은행',
-              설명: {
-                a: '공상은행(工商银行 꽁샹인항)은 ...  중 하나다.',
-              },
-            },
-          ],
-        },
       },
     },
+    // 3번째 나라
+    // {
+    //   countryName: '프랑스',
+    //   info: {
+    //     bank: {
+    //       bankId: '프랑스',
+    //       bankRequirePaper: ['...'],
+    //       mainBank: ['...'],
+    //       bankStep: ['...'],
+
+    //       bankCaution: ['...'],
+    //       accountType: ['...'],
+    //     },
+    //     visa: {
+    //       bankId: '&&',
+    //       bankRequirePaper: [
+    //         {
+    //           설명: {
+    //             a: '6개월 ... 필요하다.',
+    //             b: '3개월 ... 필요하다.',
+    //           },
+    //         },
+    //       ],
+    //       mainBank: [
+    //         {
+    //           은행종류: '중국은행',
+    //           설명: {
+    //             a: '중국은행 ... 중 하나다.',
+    //           },
+    //         },
+    //         {
+    //           은행종류: '중국공상은행',
+    //           설명: {
+    //             a: '공상은행(工商银行 꽁샹인항)은 ...  중 하나다.',
+    //           },
+    //         },
+    //       ],
+    //     },
+    //   },
+    // },
     // 4번째 나라
     {
       countryName: '독일',

@@ -1,54 +1,62 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../shared/App';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
-import { getTargetInfo } from '../redux/modules/target';
+import Data from '../redux/data';
 
 import { Info, InfoTotal, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
-import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
+import {
+  MdOutlineKeyboardArrowUp,
+  MdOutlineKeyboardArrowDown,
+} from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import australia from '../styles/images/australia.png';
-
-import Data from '../redux/data';
 
 const Detail = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-
   const version = useContext(AppContext);
-  const pickOneTarget = location.pickTargetKinds;
-  const localTarget = localStorage.getItem('target');
-  const targetName = '취업';
-  const countryName1 = '중국';
-  const countryName2 = '베트남';
-  const countryName3 = '일본';
 
-  useEffect(() => {
-    dispatch(
-      getTargetInfo(targetName, countryName1, countryName2, countryName3)
-    );
-    console.log(targetName, countryName1, countryName2, countryName3);
-  }, []);
+  // 목적별
+  const localTarget = localStorage.getItem('target');
+  const pickOneTarget = location.pickTargetKinds;
+
+  // 나라별
+  const localCountry = localStorage.getItem('country');
+  const pickOneCountry = location.pickCountryKinds;
+
+  // 정보
+  // const targetName = location.targetName;
+  // const countryName1 = location.countryName1;
+  // const countryName2 = location.countryName2;
+  // const countryName3 = location.countryName3;
+  // useEffect(() => {
+  //   if (localTarget) {
+  //     const targetName = location.targetName;
+  //     const countryName1 = location.countryName1;
+  //     const countryName2 = location.countryName2;
+  //     const countryName3 = location.countryName3;
+  //     dispatch(
+  //       getTargetInfo(targetName, countryName1, countryName2, countryName3)
+  //     );
+  //   }
+  // }, []);
+  const targets = ['취업', '워홀', '이민'];
 
   const data = useSelector((state) => state.target);
 
-  const title = [
+  const infoTotal = [
     { korea: '비자', english: 'visa' },
     { korea: '은행', english: 'bank' },
+    { korea: '교통', english: 'traffic' },
+    { korea: '시간', english: 'time' },
   ];
-  const infoTitle = title.map((l, i) => l);
-  // console.log(infoTitle);
 
   const country = Data.countryList;
   const countryName = country.map((v) => v.countryName);
   const info = country.map((v) => v.info);
-
-  // React.useEffect(() => {
-  //   localStorage.removeItem('target');
-  // }, []);
 
   // 토글
   const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
@@ -56,33 +64,32 @@ const Detail = () => {
     bookMarkToggle ? setBookMarkToggle(false) : setBookMarkToggle(true);
   };
 
-  // 스크롤 이벤트
-  const [scrollY, setScrollY] = React.useState(0);
+  // -----스크롤 이벤트 시작
+  const [firstScrollY, setFirstScrollY] = React.useState(0);
+  const [secondScrollY, setSecondScrollY] = React.useState(0);
+  const [targetStatus, setTargetStatus] = React.useState(false);
   const [btnStatus, setBtnStatus] = React.useState(false);
+  // 스크롤시 생기는 요소
   const handleFollow = () => {
-    setScrollY(window.pageYOffset);
-    if (scrollY > 200) {
-      // 100 이상이면 버튼이 보이게
+    if (firstScrollY > 185) {
+      setFirstScrollY(window.pageYOffset);
+      setTargetStatus(true);
       setBtnStatus(true);
     } else {
-      // 100 이하면 버튼이 사라지게
+      setFirstScrollY(window.pageYOffset);
+      setTargetStatus(false);
       setBtnStatus(false);
     }
   };
-  React.useEffect(() => {
-    // console.log('ScrollY is ', scrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
-  }, [scrollY]);
-
+  // 클릭시 상단으로 가기
   const handleTop = () => {
-    // 클릭하면 스크롤이 위로 올라가는 함수
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-    setScrollY(0); // ScrollY 의 값을 초기화
-    setBtnStatus(false); // BtnStatus의 값을 false로 바꿈 => 버튼 숨김
+    setSecondScrollY(0);
+    setBtnStatus(false);
   };
-
   React.useEffect(() => {
     const watch = () => {
       window.addEventListener('scroll', handleFollow);
@@ -92,6 +99,7 @@ const Detail = () => {
       window.removeEventListener('scroll', handleFollow);
     };
   });
+  // -----스크롤 이벤트 종료
 
   return (
     <React.Fragment>
@@ -110,7 +118,7 @@ const Detail = () => {
           >
             Home
           </Button>
-          <RiArrowRightSLine size="15" />
+          <RiArrowRightSLine size={15} />
           <Button
             _onClick={() => {
               history.push({
@@ -121,7 +129,7 @@ const Detail = () => {
           >
             목적별
           </Button>
-          <RiArrowRightSLine size="15" />
+          <RiArrowRightSLine size={15} />
           <Button
             _onClick={() => {
               history.push({
@@ -132,12 +140,11 @@ const Detail = () => {
           >
             {pickOneTarget}
           </Button>
-          <RiArrowRightSLine size="15" />
+          <RiArrowRightSLine size={15} />
           <Text>정보</Text>
         </Div>
       )}
       {/* 목적별 경로 끝 */}
-
       {/* 나라별 경로 시작 */}
       {!localTarget && (
         <Div
@@ -153,7 +160,7 @@ const Detail = () => {
           >
             Home
           </Button>
-          <RiArrowRightSLine size="15" />
+          <RiArrowRightSLine size={15} />
           <Button
             _onClick={() => {
               history.push({
@@ -164,56 +171,199 @@ const Detail = () => {
           >
             나라별
           </Button>
-          <RiArrowRightSLine size="15" />
+          <RiArrowRightSLine size={15} />
           <Button
             _onClick={() => {
-              history.push('/SubMain1');
+              history.push({
+                pathname: '/SubMain1',
+                pickCountryKinds: pickOneCountry,
+              });
             }}
           >
-            ?
+            {pickOneCountry}
           </Button>
-          <RiArrowRightSLine size="15" />
+          <RiArrowRightSLine size={15} />
           <Text>정보</Text>
         </Div>
       )}
       {/* 나라별 경로 끝 */}
-
       {/* 탭메뉴 */}
       <TabMenu />
       {/* 탭메뉴 */}
-
       {/* 정보 시작 */}
-
-      {/* 선택된 목적or나라 */}
-      <Div
-        center
-        position="relative"
-        width="100%"
-        margin="60px 0px 0px 0px"
-        padding="10px 0px"
-        border="1px solid black"
-      >
-        <Div row width="1400px" height="60px" border="1px solid black">
-          {countryName.map((p, i) => {
-            return (
+      {/* 목적별 선택된 나라 */}
+      {localTarget && (
+        <>
+          {targetStatus ? (
+            <Div
+              center
+              position="fixed"
+              top="0px"
+              right="0px"
+              zIndex="1"
+              width="100%"
+              padding="10px 0px"
+              backgroundColor="#9FBAFF"
+              border="1px solid black"
+            >
+              <Div row width="1400px" height="60px" border="1px solid black">
+                {countryName.map((c, i) => {
+                  return (
+                    <Div
+                      key={c + i}
+                      row
+                      width="100%"
+                      height="60px"
+                      border="1px solid black"
+                    >
+                      <Image flag src={australia} />
+                      <Text
+                        margin="0px 0px 0px 10px"
+                        size="20px"
+                        color="white"
+                        bold
+                      >
+                        {c}
+                      </Text>
+                    </Div>
+                  );
+                })}
+              </Div>
+            </Div>
+          ) : (
+            <Div
+              center
+              position="relative"
+              width="100%"
+              margin="60px 0px 0px 0px"
+              padding="10px 0px"
+              border="1px solid black"
+            >
+              <Div row width="1400px" height="60px" border="1px solid black">
+                {countryName.map((c, i) => {
+                  return (
+                    <Div
+                      key={c + i}
+                      row
+                      width="100%"
+                      height="60px"
+                      border="1px solid black"
+                    >
+                      <Image flag src={australia} />
+                      <Text
+                        margin="0px 0px 0px 10px"
+                        size="20px"
+                        color="white"
+                        bold
+                      >
+                        {c}
+                      </Text>
+                    </Div>
+                  );
+                })}
+              </Div>
+            </Div>
+          )}
+        </>
+      )}
+      {/* 목적별 선택된 나라 */}
+      {/* 나라별 선택된 목적 */}
+      {!localTarget && (
+        <>
+          {targetStatus ? (
+            <>
               <Div
-                key={p + i}
-                row
+                center
+                position="fixed"
+                top="0px"
+                right="0px"
+                zIndex="1"
                 width="100%"
-                height="60px"
+                padding="10px 0px"
+                border="1px solid black"
+                backgroundColor="#9FBAFF"
+              >
+                <Div
+                  row
+                  position="fixed"
+                  top="5px"
+                  left="70px"
+                  padding="10px 0px"
+                >
+                  <Image flag src={australia} />
+                  <Text
+                    margin="0px 0px 0px 10px"
+                    size="20px"
+                    color="white"
+                    bold
+                  >
+                    호주
+                  </Text>
+                </Div>
+                <Div row width="1400px" height="60px" border="1px solid black">
+                  {targets.map((t, i) => {
+                    return (
+                      <Div
+                        key={t + i}
+                        row
+                        width="100%"
+                        height="60px"
+                        border="1px solid black"
+                      >
+                        <Text margin="0px 0px 0px 10px" size="20px" bold>
+                          {t}
+                        </Text>
+                      </Div>
+                    );
+                  })}
+                </Div>
+              </Div>
+            </>
+          ) : (
+            <>
+              <Div
+                row
+                position="relative"
+                width="100%"
+                margin="60px 0px 0px 0px"
+                padding="10px 0px"
                 border="1px solid black"
               >
                 <Image flag src={australia} />
                 <Text margin="0px 0px 0px 10px" size="20px" color="white" bold>
-                  {p}
+                  호주
                 </Text>
               </Div>
-            );
-          })}
-        </Div>
-      </Div>
-
-      {/* 선택된 목적or나라 */}
+              <Div
+                center
+                position="relative"
+                width="100%"
+                padding="10px 0px"
+                border="1px solid black"
+              >
+                <Div row width="1400px" height="60px" border="1px solid black">
+                  {targets.map((t, i) => {
+                    return (
+                      <Div
+                        key={t + i}
+                        row
+                        width="100%"
+                        height="60px"
+                        border="1px solid black"
+                      >
+                        <Text margin="0px 0px 0px 10px" size="20px" bold>
+                          {t}
+                        </Text>
+                      </Div>
+                    );
+                  })}
+                </Div>
+              </Div>
+            </>
+          )}
+        </>
+      )}
+      {/* 나라별 선택된 목적 */}
 
       {/* 세부정보 */}
       <Div
@@ -223,43 +373,54 @@ const Detail = () => {
         margin="0px auto 100px auto"
         border="1px solid black"
       >
-        {infoTitle.map((t, i) => {
-          return (
-            <InfoTotal
-              key={t + i}
-              textK={t.korea}
-              textB={t.english}
-              country={country}
-            />
-          );
+        {infoTotal.map((t, i) => {
+          if (i < 2) {
+            return (
+              <InfoTotal
+                key={t + i}
+                textK={t.korea}
+                country={country}
+                localTarget={localTarget}
+                localCountry={localCountry}
+                isOpen
+              />
+            );
+          } else {
+            return (
+              <InfoTotal
+                key={t + i}
+                textK={t.korea}
+                country={country}
+                localTarget={localTarget}
+                localCountry={localCountry}
+              />
+            );
+          }
         })}
 
         {/* 북마크 시작 */}
-        <Div bookmark>
-          <Div
-            row
-            width="100%"
-            height="45px"
-            lineHeight="45px"
-            backgroundColor="white"
-            border="1px solid black"
-          >
-            <Text bold backgroundColor="white" border="1px solid black">
-              북마크
-            </Text>
-            <Button
+        {targetStatus ? (
+          <Div bookmark bookmarkFix>
+            <Div
+              row
+              width="100%"
+              height="45px"
+              lineHeight="45px"
               backgroundColor="white"
               border="1px solid black"
+              cursor="pointer"
               _onClick={changeBookMarkToggle}
             >
-              ▼
-            </Button>
-          </Div>
-          {/* 북마크 토글 */}
-          {bookMarkToggle ? (
-            <React.Fragment>
-              {/* 목적별 시작 */}
-              {/* <Div width="100%" margin="5px 0px" border="1px solid black">
+              <Text bold backgroundColor="white" border="1px solid black">
+                북마크
+              </Text>
+              <MdOutlineKeyboardArrowDown size={15} />
+            </Div>
+            {/* 북마크 토글 */}
+            {bookMarkToggle ? (
+              <React.Fragment>
+                {/* 목적별 시작 */}
+                {/* <Div width="100%" margin="5px 0px" border="1px solid black">
               <Text margin="10px" size="20px" bold>
                 호주
               </Text>
@@ -281,54 +442,147 @@ const Detail = () => {
               </Text>
               <Text margin="10px">대사관</Text>
             </Div> */}
-              {/* 목적별 끝 */}
-              {/* 나라별 시작 */}
-              <Div
-                width="100%"
-                margin="5px 0px"
-                backgroundColor="#D2DFFF"
-                border="1px solid black"
-              >
-                <Text margin="10px" size="20px" bold>
-                  워홀
-                </Text>
-                <Text margin="10px">비자</Text>
-                <Text margin="10px">대사관</Text>
-              </Div>
+                {/* 목적별 끝 */}
+                {/* 나라별 시작 */}
+                <Div
+                  width="100%"
+                  margin="5px 0px"
+                  backgroundColor="#D2DFFF"
+                  border="1px solid black"
+                >
+                  <Text margin="10px" size="20px" bold>
+                    워홀
+                  </Text>
+                  <Text margin="10px">비자</Text>
+                  <Text margin="10px">대사관</Text>
+                </Div>
 
-              <Div
-                width="100%"
-                margin="5px 0px"
-                backgroundColor="#D2DFFF"
-                border="1px solid black"
-              >
-                <Text margin="10px" size="20px" bold>
-                  유학
-                </Text>
-                <Text margin="10px">비자</Text>
-                <Text margin="10px">교통</Text>
-              </Div>
-              {/* 나라별 끝 */}
-              <Div
-                center
-                width="100%"
-                height="70px"
-                backgroundColor="white"
-                border="1px solid black"
-              >
-                <Button
-                  padding="10px 15px"
+                <Div
+                  width="100%"
+                  margin="5px 0px"
+                  backgroundColor="#D2DFFF"
+                  border="1px solid black"
+                >
+                  <Text margin="10px" size="20px" bold>
+                    유학
+                  </Text>
+                  <Text margin="10px">비자</Text>
+                  <Text margin="10px">교통</Text>
+                </Div>
+                {/* 나라별 끝 */}
+                <Div
+                  center
+                  width="100%"
+                  height="70px"
                   backgroundColor="white"
                   border="1px solid black"
-                  radius="10px"
                 >
-                  완료
-                </Button>
-              </Div>
-            </React.Fragment>
-          ) : null}
-          {/* 북마크 토글 */}
-        </Div>
+                  <Button
+                    padding="10px 15px"
+                    backgroundColor="white"
+                    border="1px solid black"
+                    radius="10px"
+                  >
+                    완료
+                  </Button>
+                </Div>
+              </React.Fragment>
+            ) : null}
+            {/* 북마크 토글 */}
+          </Div>
+        ) : (
+          <Div bookmark>
+            <Div
+              row
+              width="100%"
+              height="45px"
+              lineHeight="45px"
+              backgroundColor="white"
+              border="1px solid black"
+              cursor="pointer"
+              _onClick={changeBookMarkToggle}
+            >
+              <Text bold backgroundColor="white" border="1px solid black">
+                북마크
+              </Text>
+              <MdOutlineKeyboardArrowDown size={15} />
+            </Div>
+            {/* 북마크 토글 */}
+            {bookMarkToggle ? (
+              <React.Fragment>
+                {/* 목적별 시작 */}
+                {/* <Div width="100%" margin="5px 0px" border="1px solid black">
+              <Text margin="10px" size="20px" bold>
+                호주
+              </Text>
+              <Text margin="10px">비자</Text>
+              <Text margin="10px">대사관</Text>
+            </Div>
+
+            <Div width="100%" margin="5px 0px" border="1px solid black">
+              <Text margin="10px" size="20px" bold>
+                뉴질랜드
+              </Text>
+              <Text margin="10px">비자</Text>
+              <Text margin="10px">교통</Text>
+            </Div>
+
+            <Div width="100%" margin="5px 0px" border="1px solid black">
+              <Text margin="10px" size="20px" bold>
+                캐나다
+              </Text>
+              <Text margin="10px">대사관</Text>
+            </Div> */}
+                {/* 목적별 끝 */}
+                {/* 나라별 시작 */}
+                <Div
+                  width="100%"
+                  margin="5px 0px"
+                  backgroundColor="#D2DFFF"
+                  border="1px solid black"
+                >
+                  <Text margin="10px" size="20px" bold>
+                    워홀
+                  </Text>
+                  <Text margin="10px">비자</Text>
+                  <Text margin="10px">대사관</Text>
+                </Div>
+
+                <Div
+                  width="100%"
+                  margin="5px 0px"
+                  backgroundColor="#D2DFFF"
+                  border="1px solid black"
+                >
+                  <Text margin="10px" size="20px" bold>
+                    유학
+                  </Text>
+                  <Text margin="10px">비자</Text>
+                  <Text margin="10px">교통</Text>
+                </Div>
+                {/* 나라별 끝 */}
+                <Div
+                  center
+                  width="100%"
+                  height="70px"
+                  backgroundColor="white"
+                  border="1px solid black"
+                >
+                  <Button
+                    padding="10px 15px"
+                    backgroundColor="white"
+                    border="1px solid black"
+                    radius="10px"
+                  >
+                    완료
+                  </Button>
+                </Div>
+              </React.Fragment>
+            ) : null}
+            {/* 북마크 토글 */}
+          </Div>
+        )}
+
         {/* 북마크 끝 */}
       </Div>
       {/* 세부정보 */}
@@ -350,7 +604,7 @@ const Detail = () => {
               handleTop();
             }}
           >
-            <MdOutlineKeyboardArrowUp size={33} />
+            <MdOutlineKeyboardArrowUp size={23} />
           </Button>
         </Button>
       )}

@@ -49,7 +49,9 @@ const TargetCard = (props) => {
           backgroundColor={backgroundColor}
           _onClick={Select}
         >
-          <Text backgroundColor={backgroundColor}>{props.text}</Text>
+          <Text size="25px" backgroundColor={backgroundColor}>
+            {props.text}
+          </Text>
         </Div>
       )}
       {/* 나라별 */}

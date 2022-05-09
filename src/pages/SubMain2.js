@@ -3,16 +3,25 @@ import { AppContext } from '../shared/App';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
+import { countryMainDB } from '../redux/modules/country';
 
-import { CountryCard, TabMenu } from '../components/core';
+import { BottomSheet, CountryCard, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain2 = () => {
   const version = useContext(AppContext);
+  const dispatch = useDispatch();
   const location = useLocation();
   const pickOneTarget = location.pickTargetKinds;
+  const continentList = [
+    '남아메리카',
+    '북아메리카',
+    '아시아',
+    '오세아니아',
+    '유럽',
+  ];
 
   // 나라별 경로 저장
   const [country, setCountry] = React.useState();
@@ -25,13 +34,28 @@ const SubMain2 = () => {
     }
   }, [pickCountry]);
 
-  const continentList = [
-    '남아메리카',
-    '북아메리카',
-    '아시아',
-    '오세아니아',
-    '유럽',
-  ];
+  // 바텀시트 나타나기
+  const [bottomSheet, setBottomSheet] = React.useState(false);
+  const showBottomSheet = () => {
+    if (!bottomSheet) {
+      return setBottomSheet(true);
+    }
+  };
+
+  // 메인에서 나라별 선택시 보여주는 나라 종류
+  React.useEffect(() => {
+    if (pickCountry) {
+      dispatch(countryMainDB());
+    }
+  }, []);
+  const countryData = useSelector((state) => state.country.land);
+  const landList = countryData.map((v, i) => v.info);
+  console.log(landList);
+  // for (let i = 0; i < landList.length; i++) {
+  //   for (let j = 0; j < landList.length; i++) {
+  //     console.log(landList[i][j].continent);
+  //   }
+  // }
 
   return (
     <React.Fragment>
@@ -116,7 +140,14 @@ const SubMain2 = () => {
                 </Text>
               </Div>
 
-              <Div flexFlow width="100%">
+              <Div
+                flexFlow
+                width="100%"
+                _onClick={() => {
+                  showBottomSheet();
+                }}
+              >
+                {/* map돌리기,나라이름 props(text)로 넘겨주기 */}
                 <CountryCard pickCountry={pickCountry} />
                 <CountryCard pickCountry={pickCountry} />
                 <CountryCard pickCountry={pickCountry} />
@@ -149,36 +180,12 @@ const SubMain2 = () => {
       {/* 상단으로 가기 버튼 */}
 
       {/* 바텀시트(목적별 선택시) */}
-      {!pickCountry && (
-        <Div bottomSheet border="1px solid black">
-          <Div
-            center
-            position="relative"
-            width="1400px"
-            height="50px"
-            border="1px solid black"
-          >
-            <Text size="20px" bold border="1px solid black">
-              프랑스 + 호주
-            </Text>
-            <Button
-              bottomSheetBtn
-              height="50px"
-              border="1px solid black"
-              _onClick={() => {
-                history.push({
-                  pathname: '/Detail',
-                  pickTargetKinds: pickOneTarget,
-                });
-                window.scrollTo(0, 0);
-              }}
-            >
-              정보 보러 가기
-            </Button>
-          </Div>
-        </Div>
-      )}
-      {/* 바텀시트 끝 */}
+      <BottomSheet
+        bottomSheet={bottomSheet}
+        pickCountry={pickCountry}
+        pickOneTarget={pickOneTarget}
+      />
+      {/* 바텀시트 */}
     </React.Fragment>
   );
 };

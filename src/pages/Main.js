@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { AppContext } from '../shared/App';
 import { history } from '../redux/configureStore';
 
-import { Button, Div, Image, Input, Text } from '../components/ui';
+import { Div, Text } from '../components/ui';
 import mainBackground from '../styles/images/mainBackground.png';
 
 const Main = () => {
   const version = useContext(AppContext);
+
   React.useEffect(() => {
     localStorage.removeItem('target');
     localStorage.removeItem('country');

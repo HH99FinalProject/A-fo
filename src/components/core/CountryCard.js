@@ -5,7 +5,8 @@ import { Button, Div, Image, Input, Text } from '../ui';
 import flag from '../../styles/images/australia.png';
 
 const CountryCard = (props) => {
-  const pickOneCountry = props.pickCountry;
+  const pickCountry = props.pickCountry;
+  const countryKinds = props.text;
 
   const [backgroundColor, setBackgroundColor] = React.useState('white');
   const Select = () => {
@@ -16,7 +17,7 @@ const CountryCard = (props) => {
   return (
     <React.Fragment>
       {/* 목적별 시작 */}
-      {!pickOneCountry && (
+      {!pickCountry && (
         <Div
           center
           width="234.17px"
@@ -39,7 +40,7 @@ const CountryCard = (props) => {
       {/* 목적별 끝 */}
 
       {/* 나라별 */}
-      {pickOneCountry && (
+      {pickCountry && (
         <Div
           center
           width="234.17px"
@@ -52,7 +53,7 @@ const CountryCard = (props) => {
           _onClick={() => {
             history.push({
               pathname: '/SubMain1',
-              pickCountryKinds: pickOneCountry,
+              pickCountryKinds: countryKinds,
             });
           }}
         >

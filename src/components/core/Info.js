@@ -1,43 +1,22 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTargetInfo } from '../../redux/modules/target';
 
+import styled from 'styled-components';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const Info = (props) => {
-  // const [visaToggle, setVisaToggle] = useState(true);
-  // const [phoneToggle, setPhoneToggle] = useState(false);
-  // const [bankToggle, setBankToggle] = useState(false);
-  // const [languageToggle, setLanguageToggle] = useState(false);
-  // const [timeToggle, setTimeToggle] = useState(false);
-  // const [trafficToggle, setTrafficToggle] = useState(false);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.target);
 
-  // const changeVisaToggle = () => {
-  //   !visaToggle ? setVisaToggle(true) : setVisaToggle(false);
-  // };
-  // const changePhoneToggle = () => {
-  //   !phoneToggle ? setPhoneToggle(true) : setPhoneToggle(false);
-  // };
-  // const changeBankToggle = () => {
-  //   !bankToggle ? setBankToggle(true) : setBankToggle(false);
-  // };
-  // const changeLanguageToggle = () => {
-  //   !languageToggle ? setLanguageToggle(true) : setLanguageToggle(false);
-  // };
-  // const changeTimeToggle = () => {
-  //   !timeToggle ? setTimeToggle(true) : setTimeToggle(false);
-  // };
-  // const changeTrafficToggle = () => {
-  //   !trafficToggle ? setTrafficToggle(true) : setTrafficToggle(false);
-  // };
   const infoSubTitle = ['휴대전화 개통방식', '주요 통신사', '추천 요금제'];
 
   const title = props.title;
-  // console.log(title);
 
   const subTitle = {
     visa: ['자격', '방법', '체류 기간'],
     bank: ['준비서류', '주요은행', '계좌개설 절차', '유의점', '은행계좌종류'],
   };
-  // console.log(subTitle.visa);
 
   const country = props.country;
   const info = country.map((v) => v.info);
@@ -65,17 +44,13 @@ const Info = (props) => {
       backgroundColor="white"
     >
       {/* 북마크 전 */}
-      {/* <Button bookmarkBtn border="1px solid black"></Button> */}
+      {/* <Button bookmarkBtn></Button> */}
       {/* 북마크 전 */}
 
       {/* 북마크 후 */}
-      <Button
-        bookmarkBtn
-        complete
-        backgroundColor="white"
-        border="1px solid black"
-      ></Button>
+      <Button bookmarkBtn complete></Button>
       {/* 북마크 후 */}
+
       {infoSubTitle.map((v, i) => {
         return (
           <Div
@@ -96,28 +71,44 @@ const Info = (props) => {
             >
               ● {v}
             </Text>
-            <Text
+            <Div
               width="100%"
               lineHeight="20px"
               padding="5px"
               backgroundColor="#FEFFCB"
               border="1px solid black"
             >
-              1. 한국에서 이용하던 휴대전화를 그대로 로밍해서 이용 가능하나
-              수수료가 많이 나온다.
-              <br /> <br />
-              2. 선불결제 휴대폰 <br /> 통화요금이 저렴하고, 기본요금 없고,
-              사용할 만큼의 통화요금만 미리 충전시켜 이용한다.
-              <br /> <br />
-              3. 후불결제 <br /> 약정기간을 정해야하며 요금이 비싸다
-            </Text>
+              <Ol start="1">
+                <Li>
+                  한국에서 이용하던 휴대전화를 그대로 로밍해서 이용 가능하나
+                  수수료가 많이 나온다.
+                </Li>
+                <Li>
+                  선불결제 휴대폰 <br /> 통화요금이 저렴하고, 기본요금 없고,
+                  사용할 만큼의 통화요금만 미리 충전시켜 이용한다.
+                </Li>
+                <Li>
+                  후불결제 <br /> 약정기간을 정해야하며 요금이 비싸다
+                </Li>
+              </Ol>
+            </Div>
           </Div>
         );
       })}
     </Div>
-
     // 나라별
   );
 };
 
 export default Info;
+
+const Ol = styled.ol`
+  list-style-type: none;
+  width: 100%;
+  padding: 0px 5px 0px 20px;
+  line-height: 25px;
+`;
+const Li = styled.li`
+  list-style-type: decimal;
+  width: 100%;
+`;

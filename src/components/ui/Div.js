@@ -3,10 +3,13 @@ import styled from 'styled-components';
 
 const Div = (props) => {
   const {
-    top,
-    right,
     children,
     position,
+    top,
+    bottom,
+    left,
+    right,
+    zIndex,
     display,
     flexDirection,
     alignItems,
@@ -35,6 +38,7 @@ const Div = (props) => {
     backgroundPosition,
     repeat,
     overflow,
+    animation,
     color,
     cursor,
     opacity,
@@ -53,6 +57,7 @@ const Div = (props) => {
     fontSize,
     inline,
     bookmark,
+    bookmarkFix,
     overlayModal,
     modal,
     bottomSheet,
@@ -61,10 +66,13 @@ const Div = (props) => {
   } = props;
 
   const styles = {
-    top,
-    right,
     children,
     position,
+    top,
+    bottom,
+    left,
+    right,
+    zIndex,
     display,
     flexDirection,
     alignItems,
@@ -93,6 +101,7 @@ const Div = (props) => {
     backgroundPosition,
     repeat,
     overflow,
+    animation,
     color,
     cursor,
     opacity,
@@ -111,6 +120,7 @@ const Div = (props) => {
     fontSize,
     inline,
     bookmark,
+    bookmarkFix,
     overlayModal,
     modal,
     bottomSheet,
@@ -174,10 +184,13 @@ const Div = (props) => {
 };
 
 Div.defaultProps = {
-  top: '',
-  right: '',
   children: null,
   position: '',
+  top: '',
+  bottom: '',
+  left: '',
+  right: '',
+  zIndex: '',
   display: '',
   flexDirection: '',
   alignItems: '',
@@ -206,6 +219,7 @@ Div.defaultProps = {
   backgroundPosition: false,
   repeat: false,
   overflow: '',
+  animation: '',
   color: '',
   cursor: '',
   opacity: '',
@@ -224,6 +238,7 @@ Div.defaultProps = {
   fontSize: '',
   inline: false,
   bookmark: false,
+  bookmarkFix: false,
   modal: false,
   bottomSheet: false,
   preparingCountry: false,
@@ -234,6 +249,11 @@ const Box = styled.div`
   ${(props) =>
     props.container ? 'position:realative; width:100vw; margin:0px auto;' : ''};
   position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
+  right: ${(props) => props.right};
+  z-index: ${(props) => props.zIndex};
   display: ${(props) => props.display};
   flex-direction: ${(props) => props.flexDirection};
   align-items: ${(props) => props.alignItems};
@@ -300,6 +320,7 @@ const Box = styled.div`
   background-position: ${(props) => props.backgroundPosition};
   background-repeat: ${(props) => props.repeat};
   overflow: ${(props) => props.overflow};
+  animation: ${(props) => props.animation};
   ${(props) => (props.textCenter ? `text-align:center;` : '')};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};
@@ -311,9 +332,10 @@ const Box = styled.div`
 `;
 
 const Bookmark = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
+  ${(props) =>
+    props.bookmarkFix
+      ? 'position:fixed; top: 80px; right:0; z-index:1;'
+      : 'position: absolute; top: 0; right: 0;'};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -332,7 +354,7 @@ const OverlayModal = styled.div`
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(100, 100, 100, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 `;
 
@@ -360,7 +382,19 @@ const BottomSheet = styled.div`
   padding: 5px 0px;
   border: ${(props) => props.border};
   border-top: ${(props) => props.borderTop};
-  background-color: white;
+  background-color: #4768db;
+  overflow: hidden;
+  animation: fadein 0.5s ease-in-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
 `;
 
 const PreparingCountry = styled.div`
