@@ -26,6 +26,7 @@ const SubMain2 = () => {
   // 나라별 경로 저장
   const [country, setCountry] = React.useState();
   const pickCountry = location.state;
+  // console.log(pickCountry)
   localStorage.setItem('country', JSON.stringify(pickCountry));
   React.useEffect(() => {
     const save = localStorage.getItem('country');
@@ -50,12 +51,8 @@ const SubMain2 = () => {
   }, []);
   const countryData = useSelector((state) => state.country.land);
   const landList = countryData.map((v, i) => v.info);
-  console.log(landList);
-  // for (let i = 0; i < landList.length; i++) {
-  //   for (let j = 0; j < landList.length; i++) {
-  //     console.log(landList[i][j].continent);
-  //   }
-  // }
+  
+
 
   // 스크롤 이벤트
   const [scrollY, setScrollY] = useState(0);
@@ -63,16 +60,13 @@ const SubMain2 = () => {
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
     if(scrollY > 200) {
-      // 100 이상이면 버튼이 보이게
+      // 200 이상이면 버튼이 보이게
       setBtnStatus(true);
     } else {
       // 100 이하면 버튼이 사라지게
       setBtnStatus(false);
     }
   }
-  React.useEffect(() => {
-    console.log("ScrollY is ", scrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
-  }, [scrollY])
 
   const handleTop = () => {  // 클릭하면 스크롤이 위로 올라가는 함수
     window.scrollTo({
@@ -217,11 +211,7 @@ const SubMain2 = () => {
         _onClick={() => {
           handleTop();
         }}>
-          <Button
-            backgroundColor= "#fff" 
-            _onClick={() => {
-              handleTop();
-        }}><MdOutlineKeyboardArrowUp size={33}/></Button>
+          <MdOutlineKeyboardArrowUp size={33}/>
         </Button> }
       {/* 상단으로 가기 버튼 */}
 

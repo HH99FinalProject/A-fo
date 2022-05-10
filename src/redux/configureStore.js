@@ -5,6 +5,8 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import commentSlice from './modules/comment';
 import countrySlice from './modules/country';
 import targetSlice from './modules/target';
+import scrollSlice from './modules/scroll';
+import boardSlice from './modules/board';
 
 //직접만든 히스토리
 export const history = createBrowserHistory();
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   comment: commentSlice,
   country: countrySlice,
   target: targetSlice,
+  scroll: scrollSlice,
+  board: boardSlice,
   router: connectRouter(history),
 });
 

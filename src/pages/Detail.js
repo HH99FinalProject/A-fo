@@ -106,6 +106,9 @@ const Detail = () => {
     !toggle ? setToggle(true) : setToggle(false);
   };
 
+  // const ref = React.useRef([]);
+  
+
   return (
     <React.Fragment>
       {/* 목적별 경로 시작 */}

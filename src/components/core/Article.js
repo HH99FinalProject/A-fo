@@ -5,7 +5,10 @@ import { AiOutlineComment, AiOutlineEye }from "react-icons/ai";
 
 import { Div, Text } from "../ui";
 
-const Article = (props) => {
+const Article = (props, {loading}) => {
+  if(loading) {
+    return <h2>...loading</h2>;
+  }
 
   return (
     <React.Fragment>

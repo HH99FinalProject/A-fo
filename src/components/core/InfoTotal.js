@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 import Info from './Info';
 import { Button, Div, Image, Input, Text } from '../ui';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 
 const InfoTotal = (props) => {
   const localTarget = props.localTarget;
@@ -18,8 +19,13 @@ const InfoTotal = (props) => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
-
-
+  const scroll = useSelector(state => state.scroll.scroll);
+  console.log(scroll)
+  // if (scroll === true) ref.scrollIntoView();
+  
+  const ref = React.forwardRef((props, ref) => {
+    
+  });
   return (
     <React.Fragment>
       {(localTarget || (!localTarget && props.textK === '비자')) && (
@@ -35,6 +41,7 @@ const InfoTotal = (props) => {
             _onClick={() => {
               changeToggle();
             }}
+            ref={ref}
           >
             <Text
               width="auto"
