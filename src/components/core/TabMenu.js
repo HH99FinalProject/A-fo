@@ -36,6 +36,18 @@ const TabMenu = () => {
       {!SubMain2 &&
         infoList.map((v, i) => {
           return (
+            v === '비자' ?
+            <Button
+              key={v + i}
+              margin="0px 20px"
+              backgroundColor="#D2DFFF"
+              border="1px solid black"
+              bold
+              _onClick = {() => { /* ref.scrollIntoView() */ }}
+            >
+              {v}
+            </Button>
+            : v === '휴대전화' ?
             <Button
               key={v + i}
               margin="0px 20px"
@@ -45,6 +57,47 @@ const TabMenu = () => {
             >
               {v}
             </Button>
+            : v === '은행' ?
+            <Button
+              key={v + i}
+              margin="0px 20px"
+              backgroundColor="#D2DFFF"
+              border="1px solid black"
+              bold
+            >
+              {v}
+            </Button>
+            : v === '언어' ?
+            <Button
+              key={v + i}
+              margin="0px 20px"
+              backgroundColor="#D2DFFF"
+              border="1px solid black"
+              bold
+            >
+              {v}
+            </Button>
+            : v === '시차' ?
+            <Button
+              key={v + i}
+              margin="0px 20px"
+              backgroundColor="#D2DFFF"
+              border="1px solid black"
+              bold
+            >
+              {v}
+            </Button>
+            :  // 마지막 교통
+            <Button
+              key={v + i}
+              margin="0px 20px"
+              backgroundColor="#D2DFFF"
+              border="1px solid black"
+              bold
+            >
+              {v}
+            </Button>
+
           );
         })}
     </Div>

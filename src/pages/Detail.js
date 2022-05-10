@@ -47,6 +47,7 @@ const Detail = () => {
     { korea: '교통', english: 'traffic' },
     { korea: '시간', english: 'time' },
   ];
+  // const infoTitle = title.map((l, i) => l);
 
   // 북마크 토글
   const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
@@ -90,6 +91,11 @@ const Detail = () => {
     };
   });
   // -----스크롤 이벤트 종료
+
+  const [toggle, setToggle] = React.useState(true);
+  const changeToggle = () => {
+    !toggle ? setToggle(true) : setToggle(false);
+  };
 
   return (
     <React.Fragment>
@@ -580,20 +586,13 @@ const Detail = () => {
       {btnStatus && (
         <Button
           className={btnStatus ? 'topBtn active' : 'topBtn'}
+          backgroundColor="#fff"
           is_float
           _onClick={() => {
             handleTop();
           }}
         >
-          <Button
-            className={btnStatus ? 'topBtn active' : 'topBtn'}
-            backgroundColor="#fff"
-            _onClick={() => {
-              handleTop();
-            }}
-          >
-            <MdOutlineKeyboardArrowUp size={23} />
-          </Button>
+          <MdOutlineKeyboardArrowUp size={33} />
         </Button>
       )}
       {/* 상단으로 가기 끝 */}

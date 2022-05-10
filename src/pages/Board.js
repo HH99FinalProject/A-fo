@@ -12,8 +12,8 @@ import Post from '../components/core/Post';
 const Board = (props) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1); // 현재페이지
+  const [postsPerPage] = useState(20); // 페이지당 포스트 개수
 
   React.useEffect(() => {
     // pagination구현 임시로 데이터 넣었음
@@ -28,13 +28,12 @@ const Board = (props) => {
     fetchData();
   }, []);
 
-  const indexOfLast = currentPage * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
-  function currentPosts(tmp) {
-    let currentPosts = 0;
-    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
-    return currentPosts;
-  }
+  // 현재페이지 가져오기
+  const indexOfLastPost = currentPage * postsPerPage; // 1*10 = 10번 포스트
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 10-10 = 0번 포스트  
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // 0~10번까지 포스트
+  // 이벤트 - 페이지 바꾸기
+  const paginate = pageNum => setCurrentPage(pageNum);
 
   return (
     <React.Fragment>
@@ -52,14 +51,12 @@ const Board = (props) => {
         </PostBtn>
         <Div margin="100px 0 0 0" border="1px solid #000">
           {/* map으로 돌리기 */}
-          <Post posts={currentPosts(posts)} loading={loading}></Post>
+          <Post posts={currentPosts} loading={loading} ></Post>
         </Div>
-      </Div>
-      <Div margin="0 0 50px 0">
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={posts.length}
-          paginate={setCurrentPage}
+          paginate={paginate}
         ></Pagination>
       </Div>
     </React.Fragment>

@@ -17,6 +17,8 @@ const InfoTotal = (props) => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
+
+
   return (
     <React.Fragment>
       {(vTarget || (!vTarget && props.textK === '비자')) && (

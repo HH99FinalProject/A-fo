@@ -41,6 +41,37 @@ const SubMain2 = () => {
     }
   };
 
+  // 스크롤 이벤트
+  const [scrollY, setScrollY] = React.useState(0);
+  const [btnStatus, setBtnStatus] = React.useState(false);
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    if (scrollY > 200) {
+      setBtnStatus(true);
+    } else {
+      setBtnStatus(false);
+    }
+  };
+
+  const handleTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    setScrollY(0);
+    setBtnStatus(false);
+  };
+
+  React.useEffect(() => {
+    const watch = () => {
+      window.addEventListener('scroll', handleFollow);
+    };
+    watch();
+    return () => {
+      window.removeEventListener('scroll', handleFollow);
+    };
+  });
+
   return (
     <React.Fragment>
       {/* 목적별 경로 시작 */}
@@ -221,9 +252,24 @@ const SubMain2 = () => {
       {/* 나라별 나라 리스트 */}
 
       {/* 상단으로 가기 버튼 */}
-      <Button is_float>
-        <MdOutlineKeyboardArrowUp />
-      </Button>
+      {btnStatus && (
+        <Button
+          className={btnStatus ? 'topBtn active' : 'topBtn'}
+          is_float
+          _onClick={() => {
+            handleTop();
+          }}
+        >
+          <Button
+            backgroundColor="#fff"
+            _onClick={() => {
+              handleTop();
+            }}
+          >
+            <MdOutlineKeyboardArrowUp size={33} />
+          </Button>
+        </Button>
+      )}
       {/* 상단으로 가기 버튼 */}
 
       {/* 바텀시트(목적별 선택시) */}
