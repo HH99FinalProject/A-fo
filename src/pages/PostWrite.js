@@ -2,27 +2,37 @@ import React, { useReducer, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
+import { Viewer } from '@toast-ui/react-editor';
 
 import { Text, Div, Button } from '../components/ui';
-import { addPost } from '../redux/modules/post';
+import { addPost } from '../redux/modules/board';
 
 const PostWrite = () => {
   const dispatch = useDispatch();
 
-  const [titleCount, setTitleCount] = useState(0);
-  const [contentCount, setContentCount] = useState(0);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  const setPost = () => {
-    dispatch(addPost(title, content));
-    setTitle('');
-    setContent('');
+  const contentRef = useRef();
+  
+  const onchangeEditorText = () => {
+    console.log(contentRef.current?.getInstance().getMarkdown());
+    setContent((contentRef.current?.getInstance().getMarkdown()));
   }
 
-  React.useEffect(()=> {
+  const data = {
+    title: title,
+    content: content,
+  }
 
-  }, [])
+  const setPost = () => {
+    dispatch(addPost(data));
+    window.alert('글쓰기 완료!');
+    history.push('/board')
+  }
+
   
   return (
     <React.Fragment>
@@ -56,15 +66,23 @@ const PostWrite = () => {
               </Target>
             </Div>
             <Div position="relative">
-              <Title placeholder="제목을 입력하세요." maxLength={30} 
-                onChange={(e)=>{ setTitleCount(e.target.value.length); setTitle(e.target.value) }} />
-              <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div>
+              <Title placeholder="제목을 입력하세요." maxLength={30} value={title}
+                onChange={(e)=>{ setTitle(e.target.value); }} />
+              {/* <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div> */}
             </Div>
             <Div position="relative">
-              <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} 
+              {/* <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} 
                 onChange={(e)=>{ setContentCount(e.target.value.length); setContent(e.target.value)}} 
-                value={content}/>
-              <div style={{position:"absolute", top:"360px", right:"20px", background: "#fff"}}>{contentCount}/500</div>
+                value={content}/> */}
+              {/* <div style={{position:"absolute", top:"360px", right:"20px", background: "#fff", zIndex:"10"}}>{contentCount}/500</div> */}
+              <Editor
+                ref={contentRef}
+                onChange={onchangeEditorText}
+                placeholder="내용을 입력하세요."
+                previewStyle="vertical"
+                height="600px"
+                initialEditType="wysiwyg"
+                useCommandShortcut={true}/>
             </Div>
             <Div flexEnd>
               <Button padding="10px" border="1px solid #000" _onClick={()=>{ setPost(); }} backgroundColor="#fff">

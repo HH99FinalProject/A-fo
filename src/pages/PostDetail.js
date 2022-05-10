@@ -23,6 +23,11 @@ const PostDetail = () => {
     setCommentText('');
   };
 
+  const clickPostDetail = useSelector(state => state.board.post);
+  // React.useEffect(()=>{
+  //   dispatch();
+  // }, [])
+
   return (
     <React.Fragment>
       <Div
@@ -55,7 +60,7 @@ const PostDetail = () => {
               </div>
               <Div padding="0 0 0 20px">
                 <Text size="16px" bold>
-                  게시물 제목입니다.
+                  {clickPostDetail[0].title}
                 </Text>
               </Div>
               <Div row width="15%">
@@ -103,19 +108,7 @@ const PostDetail = () => {
               textAlign="justify"
               letterSpacing="0.02em"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam
-              congue sed et sagittis tellus, pharetra malesuada urna. At integer
-              adipiscing nullam aliquet dis dolor magna tristique amet. Volutpat
-              enim, tincidunt ut neque lorem mi tristique non lorem. Dui
-              consequat faucibus mauris risus. Fames dictum mattis dui viverra a
-              mattis ornare lectus urna. At nunc ut commodo et, odio sit
-              tincidunt. Auctor cursus semper velit sed viverra morbi. Diam sed
-              dapibus bibendum odio ut mattis. Vulputate elit risus elementum
-              iaculis sed ornare. Non risus id elementum, adipiscing diam ipsum
-              velit. Purus etiam quam volutpat tortor, leo. Pellentesque odio
-              condimentum lacus parturient sit ut. Orci, in velit ut pretium
-              auctor diam semper lectus. Dapibus nulla turpis lorem et enim
-              libero.
+              {clickPostDetail[0].content}
             </Text>
           </Wrap>
 

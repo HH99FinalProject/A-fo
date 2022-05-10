@@ -51,7 +51,7 @@ const SubMain2 = () => {
     } else {
       setBtnStatus(false);
     }
-  };
+  }
 
   const handleTop = () => {
     window.scrollTo({
@@ -254,22 +254,13 @@ const SubMain2 = () => {
       {/* 상단으로 가기 버튼 */}
       {btnStatus && (
         <Button
-          className={btnStatus ? 'topBtn active' : 'topBtn'}
-          is_float
-          _onClick={() => {
-            handleTop();
-          }}
-        >
-          <Button
-            backgroundColor="#fff"
-            _onClick={() => {
-              handleTop();
-            }}
-          >
-            <MdOutlineKeyboardArrowUp size={33} />
-          </Button>
-        </Button>
-      )}
+        className={btnStatus ? "topBtn active" : "topBtn"}
+        is_float
+        _onClick={() => {
+          handleTop();
+        }}>
+          <MdOutlineKeyboardArrowUp size={33}/>
+        </Button> )}
       {/* 상단으로 가기 버튼 */}
 
       {/* 바텀시트(목적별 선택시) */}

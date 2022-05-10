@@ -7,6 +7,8 @@ import storage from 'redux-persist/lib/storage';
 import commentSlice from './modules/comment';
 import countrySlice from './modules/country';
 import targetSlice from './modules/target';
+import scrollSlice from './modules/scroll';
+import boardSlice from './modules/board';
 
 export const history = createBrowserHistory();
 
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   comment: commentSlice.reducer,
   country: countrySlice.reducer,
   target: targetSlice.reducer,
+  scroll: scrollSlice.reducer,
+  board: boardSlice.reducer,
 });
 
 const persistConfig = {
