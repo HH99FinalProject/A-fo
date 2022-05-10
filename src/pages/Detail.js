@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../shared/App';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
+import { setVTargetReducer } from '../redux/modules/target';
+import { setVCountryReducer } from '../redux/modules/country';
 import Data from '../redux/data';
 
 import { Info, InfoTotal, TabMenu } from '../components/core';
@@ -16,17 +16,13 @@ import australia from '../styles/images/australia.png';
 
 const Detail = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const version = useContext(AppContext);
-
-  // 목적별
-  const localTarget = localStorage.getItem('target');
-  const pickOneTarget = location.pickTargetKinds;
-
-  // 나라별
-  const localCountry = localStorage.getItem('country');
-  const pickOneCountry = location.pickCountryKinds;
-
+  const vTarget = useSelector((state) => state.target.vTarget);
+  const vCountry = useSelector((state) => state.target.vCountry);
+  const purpose = useSelector((state) => state.target.onePickTargetName);
+  const countryName = useSelector((state) => state.country.onePickCountryName);
+  const country = Data.countryList;
+  const _countryName = country.map((v) => v.country);
+  const info = country.map((v) => v.info);
   // 정보
   // const targetName = location.targetName;
   // const countryName1 = location.countryName1;
@@ -44,9 +40,7 @@ const Detail = () => {
   //   }
   // }, []);
   const targets = ['취업', '워홀', '이민'];
-
   const data = useSelector((state) => state.target);
-
   const infoTotal = [
     { korea: '비자', english: 'visa' },
     { korea: '은행', english: 'bank' },
@@ -54,11 +48,7 @@ const Detail = () => {
     { korea: '시간', english: 'time' },
   ];
 
-  const country = Data.countryList;
-  const countryName = country.map((v) => v.countryName);
-  const info = country.map((v) => v.info);
-
-  // 토글
+  // 북마크 토글
   const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
   const changeBookMarkToggle = () => {
     bookMarkToggle ? setBookMarkToggle(false) : setBookMarkToggle(true);
@@ -104,7 +94,7 @@ const Detail = () => {
   return (
     <React.Fragment>
       {/* 목적별 경로 시작 */}
-      {localTarget && (
+      {vTarget && (
         <Div
           flexStart
           width="1400px"
@@ -123,7 +113,6 @@ const Detail = () => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain1',
-                state: version.vTarget,
               });
             }}
           >
@@ -134,19 +123,19 @@ const Detail = () => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain2',
-                pickTargetKinds: pickOneTarget,
               });
             }}
           >
-            {pickOneTarget}
+            {purpose}
           </Button>
           <RiArrowRightSLine size={15} />
           <Text>정보</Text>
         </Div>
       )}
       {/* 목적별 경로 끝 */}
+
       {/* 나라별 경로 시작 */}
-      {!localTarget && (
+      {vCountry && (
         <Div
           flexStart
           width="1400px"
@@ -165,7 +154,6 @@ const Detail = () => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain2',
-                state: version.vCountry,
               });
             }}
           >
@@ -176,23 +164,24 @@ const Detail = () => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain1',
-                pickCountryKinds: pickOneCountry,
               });
             }}
           >
-            {pickOneCountry}
+            {_countryName}
           </Button>
           <RiArrowRightSLine size={15} />
           <Text>정보</Text>
         </Div>
       )}
       {/* 나라별 경로 끝 */}
+
       {/* 탭메뉴 */}
       <TabMenu />
       {/* 탭메뉴 */}
+
       {/* 정보 시작 */}
       {/* 목적별 선택된 나라 */}
-      {localTarget && (
+      {vTarget && (
         <>
           {targetStatus ? (
             <Div
@@ -207,10 +196,10 @@ const Detail = () => {
               border="1px solid black"
             >
               <Div row width="1400px" height="60px" border="1px solid black">
-                {countryName.map((c, i) => {
+                {_countryName.map((v, i) => {
                   return (
                     <Div
-                      key={c + i}
+                      key={i}
                       row
                       width="100%"
                       height="60px"
@@ -223,7 +212,7 @@ const Detail = () => {
                         color="white"
                         bold
                       >
-                        {c}
+                        {v}
                       </Text>
                     </Div>
                   );
@@ -240,10 +229,10 @@ const Detail = () => {
               border="1px solid black"
             >
               <Div row width="1400px" height="60px" border="1px solid black">
-                {countryName.map((c, i) => {
+                {_countryName.map((u, i) => {
                   return (
                     <Div
-                      key={c + i}
+                      key={i}
                       row
                       width="100%"
                       height="60px"
@@ -256,7 +245,7 @@ const Detail = () => {
                         color="white"
                         bold
                       >
-                        {c}
+                        {u}
                       </Text>
                     </Div>
                   );
@@ -268,7 +257,7 @@ const Detail = () => {
       )}
       {/* 목적별 선택된 나라 */}
       {/* 나라별 선택된 목적 */}
-      {!localTarget && (
+      {vCountry && (
         <>
           {targetStatus ? (
             <>
@@ -297,21 +286,21 @@ const Detail = () => {
                     color="white"
                     bold
                   >
-                    호주
+                    {countryName}
                   </Text>
                 </Div>
                 <Div row width="1400px" height="60px" border="1px solid black">
-                  {targets.map((t, i) => {
+                  {targets.map((h, i) => {
                     return (
                       <Div
-                        key={t + i}
+                        key={i}
                         row
                         width="100%"
                         height="60px"
                         border="1px solid black"
                       >
                         <Text margin="0px 0px 0px 10px" size="20px" bold>
-                          {t}
+                          {h}
                         </Text>
                       </Div>
                     );
@@ -331,7 +320,7 @@ const Detail = () => {
               >
                 <Image flag src={australia} />
                 <Text margin="0px 0px 0px 10px" size="20px" color="white" bold>
-                  호주
+                  {countryName}
                 </Text>
               </Div>
               <Div
@@ -342,17 +331,17 @@ const Detail = () => {
                 border="1px solid black"
               >
                 <Div row width="1400px" height="60px" border="1px solid black">
-                  {targets.map((t, i) => {
+                  {targets.map((l, i) => {
                     return (
                       <Div
-                        key={t + i}
+                        key={i}
                         row
                         width="100%"
                         height="60px"
                         border="1px solid black"
                       >
                         <Text margin="0px 0px 0px 10px" size="20px" bold>
-                          {t}
+                          {i}
                         </Text>
                       </Div>
                     );
@@ -377,11 +366,11 @@ const Detail = () => {
           if (i < 2) {
             return (
               <InfoTotal
-                key={t + i}
+                key={i}
                 textK={t.korea}
                 country={country}
-                localTarget={localTarget}
-                localCountry={localCountry}
+                vTarget={vTarget}
+                vCountry={vCountry}
                 isOpen
               />
             );
@@ -391,8 +380,8 @@ const Detail = () => {
                 key={t + i}
                 textK={t.korea}
                 country={country}
-                localTarget={localTarget}
-                localCountry={localCountry}
+                vTarget={vTarget}
+                vCountry={vCountry}
               />
             );
           }
@@ -582,7 +571,6 @@ const Detail = () => {
             {/* 북마크 토글 */}
           </Div>
         )}
-
         {/* 북마크 끝 */}
       </Div>
       {/* 세부정보 */}

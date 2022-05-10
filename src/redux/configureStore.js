@@ -1,23 +1,30 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import commentSlice from './modules/comment';
 import countrySlice from './modules/country';
 import targetSlice from './modules/target';
 
-//직접만든 히스토리
 export const history = createBrowserHistory();
 
-//리듀서 만들기
 const rootReducer = combineReducers({
-  comment: commentSlice,
-  country: countrySlice,
-  target: targetSlice,
   router: connectRouter(history),
+  comment: commentSlice.reducer,
+  country: countrySlice.reducer,
+  target: targetSlice.reducer,
 });
 
-// //미들웨어 준비
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['target', 'country'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const middlewares = [routerMiddleware(history)];
 const env = process.env.NODE_ENV;
 if (env === 'development') {
@@ -26,7 +33,7 @@ if (env === 'development') {
 }
 
 export default configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(...middlewares),
+    getDefaultMiddleware({ serializableCheck: false }).concat(...middlewares),
 });

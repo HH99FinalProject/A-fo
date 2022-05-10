@@ -1,12 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { history } from '../../redux/configureStore';
+import {
+  setOnePickTargetNameReducer,
+  targetSub1DB,
+} from '../../redux/modules/target';
+import { resetVCountryReducer } from '../../redux/modules/country';
 
 import styled from 'styled-components';
 import { Div, Text, Image, Button } from '../ui';
 
 const TargetCard = (props) => {
-  const targetKinds = props.text;
-  const pickTarget = props.pickTarget;
+  const dispatch = useDispatch();
+  const purpose = props.purpose;
+  const vTarget = props.vTarget;
+  const vCountry = props.vCountry;
+  const targetName = props.targetText;
 
   const [backgroundColor, setBackgroundColor] = React.useState('#D2DFFF');
   const Select = () => {
@@ -18,7 +27,7 @@ const TargetCard = (props) => {
   return (
     <React.Fragment>
       {/* 목적별 */}
-      {pickTarget && (
+      {vTarget && (
         <Div
           center
           width="350px"
@@ -27,19 +36,20 @@ const TargetCard = (props) => {
           border="1px solid black"
           cursor="pointer"
           _onClick={() => {
+            dispatch(setOnePickTargetNameReducer(purpose));
+            dispatch(targetSub1DB(purpose));
             history.push({
               pathname: '/SubMain2',
-              pickTargetKinds: targetKinds,
             });
           }}
         >
-          <Text size="25px">{props.text}</Text>
+          <Text size="25px">{purpose}</Text>
         </Div>
       )}
       {/* 목적별 */}
 
       {/* 나라별 */}
-      {!pickTarget && (
+      {vCountry && (
         <Div
           center
           width="350px"
@@ -50,7 +60,7 @@ const TargetCard = (props) => {
           _onClick={Select}
         >
           <Text size="25px" backgroundColor={backgroundColor}>
-            {props.text}
+            {targetName}
           </Text>
         </Div>
       )}

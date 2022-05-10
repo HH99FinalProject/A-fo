@@ -7,16 +7,11 @@ import styled from 'styled-components';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const BottomSheet = (props) => {
-  const localTarget = localStorage.getItem('target');
-
-  // 목적별 SubMain2에서 받아온 값
-  const pickCountry = props.pickCountry;
-  const pickOneTarget = props.pickOneTarget;
   const bottomSheet = props.bottomSheet;
-
+  // 목적별 SubMain2에서 받아온 값
+  const vTarget = props.vTarget;
   // 나라별 SubMain1에서 받아온 값
-  const pickTarget = props.pickTarget;
-  const pickOneCountry = props.pickOneCountry;
+  const vCountry = props.vCountry;
 
   // Detail에 넘겨줄 데이터
   const dispatch = useDispatch();
@@ -36,7 +31,7 @@ const BottomSheet = (props) => {
   return (
     <React.Fragment>
       {/* 목적별 */}
-      {localTarget && bottomSheet && (
+      {vTarget && bottomSheet && (
         <Div bottomSheet border="1px solid black">
           <Div
             center
@@ -53,11 +48,9 @@ const BottomSheet = (props) => {
               height="50px"
               border="1px solid black"
               _onClick={() => {
-                localStorage.removeItem('country');
                 dispatch(targetSub2DB(data));
                 history.push({
                   pathname: '/Detail',
-                  pickTargetKinds: pickOneTarget,
                   // targetName: targetName,
                   // countryName1: countryName1,
                   // countryName2: countryName2,
@@ -74,7 +67,7 @@ const BottomSheet = (props) => {
       {/* 목적별 */}
 
       {/* 나라별 */}
-      {!localTarget && bottomSheet && (
+      {vCountry && bottomSheet && (
         <Div bottomSheet borderTop="1px solid black">
           <Div
             center
@@ -91,10 +84,8 @@ const BottomSheet = (props) => {
               height="50px"
               border="1px solid black"
               _onClick={() => {
-                localStorage.removeItem('target');
                 history.push({
                   pathname: '/Detail',
-                  pickCountryKinds: pickOneCountry,
                 });
                 // 선택한 나라,선택한 목적들 post요청 보내기
               }}

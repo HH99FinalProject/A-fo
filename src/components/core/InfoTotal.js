@@ -6,10 +6,9 @@ import { Button, Div, Image, Input, Text } from '../ui';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const InfoTotal = (props) => {
-  const localTarget = props.localTarget;
-  const localCountry = props.localCountry;
+  const vTarget = props.vTarget;
+  const vCountry = props.vCountry;
   const country = props.country;
-  const info = country.map((v) => v.info);
 
   //   토글
   const isOpen = props.isOpen;
@@ -20,7 +19,7 @@ const InfoTotal = (props) => {
 
   return (
     <React.Fragment>
-      {(localTarget || (!localTarget && props.textK === '비자')) && (
+      {(vTarget || (!vTarget && props.textK === '비자')) && (
         <Div center width="1400px" border="1px solid black">
           {/* 토글 */}
           <Div
@@ -73,7 +72,7 @@ const InfoTotal = (props) => {
         </Div>
       )}
 
-      {!localTarget && props.textK !== '비자' && (
+      {vCountry && props.textK !== '비자' && (
         <Div center width="1400px" border="1px solid black">
           {/* 토글 */}
           <Div

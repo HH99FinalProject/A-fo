@@ -1,17 +1,24 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../shared/App';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
+import {
+  setVTargetReducer,
+  resetVTargetReducer,
+} from '../redux/modules/target';
+import {
+  setVCountryReducer,
+  resetVCountryReducer,
+  countryMainDB,
+} from '../redux/modules/country';
 
 import { Div, Text } from '../components/ui';
 import mainBackground from '../styles/images/mainBackground.png';
 
 const Main = () => {
-  const version = useContext(AppContext);
+  const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    localStorage.removeItem('target');
-    localStorage.removeItem('country');
-  }, []);
+  const vTarget = 'target';
+  const vCountry = 'country';
 
   return (
     <Div
@@ -96,9 +103,10 @@ const Main = () => {
             background="#ffffff8c"
             cursor="pointer"
             _onClick={() => {
+              dispatch(resetVCountryReducer(vCountry));
+              dispatch(setVTargetReducer(vTarget));
               history.push({
                 pathname: '/SubMain1',
-                state: version.vTarget,
               });
             }}
           >
@@ -126,9 +134,11 @@ const Main = () => {
             background="#ffffff8c"
             cursor="pointer"
             _onClick={() => {
+              dispatch(resetVTargetReducer(vTarget));
+              dispatch(setVCountryReducer(vCountry));
+              dispatch(countryMainDB());
               history.push({
                 pathname: '/SubMain2',
-                state: version.vCountry,
               });
               window.scrollTo(0, 0);
             }}

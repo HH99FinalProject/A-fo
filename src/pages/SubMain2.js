@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../shared/App';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import { history } from '../redux/configureStore';
-import { countryMainDB } from '../redux/modules/country';
+import { resetVTargetReducer, targetSub1DB } from '../redux/modules/target';
+import { resetVCountryReducer, countryMainDB } from '../redux/modules/country';
 
 import { BottomSheet, CountryCard, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
@@ -11,28 +10,28 @@ import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain2 = () => {
-  const version = useContext(AppContext);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const pickOneTarget = location.pickTargetKinds;
-  const continentList = [
-    '남아메리카',
-    '북아메리카',
-    '아시아',
-    '오세아니아',
-    '유럽',
-  ];
+  const vTarget = useSelector((state) => state.target.vTarget);
+  const vCountry = useSelector((state) => state.country.vCountry);
+  const purpose = useSelector((state) => state.target.onePickTargetName);
+  const countryData_vCountry = useSelector((state) => state.country.land);
+  const countryData_vTarget = useSelector(
+    (state) => state.target.purpose?.land
+  );
 
-  // 나라별 경로 저장
-  const [country, setCountry] = React.useState();
-  const pickCountry = location.state;
-  localStorage.setItem('country', JSON.stringify(pickCountry));
+  // 메인에서 vCountry 선택시 나라 종류
   React.useEffect(() => {
-    const save = localStorage.getItem('country');
-    if (save !== null) {
-      setCountry(save);
+    if (vCountry) {
+      dispatch(countryMainDB());
     }
-  }, [pickCountry]);
+  }, [vCountry]);
+
+  // Sub1에서 목적 선택시 나라 종류
+  React.useEffect(() => {
+    if (vTarget) {
+      dispatch(targetSub1DB(purpose));
+    }
+  }, [vTarget]);
 
   // 바텀시트 나타나기
   const [bottomSheet, setBottomSheet] = React.useState(false);
@@ -42,25 +41,10 @@ const SubMain2 = () => {
     }
   };
 
-  // 메인에서 나라별 선택시 보여주는 나라 종류
-  React.useEffect(() => {
-    if (pickCountry) {
-      dispatch(countryMainDB());
-    }
-  }, []);
-  const countryData = useSelector((state) => state.country.land);
-  const landList = countryData.map((v, i) => v.info);
-  console.log(landList);
-  // for (let i = 0; i < landList.length; i++) {
-  //   for (let j = 0; j < landList.length; i++) {
-  //     console.log(landList[i][j].continent);
-  //   }
-  // }
-
   return (
     <React.Fragment>
       {/* 목적별 경로 시작 */}
-      {!pickCountry && (
+      {vTarget && (
         <Div
           flexStart
           width="1400px"
@@ -79,19 +63,19 @@ const SubMain2 = () => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain1',
-                state: version.vTarget,
               });
             }}
           >
             목적별
           </Button>
           <RiArrowRightSLine size="15" />
-          <Text>{pickOneTarget}</Text>
+          <Text>{purpose}</Text>
         </Div>
       )}
       {/* 목적별 경로 끝 */}
+
       {/* 나라별 경로 시작 */}
-      {pickCountry && (
+      {vCountry && (
         <Div
           flexStart
           width="1400px"
@@ -110,68 +94,131 @@ const SubMain2 = () => {
         </Div>
       )}
       {/* 나라별 경로 끝 */}
-      <TabMenu />
-      {/* 나라 리스트 */}
-      <Div center width="1400px" margin="50px auto">
-        {continentList.map((v, i) => {
-          return (
-            <Div
-              key={v + i}
-              center
-              width="100%"
-              margin="50px auto"
-              borderLeft="1px solid black"
-            >
-              <Div
-                width="100%"
-                borderTop="1px solid black"
-                borderRight="1px solid black"
-                borderBottom="1px solid black"
-              >
-                <Text
-                  height="60px"
-                  lineHeight="60px"
-                  center
-                  bold
-                  size="20px"
-                  backgroundColor="#D2DFFF"
-                >
-                  {v}
-                </Text>
-              </Div>
 
+      {/* 탭메뉴 */}
+      <TabMenu />
+
+      {/* 목적별 나라 리스트 */}
+      {vTarget && (
+        <Div center width="1400px" margin="50px auto">
+          {countryData_vTarget.map((v, i, arr) => {
+            return (
               <Div
-                flexFlow
+                key={v + i}
+                center
                 width="100%"
-                _onClick={() => {
-                  showBottomSheet();
-                }}
+                margin="50px auto"
+                borderLeft="1px solid black"
               >
-                {/* map돌리기,나라이름 props(text)로 넘겨주기 */}
-                <CountryCard pickCountry={pickCountry} />
-                <CountryCard pickCountry={pickCountry} />
-                <CountryCard pickCountry={pickCountry} />
-                <CountryCard pickCountry={pickCountry} />
-                <CountryCard pickCountry={pickCountry} />
-                <CountryCard pickCountry={pickCountry} />
-                {Array(6)
-                  .fill('')
-                  .map((a, i) => {
+                <Div
+                  width="100%"
+                  borderTop="1px solid black"
+                  borderRight="1px solid black"
+                  borderBottom="1px solid black"
+                >
+                  <Text
+                    height="60px"
+                    lineHeight="60px"
+                    center
+                    bold
+                    size="20px"
+                    backgroundColor="#D2DFFF"
+                  >
+                    {v.continent}
+                  </Text>
+                </Div>
+
+                <Div flexFlow width="100%">
+                  {arr[i].countryInfo?.map((l, i) => {
                     return (
-                      <Div key={a + i} preparingCountry>
-                        <Text size="18px" bold margin="0px 0px 20px 0px">
-                          나라 추가중
-                        </Text>
-                        <Text size="14px">업데이트를 기다려 주세요🙂</Text>
-                      </Div>
+                      <CountryCard
+                        key={l + i}
+                        {...l}
+                        vTarget={vTarget}
+                        showBottomSheet={showBottomSheet}
+                      />
                     );
                   })}
+                  {Array(4)
+                    .fill('')
+                    .map((h, i) => {
+                      return (
+                        <Div key={h + i} preparingCountry>
+                          <Text size="18px" bold margin="0px 0px 20px 0px">
+                            나라 추가중
+                          </Text>
+                          <Text size="14px">업데이트를 기다려 주세요🙂</Text>
+                        </Div>
+                      );
+                    })}
+                </Div>
               </Div>
-            </Div>
-          );
-        })}
-      </Div>
-      {/* 나라 리스트 */}
+            );
+          })}
+        </Div>
+      )}
+      {/* 목적별 나라 리스트 */}
+
+      {/* 나라별 나라 리스트 */}
+      {vCountry && (
+        <Div center width="1400px" margin="50px auto">
+          {countryData_vCountry.map((y, i, arr) => {
+            return (
+              <Div
+                key={y + i}
+                center
+                width="100%"
+                margin="50px auto"
+                borderLeft="1px solid black"
+              >
+                <Div
+                  width="100%"
+                  borderTop="1px solid black"
+                  borderRight="1px solid black"
+                  borderBottom="1px solid black"
+                >
+                  <Text
+                    height="60px"
+                    lineHeight="60px"
+                    center
+                    bold
+                    size="20px"
+                    backgroundColor="#D2DFFF"
+                  >
+                    {y.continent}
+                  </Text>
+                </Div>
+
+                <Div flexFlow width="100%">
+                  {arr[i].countryInfo?.map((u, i) => {
+                    return (
+                      <CountryCard
+                        key={u + i}
+                        {...u}
+                        vCountry={vCountry}
+                        showBottomSheet={showBottomSheet}
+                      />
+                    );
+                  })}
+                  {Array(4)
+                    .fill('')
+                    .map((z, i) => {
+                      return (
+                        <Div key={z + i} preparingCountry>
+                          <Text size="18px" bold margin="0px 0px 20px 0px">
+                            나라 추가중
+                          </Text>
+                          <Text size="14px">업데이트를 기다려 주세요🙂</Text>
+                        </Div>
+                      );
+                    })}
+                </Div>
+              </Div>
+            );
+          })}
+        </Div>
+      )}
+      {/* 나라별 나라 리스트 */}
 
       {/* 상단으로 가기 버튼 */}
       <Button is_float>
@@ -180,11 +227,14 @@ const SubMain2 = () => {
       {/* 상단으로 가기 버튼 */}
 
       {/* 바텀시트(목적별 선택시) */}
-      <BottomSheet
-        bottomSheet={bottomSheet}
-        pickCountry={pickCountry}
-        pickOneTarget={pickOneTarget}
-      />
+      {vTarget && (
+        <BottomSheet
+          bottomSheet={bottomSheet}
+          vTarget={vTarget}
+          purpose={purpose}
+        />
+      )}
+
       {/* 바텀시트 */}
     </React.Fragment>
   );

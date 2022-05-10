@@ -5,13 +5,7 @@ import { Button, Div, Image, Input, Text } from '../ui';
 const TabMenu = () => {
   const infoList = ['비자', '휴대전화', '은행', '언어', '시차', '교통'];
 
-  const continentList = [
-    '남아메리카',
-    '북아메리카',
-    '아시아',
-    '오세아니아',
-    '유럽',
-  ];
+  const continentList = ['오세아니아', '유럽', '북아메리카', '아시아'];
 
   const SubMain2 = window.location.pathname === '/SubMain2';
 

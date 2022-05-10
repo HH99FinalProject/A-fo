@@ -1,26 +1,23 @@
-import React, { useContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppContext } from '../shared/App';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
-import { getTargetInfo } from '../redux/modules/target';
+import { setVTargetReducer } from '../redux/modules/target';
+import { countrySub2DB } from '../redux/modules/country';
 
 import { BottomSheet, TargetCard } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain1 = (props) => {
-  // 목적별 경로 저장
+  const dispatch = useDispatch();
   const location = useLocation();
-  const [target, setTarget] = React.useState();
-  const pickTarget = location.state;
-  localStorage.setItem('target', JSON.stringify(pickTarget));
-  React.useEffect(() => {
-    const save = localStorage.getItem('target');
-    if (save !== null) {
-      setTarget(save);
-    }
-  }, [pickTarget]);
+  const vTarget = useSelector((state) => state.target.vTarget);
+  const vCountry = useSelector((state) => state.country.vCountry);
+  const targetData = useSelector((state) => state.country.land);
+  const targetList_vCountry = targetData.map((v) => v.purpose);
+  const targetList_vTarget = ['이민', '취업', '유학', '워홀'];
+  const countryName = useSelector((state) => state.country.onePickCountryName);
 
   // 바텀시트 나타나기
   const [bottomSheet, setBottomSheet] = React.useState(false);
@@ -30,15 +27,11 @@ const SubMain1 = (props) => {
     }
   };
 
-  const version = useContext(AppContext);
-  const pickOneCountry = location.pickCountryKinds;
-  const targetList = ['이민', '유학', '워홀', '취업'];
-
   return (
     <React.Fragment>
       {/* 목적별 시작 */}
       {/* 경로 시작 */}
-      {pickTarget && (
+      {vTarget && (
         <Div
           flexStart
           width="1400px"
@@ -58,8 +51,8 @@ const SubMain1 = (props) => {
       )}
       {/* 경로 끝 */}
 
-      {/* 목적 선택 시작 */}
-      {pickTarget && (
+      {/* 목적별 선택 시작 */}
+      {vTarget && (
         <Div
           center
           width="1400px"
@@ -73,20 +66,18 @@ const SubMain1 = (props) => {
             margin="120px auto 0px auto"
             border="1px solid black"
           >
-            {targetList.map((v, i) => {
-              return (
-                <TargetCard key={v + i} text={v} pickTarget={pickTarget} />
-              );
+            {targetList_vTarget.map((l, i) => {
+              return <TargetCard key={l + i} purpose={l} vTarget={vTarget} />;
             })}
           </Div>
         </Div>
       )}
-      {/* 목적 선택 끝 */}
+      {/* 목적별 선택 끝 */}
       {/* 목적별 끝 */}
 
       {/* 나라별 시작 */}
       {/* 경로 시작 */}
-      {!pickTarget && (
+      {vCountry && (
         <Div
           flexStart
           width="1400px"
@@ -105,50 +96,47 @@ const SubMain1 = (props) => {
             _onClick={() => {
               history.push({
                 pathname: '/SubMain2',
-                state: version.vCountry,
               });
             }}
           >
             나라별
           </Button>
           <RiArrowRightSLine size="15" />
-          <Text>{pickOneCountry}</Text>
+          <Text>{countryName}</Text>
         </Div>
       )}
       {/* 경로 끝 */}
 
-      {/* 나라 선택 시작 */}
-      {!pickTarget && (
+      {/* 나라별 선택 시작 */}
+      {vCountry && (
         <Div
           center
           width="1400px"
           margin="150px auto 0px auto"
           border="1px solid black"
         >
-          <Text size="40px">?의 어떤 정보가 궁금하세요?</Text>
+          <Text size="40px">{countryName}의 어떤 정보가 궁금하세요?</Text>
           <Div
-            spaceBetween
-            width="100%"
+            row
             margin="120px auto 0px auto"
             border="1px solid black"
             _onClick={() => {
               showBottomSheet();
             }}
           >
-            {targetList.map((v, i) => {
-              localStorage.removeItem('target');
-              return <TargetCard key={v + i} text={v} />;
+            {targetList_vCountry.map((h, i) => {
+              return <TargetCard key={i} targetText={h} vCountry={vCountry} />;
             })}
           </Div>
         </Div>
       )}
-      {/* 나라 선택 끝 */}
+      {/* 나라별 선택 끝 */}
 
       {/* 바텀시트 */}
       <BottomSheet
         bottomSheet={bottomSheet}
-        pickTarget={pickTarget}
-        pickOneCountry={pickOneCountry}
+        vCountry={vCountry}
+        countryName={countryName}
       />
       {/* 바텀시트 끝 */}
       {/* 나라별 끝 */}
