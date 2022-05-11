@@ -19,7 +19,7 @@ const Article = (props, {loading}) => {
       >
         <div style={{width:"10%", borderRight:"1px solid #bdbdbd", padding:"5px 0"}}>
           <Text bold size="20px" color="#7b7b7b">
-            #오스트리아
+            {props.subTitle}
           </Text>
         </div>
         <Div width="50%" padding="0 0 0 20px">
@@ -31,14 +31,14 @@ const Article = (props, {loading}) => {
             padding="8px"
             borderRadius="10px"
           >
-            목적
+            {props.target}
           </Div>
           <Div
             fontSize="10px"
             padding="8px"
             borderRadius="10px"
           >
-            오세아니아
+            {props.continent}
           </Div>
         </Div>
         <div style={{width:"7%", borderRight:"1px solid #bdbdbd", padding:"5px 0", background: "#fff"}}>

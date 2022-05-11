@@ -23,7 +23,7 @@ const Login = () => {
           커뮤니티에서 더 다양한 정보를 확인하세요.
         </Text>
         <GoogleBtn>
-          <GoogleLoginBtn className="aa" />
+          <GoogleLoginBtn  />
         </GoogleBtn>
       </Div>
     </React.Fragment>

@@ -14,8 +14,6 @@ const TabMenu = () => {
   const SubMain2 = window.location.pathname === '/SubMain2';
 
   const [scroll, setScroll] = React.useState(false);
-  const xx = useSelector(state => state);
-  console.log(xx)
 
   const moveScroll = () => {
     setScroll(true);
@@ -32,11 +30,10 @@ const TabMenu = () => {
       border="1px solid black"
     >
       {SubMain2 && <>
-        <ContinentBtn onClick={()=>{ window.scrollTo({top:200, left:0, behavior: 'smooth'}) }}>남아메리카</ContinentBtn>
-        <ContinentBtn onClick={()=>{ window.scrollTo({top:800, left:0, behavior: 'smooth'}) }}>북아메리카</ContinentBtn>
+        <ContinentBtn onClick={()=>{ window.scrollTo({top:200, left:0, behavior: 'smooth'}) }}>오세아니아</ContinentBtn>
+        <ContinentBtn onClick={()=>{ window.scrollTo({top:600, left:0, behavior: 'smooth'}) }}>유럽</ContinentBtn>
+        <ContinentBtn onClick={()=>{ window.scrollTo({top:1000, left:0, behavior: 'smooth'}) }}>북아메리카</ContinentBtn>
         <ContinentBtn onClick={()=>{ window.scrollTo({top:1400, left:0, behavior: 'smooth'}) }}>아시아</ContinentBtn>
-        <ContinentBtn onClick={()=>{ window.scrollTo({top:2000, left:0, behavior: 'smooth'}) }}>오세아니아</ContinentBtn>
-        <ContinentBtn onClick={()=>{ window.scrollTo({top:2600, left:0, behavior: 'smooth'}) }}>유럽</ContinentBtn>
         </>
       }
 

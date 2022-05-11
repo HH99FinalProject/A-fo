@@ -19,7 +19,6 @@ const InfoTotal = (props) => {
   };
 
   const scroll = useSelector(state => state.scroll.scroll);
-  console.log(scroll)
   // if (scroll === true) ref.scrollIntoView();
   
   const ref = React.forwardRef((props, ref) => {

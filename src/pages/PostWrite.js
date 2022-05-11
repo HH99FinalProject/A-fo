@@ -7,24 +7,45 @@ import { Editor } from '@toast-ui/react-editor';
 import { Viewer } from '@toast-ui/react-editor';
 
 import { Text, Div, Button } from '../components/ui';
-import { addPost } from '../redux/modules/board';
+import { addPost, PostDB } from '../redux/modules/board';
 
 const PostWrite = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [nation, setNation] = useState('');
+  const [landPick, setLandPick] = useState('');
+  const [purposePick, setPurposePick] = useState('');
+
+  // 내가 선택한 대륙별선택
+  const myLandPick = (e) => {
+    console.log(e.target.value);
+    setLandPick(e.target.value);
+  }
+  // 내가 선택한 목적별선택
+  const myPurposePick = (e) => {
+    console.log(e.target.value);
+    setPurposePick(e.target.value);
+  }
 
   const contentRef = useRef();
+  // const checkRef = useRef();
   
   const onchangeEditorText = () => {
     console.log(contentRef.current?.getInstance().getMarkdown());
     setContent((contentRef.current?.getInstance().getMarkdown()));
   }
 
+  // const formData = new FormData();
+  // if ()
+
   const data = {
     title: title,
+    subTitle: nation,
     content: content,
+    continent: landPick,
+    target: purposePick,
   }
 
   const setPost = () => {
@@ -49,21 +70,25 @@ const PostWrite = () => {
         <Div margin="30px 0 0 0">
           <Article>
             <Div flexStart>
-              <Target>
-                <Div>대륙별</Div>
-                <span>아시아</span>
-                <span>유럽</span>
-                <span>오세아니아</span>
-                <span>북미</span>
-                <span>남미</span>
-              </Target>
-              <Target>
-                <Div>목적별</Div>
-                <span>워홀</span>
-                <span>이민</span>
-                <span>취업</span>
-                <span>유학</span>
-              </Target>
+              <LandTarget>
+                <Div>대륙별 선택</Div>
+                <input type="radio" name="nation" value="오세아니아" id="btn1" onClick={myLandPick}/><label for="btn1">오세아니아</label>
+                <input type="radio" name="nation" value="아시아" id="btn2" onClick={myLandPick}/><label for="btn2">아시아</label>
+                <input type="radio" name="nation" value="유럽" id="btn3" onClick={myLandPick}/><label for="btn3">유럽</label>
+                <input type="radio" name="nation" value="북미" id="btn4" onClick={myLandPick}/><label for="btn4">북미</label>
+                <input type="radio" name="nation" value="남미" id="btn5" onClick={myLandPick}/><label for="btn5">남미</label>
+              </LandTarget>
+              <PurposeTarget>
+                <Div>목적별 선택</Div>
+                <input type="radio" name="purpose" value="워홀" id="btn6" onClick={myPurposePick}/><label for="btn6">워홀</label>
+                <input type="radio" name="purpose" value="이민" id="btn7" onClick={myPurposePick}/><label for="btn7">이민</label>
+                <input type="radio" name="purpose" value="취업" id="btn8" onClick={myPurposePick}/><label for="btn8">취업</label>
+                <input type="radio" name="purpose" value="유학" id="btn9" onClick={myPurposePick}/><label for="btn9">유학</label>
+              </PurposeTarget>
+            </Div>
+            <Div>
+              <Nation placeholder='나라를 입력하세요.' maxLength={10} value={nation}
+                onChange={(e)=>{ setNation(e.target.value); }} />
             </Div>
             <Div position="relative">
               <Title placeholder="제목을 입력하세요." maxLength={30} value={title}
@@ -75,14 +100,6 @@ const PostWrite = () => {
                 onChange={(e)=>{ setContentCount(e.target.value.length); setContent(e.target.value)}} 
                 value={content}/> */}
               {/* <div style={{position:"absolute", top:"360px", right:"20px", background: "#fff", zIndex:"10"}}>{contentCount}/500</div> */}
-              <Editor
-                ref={contentRef}
-                onChange={onchangeEditorText}
-                placeholder="내용을 입력하세요."
-                previewStyle="vertical"
-                height="600px"
-                initialEditType="wysiwyg"
-                useCommandShortcut={true}/>
             </Div>
             <Div flexEnd>
               <Button padding="10px" border="1px solid #000" _onClick={()=>{ setPost(); }} backgroundColor="#fff">
@@ -114,15 +131,62 @@ const Article = styled.div`
   font-size: 20px;
 `;
 
-const Target = styled.div`
+const LandTarget = styled.div`
   display: flex;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   Div {
     padding: 10px;
     background: #fff;
     margin-right: 10px;
+  }
+  input[type="radio"] {
+    display:none;
+  }
+  input[type="radio"]+label {
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+  input[type="radio"]:checked+label {
+    color: #000;
+  }
+  span {
+    margin-right: 10px;
+    color: #fff;
+  }
+  span:hover {
+    color: #000;
+    cursor: pointer;
+  }
+`;
+const PurposeTarget = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  Div {
+    padding: 10px;
+    background: #fff;
+    margin-right: 10px;
+  }
+  input[type="radio"] {
+    display:none;
+  }
+  input[type="radio"]+label {
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+  input[type="radio"]:checked+label {
+    color: #000;
   }
   span {
     margin-right: 10px;
@@ -143,14 +207,9 @@ const Title = styled.input`
   border-radius: 0;
 `;
 
-const Content = styled.textarea`
-  background: #fff;
+const Nation = styled.input`
+  margin-top: 20px;
   font-size: 16px;
-  padding: 20px 15px;
-  width: 100%;
-  height: 400px;
-  overflow: auto;
-  margin-bottom: 20px;
-  resize: none;
+  padding: 15px;
   border-radius: 0;
 `;

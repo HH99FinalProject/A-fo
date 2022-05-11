@@ -175,6 +175,7 @@ const Wrap = styled.div`
   margin-bottom: 20px;
   font-size: 20px;
   width: 100%;
+  word-break: break-all;
 `;
 
 const CommentList = styled.div`
