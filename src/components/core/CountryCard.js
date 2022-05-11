@@ -1,14 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../../redux/configureStore';
-import { resetVTargetReducer } from '../../redux/modules/target';
 import {
   setOnePickCountryNameReducer,
   countrySub2DB,
 } from '../../redux/modules/country';
 
 import { Button, Div, Image, Input, Text } from '../ui';
-import flag from '../../styles/images/australia.png';
 
 const CountryCard = (props) => {
   const dispatch = useDispatch();
@@ -22,6 +20,11 @@ const CountryCard = (props) => {
     backgroundColor === 'white'
       ? setBackgroundColor('#fafbb9')
       : setBackgroundColor('white');
+  };
+
+  // 부모로 값 전달(for바텀시트)
+  const sendAddCountry = () => {
+    props?.addCountry(countryName);
   };
 
   return (
@@ -39,6 +42,7 @@ const CountryCard = (props) => {
           _onClick={() => {
             Select();
             props.showBottomSheet();
+            sendAddCountry();
           }}
         >
           <Image flag src={props.flag} />

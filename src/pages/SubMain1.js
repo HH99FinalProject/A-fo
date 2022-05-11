@@ -1,9 +1,6 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
-import { setVTargetReducer } from '../redux/modules/target';
-import { countrySub2DB } from '../redux/modules/country';
 
 import { BottomSheet, TargetCard } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
@@ -11,7 +8,6 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 
 const SubMain1 = (props) => {
   const dispatch = useDispatch();
-  const location = useLocation();
   const vTarget = useSelector((state) => state.target.vTarget);
   const vCountry = useSelector((state) => state.country.vCountry);
   const targetData = useSelector((state) => state.country.land);

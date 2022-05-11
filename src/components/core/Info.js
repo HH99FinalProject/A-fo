@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTargetInfo } from '../../redux/modules/target';
 
 import styled from 'styled-components';
 import { Button, Div, Image, Input, Text } from '../ui';

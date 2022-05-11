@@ -5,7 +5,6 @@ import {
   setOnePickTargetNameReducer,
   targetSub1DB,
 } from '../../redux/modules/target';
-import { resetVCountryReducer } from '../../redux/modules/country';
 
 import styled from 'styled-components';
 import { Div, Text, Image, Button } from '../ui';

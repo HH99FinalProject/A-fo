@@ -5,7 +5,7 @@ export const countryMainDB = createAsyncThunk(
   'country/countryMainDB',
   async (thunkAPI) => {
     try {
-      const res = await axios.get('http://3.36.117.118/main/allCountry');
+      const res = await axios.get('http://13.125.244.244/main/allCountry');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -18,7 +18,7 @@ export const countrySub2DB = createAsyncThunk(
   async (countryName, thunkAPI) => {
     try {
       const res = await axios.get(
-        `http://3.36.117.118/sub1/filtering/country?countryName=${countryName}`
+        `http://13.125.244.244/sub1/filtering/country?countryName=${countryName}`
       );
       return res.data;
     } catch (error) {

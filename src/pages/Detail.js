@@ -98,7 +98,6 @@ const Detail = () => {
   };
 
   // const ref = React.useRef([]);
-  
 
   return (
     <React.Fragment>

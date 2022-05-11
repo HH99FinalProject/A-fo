@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
-import { resetVTargetReducer, targetSub1DB } from '../redux/modules/target';
-import { resetVCountryReducer, countryMainDB } from '../redux/modules/country';
+import { targetSub1DB } from '../redux/modules/target';
+import { countryMainDB } from '../redux/modules/country';
 
 import { BottomSheet, CountryCard, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
@@ -41,7 +41,24 @@ const SubMain2 = () => {
     }
   };
 
-  // 스크롤 이벤트
+  // 바텀시트 값
+  const [addList, setAddList] = React.useState([]);
+  const addCountry = (countryName) => {
+    const countryNameIndex = addList.indexOf(countryName);
+    if (addList.length < 4) {
+      if (addList.includes(countryName) === true) {
+        setAddList(addList?.filter((el) => el !== addList[countryNameIndex]));
+      }
+      return addList?.push(countryName);
+    } else if (addList.length >= 4) {
+      if (addList.includes(countryName) === true) {
+        setAddList(addList?.filter((el) => el !== addList[countryNameIndex]));
+      }
+    }
+  };
+  React.useEffect(() => {}, [addList]);
+
+  // -----스크롤 이벤트
   const [scrollY, setScrollY] = React.useState(0);
   const [btnStatus, setBtnStatus] = React.useState(false);
   const handleFollow = () => {
@@ -51,7 +68,7 @@ const SubMain2 = () => {
     } else {
       setBtnStatus(false);
     }
-  }
+  };
 
   const handleTop = () => {
     window.scrollTo({
@@ -71,6 +88,7 @@ const SubMain2 = () => {
       window.removeEventListener('scroll', handleFollow);
     };
   });
+  // -----
 
   return (
     <React.Fragment>
@@ -158,7 +176,6 @@ const SubMain2 = () => {
                     {v.continent}
                   </Text>
                 </Div>
-
                 <Div flexFlow width="100%">
                   {arr[i].countryInfo?.map((l, i) => {
                     return (
@@ -167,21 +184,21 @@ const SubMain2 = () => {
                         {...l}
                         vTarget={vTarget}
                         showBottomSheet={showBottomSheet}
+                        addCountry={addCountry}
                       />
                     );
                   })}
-                  {Array(4)
-                    .fill('')
-                    .map((h, i) => {
-                      return (
-                        <Div key={h + i} preparingCountry>
-                          <Text size="18px" bold margin="0px 0px 20px 0px">
-                            나라 추가중
-                          </Text>
-                          <Text size="14px">업데이트를 기다려 주세요🙂</Text>
-                        </Div>
-                      );
-                    })}
+                  {arr[i].emptyInfo?.map((h, i) => {
+                    return (
+                      <Div key={h + i} preparingCountry>
+                        <Image flag src={h.flag} />
+                        <Text size="16px" margin="20px 0px">
+                          {h.countryName}
+                        </Text>
+                        <Text size="16px">{h.engName}</Text>
+                      </Div>
+                    );
+                  })}
                 </Div>
               </Div>
             );
@@ -219,7 +236,6 @@ const SubMain2 = () => {
                     {y.continent}
                   </Text>
                 </Div>
-
                 <Div flexFlow width="100%">
                   {arr[i].countryInfo?.map((u, i) => {
                     return (
@@ -231,18 +247,17 @@ const SubMain2 = () => {
                       />
                     );
                   })}
-                  {Array(4)
-                    .fill('')
-                    .map((z, i) => {
-                      return (
-                        <Div key={z + i} preparingCountry>
-                          <Text size="18px" bold margin="0px 0px 20px 0px">
-                            나라 추가중
-                          </Text>
-                          <Text size="14px">업데이트를 기다려 주세요🙂</Text>
-                        </Div>
-                      );
-                    })}
+                  {arr[i].emptyInfo?.map((e, i) => {
+                    return (
+                      <Div key={e + i} preparingCountry>
+                        <Image flag src={e.flag} />
+                        <Text size="16px" margin="20px 0px">
+                          {e.countryName}
+                        </Text>
+                        <Text size="16px">{e.engName}</Text>
+                      </Div>
+                    );
+                  })}
                 </Div>
               </Div>
             );
@@ -254,13 +269,15 @@ const SubMain2 = () => {
       {/* 상단으로 가기 버튼 */}
       {btnStatus && (
         <Button
-        className={btnStatus ? "topBtn active" : "topBtn"}
-        is_float
-        _onClick={() => {
-          handleTop();
-        }}>
-          <MdOutlineKeyboardArrowUp size={33}/>
-        </Button> )}
+          className={btnStatus ? 'topBtn active' : 'topBtn'}
+          is_float
+          _onClick={() => {
+            handleTop();
+          }}
+        >
+          <MdOutlineKeyboardArrowUp size={33} />
+        </Button>
+      )}
       {/* 상단으로 가기 버튼 */}
 
       {/* 바텀시트(목적별 선택시) */}
@@ -269,6 +286,7 @@ const SubMain2 = () => {
           bottomSheet={bottomSheet}
           vTarget={vTarget}
           purpose={purpose}
+          addList={addList}
         />
       )}
 
