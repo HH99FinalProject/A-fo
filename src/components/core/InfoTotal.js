@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import Info from './Info';
 
 import styled from 'styled-components';
-import Info from './Info';
 import { Button, Div, Image, Input, Text } from '../ui';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { useSelector } from 'react-redux';
 
 const InfoTotal = (props) => {
   const vTarget = props.vTarget;
@@ -18,13 +19,9 @@ const InfoTotal = (props) => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
-  const scroll = useSelector(state => state.scroll.scroll);
-  console.log(scroll)
-  // if (scroll === true) ref.scrollIntoView();
-  
-  const ref = React.forwardRef((props, ref) => {
-    
-  });
+  const scroll = useSelector((state) => state.scroll.scroll);
+  const ref = React.forwardRef((props, ref) => {});
+
   return (
     <React.Fragment>
       {(vTarget || (!vTarget && props.textK === '비자')) && (

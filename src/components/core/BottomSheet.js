@@ -34,15 +34,25 @@ const BottomSheet = (props) => {
       {vTarget && bottomSheet && (
         <Div bottomSheet border="1px solid black">
           <Div
-            center
+            row
             position="relative"
             width="1400px"
             height="50px"
             border="1px solid black"
           >
-            <Text size="20px" bold border="1px solid black">
-              프랑스 + 호주
-            </Text>
+            {props.addList.map((v, i) => {
+              return (
+                <Text
+                  key={i}
+                  size="20px"
+                  margin="0px 10px"
+                  bold
+                  border="1px solid black"
+                >
+                  {v}
+                </Text>
+              );
+            })}
             <Button
               bottomSheetBtn
               height="50px"
