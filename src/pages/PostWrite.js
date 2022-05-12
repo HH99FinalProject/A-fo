@@ -1,4 +1,4 @@
-import React, { useReducer, useRef, useState } from 'react';
+import React, { useReducer, useRef, useState, useSelector } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
@@ -29,32 +29,40 @@ const PostWrite = () => {
     setPurposePick(e.target.value);
   }
 
-  const contentRef = useRef();
-  // const checkRef = useRef();
-  
-  const onchangeEditorText = () => {
-    console.log(contentRef.current?.getInstance().getMarkdown());
-    setContent((contentRef.current?.getInstance().getMarkdown()));
+  const submit = () => {
+    if (!title || !nation || !content) {
+      window.alert('내용을 입력해주세요!');
+    } else {
+      console.log(formData)
+      dispatch(PostDB(formData));
+      window.alert('글쓰기 완료!');
+      history.push('/board')
+    }
   }
 
-  // const formData = new FormData();
-  // if ()
-
-  const data = {
-    title: title,
-    subTitle: nation,
-    content: content,
-    continent: landPick,
-    target: purposePick,
+  // 이미지 전달할 코드
+  const fileInput = useRef(null);
+  const formData = new FormData();
+  if (fileInput.current) {
+    formData.append('title', title);
+    formData.append('subTitle', nation);
+    formData.append('content', content);
+    formData.append('continent', landPick);
+    formData.append('target', purposePick);
+    formData.append('image', fileInput.current? fileInput.current.files[0]:null);
   }
 
-  const setPost = () => {
-    dispatch(addPost(data));
-    window.alert('글쓰기 완료!');
-    history.push('/board')
+  // 이미지 프리뷰
+  const changePreview = (e) => {
+  const reader = new FileReader();
+  const file = fileInput.current.files[0]
+  reader.readAsDataURL(file)
+  reader.onloadend = () =>{
+      // dispatch(imageActions.uploadImageDB(reader.result))
   }
+  // const preview = useSelector(state => state.image.preview)
+}
 
-  
   return (
     <React.Fragment>
       <Div
@@ -96,13 +104,13 @@ const PostWrite = () => {
               {/* <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div> */}
             </Div>
             <Div position="relative">
-              {/* <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} 
-                onChange={(e)=>{ setContentCount(e.target.value.length); setContent(e.target.value)}} 
-                value={content}/> */}
-              {/* <div style={{position:"absolute", top:"360px", right:"20px", background: "#fff", zIndex:"10"}}>{contentCount}/500</div> */}
+              <Content overflow="auto" placeholder="내용을 입력하세요." maxLength={500} value={content}
+                onChange={(e)=>{ setContent(e.target.value); }} />
+              <input style={{fontSize:'15px', width:'1px'}} accept='image/*' type='file' ref={fileInput} onChange={changePreview} id='file' />
+              {/* <img style={{borderRadius:'20px', width:'50%', margin:'10px'}} src={preview? preview : null}/> */}
             </Div>
             <Div flexEnd>
-              <Button padding="10px" border="1px solid #000" _onClick={()=>{ setPost(); }} backgroundColor="#fff">
+              <Button padding="10px" border="1px solid #000" _onClick={()=>{ submit(); }} backgroundColor="#fff">
                 등록하기
               </Button>
             </Div>
@@ -212,4 +220,12 @@ const Nation = styled.input`
   font-size: 16px;
   padding: 15px;
   border-radius: 0;
+`;
+
+const Content = styled.textarea`
+  width: 100%;
+  height: 600px;
+  padding: 15px;
+  border-radius: 0;
+  font-size: 16px;
 `;
