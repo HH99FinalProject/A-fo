@@ -6,6 +6,7 @@ import Bookmark from '../components/core/Bookmark';
 import Modal from '../shared/Modal';
 import Profile from '../components/modal/Profile';
 
+import { Header } from '../components/core';
 import styled from 'styled-components';
 import { Div, Text, Image, Button } from '../components/ui';
 
@@ -13,7 +14,7 @@ const MyPage = () => {
   const [openModal, setOpenModal] = React.useState(false);
   return (
     <React.Fragment>
-      
+      <Header></Header>
       <Div width="1400px" margin="0 auto">
         <Div flexStart margin="80px 0 50px 0">
           <Image
@@ -269,8 +270,8 @@ const MyPage = () => {
         </Div>
       </Div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default MyPage;
 

@@ -4,7 +4,7 @@ import { history } from '../redux/configureStore';
 import { targetSub1DB } from '../redux/modules/target';
 import { countryMainDB } from '../redux/modules/country';
 
-import { BottomSheet, CountryCard, TabMenu } from '../components/core';
+import { Header, BottomSheet, CountryCard, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
@@ -89,6 +89,7 @@ const SubMain2 = () => {
 
   return (
     <React.Fragment>
+      <Header></Header>
       {/* 목적별 경로 시작 */}
       {vTarget && (
         <Div

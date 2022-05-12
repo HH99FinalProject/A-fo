@@ -11,8 +11,14 @@ import {
   countryMainDB,
 } from '../redux/modules/country';
 
-import { Div, Text } from '../components/ui';
-import mainBackground from '../styles/images/mainBackground.png';
+import { Header } from '../components/core';
+import { Div, Text, Image } from '../components/ui';
+import mainBackground from '../styles/images/mainBG.png';
+import footer from '../styles/images/footer.png';
+import arrow from '../styles/images/arrow.png';
+import mainCountry from '../styles/images/mainCountry.png';
+import mainTarget from '../styles/images/mainTarget.png';
+import mainPick from '../styles/images/mainPick.png';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -21,147 +27,204 @@ const Main = () => {
   const vCountry = 'country';
 
   return (
-    <Div
-      src={mainBackground}
-      backgroundSize="cover"
-      repeat="no-repeat"
-      backgroundPosition="top"
-    >
+    <React.Fragment>
+      <Header></Header>
       <Div
-        width="1400px"
-        margin="0 auto"
-        padding="100px 0px 0px 0px"
-        border="1px solid black"
+        width="100%"
+        src={mainBackground}
+        backgroundColor="#406bff"
+        backgroundSize="contain"
+        repeat="no-repeat"
+        backgroundPosition="center"
       >
         <Div
-          center
-          width="750px"
-          height="750px"
+          display="flex"
+          flexDirection="row"
+          alignItems="flex-start"
+          justifyContent="space-between"
+          width="1400px"
           margin="0 auto"
-          background="#ffffff8c"
-          border="1px solid black"
-          borderRadius="50%"
         >
-          <Text
-            height="70px"
-            lineHeight="35px"
-            margin="20px 0px"
-            center
-            bold
-            size="30px"
-            color="#0026AC"
-            border="1px solid black"
-          >
-            All About abroad
-            <br />
-            information!
-          </Text>
-          <Text
-            height="120px"
-            lineHeight="60px"
-            margin="40px 0px"
-            center
-            bold
-            size="50px"
-            color="#0026AC"
-            border="1px solid black"
-          >
-            해외 정보의 모든 것<br />
-            에이포에서 확인하기
-          </Text>
-          <Text
-            height="35px"
-            margin="20px 0px"
-            center
-            bold
-            size="25px"
-            color="#0026AC"
-            border="1px solid black"
-          >
-            한 눈에 비교해 나에게 맞는 해외 생활을 찾아보세요.
-          </Text>
-          <Div
-            margin="50px 0px 0px 0px"
-            fontSize="100px"
-            color="#0026AC"
-            cursor="pointer"
-          >
-            ↓
+          <Div width="800px" margin="110px 0px">
+            <Text
+              width="300px"
+              height="45px"
+              lineHeight="45px"
+              margin="20px 0px"
+              center
+              backgroundColor="#DCFFAF"
+              bold
+              size="20px"
+              radius="5px"
+            >
+              All About abroad information!
+            </Text>
+            <Div
+              flexStart
+              height="200px"
+              margin="40px 0px"
+              padding="10px 0px"
+              borderBottom="3px solid white"
+            >
+              <Text size="70px" lineHeight="90px" color="white">
+                <span style={{ fontWeight: '900' }}>해외 정보</span>의 모든 것
+                <br />
+                <span style={{ fontWeight: '900' }}>에이포</span>에서{' '}
+                <span style={{ fontWeight: '900' }}>비교하기</span>
+              </Text>
+            </Div>
+            <Text
+              height="35px"
+              margin="20px 0px"
+              bold
+              size="30px"
+              color="white"
+            >
+              한 눈에 비교해 나에게 맞는 해외 생활을 찾아보세요.👀
+            </Text>
+          </Div>
+          <Div>
+            <Div
+              width="320px"
+              height="400px"
+              padding="30px"
+              background="#ffffffb8"
+              border="1px solid #204CE5"
+              BGHover="#DCFFAF"
+              cursor="pointer"
+              transition="all 0.7s"
+              _onClick={() => {
+                dispatch(resetVCountryReducer(vCountry));
+                dispatch(setVTargetReducer(vTarget));
+                history.push('/SubMain1');
+              }}
+            >
+              <Div width="100%" height="290px">
+                <Image
+                  width="65px"
+                  height="60px"
+                  src={mainTarget}
+                  size="conver"
+                  repeat="no-repeat"
+                  position="center"
+                />
+                <Text
+                  lineHeight="40px"
+                  bold
+                  color="#3A3A3A"
+                  size="30px"
+                  margin="10px 0px"
+                >
+                  어떤 해외생활을 <br /> 찾고 있나요?
+                </Text>
+                <Text size="16px" color="#565656" margin="10px 0px">
+                  이민 / 유학 / 워홀 / 취업
+                </Text>
+              </Div>
+              <Div
+                spaceBetween
+                width="100%"
+                height="50px"
+                padding="10px 30px"
+                size="20px"
+                backgroundColor="white"
+                border="2px solid #204CE5"
+                borderRadius="60px"
+              >
+                <Text width="auto" size="20px" color="#5281FA">
+                  정보 보러가기
+                </Text>
+                <Image
+                  width="40px"
+                  height="20px"
+                  src={arrow}
+                  size="contain"
+                  repeat="no-repeat"
+                  position="center"
+                />
+              </Div>
+            </Div>
+            <Div
+              width="320px"
+              height="400px"
+              padding="30px"
+              background="#ffffffb8"
+              border="1px solid #204CE5"
+              BGHover="#DCFFAF"
+              cursor="pointer"
+              transition="all 0.7s"
+              _onClick={() => {
+                dispatch(resetVTargetReducer(vTarget));
+                dispatch(setVCountryReducer(vCountry));
+                dispatch(countryMainDB());
+                history.push('/SubMain2');
+                window.scrollTo(0, 0);
+              }}
+            >
+              <Div width="100%" height="290px">
+                <Image
+                  width="65px"
+                  height="60px"
+                  src={mainCountry}
+                  size="contain"
+                  repeat="no-repeat"
+                  position="center"
+                />
+                <Text
+                  lineHeight="40px"
+                  bold
+                  color="#3A3A3A"
+                  size="30px"
+                  margin="10px 0px"
+                >
+                  어떤 해외생활을 <br /> 찾고 있나요?
+                </Text>
+                <Text
+                  size="16px"
+                  lineHeight="30px"
+                  color="#565656"
+                  margin="10px 0px"
+                >
+                  이민 / 유학 / 워홀 / 취업
+                </Text>
+              </Div>
+              <Div
+                spaceBetween
+                width="100%"
+                height="50px"
+                padding="10px 30px"
+                size="20px"
+                backgroundColor="white"
+                border="2px solid #204CE5"
+                borderRadius="60px"
+              >
+                <Text width="auto" size="20px" color="#5281FA">
+                  정보 보러가기
+                </Text>
+                <Image
+                  width="40px"
+                  height="20px"
+                  src={arrow}
+                  size="contain"
+                  repeat="no-repeat"
+                  position="center"
+                />
+              </Div>
+            </Div>
           </Div>
         </Div>
         <Div
-          spaceBetween
           width="100%"
-          margin="300px 0px 250px 0px"
-          border="1px solid black"
-        >
-          <Div
-            center
-            border="1px solid black"
-            width="50%"
-            height="550px"
-            background="#ffffff8c"
-            cursor="pointer"
-            _onClick={() => {
-              dispatch(resetVCountryReducer(vCountry));
-              dispatch(setVTargetReducer(vTarget));
-              history.push({
-                pathname: '/SubMain1',
-              });
-            }}
-          >
-            <Text
-              height="120px"
-              lineHeight="60px"
-              bold
-              size="50px"
-              center
-              color="#0026AC"
-              margin="10px 0px"
-            >
-              목적별 정보를
-              <br /> 찾고 있나요?
-            </Text>
-            <Text size="20px" color="#5A5A5A" margin="10px 0px">
-              이민 / 유학 / 워홀 / 취업
-            </Text>
-          </Div>
-          <Div
-            center
-            border="1px solid black"
-            width="50%"
-            height="550px"
-            background="#ffffff8c"
-            cursor="pointer"
-            _onClick={() => {
-              dispatch(resetVTargetReducer(vTarget));
-              dispatch(setVCountryReducer(vCountry));
-              dispatch(countryMainDB());
-              history.push({
-                pathname: '/SubMain2',
-              });
-              window.scrollTo(0, 0);
-            }}
-          >
-            <Text
-              height="120px"
-              lineHeight="60px"
-              bold
-              size="50px"
-              center
-              color="#0026AC"
-              margin="10px 0px"
-            >
-              나라별 정보를
-              <br /> 찾고 있나요?
-            </Text>
-            <Text size="20px" color="#5A5A5A" margin="10px 0px">
-              남아메리카 / 북아메리카 / 아시아 / 오세아니아 / 유럽
-            </Text>
-          </Div>
-        </Div>
+          height="80px"
+          borderTop="1px solid #0031DE"
+          backgroundColor="White"
+          src={footer}
+          backgroundSize="cover"
+          repeat="no-repeat"
+          backgroundPosition="center"
+        ></Div>
       </Div>
-    </Div>
+    </React.Fragment>
   );
 };
 

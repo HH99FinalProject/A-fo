@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
+import { addComment } from '../redux/modules/comment';
+
+import { Header, Comment } from '../components/core';
+import { Div, Button, Input, Text } from '../components/ui';
 import styled from 'styled-components';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
 import { CgHeart } from 'react-icons/cg';
-
-import { addComment } from '../redux/modules/comment';
-import Comment from '../components/core/Comment';
-import { Div, Button, Input, Text } from '../components/ui';
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -23,13 +23,14 @@ const PostDetail = () => {
     setCommentText('');
   };
 
-  const clickPostDetail = useSelector(state => state.board.post);
+  const clickPostDetail = useSelector((state) => state.board.post);
   // React.useEffect(()=>{
   //   dispatch();
   // }, [])
 
   return (
     <React.Fragment>
+      <Header></Header>
       <Div
         width="1400px"
         margin="80px auto 50px"
@@ -64,17 +65,10 @@ const PostDetail = () => {
                 </Text>
               </Div>
               <Div row width="15%">
-                <Div
-                  fontSize="10px"
-                  padding="8px"
-                  margin="0 10px 0 0"
-                >
+                <Div fontSize="10px" padding="8px" margin="0 10px 0 0">
                   목적
                 </Div>
-                <Div
-                  fontSize="10px"
-                  padding="8px"
-                >
+                <Div fontSize="10px" padding="8px">
                   오세아니아
                 </Div>
               </Div>
@@ -120,11 +114,12 @@ const PostDetail = () => {
                 value={comment}
                 onSubmit={commentWrite}
                 is_submit
-                borderRadius="0"/>
+                borderRadius="0"
+              />
               <button
                 style={{
                   padding: '10px',
-                  background: "#7b7b7b",
+                  background: '#7b7b7b',
                   color: '#fff',
                 }}
                 onClick={() => {

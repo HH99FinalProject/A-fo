@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 
-import { BottomSheet, TargetCard } from '../components/core';
+import { Header, BottomSheet, TargetCard } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
@@ -42,6 +42,7 @@ const SubMain1 = (props) => {
 
   return (
     <React.Fragment>
+      <Header></Header>
       {/* 목적별 시작 */}
       {/* 경로 시작 */}
       {vTarget && (

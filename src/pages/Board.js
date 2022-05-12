@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost } from '../redux/modules/board';
 
+import { Header } from '../components/core';
 import { Div, Text, Image, Button, Input } from '../components/ui';
 import Search from '../components/core/Search';
 import Article from '../components/core/Article';
@@ -18,9 +19,9 @@ const Board = (props) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // 현재페이지
   const [postsPerPage] = useState(20); // 페이지당 포스트 개수
-  
-  const boardPosts = useSelector(state => state.board.post);
-  
+
+  const boardPosts = useSelector((state) => state.board.post);
+
   React.useEffect(() => {
     // pagination구현 임시로 데이터 넣었음
     // async function fetchData() {
@@ -32,20 +33,19 @@ const Board = (props) => {
     //   setLoading(false);
     // }
     // fetchData();
-
     // dispatch(getPost());
-
   }, []);
 
   // 현재페이지 가져오기
   const indexOfLastPost = currentPage * postsPerPage; // 1*10 = 10번 포스트
-  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 10-10 = 0번 포스트  
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 10-10 = 0번 포스트
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // 0~10번까지 포스트
   // 이벤트 - 페이지 바꾸기
-  const paginate = pageNum => setCurrentPage(pageNum);
+  const paginate = (pageNum) => setCurrentPage(pageNum);
 
   return (
     <React.Fragment>
+      <Header></Header>
       <Div width="1400px" margin="100px auto 50px auto">
         <Text textAlign="center" size="36px" bold>
           자유 게시판
@@ -62,8 +62,13 @@ const Board = (props) => {
           {/* map으로 돌리기 */}
           {boardPosts.map((v, i) => {
             return (
-              <Article key={v + i} boardPosts={boardPosts} loading={loading} {...v} />
-            )
+              <Article
+                key={v + i}
+                boardPosts={boardPosts}
+                loading={loading}
+                {...v}
+              />
+            );
           })}
           {/* <Post posts={currentPosts} loading={loading} ></Post> */}
         </Div>

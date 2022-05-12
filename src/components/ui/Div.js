@@ -65,6 +65,7 @@ const Div = (props) => {
     bottomSheet,
     preparingCountry,
     fadein,
+    slow,
     BGHover,
     _onClick,
   } = props;
@@ -132,6 +133,7 @@ const Div = (props) => {
     bottomSheet,
     preparingCountry,
     fadein,
+    slow,
     BGHover,
   };
   if (bookmark) {
@@ -253,6 +255,7 @@ Div.defaultProps = {
   bottomSheet: false,
   preparingCountry: false,
   fadein: false,
+  slow: false,
   BGHover: false,
   _onClick: () => {},
 };
@@ -342,7 +345,17 @@ const Box = styled.div`
     background-color: ${(props) => props.BGHover};
     opacity: ${(props) => props.opacity};
     color: ${(props) => props.colorHover};
+    ${(props) =>
+      props.slow ? `animation:slow 3s 2s ease-out forwards; ` : ''};
     ${(props) => (props.fadein ? `animation:fadein 0.5s ease-in-out;` : '')};
+    @keyframes slow {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
     @keyframes fadein {
       0% {
         opacity: 0;

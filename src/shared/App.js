@@ -13,14 +13,12 @@ import SubMain1 from '../pages/SubMain1';
 import SubMain2 from '../pages/SubMain2';
 import WorldMap from '../pages/WorldMap';
 
-import { Header } from '../components/core';
-import { Div, GlobalStyle } from '../components/ui';
+import { GlobalStyle } from '../components/ui';
 
 function App() {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Header></Header>
       <ConnectedRouter history={history}>
         <Route exact path="/" component={Main} />
         <Route exact path="/Board" component={Board} />

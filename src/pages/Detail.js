@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 
 import Data from '../redux/data';
-import { InfoTotal, TabMenu } from '../components/core';
+import { Header, InfoTotal, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import {
   MdOutlineKeyboardArrowUp,
@@ -19,8 +19,7 @@ const Detail = () => {
   const countryName = useSelector((state) => state.country.onePickCountryName);
   const targetDetail = useSelector((state) => state.target.countryList);
   const countryDetail = useSelector((state) => state.country.countryList);
-  const countryFlag = countryDetail.map((f) => f.flag);
-  console.log(countryFlag);
+  const countryFlag = countryDetail?.map((f) => f.flag);
 
   const infoTotal = ['비자', '은행', '통신', '교통', '시차', '언어'];
   const targets = ['취업', '워홀', '이민'];
@@ -76,6 +75,7 @@ const Detail = () => {
 
   return (
     <React.Fragment>
+      <Header></Header>
       {/* 목적별 경로 시작 */}
       {vTarget && (
         <Div
@@ -262,7 +262,7 @@ const Detail = () => {
                   left="70px"
                   padding="10px 0px"
                 >
-                  <Image flag src={countryFlag} />
+                  <Image flag src={australia} />
                   <Text
                     margin="0px 0px 0px 10px"
                     size="20px"
@@ -302,7 +302,7 @@ const Detail = () => {
                 country
                 border="1px solid black"
               >
-                <Image flag src={countryFlag} />
+                <Image flag src={australia} />
                 <Text margin="0px 0px 0px 10px" size="20px" color="white" bold>
                   {countryName}
                 </Text>

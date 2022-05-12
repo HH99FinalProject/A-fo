@@ -1,11 +1,13 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 
+import { Header } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 
 const WorldMap = () => {
   return (
     <React.Fragment>
+      <Header></Header>
       {/* 경로 시작 */}
       <Div
         flexStart
