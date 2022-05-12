@@ -1,26 +1,33 @@
 import React from "react";
-import GoogleLogin from "react-google-login";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { LoginDB } from "../../redux/modules/login";
+import GoogleLogin from "react-google-login";
+import axios from "axios";
 
 const clientId = '536352689591-7udk6o1rggekm61noab7imn027c8jnh5.apps.googleusercontent.com';
 
-export default function GoogleLoginBtn({onGoogleLogin}) {
+export default function GoogleButton(){
   const onSuccess = async(response) => {
-    const { googleId, profileObj : { email, name } } = response;
-    await onGoogleLogin (
+    console.log(response);
       
-    );
+      await axios.post(`http://a-fo-back.shop/oauth/google/callback`, {
+        headers: {
+          Autorization: response.accessToken,
+          "Content-Type": "application/x-www-form-urlencoded",
+        }
+      })
   }
 
   const onFailure = (error) => {
-    console.log(error);
+      console.log(error);
   }
 
   return (
     <BtnWrap>
       <GoogleLogin 
       clientId={clientId}
-      buttonText="1초만에 로그인하기"
+      buttonText="구글로 1초만에 시작하기"
       responseType={"id_token"}
       onSuccess={onSuccess}
       onFailure={onFailure}
@@ -33,9 +40,23 @@ export default function GoogleLoginBtn({onGoogleLogin}) {
 const BtnWrap = styled.div`
   /* background: gray; */
   .googleBtn {
-    background: red !important;
-    border-radius: 10px !important;
+    /* background: red !important; */
+    border-radius: 30px !important;
+    margin-left: -105px !important;
     padding: 10px !important;
-    width: 300px !important;
+    width: 400px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    
+    div {
+      margin-left: 60px !important;
+      margin-top: 5px !important;
+    }
+    span {
+      font-weight: 700 !important;
+      color: #000;
+    }
   }
 `;
