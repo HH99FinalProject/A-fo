@@ -9,6 +9,7 @@ import countrySlice from './modules/country';
 import targetSlice from './modules/target';
 import scrollSlice from './modules/scroll';
 import boardSlice from './modules/board';
+import image from './modules/image';
 
 export const history = createBrowserHistory();
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   target: targetSlice.reducer,
   scroll: scrollSlice.reducer,
   board: boardSlice.reducer,
+  image: image
 });
 
 const persistConfig = {

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { addComment } from '../redux/modules/comment';
+import { getPostDetailDB } from '../redux/modules/board';
 
 import { Header, Comment } from '../components/core';
 import { Div, Button, Input, Text } from '../components/ui';
@@ -23,9 +24,10 @@ const PostDetail = () => {
     setCommentText('');
   };
 
-  const clickPostDetail = useSelector((state) => state.board.post);
+  // const postId = useSelector(state => state.board.postList.postId);
+  // console.log(postId)
   // React.useEffect(()=>{
-  //   dispatch();
+  //   dispatch(getPostDetailDB(postId));
   // }, [])
 
   return (
@@ -61,7 +63,7 @@ const PostDetail = () => {
               </div>
               <Div padding="0 0 0 20px">
                 <Text size="16px" bold>
-                  {clickPostDetail[0].title}
+                  {/* {clickPostDetail[0].title} */}
                 </Text>
               </Div>
               <Div row width="15%">
@@ -102,7 +104,7 @@ const PostDetail = () => {
               textAlign="justify"
               letterSpacing="0.02em"
             >
-              {clickPostDetail[0].content}
+              {/* {clickPostDetail[0].content} */}
             </Text>
           </Wrap>
 

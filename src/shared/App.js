@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/Board" component={Board} />
         <Route exact path="/Detail" component={Detail} />
         <Route exact path="/MyPage" component={MyPage} />
-        <Route exact path="/PostDetail" component={PostDetail} />
+        <Route exact path="/PostDetail/:postId" component={PostDetail} />
         <Route exact path="/PostWrite" component={PostWrite} />
         <Route exact path="/SubMain1" component={SubMain1} />
         <Route exact path="/SubMain2" component={SubMain2} />

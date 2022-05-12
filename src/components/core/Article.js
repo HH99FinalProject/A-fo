@@ -4,41 +4,46 @@ import { history } from "../../redux/configureStore";
 import { AiOutlineComment, AiOutlineEye }from "react-icons/ai";
 
 import { Div, Text } from "../ui";
+import { useDispatch } from "react-redux";
+import { getPostDetailDB } from "../../redux/modules/board";
 
 const Article = (props, {loading}) => {
+  const dispatch = useDispatch();
+
   if(loading) {
     return <h2>...loading</h2>;
   }
-
+  const post = props.postList;
   return (
     <React.Fragment>
       <Wrap
         onClick={() => {
-          history.push('/postdetail');
+          dispatch(getPostDetailDB(post.postId));
+          history.push(`/postDetail/${post.postId}`);
         }}
       >
-        <div style={{width:"10%", borderRight:"1px solid #bdbdbd", padding:"5px 0"}}>
-          <Text bold size="20px" color="#7b7b7b">
-            {props.subTitle}
-          </Text>
+        <div style={{width:"9%", borderRight:"1px solid #bdbdbd", padding:"5px 0"}}>
+          <SubTitleEllipsis>
+            {post.subTitle}
+          </SubTitleEllipsis>
         </div>
         <Div width="50%" padding="0 0 0 20px">
-          <Text size="16px" bold>{props.title}</Text>
+          <TitleEllipsis>{post.title}</TitleEllipsis>
         </Div>
         <Div spaceEvenly width="15%">
           <Div
-            fontSize="10px"
+            width="45px"
+            fontSize="12px"
             padding="8px"
-            borderRadius="10px"
           >
-            {props.target}
+            {post.target}
           </Div>
           <Div
-            fontSize="10px"
+            width="80px"
+            fontSize="12px"
             padding="8px"
-            borderRadius="10px"
           >
-            {props.continent}
+            {post.continent}
           </Div>
         </Div>
         <div style={{width:"7%", borderRight:"1px solid #bdbdbd", padding:"5px 0", background: "#fff"}}>
@@ -65,4 +70,23 @@ const Wrap = styled.div`
   background: #fff;
   border-bottom: 1px solid #000;
   font-size: 20px;
+`;
+
+const SubTitleEllipsis = styled.div`
+  width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  font-size: 20px;
+  color: #7b7b7b;
+`;
+
+const TitleEllipsis = styled.div`
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  font-size: 16px;
 `;
