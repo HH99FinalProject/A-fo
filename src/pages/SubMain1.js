@@ -10,9 +10,13 @@ const SubMain1 = (props) => {
   const dispatch = useDispatch();
   const vTarget = useSelector((state) => state.target.vTarget);
   const vCountry = useSelector((state) => state.country.vCountry);
-  const targetData = useSelector((state) => state.country.land);
-  const targetList_vCountry = targetData.map((v) => v.purpose);
-  const targetList_vTarget = ['이민', '취업', '유학', '워홀'];
+  const targetList_vCountry = useSelector((state) => state.country.land);
+  const targetList_vTarget = [
+    { korean: '이민', english: 'immigrationVisa' },
+    { korean: '취업', english: 'workVisa' },
+    { korean: '유학', english: 'studyVisa' },
+    { korean: '워홀', english: 'workingHolidayVisa' },
+  ];
   const countryName = useSelector((state) => state.country.onePickCountryName);
 
   // 바텀시트 나타나기
@@ -20,6 +24,19 @@ const SubMain1 = (props) => {
   const showBottomSheet = () => {
     if (!bottomSheet) {
       return setBottomSheet(true);
+    }
+  };
+
+  // 바텀시트 값(나라별)
+  const [addList, setAddList] = React.useState([]);
+  const addTarget = (targetName) => {
+    if (addList.length < 4) {
+      setAddList([...addList, targetName]);
+      if (addList.includes(targetName) === true) {
+        setAddList(addList?.filter((el) => el !== targetName));
+      }
+    } else if (addList.length >= 4) {
+      setAddList(addList?.filter((el) => el !== targetName));
     }
   };
 
@@ -63,7 +80,14 @@ const SubMain1 = (props) => {
             border="1px solid black"
           >
             {targetList_vTarget.map((l, i) => {
-              return <TargetCard key={l + i} purpose={l} vTarget={vTarget} />;
+              return (
+                <TargetCard
+                  key={l + i}
+                  purpose={l.korean}
+                  purposeEng={l.english}
+                  vTarget={vTarget}
+                />
+              );
             })}
           </Div>
         </Div>
@@ -112,27 +136,29 @@ const SubMain1 = (props) => {
           border="1px solid black"
         >
           <Text size="40px">{countryName}의 어떤 정보가 궁금하세요?</Text>
-          <Div
-            row
-            margin="120px auto 0px auto"
-            border="1px solid black"
-            _onClick={() => {
-              showBottomSheet();
-            }}
-          >
+          <Div row margin="120px auto 0px auto" border="1px solid black">
             {targetList_vCountry.map((h, i) => {
-              return <TargetCard key={i} targetText={h} vCountry={vCountry} />;
+              return (
+                <TargetCard
+                  key={h + i}
+                  {...h}
+                  vCountry={vCountry}
+                  showBottomSheet={showBottomSheet}
+                  addTarget={addTarget}
+                />
+              );
             })}
           </Div>
         </Div>
       )}
       {/* 나라별 선택 끝 */}
 
-      {/* 바텀시트 */}
+      {/* 바텀시트(나라별 선택시) */}
       <BottomSheet
         bottomSheet={bottomSheet}
         vCountry={vCountry}
         countryName={countryName}
+        addList={addList}
       />
       {/* 바텀시트 끝 */}
       {/* 나라별 끝 */}

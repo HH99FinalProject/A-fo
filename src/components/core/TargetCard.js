@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { history } from '../../redux/configureStore';
 import {
-  setOnePickTargetNameReducer,
+  setOnePickTargetNameKReducer,
+  setOnePickTargetNameEReducer,
   targetSub1DB,
 } from '../../redux/modules/target';
 
@@ -12,15 +13,21 @@ import { Div, Text, Image, Button } from '../ui';
 const TargetCard = (props) => {
   const dispatch = useDispatch();
   const purpose = props.purpose;
+  const purposeEng = props.purposeEng;
   const vTarget = props.vTarget;
   const vCountry = props.vCountry;
-  const targetName = props.targetText;
 
+  // 클릭시 배경색 바뀌기
   const [backgroundColor, setBackgroundColor] = React.useState('#D2DFFF');
   const Select = () => {
     backgroundColor === '#D2DFFF'
       ? setBackgroundColor('#fafbb9')
       : setBackgroundColor('#D2DFFF');
+  };
+
+  // 부모로 값 전달(for바텀시트)
+  const sendAddTarget = () => {
+    props?.addTarget(purpose + ',' + purposeEng);
   };
 
   return (
@@ -35,8 +42,9 @@ const TargetCard = (props) => {
           border="1px solid black"
           cursor="pointer"
           _onClick={() => {
-            dispatch(setOnePickTargetNameReducer(purpose));
             dispatch(targetSub1DB(purpose));
+            dispatch(setOnePickTargetNameKReducer(purpose));
+            dispatch(setOnePickTargetNameEReducer(purposeEng));
             history.push({
               pathname: '/SubMain2',
             });
@@ -48,18 +56,36 @@ const TargetCard = (props) => {
       {/* 목적별 */}
 
       {/* 나라별 */}
-      {vCountry && (
+      {vCountry && !props.service && (
         <Div
           center
           width="350px"
           height="350px"
           border="1px solid black"
+          opacity="0.7"
           cursor="pointer"
           backgroundColor={backgroundColor}
-          _onClick={Select}
+          _onClick={() => {
+            // Select();
+            props.showBottomSheet();
+            sendAddTarget();
+          }}
         >
-          <Text size="25px" backgroundColor={backgroundColor}>
-            {targetName}
+          <Text size="25px">{props.purpose}</Text>
+        </Div>
+      )}
+      {vCountry && props.service && (
+        <Div
+          center
+          width="350px"
+          height="350px"
+          border="1px solid black"
+          opacity_="0.7"
+          backgroundColor="#d5d5d5"
+        >
+          <Text size="25px">{props.purpose}</Text>
+          <Text size="16px" margin="20px 0px">
+            {props.service}
           </Text>
         </Div>
       )}

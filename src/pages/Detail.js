@@ -1,11 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
-import { setVTargetReducer } from '../redux/modules/target';
-import { setVCountryReducer } from '../redux/modules/country';
-import Data from '../redux/data';
 
-import { Info, InfoTotal, TabMenu } from '../components/core';
+import Data from '../redux/data';
+import { InfoTotal, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import {
   MdOutlineKeyboardArrowUp,
@@ -15,39 +13,18 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import australia from '../styles/images/australia.png';
 
 const Detail = () => {
-  const dispatch = useDispatch();
   const vTarget = useSelector((state) => state.target.vTarget);
-  const vCountry = useSelector((state) => state.target.vCountry);
-  const purpose = useSelector((state) => state.target.onePickTargetName);
+  const vCountry = useSelector((state) => state.country.vCountry);
+  const purpose = useSelector((state) => state.target.onePickTargetNameK);
   const countryName = useSelector((state) => state.country.onePickCountryName);
-  const country = Data.countryList;
-  const _countryName = country.map((v) => v.country);
-  const info = country.map((v) => v.info);
-  // 정보
-  // const targetName = location.targetName;
-  // const countryName1 = location.countryName1;
-  // const countryName2 = location.countryName2;
-  // const countryName3 = location.countryName3;
-  // useEffect(() => {
-  //   if (localTarget) {
-  //     const targetName = location.targetName;
-  //     const countryName1 = location.countryName1;
-  //     const countryName2 = location.countryName2;
-  //     const countryName3 = location.countryName3;
-  //     dispatch(
-  //       getTargetInfo(targetName, countryName1, countryName2, countryName3)
-  //     );
-  //   }
-  // }, []);
+  const targetDetail = useSelector((state) => state.target.countryList);
+  const countryDetail = useSelector((state) => state.country.countryList);
+  const countryFlag = countryDetail.map((f) => f.flag);
+  console.log(countryFlag);
+
+  const infoTotal = ['비자', '은행', '통신', '교통', '시차', '언어'];
   const targets = ['취업', '워홀', '이민'];
-  const data = useSelector((state) => state.target);
-  const infoTotal = [
-    { korea: '비자', english: 'visa' },
-    { korea: '은행', english: 'bank' },
-    { korea: '교통', english: 'traffic' },
-    { korea: '시간', english: 'time' },
-  ];
-  // const infoTitle = title.map((l, i) => l);
+  // const infoTotal = Data.map((v) => v.info.title);
 
   // 북마크 토글
   const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
@@ -96,8 +73,6 @@ const Detail = () => {
   const changeToggle = () => {
     !toggle ? setToggle(true) : setToggle(false);
   };
-
-  // const ref = React.useRef([]);
 
   return (
     <React.Fragment>
@@ -175,7 +150,7 @@ const Detail = () => {
               });
             }}
           >
-            {_countryName}
+            {countryName}
           </Button>
           <RiArrowRightSLine size={15} />
           <Text>정보</Text>
@@ -204,7 +179,7 @@ const Detail = () => {
               border="1px solid black"
             >
               <Div row width="1400px" height="60px" border="1px solid black">
-                {_countryName.map((v, i) => {
+                {targetDetail.map((v, i) => {
                   return (
                     <Div
                       key={i}
@@ -213,14 +188,14 @@ const Detail = () => {
                       height="60px"
                       border="1px solid black"
                     >
-                      <Image flag src={australia} />
+                      <Image flag src={v.flag} />
                       <Text
                         margin="0px 0px 0px 10px"
                         size="20px"
                         color="white"
                         bold
                       >
-                        {v}
+                        {v.countryName}
                       </Text>
                     </Div>
                   );
@@ -237,7 +212,7 @@ const Detail = () => {
               border="1px solid black"
             >
               <Div row width="1400px" height="60px" border="1px solid black">
-                {_countryName.map((u, i) => {
+                {targetDetail.map((u, i) => {
                   return (
                     <Div
                       key={i}
@@ -246,14 +221,14 @@ const Detail = () => {
                       height="60px"
                       border="1px solid black"
                     >
-                      <Image flag src={australia} />
+                      <Image flag src={u.flag} />
                       <Text
                         margin="0px 0px 0px 10px"
                         size="20px"
                         color="white"
                         bold
                       >
-                        {u}
+                        {u.countryName}
                       </Text>
                     </Div>
                   );
@@ -287,7 +262,7 @@ const Detail = () => {
                   left="70px"
                   padding="10px 0px"
                 >
-                  <Image flag src={australia} />
+                  <Image flag src={countryFlag} />
                   <Text
                     margin="0px 0px 0px 10px"
                     size="20px"
@@ -324,9 +299,10 @@ const Detail = () => {
                 width="100%"
                 margin="60px 0px 0px 0px"
                 padding="10px 0px"
+                country
                 border="1px solid black"
               >
-                <Image flag src={australia} />
+                <Image flag src={countryFlag} />
                 <Text margin="0px 0px 0px 10px" size="20px" color="white" bold>
                   {countryName}
                 </Text>
@@ -349,7 +325,7 @@ const Detail = () => {
                         border="1px solid black"
                       >
                         <Text margin="0px 0px 0px 10px" size="20px" bold>
-                          {i}
+                          {l}
                         </Text>
                       </Div>
                     );
@@ -375,8 +351,7 @@ const Detail = () => {
             return (
               <InfoTotal
                 key={i}
-                textK={t.korea}
-                country={country}
+                infoTitle={t}
                 vTarget={vTarget}
                 vCountry={vCountry}
                 isOpen
@@ -386,8 +361,7 @@ const Detail = () => {
             return (
               <InfoTotal
                 key={t + i}
-                textK={t.korea}
-                country={country}
+                infoTitle={t}
                 vTarget={vTarget}
                 vCountry={vCountry}
               />

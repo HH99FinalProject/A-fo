@@ -27,13 +27,29 @@ export const countrySub2DB = createAsyncThunk(
   }
 );
 
+export const CountrySub1DB = createAsyncThunk(
+  'target/CountrySub1DB',
+  async (data, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `http://13.125.244.244/sub2/filtering/target?targetName1=${data.targetName1}&targetName2=${data.targetName2}&targetName3=${data.targetName3}&targetName4=${data.targetName4}&countryName=${data.countryName}`
+      );
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const countrySlice = createSlice({
   name: 'country',
   initialState: {
     loading: false,
     vCountry: null,
     onePickCountryName: null,
+    countryName: null,
     land: [],
+    countryList: [],
     error: null,
   },
   reducers: {
@@ -77,6 +93,20 @@ export const countrySlice = createSlice({
         state.land = action.payload.land;
       })
       .addCase(countrySub2DB.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      })
+      // -----
+
+      // -----Sub2에서 나라 최대 4개 선택
+      .addCase(CountrySub1DB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(CountrySub1DB.fulfilled, (state, action) => {
+        state.loading = false;
+        state.countryList = action.payload.countryList;
+      })
+      .addCase(CountrySub1DB.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
       });

@@ -13,18 +13,12 @@ const SubMain2 = () => {
   const dispatch = useDispatch();
   const vTarget = useSelector((state) => state.target.vTarget);
   const vCountry = useSelector((state) => state.country.vCountry);
-  const purpose = useSelector((state) => state.target.onePickTargetName);
-  const countryData_vCountry = useSelector((state) => state.country.land);
+  const purpose = useSelector((state) => state.target.onePickTargetNameK);
+  const purposeEng = useSelector((state) => state.target.onePickTargetNameE);
   const countryData_vTarget = useSelector(
     (state) => state.target.purpose?.land
   );
-
-  // 메인에서 vCountry 선택시 나라 종류
-  React.useEffect(() => {
-    if (vCountry) {
-      dispatch(countryMainDB());
-    }
-  }, [vCountry]);
+  const countryData_vCountry = useSelector((state) => state.country.land);
 
   // Sub1에서 목적 선택시 나라 종류
   React.useEffect(() => {
@@ -32,6 +26,13 @@ const SubMain2 = () => {
       dispatch(targetSub1DB(purpose));
     }
   }, [vTarget]);
+
+  // 메인에서 vCountry 선택시 나라 종류
+  React.useEffect(() => {
+    if (vCountry) {
+      dispatch(countryMainDB());
+    }
+  }, [vCountry]);
 
   // 바텀시트 나타나기
   const [bottomSheet, setBottomSheet] = React.useState(false);
@@ -41,22 +42,18 @@ const SubMain2 = () => {
     }
   };
 
-  // 바텀시트 값
+  // 바텀시트 값(목적별)
   const [addList, setAddList] = React.useState([]);
   const addCountry = (countryName) => {
-    const countryNameIndex = addList.indexOf(countryName);
     if (addList.length < 4) {
+      setAddList([...addList, countryName]);
       if (addList.includes(countryName) === true) {
-        setAddList(addList?.filter((el) => el !== addList[countryNameIndex]));
+        setAddList(addList?.filter((el) => el !== countryName));
       }
-      return addList?.push(countryName);
     } else if (addList.length >= 4) {
-      if (addList.includes(countryName) === true) {
-        setAddList(addList?.filter((el) => el !== addList[countryNameIndex]));
-      }
+      setAddList(addList?.filter((el) => el !== countryName));
     }
   };
-  React.useEffect(() => {}, [addList]);
 
   // -----스크롤 이벤트
   const [scrollY, setScrollY] = React.useState(0);
@@ -88,7 +85,7 @@ const SubMain2 = () => {
       window.removeEventListener('scroll', handleFollow);
     };
   });
-  // -----
+  // -----스크롤 이벤트 종료
 
   return (
     <React.Fragment>
@@ -150,7 +147,7 @@ const SubMain2 = () => {
       {/* 목적별 나라 리스트 */}
       {vTarget && (
         <Div center width="1400px" margin="50px auto">
-          {countryData_vTarget.map((v, i, arr) => {
+          {countryData_vTarget?.map((v, i, arr) => {
             return (
               <Div
                 key={v + i}
@@ -285,7 +282,7 @@ const SubMain2 = () => {
         <BottomSheet
           bottomSheet={bottomSheet}
           vTarget={vTarget}
-          purpose={purpose}
+          purposeEng={purposeEng}
           addList={addList}
         />
       )}

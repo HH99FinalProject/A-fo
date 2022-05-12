@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Info from './Info';
@@ -10,7 +10,7 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 const InfoTotal = (props) => {
   const vTarget = props.vTarget;
   const vCountry = props.vCountry;
-  const country = props.country;
+  const targetdetail = useSelector((state) => state.country.countryList);
 
   //   토글
   const isOpen = props.isOpen;
@@ -19,12 +19,13 @@ const InfoTotal = (props) => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
-  const scroll = useSelector((state) => state.scroll.scroll);
-  const ref = React.forwardRef((props, ref) => {});
+  // const scroll = useSelector((state) => state.scroll.scroll);
+  // const ref = React.forwardRef((props, ref) => {});
 
   return (
     <React.Fragment>
-      {(vTarget || (!vTarget && props.textK === '비자')) && (
+      {/* 선택수에 따라서 바뀌는 형태 */}
+      {(vTarget || (!vTarget && props.infoTitle === '비자')) && (
         <Div center width="1400px" border="1px solid black">
           {/* 토글 */}
           <Div
@@ -37,7 +38,7 @@ const InfoTotal = (props) => {
             _onClick={() => {
               changeToggle();
             }}
-            ref={ref}
+            // ref={ref}
           >
             <Text
               width="auto"
@@ -46,7 +47,7 @@ const InfoTotal = (props) => {
               size="16px"
               bold
             >
-              {props.textK}
+              {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
           </Div>
@@ -62,15 +63,8 @@ const InfoTotal = (props) => {
               justifyContent="space-between"
               border="1px solid black"
             >
-              {country.map((v, i) => {
-                return (
-                  <Info
-                    key={v + i}
-                    title={props.textB}
-                    country={country}
-                    {...v}
-                  />
-                );
+              {targetdetail.map((v, i) => {
+                return <Info key={v + i} />;
               })}
             </Div>
           ) : null}
@@ -78,7 +72,8 @@ const InfoTotal = (props) => {
         </Div>
       )}
 
-      {vCountry && props.textK !== '비자' && (
+      {/* 공통정보 형태 */}
+      {vCountry && props.infoTitle !== '비자' && (
         <Div center width="1400px" border="1px solid black">
           {/* 토글 */}
           <Div
@@ -99,7 +94,7 @@ const InfoTotal = (props) => {
               size="16px"
               bold
             >
-              {props.textK}
+              {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
           </Div>
@@ -115,7 +110,7 @@ const InfoTotal = (props) => {
               justifyContent="space-between"
               border="1px solid black"
             >
-              <Info title={props.textB} country={country} />
+              <Info />
             </Div>
           ) : null}
           {/* 내용 */}

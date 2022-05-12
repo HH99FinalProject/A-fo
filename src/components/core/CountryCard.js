@@ -39,8 +39,9 @@ const CountryCard = (props) => {
           backgroundColor={backgroundColor}
           border="1px solid black"
           cursor="pointer"
+          opacity="0.7"
           _onClick={() => {
-            Select();
+            // Select();
             props.showBottomSheet();
             sendAddCountry();
           }}

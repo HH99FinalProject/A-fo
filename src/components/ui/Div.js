@@ -32,6 +32,7 @@ const Div = (props) => {
     shadow,
     transition,
     background,
+    opacity_,
     backgroundColor,
     src,
     backgroundSize,
@@ -63,6 +64,8 @@ const Div = (props) => {
     modal,
     bottomSheet,
     preparingCountry,
+    fadein,
+    BGHover,
     _onClick,
   } = props;
 
@@ -96,6 +99,7 @@ const Div = (props) => {
     shadow,
     transition,
     background,
+    opacity,
     backgroundColor,
     src,
     backgroundSize,
@@ -105,7 +109,7 @@ const Div = (props) => {
     animation,
     color,
     cursor,
-    opacity,
+    opacity_,
     colorHover,
     container,
     flexFlow,
@@ -127,6 +131,8 @@ const Div = (props) => {
     modal,
     bottomSheet,
     preparingCountry,
+    fadein,
+    BGHover,
   };
   if (bookmark) {
     return (
@@ -215,6 +221,7 @@ Div.defaultProps = {
   shadow: '',
   transition: '',
   background: '',
+  opacity_: '',
   backgroundColor: '',
   src: '',
   backgroundSize: '',
@@ -245,6 +252,8 @@ Div.defaultProps = {
   modal: false,
   bottomSheet: false,
   preparingCountry: false,
+  fadein: false,
+  BGHover: false,
   _onClick: () => {},
 };
 
@@ -317,6 +326,7 @@ const Box = styled.div`
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
   background: ${(props) => props.background};
+  opacity: ${(props) => props.opacity_};
   background-color: ${(props) => props.backgroundColor};
   background-image: url('${(props) => props.src}');
   background-size: ${(props) => props.backgroundSize};
@@ -329,8 +339,20 @@ const Box = styled.div`
   color: ${(props) => props.color};
   &:hover {
     cursor: ${(props) => props.cursor};
+    background-color: ${(props) => props.BGHover};
     opacity: ${(props) => props.opacity};
     color: ${(props) => props.colorHover};
+    ${(props) => (props.fadein ? `animation:fadein 0.5s ease-in-out;` : '')};
+    @keyframes fadein {
+      0% {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+      100% {
+        opacity: 1;
+        transform: none;
+      }
+    }
   }
 `;
 

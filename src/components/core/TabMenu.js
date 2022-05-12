@@ -33,21 +33,21 @@ const TabMenu = () => {
         <>
           <ContinentBtn
             onClick={() => {
-              window.scrollTo({ top: 200, left: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 100, left: 0, behavior: 'smooth' });
             }}
           >
             오세아니아
           </ContinentBtn>
           <ContinentBtn
             onClick={() => {
-              window.scrollTo({ top: 600, left: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 450, left: 0, behavior: 'smooth' });
             }}
           >
             유럽
           </ContinentBtn>
           <ContinentBtn
             onClick={() => {
-              window.scrollTo({ top: 1000, left: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 850, left: 0, behavior: 'smooth' });
             }}
           >
             북아메리카

@@ -5,6 +5,7 @@ import Modal from '../../shared/Modal';
 import Login from '../modal/Login';
 import { Button, Div, Image, Input, Text } from '../ui';
 import { GrNote } from 'react-icons/gr';
+import logo from '../../styles/images/logo.png';
 
 const Header = () => {
   const [openModal, setOpenModal] = React.useState(false);
@@ -22,16 +23,18 @@ const Header = () => {
             history.replace('/');
           }}
         >
-          <Text bold size="40px" margin="0px 5px 0px 0px">
+          {/* <Text bold size="40px" margin="0px 5px 0px 0px">
             A-fo
           </Text>
-          <GrNote size="25px" />
-          {/* <Image
-          width="35px"
-          height="35px"
-          size="cover"
-          src="https://i.pinimg.com/564x/8d/97/f5/8d97f509fcc73b686f667aef7af09b1d.jpg"
-        /> */}
+          <GrNote size="25px" /> */}
+          <Image
+            width="100px"
+            height="35px"
+            size="contain"
+            repeat="no-repeat"
+            position="center"
+            src={logo}
+          />
         </Div>
 
         {/* 로그인 전 */}
