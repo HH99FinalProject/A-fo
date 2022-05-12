@@ -19,7 +19,7 @@ const Detail = () => {
   const countryName = useSelector((state) => state.country.onePickCountryName);
   const targetDetail = useSelector((state) => state.target.countryList);
   const countryDetail = useSelector((state) => state.country.countryList);
-  const countryFlag = countryDetail.map((f) => f.flag);
+  const countryFlag = countryDetail?.map((f) => f.flag);
   console.log(countryFlag);
 
   const infoTotal = ['비자', '은행', '통신', '교통', '시차', '언어'];

@@ -63,7 +63,7 @@ const InfoTotal = (props) => {
               justifyContent="space-between"
               border="1px solid black"
             >
-              {targetdetail.map((v, i) => {
+              {targetdetail?.map((v, i) => {
                 return <Info key={v + i} />;
               })}
             </Div>

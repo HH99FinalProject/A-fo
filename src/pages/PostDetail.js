@@ -8,6 +8,7 @@ import { CgHeart } from 'react-icons/cg';
 import { addComment } from '../redux/modules/comment';
 import Comment from '../components/core/Comment';
 import { Div, Button, Input, Text } from '../components/ui';
+import { getPostDetailDB } from '../redux/modules/board';
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -23,9 +24,10 @@ const PostDetail = () => {
     setCommentText('');
   };
 
-  const clickPostDetail = useSelector(state => state.board.post);
+  // const postId = useSelector(state => state.board.postList.postId);
+  // console.log(postId)
   // React.useEffect(()=>{
-  //   dispatch();
+  //   dispatch(getPostDetailDB(postId));
   // }, [])
 
   return (
@@ -60,7 +62,7 @@ const PostDetail = () => {
               </div>
               <Div padding="0 0 0 20px">
                 <Text size="16px" bold>
-                  {clickPostDetail[0].title}
+                  {/* {clickPostDetail[0].title} */}
                 </Text>
               </Div>
               <Div row width="15%">
@@ -108,7 +110,7 @@ const PostDetail = () => {
               textAlign="justify"
               letterSpacing="0.02em"
             >
-              {clickPostDetail[0].content}
+              {/* {clickPostDetail[0].content} */}
             </Text>
           </Wrap>
 

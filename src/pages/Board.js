@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPost } from '../redux/modules/board';
+import { getPostDB, getPostDetailDB } from '../redux/modules/board';
+import Post from '../components/core/Post';
 
 import { Div, Text, Image, Button, Input } from '../components/ui';
 import Search from '../components/core/Search';
 import Article from '../components/core/Article';
 import Pagination from '../components/core/Pagination';
-import Post from '../components/core/Post';
 
 const Board = (props) => {
   const dispatch = useDispatch();
@@ -19,22 +18,10 @@ const Board = (props) => {
   const [currentPage, setCurrentPage] = useState(1); // 현재페이지
   const [postsPerPage] = useState(20); // 페이지당 포스트 개수
   
-  const boardPosts = useSelector(state => state.board.post);
-  
+  const postList = useSelector(state => state.board.postList);
+  // console.log(postList)
   React.useEffect(() => {
-    // pagination구현 임시로 데이터 넣었음
-    // async function fetchData() {
-    //   setLoading(true);
-    //   const response = await axios.get(
-    //     'https://jsonplaceholder.typicode.com/posts'
-    //   );
-    //   setPosts(response.data);
-    //   setLoading(false);
-    // }
-    // fetchData();
-
-    // dispatch(getPost());
-
+    dispatch(getPostDB());  
   }, []);
 
   // 현재페이지 가져오기
@@ -60,9 +47,9 @@ const Board = (props) => {
         </PostBtn>
         <Div margin="100px 0 0 0" border="1px solid #000">
           {/* map으로 돌리기 */}
-          {boardPosts.map((v, i) => {
+          {postList?.map((v, i) => {
             return (
-              <Article key={v + i} boardPosts={boardPosts} loading={loading} {...v} />
+              <Article key={v + i} postList={v} loading={loading} />
             )
           })}
           {/* <Post posts={currentPosts} loading={loading} ></Post> */}
