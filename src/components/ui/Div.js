@@ -420,7 +420,7 @@ const BottomSheet = styled.div`
   padding: 5px 0px;
   border: ${(props) => props.border};
   border-top: ${(props) => props.borderTop};
-  background-color: #4768db;
+  background-color: #5281fa;
   overflow: hidden;
   animation: fadein 0.5s ease-in-out;
   @keyframes fadein {

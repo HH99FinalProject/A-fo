@@ -39,7 +39,8 @@ const CountryCard = (props) => {
           backgroundColor={backgroundColor}
           border="1px solid black"
           cursor="pointer"
-          opacity="0.7"
+          BGHover="#DCFFAF"
+          transition="all 0.3s"
           _onClick={() => {
             // Select();
             props.showBottomSheet();
@@ -65,6 +66,8 @@ const CountryCard = (props) => {
           backgroundColor="white"
           border="1px solid black"
           cursor="pointer"
+          BGHover="#DCFFAF"
+          transition="all 0.3s"
           _onClick={() => {
             dispatch(setOnePickCountryNameReducer(countryName));
             dispatch(countrySub2DB(countryName));

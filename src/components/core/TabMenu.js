@@ -9,8 +9,6 @@ const TabMenu = () => {
   const dispatch = useDispatch();
   const infoList = ['비자', '휴대전화', '은행', '언어', '시차', '교통'];
 
-  const continentList = ['오세아니아', '유럽', '북아메리카', '아시아'];
-
   const SubMain2 = window.location.pathname === '/SubMain2';
 
   const [scroll, setScroll] = React.useState(false);
@@ -19,51 +17,56 @@ const TabMenu = () => {
     setScroll(true);
     dispatch(addScroll(scroll));
   };
-
-  return (
-    <Div
-      row
-      width="100%"
-      height="60px"
-      margin="60px auto 30px auto"
-      backgroundColor="#D2DFFF"
-      border="1px solid black"
-    >
-      {SubMain2 && (
-        <>
-          <ContinentBtn
-            onClick={() => {
-              window.scrollTo({ top: 100, left: 0, behavior: 'smooth' });
-            }}
-          >
-            오세아니아
-          </ContinentBtn>
-          <ContinentBtn
-            onClick={() => {
-              window.scrollTo({ top: 450, left: 0, behavior: 'smooth' });
-            }}
-          >
-            유럽
-          </ContinentBtn>
-          <ContinentBtn
-            onClick={() => {
-              window.scrollTo({ top: 850, left: 0, behavior: 'smooth' });
-            }}
-          >
-            북아메리카
-          </ContinentBtn>
-          <ContinentBtn
-            onClick={() => {
-              window.scrollTo({ top: 1400, left: 0, behavior: 'smooth' });
-            }}
-          >
-            아시아
-          </ContinentBtn>
-        </>
-      )}
-
-      {!SubMain2 &&
-        infoList.map((v, i) => {
+  if (SubMain2) {
+    return (
+      <Div
+        row
+        width="1400px"
+        height="40px"
+        margin="60px auto 0px auto"
+        backgroundColor="#B6CBFF"
+      >
+        <ContinentBtn
+          onClick={() => {
+            window.scrollTo({ top: 100, left: 0, behavior: 'smooth' });
+          }}
+        >
+          오세아니아
+        </ContinentBtn>
+        <ContinentBtn
+          onClick={() => {
+            window.scrollTo({ top: 450, left: 0, behavior: 'smooth' });
+          }}
+        >
+          유럽
+        </ContinentBtn>
+        <ContinentBtn
+          onClick={() => {
+            window.scrollTo({ top: 900, left: 0, behavior: 'smooth' });
+          }}
+        >
+          북아메리카
+        </ContinentBtn>
+        <ContinentBtn
+          onClick={() => {
+            window.scrollTo({ top: 1400, left: 0, behavior: 'smooth' });
+          }}
+        >
+          아시아
+        </ContinentBtn>
+      </Div>
+    );
+  } else {
+    return (
+      <Div
+        row
+        width="100%"
+        height="60px"
+        margin="60px auto 30px auto"
+        backgroundColor="#D2DFFF"
+        border="1px solid #0031DE"
+      >
+        {infoList.map((v, i) => {
           return v === '비자' ? (
             <PurposeBtn
               key={v + i}
@@ -73,7 +76,7 @@ const TabMenu = () => {
             >
               {v}
             </PurposeBtn>
-          ) : v === '휴대전화' ? (
+          ) : v === '통신' ? (
             <PurposeBtn key={v + i} onClick={() => {}}>
               {v}
             </PurposeBtn>
@@ -96,22 +99,27 @@ const TabMenu = () => {
             </PurposeBtn>
           );
         })}
-    </Div>
-  );
+      </Div>
+    );
+  }
 };
 
 export default TabMenu;
 
 const ContinentBtn = styled.button`
   margin: 0px 20px;
-  background: #d2dfff;
-  border: 1px solid black;
+  background: #b6cbff;
+  margin: 0px 50px;
+  font-size: 15px;
   font-weight: bold;
+  color: #3a3a3a;
 `;
 
 const PurposeBtn = styled.button`
   margin: 0px 20px;
   background: #d2dfff;
-  border: 1px solid black;
+  margin: 0px 50px;
+  font-size: 18px;
   font-weight: bold;
+  color: #3a3a3a;
 `;

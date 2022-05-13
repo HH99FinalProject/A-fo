@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 
-import Data from '../redux/data';
 import { Header, InfoTotal, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
 import {
@@ -10,20 +9,21 @@ import {
   MdOutlineKeyboardArrowDown,
 } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import australia from '../styles/images/australia.png';
 
 const Detail = () => {
-  const vTarget = useSelector((state) => state.target.vTarget);
-  const vCountry = useSelector((state) => state.country.vCountry);
-  const purpose = useSelector((state) => state.target.onePickTargetNameK);
-  const countryName = useSelector((state) => state.country.onePickCountryName);
-  const targetDetail = useSelector((state) => state.target.countryList);
-  const countryDetail = useSelector((state) => state.country.countryList);
-  const countryFlag = countryDetail?.map((f) => f.flag);
-
   const infoTotal = ['비자', '은행', '통신', '교통', '시차', '언어'];
-  const targets = ['취업', '워홀', '이민'];
-  // const infoTotal = Data.map((v) => v.info.title);
+
+  // 목적별 데이터
+  const vTarget = useSelector((state) => state.target.vTarget);
+  const purpose = useSelector((state) => state.target.onePickTargetNameK);
+  const targetDetail = useSelector((state) => state.target.countryList);
+
+  // 나라별 데이터
+  const vCountry = useSelector((state) => state.country.vCountry);
+  const countryName = useSelector((state) => state.country.onePickCountryName);
+  const countryDetail = useSelector((state) => state.country.countryList);
+  const countryInfo = countryDetail.map((n) => n.info);
+  const countryFlag = countryDetail.map((f) => f.flag);
 
   // 북마크 토글
   const [bookMarkToggle, setBookMarkToggle] = React.useState(true);
@@ -36,6 +36,7 @@ const Detail = () => {
   const [secondScrollY, setSecondScrollY] = React.useState(0);
   const [targetStatus, setTargetStatus] = React.useState(false);
   const [btnStatus, setBtnStatus] = React.useState(false);
+
   // 스크롤시 생기는 요소
   const handleFollow = () => {
     if (firstScrollY > 185) {
@@ -48,6 +49,7 @@ const Detail = () => {
       setBtnStatus(false);
     }
   };
+
   // 클릭시 상단으로 가기
   const handleTop = () => {
     window.scrollTo({
@@ -68,92 +70,75 @@ const Detail = () => {
   });
   // -----스크롤 이벤트 종료
 
-  const [toggle, setToggle] = React.useState(true);
-  const changeToggle = () => {
-    !toggle ? setToggle(true) : setToggle(false);
-  };
-
   return (
     <React.Fragment>
       <Header></Header>
       {/* 목적별 경로 시작 */}
       {vTarget && (
-        <Div
-          flexStart
-          width="1400px"
-          margin=" 10px auto"
-          border="1px solid black"
-        >
+        <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            color="#0031DE"
             _onClick={() => {
               history.push('/');
             }}
           >
             Home
           </Button>
-          <RiArrowRightSLine size={15} />
+          <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            color="#0031DE"
             _onClick={() => {
-              history.push({
-                pathname: '/SubMain1',
-              });
+              history.push('/SubMain1');
             }}
           >
             목적별
           </Button>
-          <RiArrowRightSLine size={15} />
+          <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            color="#0031DE"
             _onClick={() => {
-              history.push({
-                pathname: '/SubMain2',
-              });
+              history.push('/SubMain2');
             }}
           >
             {purpose}
           </Button>
-          <RiArrowRightSLine size={15} />
-          <Text>정보</Text>
+          <RiArrowRightSLine size={15} color="#0031DE" />
+          <Text color="#0031DE">정보</Text>
         </Div>
       )}
       {/* 목적별 경로 끝 */}
 
       {/* 나라별 경로 시작 */}
       {vCountry && (
-        <Div
-          flexStart
-          width="1400px"
-          margin=" 10px auto"
-          border="1px solid black"
-        >
+        <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            color="#0031DE"
             _onClick={() => {
               history.push('/');
             }}
           >
             Home
           </Button>
-          <RiArrowRightSLine size={15} />
+          <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            color="#0031DE"
             _onClick={() => {
-              history.push({
-                pathname: '/SubMain2',
-              });
+              history.push('/SubMain2');
             }}
           >
             나라별
           </Button>
-          <RiArrowRightSLine size={15} />
+          <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            color="#0031DE"
             _onClick={() => {
-              history.push({
-                pathname: '/SubMain1',
-              });
+              history.push('/SubMain1');
             }}
           >
             {countryName}
           </Button>
-          <RiArrowRightSLine size={15} />
-          <Text>정보</Text>
+          <RiArrowRightSLine size={15} color="#0031DE" />
+          <Text color="#0031DE">정보</Text>
         </Div>
       )}
       {/* 나라별 경로 끝 */}
@@ -239,6 +224,7 @@ const Detail = () => {
         </>
       )}
       {/* 목적별 선택된 나라 */}
+
       {/* 나라별 선택된 목적 */}
       {vCountry && (
         <>
@@ -262,7 +248,7 @@ const Detail = () => {
                   left="70px"
                   padding="10px 0px"
                 >
-                  <Image flag src={australia} />
+                  <Image flag src={countryFlag[0]} />
                   <Text
                     margin="0px 0px 0px 10px"
                     size="20px"
@@ -273,7 +259,7 @@ const Detail = () => {
                   </Text>
                 </Div>
                 <Div row width="1400px" height="60px" border="1px solid black">
-                  {targets.map((h, i) => {
+                  {countryDetail.map((h, i) => {
                     return (
                       <Div
                         key={i}
@@ -283,7 +269,7 @@ const Detail = () => {
                         border="1px solid black"
                       >
                         <Text margin="0px 0px 0px 10px" size="20px" bold>
-                          {h}
+                          {h.targetName}
                         </Text>
                       </Div>
                     );
@@ -302,7 +288,7 @@ const Detail = () => {
                 country
                 border="1px solid black"
               >
-                <Image flag src={australia} />
+                <Image flag src={countryFlag[0]} />
                 <Text margin="0px 0px 0px 10px" size="20px" color="white" bold>
                   {countryName}
                 </Text>
@@ -315,7 +301,7 @@ const Detail = () => {
                 border="1px solid black"
               >
                 <Div row width="1400px" height="60px" border="1px solid black">
-                  {targets.map((l, i) => {
+                  {countryDetail.map((l, i) => {
                     return (
                       <Div
                         key={i}
@@ -325,7 +311,7 @@ const Detail = () => {
                         border="1px solid black"
                       >
                         <Text margin="0px 0px 0px 10px" size="20px" bold>
-                          {l}
+                          {l.targetName}
                         </Text>
                       </Div>
                     );

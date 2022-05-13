@@ -38,8 +38,11 @@ const TargetCard = (props) => {
           center
           width="350px"
           height="350px"
+          margin="0px 0px 0px -2px"
           backgroundColor="#D2DFFF"
-          border="1px solid black"
+          border="2px solid #204CE5"
+          BGHover="#DCFFAF"
+          transition="all 0.3s"
           cursor="pointer"
           _onClick={() => {
             dispatch(targetSub1DB(purpose));
@@ -61,9 +64,11 @@ const TargetCard = (props) => {
           center
           width="350px"
           height="350px"
-          border="1px solid black"
-          opacity="0.7"
+          margin="0px 0px 0px -2px"
+          border="2px solid #204CE5"
           cursor="pointer"
+          BGHover="#DCFFAF"
+          transition="all 0.3s"
           backgroundColor={backgroundColor}
           _onClick={() => {
             // Select();
@@ -79,8 +84,9 @@ const TargetCard = (props) => {
           center
           width="350px"
           height="350px"
-          border="1px solid black"
-          opacity_="0.7"
+          margin="0px 0px 0px -2px"
+          border="2px solid #204CE5"
+          transition="all 0.3s"
           backgroundColor="#d5d5d5"
         >
           <Text size="25px">{props.purpose}</Text>

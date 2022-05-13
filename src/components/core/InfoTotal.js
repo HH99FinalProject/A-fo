@@ -10,7 +10,7 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 const InfoTotal = (props) => {
   const vTarget = props.vTarget;
   const vCountry = props.vCountry;
-  const targetdetail = useSelector((state) => state.country.countryList);
+  const targetdetail = useSelector((state) => state.target.countryList);
 
   //   토글
   const isOpen = props.isOpen;
@@ -64,7 +64,7 @@ const InfoTotal = (props) => {
               border="1px solid black"
             >
               {targetdetail?.map((v, i) => {
-                return <Info key={v + i} />;
+                return <Info key={v + i} {...v} />;
               })}
             </Div>
           ) : null}

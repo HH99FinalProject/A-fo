@@ -33,6 +33,7 @@ const Button = (props) => {
     bookmarkBtn,
     complete,
     opacity,
+    cancle,
     _onClick,
     className,
   } = props;
@@ -65,6 +66,7 @@ const Button = (props) => {
     bookmarkBtn,
     complete,
     opacity,
+    cancle,
     className,
   };
 
@@ -150,6 +152,7 @@ Button.defaultProps = {
   bookmarkBtn: false,
   complete: false,
   opacity: '',
+  cancle: false,
   _onClick: () => {},
   className: '',
 };
@@ -239,15 +242,19 @@ const CmtBtn = styled.button`
 `;
 
 const BottomSheetBtn = styled.button`
-  position: absolute;
-  width: 150px;
-  right: 0;
-  height: 50px;
-  line-height: 50px;
-  font-size: 20px;
+  width: ${(props) => props.width};
+  height: 60px;
+  line-height: 60px;
+  font-size: 22px;
   font-weight: bold;
-  background-color: white;
+  color: #4378ff;
+  ${(props) =>
+    props.cancle ? `background-color: #C7D7FF;` : `background-color: white;`};
+  border-radius: 60px;
   border: ${(props) => props.border};
+  &:hover {
+    background-color: #dcffaf;
+  }
 `;
 
 const BookmarkBtn = styled.button`

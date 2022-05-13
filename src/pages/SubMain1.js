@@ -27,7 +27,14 @@ const SubMain1 = (props) => {
     }
   };
 
-  // 바텀시트 값(나라별)
+  // 바텀시트 없애기
+  const hideBottomSheet = () => {
+    if (bottomSheet) {
+      return setBottomSheet(false);
+    }
+  };
+
+  // 바텀시트 값 추가(나라별)
   const [addList, setAddList] = React.useState([]);
   const addTarget = (targetName) => {
     if (addList.length < 4) {
@@ -40,46 +47,73 @@ const SubMain1 = (props) => {
     }
   };
 
+  // 바텀시트 값 제거(나라별)
+  const removeTarget = () => {
+    if (addList.length >= 0) {
+      return setAddList([]);
+    }
+  };
+
   return (
     <React.Fragment>
       <Header></Header>
       {/* 목적별 시작 */}
       {/* 경로 시작 */}
       {vTarget && (
-        <Div
-          flexStart
-          width="1400px"
-          margin=" 10px auto"
-          border="1px solid black"
-        >
+        <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            color="#0031DE"
             _onClick={() => {
               history.push('/');
             }}
           >
             Home
           </Button>
-          <RiArrowRightSLine size="15" />
-          <Text>목적별</Text>
+          <RiArrowRightSLine size="15" color="#0031DE" />
+          <Text color="#0031DE">목적별</Text>
         </Div>
       )}
       {/* 경로 끝 */}
 
       {/* 목적별 선택 시작 */}
       {vTarget && (
-        <Div
-          center
-          width="1400px"
-          margin="150px auto 0px auto"
-          border="1px solid black"
-        >
-          <Text size="40px">어떤 목적으로 정보를 찾고 계세요?</Text>
-          <Div
-            spaceBetween
-            width="1400px"
-            margin="120px auto 0px auto"
-            border="1px solid black"
-          >
+        <Div center width="1400px" margin="0px auto">
+          {/* 페이지 설명 */}
+          <Div center width="1400px" margin="90px auto">
+            <Text
+              height="50px"
+              lineHeight="50px"
+              size="40px"
+              color="#0031DE"
+              bold
+              center
+            >
+              어떤 해외정보가 필요한가요?
+            </Text>
+            <hr
+              style={{
+                width: '800px',
+                borderBottom: '4px solid #0031DE',
+                margin: '20px 0px 30px 0px',
+              }}
+            />
+            <Text
+              height="90px"
+              lineHeight="30px"
+              size="20px"
+              color="#0031DE"
+              center
+            >
+              시작할 때 가장 어려운 건, 어디에서 어떻게 시작해야 할지 모르겠다는
+              거죠!
+              <br />
+              걱정 마세요, 에이포에서 필요한 해외정보들을 모아 정리했어요.
+              <br /> 여러분께 필요한 해외생활을 골라 보고 비교해보세요.
+              <br />
+            </Text>
+          </Div>
+
+          <Div row width="1400px" margin="0px auto">
             {targetList_vTarget.map((l, i) => {
               return (
                 <TargetCard
@@ -87,6 +121,7 @@ const SubMain1 = (props) => {
                   purpose={l.korean}
                   purposeEng={l.english}
                   vTarget={vTarget}
+                  addList={addList}
                 />
               );
             })}
@@ -99,21 +134,18 @@ const SubMain1 = (props) => {
       {/* 나라별 시작 */}
       {/* 경로 시작 */}
       {vCountry && (
-        <Div
-          flexStart
-          width="1400px"
-          margin=" 10px auto"
-          border="1px solid black"
-        >
+        <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            color="#0031DE"
             _onClick={() => {
               history.push('/');
             }}
           >
             Home
           </Button>
-          <RiArrowRightSLine size="15" />
+          <RiArrowRightSLine size="15" color="#0031DE" />
           <Button
+            color="#0031DE"
             _onClick={() => {
               history.push({
                 pathname: '/SubMain2',
@@ -122,22 +154,37 @@ const SubMain1 = (props) => {
           >
             나라별
           </Button>
-          <RiArrowRightSLine size="15" />
-          <Text>{countryName}</Text>
+          <RiArrowRightSLine size="15" color="#0031DE" />
+          <Text color="#0031DE">{countryName}</Text>
         </Div>
       )}
       {/* 경로 끝 */}
 
       {/* 나라별 선택 시작 */}
       {vCountry && (
-        <Div
-          center
-          width="1400px"
-          margin="150px auto 0px auto"
-          border="1px solid black"
-        >
-          <Text size="40px">{countryName}의 어떤 정보가 궁금하세요?</Text>
-          <Div row margin="120px auto 0px auto" border="1px solid black">
+        <Div center width="1400px" margin=" 0px auto">
+          {/* 페이지 설명 */}
+          <Div center width="1400px" margin="90px auto">
+            <Text
+              height="50px"
+              lineHeight="50px"
+              size="40px"
+              color="#0031DE"
+              bold
+              center
+            >
+              {countryName}의 어떤 정보가 필요한가요?
+            </Text>
+            <hr
+              style={{
+                width: '800px',
+                borderBottom: '4px solid #0031DE',
+                margin: '20px 0px 30px 0px',
+              }}
+            />
+          </Div>
+
+          <Div row width="1400px" margin="0px auto">
             {targetList_vCountry.map((h, i) => {
               return (
                 <TargetCard
@@ -160,6 +207,8 @@ const SubMain1 = (props) => {
         vCountry={vCountry}
         countryName={countryName}
         addList={addList}
+        hideBottomSheet={hideBottomSheet}
+        removeTarget={removeTarget}
       />
       {/* 바텀시트 끝 */}
       {/* 나라별 끝 */}

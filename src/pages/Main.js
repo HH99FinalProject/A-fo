@@ -47,10 +47,11 @@ const Main = () => {
         >
           <Div width="800px" margin="110px 0px">
             <Text
-              width="300px"
+              width="320px"
               height="45px"
               lineHeight="45px"
               margin="20px 0px"
+              padding="0px 10px"
               center
               backgroundColor="#DCFFAF"
               bold
@@ -85,8 +86,8 @@ const Main = () => {
           </Div>
           <Div>
             <Div
-              width="320px"
-              height="400px"
+              width="330px"
+              height="410px"
               padding="30px"
               background="#ffffffb8"
               border="1px solid #204CE5"
@@ -97,6 +98,7 @@ const Main = () => {
                 dispatch(resetVCountryReducer(vCountry));
                 dispatch(setVTargetReducer(vTarget));
                 history.push('/SubMain1');
+                window.scrollTo(0, 0);
               }}
             >
               <Div width="100%" height="290px">
@@ -118,7 +120,7 @@ const Main = () => {
                   어떤 해외생활을 <br /> 찾고 있나요?
                 </Text>
                 <Text size="16px" color="#565656" margin="10px 0px">
-                  이민 / 유학 / 워홀 / 취업
+                  워홀 • 유학 • 취업 • 이민
                 </Text>
               </Div>
               <Div
@@ -145,8 +147,8 @@ const Main = () => {
               </Div>
             </Div>
             <Div
-              width="320px"
-              height="400px"
+              width="330px"
+              height="410px"
               padding="30px"
               background="#ffffffb8"
               border="1px solid #204CE5"
@@ -177,7 +179,7 @@ const Main = () => {
                   size="30px"
                   margin="10px 0px"
                 >
-                  어떤 해외생활을 <br /> 찾고 있나요?
+                  어떤 나라정보를 <br /> 찾고 있나요?
                 </Text>
                 <Text
                   size="16px"
@@ -185,7 +187,8 @@ const Main = () => {
                   color="#565656"
                   margin="10px 0px"
                 >
-                  이민 / 유학 / 워홀 / 취업
+                  유럽 • 오세아니아 • 아시아 •
+                  <br /> 북아메리카
                 </Text>
               </Div>
               <Div

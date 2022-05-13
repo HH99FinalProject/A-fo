@@ -25,7 +25,6 @@ const Header = () => {
             spaceBetween
             width="auto"
             height="50px"
-            padding="0px 10px"
             cursor="pointer"
             _onClick={() => {
               history.replace('/');

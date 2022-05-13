@@ -37,42 +37,84 @@ const BottomSheet = (props) => {
     targetName4: pickTargetList[3],
   };
 
+  // 데이터 넘겨주는 함수
+  const sendDataTarget = () => {
+    if (pickCountryList.length !== 0) {
+      dispatch(targetSub2DB(dataTarget));
+      history.push('/Detail');
+      window.scrollTo(0, 0);
+    } else {
+      return window.alert('한 개 이상 선택해주세요!');
+    }
+  };
+  const sendDataCountry = () => {
+    if (pickTargetList.length > 0) {
+      dispatch(CountrySub1DB(dataCountry));
+      history.push('/Detail');
+      window.scrollTo(0, 0);
+    } else {
+      return window.alert('한 개 이상 선택해주세요!');
+    }
+  };
+
   return (
     <React.Fragment>
       {/* 목적별 */}
       {vTarget && bottomSheet && (
-        <Div bottomSheet border="1px solid black">
-          <Div
-            row
-            position="relative"
-            width="1400px"
-            height="50px"
-            border="1px solid black"
-          >
-            {props.addList.map((v, i) => {
-              return (
-                <Text
-                  key={i}
-                  size="20px"
-                  margin="0px 10px"
-                  bold
-                  border="1px solid black"
-                >
-                  {v}
-                </Text>
-              );
-            })}
+        <Div bottomSheet>
+          <Div spaceBetween position="relative" width="1400px" height="60px">
+            <Div
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              justifyContent="center"
+              width="250px"
+              height="60px"
+            >
+              <Text margin="3px 0px" size="22px" bold color="white">
+                정보 비교하기
+              </Text>
+              <Text margin="2px 0px" size="16px" color="#CFCFCF">
+                최대 4개까지 비교할 수 있습니다.
+              </Text>
+            </Div>
+            <Div flexStart width="810px">
+              {props.addList.map((v, i) => {
+                return (
+                  <Text
+                    key={v.id}
+                    width="190px"
+                    height="60px"
+                    lineHeight="60px"
+                    margin="0px 2px 0px 0px"
+                    backgroundColor="#7D9EF2"
+                    color="white"
+                    size="20px"
+                    center
+                    bold
+                  >
+                    {v}
+                  </Text>
+                );
+              })}
+            </Div>
             <Button
               bottomSheetBtn
-              height="50px"
-              border="1px solid black"
+              cancle
+              width="115px"
+              border="2px solid #0031DE"
               _onClick={() => {
-                dispatch(targetSub2DB(dataTarget));
-                history.push({
-                  pathname: '/Detail',
-                });
-                window.scrollTo(0, 0);
+                props.hideBottomSheet();
+                props.removeTarget();
               }}
+            >
+              취소
+            </Button>
+            <Button
+              bottomSheetBtn
+              width="200px"
+              border="2px solid #0031DE"
+              _onClick={sendDataTarget}
             >
               정보 보러 가기
             </Button>
@@ -83,37 +125,60 @@ const BottomSheet = (props) => {
 
       {/* 나라별 */}
       {vCountry && bottomSheet && (
-        <Div bottomSheet borderTop="1px solid black">
-          <Div
-            row
-            position="relative"
-            width="1400px"
-            height="50px"
-            border="1px solid black"
-          >
-            {props.addList.map((l, i) => {
-              return (
-                <Text
-                  keye={i}
-                  size="20px"
-                  bold
-                  margin="0px 10px"
-                  border="1px solid black"
-                >
-                  {l.split(',')[0]}
-                </Text>
-              );
-            })}
+        <Div bottomSheet>
+          <Div spaceBetween position="relative" width="1400px" height="60px">
+            <Div
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              justifyContent="center"
+              width="250px"
+              height="60px"
+            >
+              <Text margin="3px 0px" size="22px" bold color="white">
+                정보 비교하기
+              </Text>
+              <Text margin="2px 0px" size="16px" color="#CFCFCF">
+                최대 4개까지 비교할 수 있습니다.
+              </Text>
+            </Div>
+            <Div flexStart width="810px">
+              {props.addList.map((l, j) => {
+                return (
+                  <Text
+                    keye={j}
+                    width="190px"
+                    height="60px"
+                    lineHeight="60px"
+                    margin="0px 2px 0px 0px"
+                    backgroundColor="#7D9EF2"
+                    color="white"
+                    size="20px"
+                    center
+                    bold
+                  >
+                    {l.split(',')[0]}
+                  </Text>
+                );
+              })}
+            </Div>
             <Button
               bottomSheetBtn
-              height="50px"
-              border="1px solid black"
+              cancle
+              width="115px"
+              border="2px solid #0031DE"
               _onClick={() => {
-                dispatch(CountrySub1DB(dataCountry));
-                history.push({
-                  pathname: '/Detail',
-                });
+                props.hideBottomSheet();
+                props.removeTarget();
               }}
+            >
+              취소
+            </Button>
+            <Button
+              bottomSheetBtn
+              width="200px"
+              border="2px solid #0031DE"
+              _onClick={sendDataCountry}
             >
               정보 보러 가기
             </Button>
