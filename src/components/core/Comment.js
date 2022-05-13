@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { Div, Text } from '../ui';
 
 const Comment = (props) => {
-  const comment = props.comment;
+  console.log(props.comment);
+  // const comment = props.comment;
   return (
     <React.Fragment>
       <Div spaceBetween padding="10px 0">
@@ -15,7 +16,7 @@ const Comment = (props) => {
         </Div>
         <Div width="80%">
           <Ellipsis>
-            {comment}
+            {props.comment.comment}
           </Ellipsis>
         </Div>
         <Div width="10%">

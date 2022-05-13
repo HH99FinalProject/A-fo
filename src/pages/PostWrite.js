@@ -345,4 +345,5 @@ const Content = styled.textarea`
   padding: 15px;
   border-radius: 0;
   font-size: 16px;
+  resize: none;
 `;

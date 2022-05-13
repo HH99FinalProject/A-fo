@@ -14,11 +14,12 @@ const Article = (props, {loading}) => {
     return <h2>...loading</h2>;
   }
   const post = props.postList;
+  
   return (
     <React.Fragment>
       <Wrap
         onClick={() => {
-          dispatch(getPostDetailDB(post.postId));
+          // dispatch(getPostDetailDB(post.postId));
           history.push(`/postDetail/${post.postId}`);
         }}
       >

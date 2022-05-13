@@ -47,12 +47,13 @@ const Main = () => {
         >
           <Div width="800px" margin="110px 0px">
             <Text
-              width="300px"
+              width="320px"
               height="45px"
               lineHeight="45px"
               margin="20px 0px"
               center
               backgroundColor="#DCFFAF"
+              padding= "0 10px"
               bold
               size="20px"
               radius="5px"
@@ -85,8 +86,8 @@ const Main = () => {
           </Div>
           <Div>
             <Div
-              width="320px"
-              height="400px"
+              width="330px"
+              height="420px"
               padding="30px"
               background="#ffffffb8"
               border="1px solid #204CE5"
@@ -145,8 +146,8 @@ const Main = () => {
               </Div>
             </Div>
             <Div
-              width="320px"
-              height="400px"
+              width="330px"
+              height="420px"
               padding="30px"
               background="#ffffffb8"
               border="1px solid #204CE5"
