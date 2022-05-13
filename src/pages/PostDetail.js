@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
-import { addComment } from '../redux/modules/comment';
+import { addCommentDB } from '../redux/modules/comment';
 import { getPostDetailDB } from '../redux/modules/board';
 
 import { Header, Comment } from '../components/core';
@@ -10,25 +10,41 @@ import styled from 'styled-components';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
 import { CgHeart } from 'react-icons/cg';
 
-const PostDetail = () => {
+const PostDetail = (props) => {
   const dispatch = useDispatch();
+  
+  const [comment, setComment] = React.useState();
+  const comments = useSelector((state) => state.board.postDetail.Comments);
+  // console.log(comments);
+  // params값 찾아옴
+  const postId = +props.match.params.postId;
 
-  const comments = useSelector((state) => state.comment.comment);
-
-  const [comment, setCommentText] = React.useState();
   const onChange = (e) => {
-    setCommentText(e.target.value);
-  };
-  const commentWrite = () => {
-    dispatch(addComment(comment));
-    setCommentText('');
+    setComment(e.target.value);
   };
 
-  // const postId = useSelector(state => state.board.postList.postId);
-  // console.log(postId)
+  const commentData = {
+    comment: comment,
+    postId: postId,
+    userId: '유저아이디'
+  }
+  // console.log(commentData);
+
+  // 댓글작성
+  const commentWrite = () => {
+    dispatch(addCommentDB(commentData));
+    setComment('');
+    dispatch(getPostDetailDB(postId));
+  };
+  
+  const postDetail = useSelector(state => state.board.postDetail);
+  React.useEffect(()=>{
+    dispatch(getPostDetailDB(postId));
+  }, [])
+  
   // React.useEffect(()=>{
   //   dispatch(getPostDetailDB(postId));
-  // }, [])
+  // }, [comments])
 
   return (
     <React.Fragment>
@@ -58,20 +74,20 @@ const PostDetail = () => {
                 }}
               >
                 <Text bold size="20px" color="#7b7b7b">
-                  #오스트리아
+                  {postDetail.subTitle}
                 </Text>
               </div>
               <Div padding="0 0 0 20px">
                 <Text size="16px" bold>
-                  {/* {clickPostDetail[0].title} */}
+                  {postDetail.title}
                 </Text>
               </Div>
               <Div row width="15%">
                 <Div fontSize="10px" padding="8px" margin="0 10px 0 0">
-                  목적
+                  {postDetail.target}
                 </Div>
                 <Div fontSize="10px" padding="8px">
-                  오세아니아
+                  {postDetail.continent}
                 </Div>
               </Div>
             </Div>
@@ -104,7 +120,7 @@ const PostDetail = () => {
               textAlign="justify"
               letterSpacing="0.02em"
             >
-              {/* {clickPostDetail[0].content} */}
+              {postDetail.content}
             </Text>
           </Wrap>
 
@@ -134,8 +150,8 @@ const PostDetail = () => {
 
             <CommentList>
               {/* 댓글 !!작성할때마다!! 리스트 불러와서 map으로 뿌려주기 */}
-              {comments.map((v, i) => {
-                return <Comment key={v + i} comment={comments[i]} />;
+              {comments?.map((v, i) => {
+                return <Comment key={`v_${i}`} comment={v} />;
               })}
             </CommentList>
           </Wrap>

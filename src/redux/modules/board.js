@@ -37,13 +37,13 @@ export const getPostDB = createAsyncThunk(
 export const getPostDetailDB = createAsyncThunk(
   'get/postDetailDB',
   async(postId, {history}, thunkAPI) => {
-    console.log(postId)
+    // console.log(postId)
     try {
       const res = await axios.get(
         `http://13.125.244.244/post/detailRead?postId=${postId}`, postId
       );
-      console.log(...res.data.postList);
-      return res.data.postList;
+      // console.log(res.data.postList[0])
+      return res;
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error);
@@ -55,6 +55,8 @@ export const boardSlice = createSlice({
   name: 'board',
   initialState: { 
     postList: [],
+    postDetail: {},
+    postId: '',
   },
   reducers: {},
   extraReducers: builder => {
@@ -88,10 +90,7 @@ export const boardSlice = createSlice({
       })
       .addCase(getPostDetailDB.fulfilled, (state, action) => {
         state.loading = false;
-        state.postList.filter((v, i) => {
-          console.log(v.postId, ...action.payload)
-          // return v.postId === action.payload.postId;
-        })
+        state.postDetail = action.payload.data.postList[0];
       })
       .addCase(getPostDetailDB.rejected, (state, action) => {
         state.loading = false;
