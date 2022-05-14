@@ -105,7 +105,7 @@ const BottomSheet = (props) => {
               border="2px solid #0031DE"
               _onClick={() => {
                 props.hideBottomSheet();
-                props.removeTarget();
+                props.removeAllCountry();
               }}
             >
               취소
@@ -169,7 +169,7 @@ const BottomSheet = (props) => {
               border="2px solid #0031DE"
               _onClick={() => {
                 props.hideBottomSheet();
-                props.removeTarget();
+                props.removeAllTarget();
               }}
             >
               취소

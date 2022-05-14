@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+// 선택한 버전과 dispatch해주는 페이지의 이름으로 명칭.
+
 export const countryMainDB = createAsyncThunk(
   'country/countryMainDB',
   async (thunkAPI) => {

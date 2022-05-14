@@ -15,11 +15,12 @@ const CountryCard = (props) => {
   const countryName = props.countryName;
 
   // 클릭시 배경색 바뀌기
-  const [backgroundColor, setBackgroundColor] = React.useState('white');
+  const [backgroundColor, setBackgroundColor] = React.useState('#B6CBFF');
+  const addListLength = props.addListLength;
   const Select = (props) => {
-    backgroundColor === 'white'
-      ? setBackgroundColor('#fafbb9')
-      : setBackgroundColor('white');
+    backgroundColor === '#B6CBFF' && addListLength < 4
+      ? setBackgroundColor('white')
+      : setBackgroundColor('#B6CBFF');
   };
 
   // 부모로 값 전달(for바텀시트)
@@ -37,21 +38,23 @@ const CountryCard = (props) => {
           height="234px"
           margin="-1px 0px 0px -1px"
           backgroundColor={backgroundColor}
-          border="1px solid black"
+          border="1px solid #0031DE"
           cursor="pointer"
           BGHover="#DCFFAF"
           transition="all 0.3s"
           _onClick={() => {
-            // Select();
+            Select();
             props.showBottomSheet();
             sendAddCountry();
           }}
         >
-          <Image flag src={props.flag} />
-          <Text size="18px" bold margin="20px 0px">
+          <Text size="18px" bold color="#3A3A3A">
             {props.countryName}
           </Text>
-          <Text size="16px">{props.engName}</Text>
+          <Text margin="20px 0px" size="16px" color="#3A3A3A">
+            {props.engName}
+          </Text>
+          <Image flag src={props.flag} />
         </Div>
       )}
       {/* 목적별 끝 */}
@@ -63,8 +66,8 @@ const CountryCard = (props) => {
           width="234px"
           height="234px"
           margin="-1px 0px 0px -1px"
-          backgroundColor="white"
-          border="1px solid black"
+          backgroundColor="#B6CBFF"
+          border="1px solid #0031DE"
           cursor="pointer"
           BGHover="#DCFFAF"
           transition="all 0.3s"
@@ -76,11 +79,13 @@ const CountryCard = (props) => {
             });
           }}
         >
-          <Image flag src={props.flag} />
-          <Text size="16px" margin="20px 0px">
+          <Text size="16px" color="#3A3A3A">
             {props.countryName}
           </Text>
-          <Text size="16px">{props.engName}</Text>
+          <Text margin="20px 0px" size="16px" color="#3A3A3A">
+            {props.engName}
+          </Text>
+          <Image flag src={props.flag} />
         </Div>
       )}
       {/* 나라별 끝 */}

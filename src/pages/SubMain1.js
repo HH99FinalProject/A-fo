@@ -34,7 +34,7 @@ const SubMain1 = (props) => {
     }
   };
 
-  // 바텀시트 값 추가(나라별)
+  // 바텀시트 값 추가,제거(나라별)
   const [addList, setAddList] = React.useState([]);
   const addTarget = (targetName) => {
     if (addList.length < 4) {
@@ -47,8 +47,8 @@ const SubMain1 = (props) => {
     }
   };
 
-  // 바텀시트 값 제거(나라별)
-  const removeTarget = () => {
+  // 바텀시트 값 전체제거(나라별)
+  const removeAllTarget = () => {
     if (addList.length >= 0) {
       return setAddList([]);
     }
@@ -121,7 +121,6 @@ const SubMain1 = (props) => {
                   purpose={l.korean}
                   purposeEng={l.english}
                   vTarget={vTarget}
-                  addList={addList}
                 />
               );
             })}
@@ -208,7 +207,7 @@ const SubMain1 = (props) => {
         countryName={countryName}
         addList={addList}
         hideBottomSheet={hideBottomSheet}
-        removeTarget={removeTarget}
+        removeAllTarget={removeAllTarget}
       />
       {/* 바텀시트 끝 */}
       {/* 나라별 끝 */}

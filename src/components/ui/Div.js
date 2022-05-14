@@ -444,7 +444,7 @@ const PreparingCountry = styled.div`
   height: 234px;
   margin: -1px 0px 0px -1px;
   background-color: #d5d5d5;
-  border: 1px solid black;
+  border: 1px solid #0031de;
   opacity: 0.5;
 `;
 

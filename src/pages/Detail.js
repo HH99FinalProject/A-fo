@@ -11,7 +11,7 @@ import {
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Detail = () => {
-  const infoTotal = ['비자', '은행', '통신', '교통', '시차', '언어'];
+  const infoTotal = ['비자', '은행', '언어', '통신', '시차', '교통'];
 
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
@@ -176,7 +176,7 @@ const Detail = () => {
                       <Image flag src={v.flag} />
                       <Text
                         margin="0px 0px 0px 10px"
-                        size="20px"
+                        size="30px"
                         color="white"
                         bold
                       >
@@ -209,7 +209,7 @@ const Detail = () => {
                       <Image flag src={u.flag} />
                       <Text
                         margin="0px 0px 0px 10px"
-                        size="20px"
+                        size="30px"
                         color="white"
                         bold
                       >
@@ -251,7 +251,7 @@ const Detail = () => {
                   <Image flag src={countryFlag[0]} />
                   <Text
                     margin="0px 0px 0px 10px"
-                    size="20px"
+                    size="30px"
                     color="white"
                     bold
                   >
@@ -268,8 +268,8 @@ const Detail = () => {
                         height="60px"
                         border="1px solid black"
                       >
-                        <Text margin="0px 0px 0px 10px" size="20px" bold>
-                          {h.targetName}
+                        <Text margin="0px 0px 0px 10px" size="30px" bold>
+                          {h.purpose}
                         </Text>
                       </Div>
                     );
@@ -289,7 +289,7 @@ const Detail = () => {
                 border="1px solid black"
               >
                 <Image flag src={countryFlag[0]} />
-                <Text margin="0px 0px 0px 10px" size="20px" color="white" bold>
+                <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
                   {countryName}
                 </Text>
               </Div>
@@ -310,8 +310,8 @@ const Detail = () => {
                         height="60px"
                         border="1px solid black"
                       >
-                        <Text margin="0px 0px 0px 10px" size="20px" bold>
-                          {l.targetName}
+                        <Text margin="0px 0px 0px 10px" size="30px" bold>
+                          {l.purpose}
                         </Text>
                       </Div>
                     );

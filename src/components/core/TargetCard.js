@@ -76,7 +76,9 @@ const TargetCard = (props) => {
             sendAddTarget();
           }}
         >
-          <Text size="25px">{props.purpose}</Text>
+          <Text size="25px" color="#3A3A3A">
+            {props.purpose}
+          </Text>
         </Div>
       )}
       {vCountry && props.service && (
@@ -89,8 +91,10 @@ const TargetCard = (props) => {
           transition="all 0.3s"
           backgroundColor="#d5d5d5"
         >
-          <Text size="25px">{props.purpose}</Text>
-          <Text size="16px" margin="20px 0px">
+          <Text size="25px" color="#3A3A3A">
+            {props.purpose}
+          </Text>
+          <Text size="16px" margin="20px 0px" color="#3A3A3A">
             {props.service}
           </Text>
         </Div>

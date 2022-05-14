@@ -49,7 +49,7 @@ const SubMain2 = () => {
     }
   };
 
-  // 바텀시트 값 추가(목적별)
+  // 바텀시트 값 추가,제거(목적별)
   const [addList, setAddList] = React.useState([]);
   const addCountry = (countryName) => {
     if (addList.length < 4) {
@@ -62,8 +62,16 @@ const SubMain2 = () => {
     }
   };
 
-  // 바텀시트 값 제거(목적별)
-  const removeTarget = () => {
+  // 바텀시트 값 부분제거(목적별)
+  // const [removeBtn, setRemoveBtn] = React.useState(false);
+  // const removeCountry = (countryName, boolean) => {
+  //   if (addList.length > 0 && setRemoveBtn(boolean)) {
+  //     setAddList(addList?.filter((el) => el !== countryName));
+  //   }
+  // };
+
+  // 바텀시트 값 전체제거(목적별)
+  const removeAllCountry = () => {
     if (addList.length >= 0) {
       return setAddList([]);
     }
@@ -198,19 +206,20 @@ const SubMain2 = () => {
                 center
                 width="100%"
                 margin="50px auto"
-                borderLeft="1px solid black"
+                borderLeft="1px solid #0031DE"
               >
                 <Div
                   width="100%"
-                  borderTop="1px solid black"
-                  borderRight="1px solid black"
-                  borderBottom="1px solid black"
+                  borderTop="1px solid #0031DE"
+                  borderRight="1px solid #0031DE"
+                  borderBottom="1px solid #0031DE"
                 >
                   <Text
                     height="60px"
                     lineHeight="60px"
                     center
                     bold
+                    color="#3A3A3A"
                     size="20px"
                     backgroundColor="#D2DFFF"
                   >
@@ -218,25 +227,26 @@ const SubMain2 = () => {
                   </Text>
                 </Div>
                 <Div flexFlow width="100%">
-                  {arr[i].countryInfo?.map((l, i) => {
+                  {arr[i].countryInfo?.map((c, i) => {
                     return (
                       <CountryCard
-                        key={l + i}
-                        {...l}
+                        key={c + i}
+                        {...c}
                         vTarget={vTarget}
                         showBottomSheet={showBottomSheet}
                         addCountry={addCountry}
+                        addListLength={addList.length}
                       />
                     );
                   })}
-                  {arr[i].emptyInfo?.map((h, i) => {
+                  {arr[i].emptyInfo?.map((e, j) => {
                     return (
-                      <Div key={h + i} preparingCountry>
-                        <Image flag src={h.flag} />
+                      <Div key={e + j} preparingCountry>
+                        <Image flag src={e.flag} />
                         <Text size="16px" margin="20px 0px">
-                          {h.countryName}
+                          {e.countryName}
                         </Text>
-                        <Text size="16px">{h.engName}</Text>
+                        <Text size="16px">{e.engName}</Text>
                       </Div>
                     );
                   })}
@@ -258,13 +268,13 @@ const SubMain2 = () => {
                 center
                 width="100%"
                 margin="50px auto"
-                borderLeft="1px solid black"
+                borderLeft="1px solid #0031DE"
               >
                 <Div
                   width="100%"
-                  borderTop="1px solid black"
-                  borderRight="1px solid black"
-                  borderBottom="1px solid black"
+                  borderTop="1px solid #0031DE"
+                  borderRight="1px solid #0031DE"
+                  borderBottom="1px solid #0031DE"
                 >
                   <Text
                     height="60px"
@@ -272,6 +282,7 @@ const SubMain2 = () => {
                     center
                     bold
                     size="20px"
+                    color="#3A3A3A"
                     backgroundColor="#D2DFFF"
                   >
                     {y.continent}
@@ -288,9 +299,9 @@ const SubMain2 = () => {
                       />
                     );
                   })}
-                  {arr[i].emptyInfo?.map((e, i) => {
+                  {arr[i].emptyInfo?.map((e, j) => {
                     return (
-                      <Div key={e + i} preparingCountry>
+                      <Div key={e + j} preparingCountry>
                         <Image flag src={e.flag} />
                         <Text size="16px" margin="20px 0px">
                           {e.countryName}
@@ -328,8 +339,9 @@ const SubMain2 = () => {
           vTarget={vTarget}
           purposeEng={purposeEng}
           addList={addList}
+          addCountry={addCountry}
           hideBottomSheet={hideBottomSheet}
-          removeTarget={removeTarget}
+          removeAllCountry={removeAllCountry}
         />
       )}
 
