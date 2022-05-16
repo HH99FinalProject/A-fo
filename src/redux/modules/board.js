@@ -7,7 +7,7 @@ export const addPostDB = createAsyncThunk(
     try {
       console.log(formData);
       const res = await axios.post(
-        `http://13.125.244.244/post/create`, formData,{
+        `https://13.125.244.244/post/create`, formData,{
           headers: {
             'Content-Type': 'multipart/form-data',
           }
@@ -25,7 +25,7 @@ export const getPostDB = createAsyncThunk(
   async(thunkAPI) => {
     try {
       const res = await axios.get(
-        `http://13.125.244.244/post/totalRead`
+        `https://13.125.244.244/post/totalRead`
       );
       return res.data.postList;
     } catch (error) {
@@ -40,7 +40,7 @@ export const getPostDetailDB = createAsyncThunk(
     // console.log(postId)
     try {
       const res = await axios.get(
-        `http://13.125.244.244/post/detailRead?postId=${postId}`, postId
+        `https://13.125.244.244/post/detailRead?postId=${postId}`, postId
       );
       // console.log(res.data.postList[0])
       return res;
@@ -61,7 +61,7 @@ export const boardSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      // 게시물 등록
+      // -----게시물 등록
       .addCase(addPostDB.pending, (state, action) => {
         state.loading = true;
       })
@@ -72,7 +72,7 @@ export const boardSlice = createSlice({
         state.loading = false;
         state.error = action.error;
       })
-      // 전체게시물 불러오기
+      // -----전체게시물 불러오기
       .addCase(getPostDB.pending, (state, action) => {
         state.loading = true;
       })
@@ -84,7 +84,7 @@ export const boardSlice = createSlice({
         state.loading = false;
         state.error = action.error;
       })
-      // 세부게시물 불러오기
+      // -----세부게시물 불러오기
       .addCase(getPostDetailDB.pending, (state, action) => {
         state.loading = true;
       })

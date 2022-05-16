@@ -11,7 +11,7 @@ export default function GoogleButton(){
   const onSuccess = async(response) => {
     console.log(response);
       
-      await axios.post(`http://a-fo-back.shop/oauth/google/callback`, {
+      await axios.get(`https://a-fo-back.shop/oauth/google/callback`, {
         headers: {
           Autorization: response.accessToken,
           "Content-Type": "application/x-www-form-urlencoded",

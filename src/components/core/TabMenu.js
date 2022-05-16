@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { addScroll } from '../../redux/modules/scroll';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const TabMenu = () => {
@@ -11,12 +10,6 @@ const TabMenu = () => {
 
   const SubMain2 = window.location.pathname === '/SubMain2';
 
-  const [scroll, setScroll] = React.useState(false);
-
-  const moveScroll = () => {
-    setScroll(true);
-    dispatch(addScroll(scroll));
-  };
   if (SubMain2) {
     return (
       <Div
@@ -70,9 +63,6 @@ const TabMenu = () => {
           return v === '비자' ? (
             <PurposeBtn
               key={v + i}
-              onClick={() => {
-                moveScroll();
-              }}
             >
               {v}
             </PurposeBtn>

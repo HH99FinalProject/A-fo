@@ -6,9 +6,9 @@ export const LoginDB = createAsyncThunk(
   async (token, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://13.125.244.244/oauth/google/callback`,{
+        `https://13.125.244.244/oauth/google/callback`,{
           headers: {
-            Authorization: token,
+            Authorization: response.accesToken,
             "Content-Type": "application/x-www-form-urlencoded"
           } 
         } 

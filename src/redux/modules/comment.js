@@ -6,7 +6,7 @@ export const addCommentDB = createAsyncThunk(
   async (commentData, thunkAPI) => {
     try {
       const res = await axios.post(
-        'http://13.125.244.244/comment/create', commentData
+        'https://13.125.244.244/comment/create', commentData
       )
       console.log(res)
       return res;
@@ -23,6 +23,7 @@ export const commentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // -----댓글 등록
       .addCase(addCommentDB.pending, (state, action) => {
         state.loading = true;
       })
