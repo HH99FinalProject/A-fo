@@ -38,7 +38,7 @@ const PostWrite = () => {
     if (!title || !nation || !content) {
       window.alert('내용을 입력해주세요!');
     } else {
-      dispatch(addPostDB(formData, token));
+      dispatch(addPostDB({formData, token}));
       window.alert('글쓰기 완료!');
       history.push('/board');
     }

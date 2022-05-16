@@ -3,20 +3,22 @@ import axios from 'axios';
 
 export const addPostDB = createAsyncThunk(
   'add/postDB',
-  async (formData, token, thunkAPI) => {
+  async (formData, thunkAPI) => {
+    console.log(formData)
     try {
       const res = await axios.post(
         `https://a-fo-back.shop/post/create`,
-        formData,
+        formData.formData,
         {
           headers: {
-            Authorization: token,
+            Authorization: formData.token,
             'Content-Type': 'multipart/form-data',
           },
         }
       );
       return res.data;
     } catch (error) {
+      console.log(error)
       return thunkAPI.rejectWithValue(error);
     }
   }

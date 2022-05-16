@@ -44,6 +44,8 @@ const PostDetail = (props) => {
     dispatch(getPostDetailDB(postId));
   }, [])
 
+  const img = `https://a-fo-back.shop${postDetail.postImageUrl}`;
+  console.log(img)
   return (
     <React.Fragment>
       <Header></Header>
@@ -112,14 +114,20 @@ const PostDetail = (props) => {
                 </Text>
               </Div>
             </Div>
-            <Text
-              size="16px"
-              lineHeight="1.2em"
-              textAlign="justify"
-              letterSpacing="0.02em"
-            >
-              {postDetail.content}
-            </Text>
+            <Div>
+              <Text
+                size="16px"
+                lineHeight="1.2em"
+                textAlign="justify"
+                letterSpacing="0.02em"
+              >
+                {postDetail.content}
+                a-fo-back.shop{postDetail.postImageUrl}
+              </Text>
+              <Div width="300px">
+                <img width='100%' src={img} alt='이미지입니다'/>
+              </Div>
+            </Div>
           </Wrap>
 
           <Wrap>
