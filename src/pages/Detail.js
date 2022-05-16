@@ -11,7 +11,6 @@ import {
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Detail = () => {
-  // ???ddd
   const infoTotal = ['비자1111', '은행', '언어', '통신', '시차', '교통'];
 
   // 목적별 데이터
@@ -23,7 +22,7 @@ const Detail = () => {
   const vCountry = useSelector((state) => state.country.vCountry);
   const countryName = useSelector((state) => state.country.onePickCountryName);
   const countryDetail = useSelector((state) => state.country.countryList);
-  const countryInfo = countryDetail.map((n) => n.info);
+  // const countryInfo = countryDetail.map((n) => n.info);
   const countryFlag = countryDetail.map((f) => f.flag);
 
   // 북마크 토글

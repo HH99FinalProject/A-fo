@@ -16,14 +16,9 @@ const Info = (props) => {
   // const targetVisa = targetDetail?.map((v) => v.Visa);
   // const subTitle = targetVisa?.map((s, i) => s);
 
-  const targetDetail = useSelector((state) => state.target.countryList);
-  const targetInfo = targetDetail?.map((t, i) => t.info);
-  const countryId = targetDetail?.map((a, i) => a.info.countryId);
-
   // const a = Array(props.info).map((x) => x);
   // delete props.info.countryId;
   // const b = props.info;
-  console.log(targetDetail);
 
   // 나라별 데이터
   // const vCountry = React.useSelector((state) => state.country.vCountry);
