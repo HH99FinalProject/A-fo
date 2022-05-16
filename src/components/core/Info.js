@@ -11,14 +11,12 @@ const Info = (props) => {
 
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
-  // const targetDetail = useSelector((state) => state.target.countryList);
   // const target = useSelector((state) => state.target.onePickTargetNameE);
   // const targetVisa = targetDetail?.map((v) => v.Visa);
-  // const subTitle = targetVisa?.map((s, i) => s);
-
-  // const a = Array(props.info).map((x) => x);
-  // delete props.info.countryId;
-  // const b = props.info;
+  const targetDetail = useSelector((state) => state.target.countryList);
+  const targetInfo = targetDetail?.map((t) => t.BaseInfo.baseInfo);
+  const _targetInfo = targetInfo?.map((x) => x?.map((y) => y.info));
+  // console.log(_targetInfo);
 
   // 나라별 데이터
   // const vCountry = React.useSelector((state) => state.country.vCountry);
