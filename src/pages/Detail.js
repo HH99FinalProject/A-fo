@@ -11,7 +11,7 @@ import {
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Detail = () => {
-  const infoTotal = ['비자1111', '은행', '언어', '통신', '시차', '교통'];
+  const infoTotal = ['비자', '은행', '언어', '통신', '시차', '교통'];
 
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
