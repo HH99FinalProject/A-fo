@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { Div, Text } from '../ui';
 
 const Comment = (props) => {
-  console.log(props.comment);
-  // const comment = props.comment;
   return (
     <React.Fragment>
       <Div spaceBetween padding="10px 0">

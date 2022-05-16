@@ -23,28 +23,26 @@ const PostDetail = (props) => {
     setComment(e.target.value);
   };
 
+  const token = useSelector((state => state.login.userInfo.token));
   const commentData = {
     comment: comment,
     postId: postId,
-    userId: '유저아이디'
   }
-  // console.log(commentData);
 
   // 댓글작성
   const commentWrite = () => {
-    dispatch(addCommentDB(commentData));
+    if (!token) alert('로그인이 필요한 서비스입니다.');
+    dispatch(addCommentDB({commentData, token}));
     setComment('');
-    dispatch(getPostDetailDB(postId));
   };
-  
+  React.useEffect(()=>{
+    dispatch(getPostDetailDB(postId));
+  }, [comment])
+
   const postDetail = useSelector(state => state.board.postDetail);
   React.useEffect(()=>{
     dispatch(getPostDetailDB(postId));
   }, [])
-  
-  // React.useEffect(()=>{
-  //   dispatch(getPostDetailDB(postId));
-  // }, [comments])
 
   return (
     <React.Fragment>

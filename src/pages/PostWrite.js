@@ -15,6 +15,7 @@ const PostWrite = () => {
   const dispatch = useDispatch();
 
   const preview = useSelector((state) => state.image.preview);
+  const token = useSelector((state => state.login.userInfo.token));
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -37,8 +38,7 @@ const PostWrite = () => {
     if (!title || !nation || !content) {
       window.alert('내용을 입력해주세요!');
     } else {
-      console.log(formData);
-      dispatch(addPostDB(formData));
+      dispatch(addPostDB(formData, token));
       window.alert('글쓰기 완료!');
       history.push('/board');
     }
@@ -48,7 +48,6 @@ const PostWrite = () => {
   const fileInput = useRef(null);
   const formData = new FormData();
   if (fileInput.current) {
-    formData.append('userId', '아이디');
     formData.append('title', title);
     formData.append('subTitle', nation);
     formData.append('content', content);

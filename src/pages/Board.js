@@ -18,7 +18,6 @@ const Board = (props) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // 현재페이지
   const [postsPerPage] = useState(20); // 페이지당 포스트 개수
-
   const postList = useSelector((state) => state.board.postList);
   // console.log(postList)
   React.useEffect(() => {

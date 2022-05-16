@@ -4,12 +4,19 @@ import axios from 'axios';
 export const addCommentDB = createAsyncThunk(
   'add/commentDB',
   async (commentData, thunkAPI) => {
+    console.log(commentData);
     try {
       const res = await axios.post(
         'https://a-fo-back.shop/comment/create',
-        commentData
+        commentData.commentData,
+        {
+          headers: {
+            Authorization : commentData.token,
+            'Content-Type': 'application/json'
+          }
+        }
       );
-      console.log(res);
+      console.log(res.data);
       return res;
     } catch (error) {
       console.log(error);
