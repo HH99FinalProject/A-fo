@@ -59,7 +59,7 @@ export const boardSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // 게시물 등록
+      // -----게시물 등록
       .addCase(addPostDB.pending, (state, action) => {
         state.loading = true;
       })
@@ -70,7 +70,7 @@ export const boardSlice = createSlice({
         state.loading = false;
         state.error = action.error;
       })
-      // 전체게시물 불러오기
+      // -----전체게시물 불러오기
       .addCase(getPostDB.pending, (state, action) => {
         state.loading = true;
       })
@@ -82,7 +82,7 @@ export const boardSlice = createSlice({
         state.loading = false;
         state.error = action.error;
       })
-      // 세부게시물 불러오기
+      // -----세부게시물 불러오기
       .addCase(getPostDetailDB.pending, (state, action) => {
         state.loading = true;
       })

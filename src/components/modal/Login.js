@@ -14,8 +14,8 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <Div width="500px" height="500px" padding="50px">
-        <Text center size="30px" margin="0 0 80px 0">
+      <Div width="500px" height="500px" padding="70px 50px">
+        <Text center size="30px" margin="0 0 50px 0">
           로그인
         </Text>
         <Div row center margin="0 0 20px 0">

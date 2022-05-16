@@ -24,6 +24,7 @@ export const commentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // -----댓글 등록
       .addCase(addCommentDB.pending, (state, action) => {
         state.loading = true;
       })
