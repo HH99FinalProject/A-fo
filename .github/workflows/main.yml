@@ -1,4 +1,4 @@
-name: deploy
+name: yoonji
 on: 
   push: 
     branches: 
