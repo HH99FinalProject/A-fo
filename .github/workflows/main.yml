@@ -1,7 +1,7 @@
-name: yoonji
-on:
-  push:
-    branches:
+name: build
+on: 
+  push: 
+    branches: 
       - yoonji
 jobs:
   deploy:
@@ -25,5 +25,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Deploy static site to S3 bucket
-        run: aws s3 sync ./build s3://${{ secrets.S3_BUCKET }} --delete
+    - name: Deploy static site to S3 bucket
+      run: aws s3 sync ./build s3://${{ secrets.S3_BUCKET }} --delete
