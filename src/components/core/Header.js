@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { history } from '../../redux/configureStore';
+import { logoutReducer } from '../../redux/modules/login';
 
 import Modal from '../../shared/Modal';
 import Login from '../modal/Login';
@@ -8,6 +10,8 @@ import logo from '../../styles/images/logo.png';
 import profile from '../../styles/images/profile.png';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.login.isLogin);
   const [openModal, setOpenModal] = React.useState(false);
   const main = window.location.pathname === '/';
 
@@ -41,30 +45,32 @@ const Header = () => {
           </Div>
 
           {/* 로그인 전 */}
-          <Div spaceBetween width="140px" height="50px" lineHeight="50px">
-            <Button
-              height="50px"
-              bold
-              color="#0031DE"
-              backgroundColor="white"
-              _onClick={() => {
-                history.push('/Board');
-              }}
-            >
-              커뮤니티
-            </Button>
-            <Button
-              height="50px"
-              bold
-              color="#0031DE"
-              backgroundColor="white"
-              _onClick={() => {
-                setOpenModal(true);
-              }}
-            >
-              로그인
-            </Button>
-          </Div>
+          {!isLogin && (
+            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
+              <Button
+                height="50px"
+                bold
+                color="#0031DE"
+                backgroundColor="white"
+                _onClick={() => {
+                  history.push('/Board');
+                }}
+              >
+                커뮤니티
+              </Button>
+              <Button
+                height="50px"
+                bold
+                color="#0031DE"
+                backgroundColor="white"
+                _onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
+                로그인
+              </Button>
+            </Div>
+          )}
           <Modal
             open={openModal}
             onClose={() => {
@@ -76,59 +82,53 @@ const Header = () => {
           {/* 로그인 전 */}
 
           {/* 로그인 후 */}
-          {/* <Div
-            spaceBetween
-            width="300px"
-            height="50px"
-            lineHeight="50px"
-            border="1px solid black"
-          >
-            <Button
-              height="50px"
-              bold
-              color="#0031DE"
-              backgroundColor="white"
-              border="1px solid black"
-              _onClick={() => {
-                history.push('/Board');
-              }}
-            >
-              커뮤니티
-            </Button>
-            <Button
-              height="50px"
-              bold
-              color="#0031DE"
-              backgroundColor="white"
-              border="1px solid black"
-              _onClick={() => {
-                history.push('/MyPage');
-              }}
-            >
-              마이페이지
-            </Button>
-            <Button
-              height="50px"
-              bold
-              color="#0031DE"
-              backgroundColor="white"
-              border="1px solid black"
-              _onClick={() => {
-                history.replace('/');
-              }}
-            >
-              로그아웃
-            </Button>
-            <Image
-              shape="circle"
-              width="35px"
-              height="35px"
-              src={profile}
-              size="cover"
-              position="center"
-              border="1px solid #0031DE"
-            />
-          </Div> */}
+          {isLogin && (
+            <Div spaceBetween width="300px" height="50px" lineHeight="50px">
+              <Button
+                height="50px"
+                bold
+                color="#0031DE"
+                backgroundColor="white"
+                _onClick={() => {
+                  history.push('/Board');
+                }}
+              >
+                커뮤니티
+              </Button>
+              <Button
+                height="50px"
+                bold
+                color="#0031DE"
+                backgroundColor="white"
+                _onClick={() => {
+                  history.push('/MyPage');
+                }}
+              >
+                마이페이지
+              </Button>
+              <Button
+                height="50px"
+                bold
+                color="#0031DE"
+                backgroundColor="white"
+                _onClick={() => {
+                  dispatch(logoutReducer());
+                  history.replace('/');
+                }}
+              >
+                로그아웃
+              </Button>
+              <Image
+                shape="circle"
+                width="35px"
+                height="35px"
+                src={profile}
+                size="cover"
+                position="center"
+                border="1px solid #0031DE"
+              />
+            </Div>
+          )}
           {/* 로그인 후 */}
         </Div>
       </Div>
@@ -158,28 +158,30 @@ const Header = () => {
           </Div>
 
           {/* 로그인 전 */}
-          <Div spaceBetween width="140px" height="50px" lineHeight="50px">
-            <Button
-              height="50px"
-              color="#0031DE"
-              bold
-              _onClick={() => {
-                history.push('/Board');
-              }}
-            >
-              커뮤니티
-            </Button>
-            <Button
-              height="50px"
-              color="#0031DE"
-              bold
-              _onClick={() => {
-                setOpenModal(true);
-              }}
-            >
-              로그인
-            </Button>
-          </Div>
+          {!isLogin && (
+            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
+              <Button
+                height="50px"
+                color="#0031DE"
+                bold
+                _onClick={() => {
+                  history.push('/Board');
+                }}
+              >
+                커뮤니티
+              </Button>
+              <Button
+                height="50px"
+                color="#0031DE"
+                bold
+                _onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
+                로그인
+              </Button>
+            </Div>
+          )}
           <Modal
             open={openModal}
             onClose={() => {
@@ -191,56 +193,49 @@ const Header = () => {
           {/* 로그인 전 */}
 
           {/* 로그인 후 */}
-          {/* <Div
-            spaceBetween
-            width="300px"
-            height="50px"
-            lineHeight="50px"
-            border="1px solid black"
-          >
-            <Button
-              height="50px"
-              color="#0031DE"
-              bold
-              border="1px solid black"
-              _onClick={() => {
-                history.push('/Board');
-              }}
-            >
-              커뮤니티
-            </Button>
-            <Button
-              height="50px"
-              color="#0031DE"
-              bold
-              border="1px solid black"
-              _onClick={() => {
-                history.push('/MyPage');
-              }}
-            >
-              마이페이지
-            </Button>
-            <Button
-              height="50px"
-              color="#0031DE"
-              bold
-              border="1px solid black"
-              _onClick={() => {
-                history.replace('/');
-              }}
-            >
-              로그아웃
-            </Button>
-            <Image
-              shape="circle"
-              width="35px"
-              height="35px"
-              src={profile}
-              size="cover"
-              position="center"
-              border="1px solid #0031DE"
-            />
-          </Div> */}
+          {isLogin && (
+            <Div spaceBetween width="300px" height="50px" lineHeight="50px">
+              <Button
+                height="50px"
+                color="#0031DE"
+                bold
+                _onClick={() => {
+                  history.push('/Board');
+                }}
+              >
+                커뮤니티
+              </Button>
+              <Button
+                height="50px"
+                color="#0031DE"
+                bold
+                _onClick={() => {
+                  history.push('/MyPage');
+                }}
+              >
+                마이페이지
+              </Button>
+              <Button
+                height="50px"
+                color="#0031DE"
+                bold
+                _onClick={() => {
+                  history.replace('/');
+                }}
+              >
+                로그아웃
+              </Button>
+              <Image
+                shape="circle"
+                width="35px"
+                height="35px"
+                src={profile}
+                size="cover"
+                position="center"
+                border="1px solid #0031DE"
+              />
+            </Div>
+          )}
           {/* 로그인 후 */}
         </Div>
       </Div>

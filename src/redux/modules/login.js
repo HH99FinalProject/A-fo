@@ -9,7 +9,6 @@ export const kakaoLoginDB = createAsyncThunk(
         `https://a-fo-back.shop/oauth/kakao/callback?code=${code}`
       );
       window.location.replace('/');
-      console.log(res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -27,7 +26,16 @@ export const loginSlice = createSlice({
     },
     isLogin: false,
   },
-  reducers: {},
+  reducers: {
+    // -----로그아웃
+    logoutReducer: (state, action) => {
+      state.userInfo.userId = null;
+      state.userInfo.userName = null;
+      state.userInfo.token = null;
+      state.isLogin = false;
+    },
+    // -----
+  },
   extraReducers: (builder) => {
     builder
       .addCase(kakaoLoginDB.pending, (state, action) => {
@@ -35,7 +43,6 @@ export const loginSlice = createSlice({
       })
       .addCase(kakaoLoginDB.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload.result);
         state.userInfo = action.payload.result;
         state.isLogin = true;
       })
@@ -46,6 +53,6 @@ export const loginSlice = createSlice({
   },
 });
 
-export const {} = loginSlice.actions;
+export const { logoutReducer } = loginSlice.actions;
 
 export default loginSlice;
