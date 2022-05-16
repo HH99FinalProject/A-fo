@@ -8,7 +8,8 @@ export const kakaoLoginDB = createAsyncThunk(
       const res = await axios.get(
         `https://a-fo-back.shop/oauth/kakao/callback?code=${code}`
       );
-      // window.location.replace('/');
+      window.location.replace('/');
+      console.log(res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -34,6 +35,7 @@ export const loginSlice = createSlice({
       })
       .addCase(kakaoLoginDB.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload.result);
         state.userInfo = action.payload.result;
         state.isLogin = true;
       })
