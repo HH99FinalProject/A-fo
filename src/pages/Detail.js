@@ -11,8 +11,6 @@ import {
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Detail = () => {
-  // 깃허브액션
-
   const infoTotal = ['비자', '은행', '언어', '통신', '시차', '교통'];
 
   // 목적별 데이터
