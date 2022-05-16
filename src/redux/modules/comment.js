@@ -6,16 +6,17 @@ export const addCommentDB = createAsyncThunk(
   async (commentData, thunkAPI) => {
     try {
       const res = await axios.post(
-        'http://13.125.244.244/comment/create', commentData
-      )
-      console.log(res)
+        'https://a-fo-back.shop/comment/create',
+        commentData
+      );
+      console.log(res);
       return res;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);
 
 export const commentSlice = createSlice({
   name: 'comment',
@@ -31,9 +32,8 @@ export const commentSlice = createSlice({
       })
       .addCase(addCommentDB.rejected, (state, action) => {
         state.loading = false;
-      })
-  }
+      });
+  },
 });
-
 
 export default commentSlice;

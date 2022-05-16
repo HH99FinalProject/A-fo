@@ -1,3 +1,4 @@
+import { conformsTo } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -18,10 +19,10 @@ const Info = (props) => {
   const targetDetail = useSelector((state) => state.target.countryList);
   const targetInfo = targetDetail?.map((t, i) => t.info);
   const countryId = targetDetail?.map((a, i) => a.info.countryId);
-  console.log(countryId);
 
-  targetDetail.map((x) => delete x.info.countryId);
-
+  // const a = Array(props.info).map((x) => x);
+  // delete props.info.countryId;
+  // const b = props.info;
   console.log(targetDetail);
 
   // 나라별 데이터

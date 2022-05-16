@@ -1,44 +1,41 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const LoginDB = createAsyncThunk(
-  'login',
-  async (token, thunkAPI) => {
+export const kakaoLoginDB = createAsyncThunk(
+  'login/kakaoLoginDB',
+  async (code, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `http://13.125.244.244/oauth/google/callback`,{
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/x-www-form-urlencoded"
-          } 
-        } 
-        
+      const res = await axios.get(
+        `https://a-fo-back.shop/oauth/kakao/callback?code=${code}`
       );
-      return response;
+      console.log(res);
+      return res;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);
 
 export const loginSlice = createSlice({
   name: 'login',
-  initialState: {login: []},
-  reducers: {
-
-  },
+  initialState: { token: null },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(LoginDB.pending, (state, action) => {
-      state.loading = true;
-    })
-    .addCase(LoginDB.fulfilled, (state, action) => {
-      state.loading = false;
-      state.purpose = action.payload;
-    })
-    .addCase(LoginDB.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error;
-    })
-  }
-})
+      .addCase(kakaoLoginDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(kakaoLoginDB.fulfilled, (state, action) => {
+        state.loading = false;
+        state.token = action.payload;
+      })
+      .addCase(kakaoLoginDB.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      });
+  },
+});
+
+export const {} = loginSlice.actions;
+
+export default loginSlice;

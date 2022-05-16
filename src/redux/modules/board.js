@@ -3,14 +3,16 @@ import axios from 'axios';
 
 export const addPostDB = createAsyncThunk(
   'add/postDB',
-  async(formData, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
       console.log(formData);
       const res = await axios.post(
-        `http://13.125.244.244/post/create`, formData,{
+        `https://a-fo-back.shop/post/create`,
+        formData,
+        {
           headers: {
             'Content-Type': 'multipart/form-data',
-          }
+          },
         }
       );
       return res.data;
@@ -18,29 +20,25 @@ export const addPostDB = createAsyncThunk(
       return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);
 
-export const getPostDB = createAsyncThunk(
-  'get/postDB',
-  async(thunkAPI) => {
-    try {
-      const res = await axios.get(
-        `http://13.125.244.244/post/totalRead`
-      );
-      return res.data.postList;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+export const getPostDB = createAsyncThunk('get/postDB', async (thunkAPI) => {
+  try {
+    const res = await axios.get(`https://a-fo-back.shop/post/totalRead`);
+    return res.data.postList;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-)
+});
 
 export const getPostDetailDB = createAsyncThunk(
   'get/postDetailDB',
-  async(postId, {history}, thunkAPI) => {
+  async (postId, { history }, thunkAPI) => {
     // console.log(postId)
     try {
       const res = await axios.get(
-        `http://13.125.244.244/post/detailRead?postId=${postId}`, postId
+        `https://a-fo-back.shop/post/detailRead?postId=${postId}`,
+        postId
       );
       // console.log(res.data.postList[0])
       return res;
@@ -49,17 +47,17 @@ export const getPostDetailDB = createAsyncThunk(
       return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);
 
 export const boardSlice = createSlice({
   name: 'board',
-  initialState: { 
+  initialState: {
     postList: [],
     postDetail: {},
     postId: '',
   },
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       // 게시물 등록
       .addCase(addPostDB.pending, (state, action) => {
@@ -95,12 +93,10 @@ export const boardSlice = createSlice({
       .addCase(getPostDetailDB.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
-        console.log(state.error)
-      })
-  }
-  
+        console.log(state.error);
+      });
+  },
 });
-
 
 export const { addPost, getPost, getPostDetail } = boardSlice.actions;
 

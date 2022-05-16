@@ -10,6 +10,7 @@ import targetSlice from './modules/target';
 import scrollSlice from './modules/scroll';
 import boardSlice from './modules/board';
 import image from './modules/image';
+import loginSlice from './modules/login';
 
 export const history = createBrowserHistory();
 
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   target: targetSlice.reducer,
   scroll: scrollSlice.reducer,
   board: boardSlice.reducer,
-  image: image
+  login: loginSlice.reducer,
+  image: image,
 });
 
 const persistConfig = {

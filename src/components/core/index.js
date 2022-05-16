@@ -7,6 +7,7 @@ import Goolgle from './Google';
 import Header from './Header';
 import Info from './Info';
 import InfoTotal from './InfoTotal';
+import Kakao from './Kakao';
 import Pagenation from './Pagination';
 import Post from './Post';
 import Search from './Search';
@@ -23,6 +24,7 @@ export {
   Header,
   Info,
   InfoTotal,
+  Kakao,
   Pagenation,
   Post,
   Search,

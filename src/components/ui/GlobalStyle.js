@@ -19,7 +19,9 @@ html{
 
 a{
     text-decoration: none;
+    color:black;
 }
+
 input, textarea{
     outline: 1px solid lightgrey;
     border:none;
