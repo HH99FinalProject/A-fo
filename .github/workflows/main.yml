@@ -1,4 +1,4 @@
-name: build
+name: yoonji
 on: 
   push: 
     branches: 
