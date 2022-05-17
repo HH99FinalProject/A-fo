@@ -30,7 +30,7 @@ const Board = (props) => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // 0~10번까지 포스트
   // 이벤트 - 페이지 바꾸기
   const paginate = (pageNum) => setCurrentPage(pageNum);
-
+  const is_login = useSelector(state => state.login.isLogin);
   return (
     <React.Fragment>
       <Header></Header>
@@ -41,17 +41,18 @@ const Board = (props) => {
         <Search />
         <PostBtn
           onClick={() => {
-            history.push('/postwrite');
+            is_login ? history.push('/postwrite')
+            : alert('로그인이 필요한 서비스입니다.')
           }}
         >
-          작성하기
+          글쓰기
         </PostBtn>
         <Div margin="100px 0 0 0" border="1px solid #000">
           {/* map으로 돌리기 */}
           {postList?.map((v, i) => {
             return <Article key={v + i} postList={v} loading={loading} />;
           })}
-          {/* <Post posts={currentPosts} loading={loading} ></Post> */}
+          <Post posts={currentPosts} loading={loading} ></Post>
         </Div>
         <Pagination
           postsPerPage={postsPerPage}
@@ -67,7 +68,7 @@ export default Board;
 
 const PostBtn = styled.button`
   float: right;
-  padding: 10px;
+  padding: 10px 15px;
   border: 1px solid #000;
   background: #fff;
   color: #7b7b7b;

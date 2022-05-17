@@ -1,18 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Div, Text } from '../ui';
 
 const Comment = (props) => {
+
+  
+  const is_login = useSelector(state => state.login.isLogin);
+  const userId = useSelector(state => state.login.userInfo.userId);
+  const commentUserId = props.comment.userId;
+
+  console.log(commentUserId, userId)
   return (
     <React.Fragment>
-      <Div spaceBetween padding="10px 0">
+      <Div flexStart padding="10px 0">
         <Div width="10%">
           <Text bold margin="0 0 0 20px">
             아이디
           </Text>
         </Div>
-        <Div width="80%">
+        <Div width="70%">
           <Ellipsis>
             {props.comment.comment}
           </Ellipsis>
@@ -22,6 +30,16 @@ const Comment = (props) => {
             3일전
           </Text>
         </Div>
+        {is_login && commentUserId === userId ?
+          <>
+            <Div width="5%" textCenter cursor="pointer">
+              <Text size="14px" color="blue">수정</Text>
+            </Div>
+            <Div width="5%" textCenter cursor="pointer">
+              <Text size="14px" color="red">삭제</Text>
+            </Div>
+          </>
+        : null}
       </Div>
     </React.Fragment>
   );
