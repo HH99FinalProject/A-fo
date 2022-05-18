@@ -10,7 +10,7 @@ const Post = ({ boardPosts, loading }) => {
   
   return (
     <>
-      {boardPosts.map((post, i) => {
+      {boardPosts?.map((post, i) => {
         return <Article key={post + i*2} {...post}/>
       })}
     </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
-import { addCommentDB } from '../redux/modules/comment';
+import { addCommentDB, getCommentDB } from '../redux/modules/comment';
 import { getPostDetailDB } from '../redux/modules/board';
 
 import { Header, Comment } from '../components/core';
@@ -14,8 +14,9 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
   
   const [comment, setComment] = React.useState();
-  const comments = useSelector((state) => state.board.postDetail.Comments);
-  // console.log(comments);
+
+  const commentList = useSelector(state => state.comment.commentList);
+  console.log(commentList);
   // params값 찾아옴
   const postId = +props.match.params.postId;
 
@@ -23,28 +24,37 @@ const PostDetail = (props) => {
     setComment(e.target.value);
   };
 
+  const token = useSelector((state => state.login.userInfo.token));
   const commentData = {
     comment: comment,
     postId: postId,
-    userId: '유저아이디'
   }
-  // console.log(commentData);
+  console.log(commentData);
 
   // 댓글작성
-  const commentWrite = () => {
-    dispatch(addCommentDB(commentData));
+  const addComment = () => {
+    if (!token) alert('로그인이 필요한 서비스입니다.');
+    dispatch(addCommentDB({commentData, token}));
     setComment('');
-    dispatch(getPostDetailDB(postId));
   };
-  
+
   const postDetail = useSelector(state => state.board.postDetail);
+
   React.useEffect(()=>{
+    // 게시글 정보만 가져오는 디스패치
     dispatch(getPostDetailDB(postId));
+    // 댓글만 가져오는 디스패치
+    dispatch(getCommentDB(postId));
   }, [])
-  
-  // React.useEffect(()=>{
-  //   dispatch(getPostDetailDB(postId));
-  // }, [comments])
+
+  // 사진 미업로드시 랜덤사진5장 중 1개 띄우기
+  // let num = Math.floor(Math.random() * 5) + 1;
+  if(postDetail?.postImageUrl) {
+    var img = `https://a-fo-back.shop${postDetail?.postImageUrl}`;
+  } else {
+    var img = `https://countryimage.s3.ap-northeast-2.amazonaws.com/no2.jpg`;
+  }
+
 
   return (
     <React.Fragment>
@@ -74,34 +84,34 @@ const PostDetail = (props) => {
                 }}
               >
                 <Text bold size="20px" color="#7b7b7b">
-                  {postDetail.subTitle}
+                  {postDetail?.subTitle}
                 </Text>
               </div>
               <Div padding="0 0 0 20px">
                 <Text size="16px" bold>
-                  {postDetail.title}
+                  {postDetail?.title}
                 </Text>
               </Div>
               <Div row width="15%">
                 <Div fontSize="10px" padding="8px" margin="0 10px 0 0">
-                  {postDetail.target}
+                  {postDetail?.target}
                 </Div>
                 <Div fontSize="10px" padding="8px">
-                  {postDetail.continent}
+                  {postDetail?.continent}
                 </Div>
               </Div>
             </Div>
             <Div spaceBetween>
               <Div spaceEvenly margin="20px 0">
                 <div style={{ padding: '5px 0', width: '100px' }}>
-                  <Text>작성자 이름</Text>
+                  <Text>{postDetail?.User.userName}</Text>
                 </div>
                 <Div spaceEvenly>
                   <Div fontSize="13px" width="50px">
                     몇일전
                   </Div>
                   <Text>
-                    <AiOutlineEye /> 155회
+                    <AiOutlineEye /> {postDetail?.viewCount}회
                   </Text>
                 </Div>
               </Div>
@@ -114,14 +124,20 @@ const PostDetail = (props) => {
                 </Text>
               </Div>
             </Div>
-            <Text
-              size="16px"
-              lineHeight="1.2em"
-              textAlign="justify"
-              letterSpacing="0.02em"
-            >
-              {postDetail.content}
-            </Text>
+            <Div>
+              <Text
+                size="16px"
+                lineHeight="1.2em"
+                textAlign="justify"
+                letterSpacing="0.02em"
+                margin="0 0 10px 0"
+              >
+                {postDetail?.content}
+              </Text>
+              <Div width="300px">
+                <img width='100%' src={img} alt='이미지입니다'/>
+              </Div>
+            </Div>
           </Wrap>
 
           <Wrap>
@@ -130,7 +146,7 @@ const PostDetail = (props) => {
                 placeholder="댓글 입력란입니다."
                 _onChange={onChange}
                 value={comment}
-                onSubmit={commentWrite}
+                onSubmit={addComment}
                 is_submit
                 borderRadius="0"
               />
@@ -141,7 +157,7 @@ const PostDetail = (props) => {
                   color: '#fff',
                 }}
                 onClick={() => {
-                  commentWrite();
+                  addComment();
                 }}
               >
                 댓글작성
@@ -150,7 +166,7 @@ const PostDetail = (props) => {
 
             <CommentList>
               {/* 댓글 !!작성할때마다!! 리스트 불러와서 map으로 뿌려주기 */}
-              {comments?.map((v, i) => {
+              {commentList?.map((v, i) => {
                 return <Comment key={`v_${i}`} comment={v} />;
               })}
             </CommentList>

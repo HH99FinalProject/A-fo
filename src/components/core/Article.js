@@ -4,25 +4,40 @@ import { history } from '../../redux/configureStore';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
 
 import { Div, Text } from '../ui';
-import { useDispatch } from 'react-redux';
-import { getPostDetailDB } from '../../redux/modules/board';
+import { deletePostDB, editPostDB, getPostDB } from '../../redux/modules/board';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Article = (props, { loading }) => {
   const dispatch = useDispatch();
+  const token = useSelector(state => state.login.userInfo.token);
+  const is_login = useSelector(state => state.login.isLogin);
+  const post = props.postList;
+  const postId = post.postId; // 각 글의 postId
+  const postUserId = post.userId;
+  const userId = useSelector(state => state.login.userInfo.userId);
+  // console.log(userId, postUserId);
+  const viewCount = useSelector(state => state.board.postDetail?.viewCount);
+
+  const formData = new FormData();
+  formData.append('token', token);
+  formData.append('postId', postId);
+
+  const deletePost = () => {
+    dispatch(deletePostDB(postId));
+  }
+
+  const editModePost = () => {
+    // history.push(`/post/${postId}`)
+    // const data = {post, token}
+    // dispatch(editPostDB(data));
+  }
 
   if (loading) {
     return <h2>...loading</h2>;
   }
-  const post = props.postList;
-
   return (
     <React.Fragment>
-      <Wrap
-        onClick={() => {
-          // dispatch(getPostDetailDB(post.postId));
-          history.push(`/postDetail/${post.postId}`);
-        }}
-      >
+      <Wrap>
         <div
           style={{
             width: '9%',
@@ -32,8 +47,20 @@ const Article = (props, { loading }) => {
         >
           <SubTitleEllipsis>{post.subTitle}</SubTitleEllipsis>
         </div>
-        <Div width="50%" padding="0 0 0 20px">
+        <Div width="40%" padding="0 0 0 20px" cursor="pointer"
+          _onClick={() => {
+          history.push(`/postDetail/${post.postId}`);
+        }}>
           <TitleEllipsis>{post.title}</TitleEllipsis>
+        </Div>
+        <Div width="10%" padding="0 0 0 20px" flexStart >
+          {is_login && postUserId === userId ?
+            <>
+              <EditBtn onClick={()=>{ editModePost(); }}>수정</EditBtn>
+              <DeleteBtn onClick={()=>{ deletePost(); }}>삭제</DeleteBtn>
+            </>
+          : null
+          } 
         </Div>
         <Div spaceEvenly width="15%">
           <Div width="45px" fontSize="12px" padding="8px">
@@ -58,7 +85,7 @@ const Article = (props, { loading }) => {
             <AiOutlineComment /> 10개
           </Text>
           <Text>
-            <AiOutlineEye /> 155회
+            <AiOutlineEye /> {props.postList.viewCount}회
           </Text>
           <Div fontSize="13px">몇일전</Div>
         </Div>
@@ -80,12 +107,17 @@ const Wrap = styled.div`
 
 const SubTitleEllipsis = styled.div`
   width: 110px;
+  min-height: 30px;
+  padding: 7px 0;
+  background: #5281FA;
+  border-radius: 20px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: bold;
-  font-size: 20px;
-  color: #7b7b7b;
+  font-weight: 400;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
 `;
 
 const TitleEllipsis = styled.div`
@@ -95,4 +127,15 @@ const TitleEllipsis = styled.div`
   text-overflow: ellipsis;
   font-weight: bold;
   font-size: 16px;
+`;
+
+const EditBtn = styled.div`
+  font-size: 14px;
+  padding: 5px;
+  background: tomato;
+`;
+const DeleteBtn = styled.div`
+  font-size: 14px;
+  padding: 5px;
+  background: yellowgreen;
 `;
