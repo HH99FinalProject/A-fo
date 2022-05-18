@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
 
-import { deleteCommentDB } from '../../redux/modules/comment';
+import { deleteCommentDB, editCommentDB } from '../../redux/modules/comment';
 import { Div, Text } from '../ui';
 
 const Comment = (props) => {
@@ -19,13 +19,28 @@ const Comment = (props) => {
   console.log(props)
 
   const deleteComment = () => {
-    dispatch(deleteCommentDB(props.comment.commentId));
+    const data = {
+      commentId: props.comment.commentId,
+      postId: props.comment.postId,
+    }
+    if (window.confirm('정말로 삭제하시겠어요?') === true) {
+      dispatch(deleteCommentDB(data));
+    }
   }
 
   const ref = useRef(null);
 
   const editComment = () => {
-
+    if (changeComment === '') {
+      alert('댓글을 입력해주세요.')
+    }
+    const data = {
+      comment: changeComment,
+      commentId: props.comment.commentId,
+      postId: props.comment.postId,
+    }
+    console.log(data);
+    dispatch(editCommentDB(data))
   }
 
   return (
@@ -54,7 +69,7 @@ const Comment = (props) => {
           <>
             <Div width="5%" textCenter cursor="pointer" >
               {editMode ? 
-              <Text size="14px" color="blue" _onClick={()=>{ setEditMode(false); }} >수정완료</Text>
+              <Text size="14px" color="blue" _onClick={()=>{ setEditMode(false); editComment(); }} >수정완료</Text>
               : <Text size="14px" color="blue" _onClick={()=>{ setEditMode(true); }} >수정</Text>}
             </Div>
             <Div width="5%" textCenter cursor="pointer" 

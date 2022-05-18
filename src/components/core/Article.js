@@ -23,7 +23,9 @@ const Article = (props, { loading }) => {
   formData.append('postId', postId);
 
   const deletePost = () => {
-    dispatch(deletePostDB(postId));
+    if (window.confirm('정말로 삭제하시겠어요?') === true) {
+      dispatch(deletePostDB(postId));
+    }
   }
 
   const editModePost = () => {
@@ -133,9 +135,12 @@ const EditBtn = styled.div`
   font-size: 14px;
   padding: 5px;
   background: tomato;
+  margin-right: 10px;
+  cursor: pointer;
 `;
 const DeleteBtn = styled.div`
   font-size: 14px;
   padding: 5px;
   background: yellowgreen;
+  cursor: pointer;
 `;

@@ -119,7 +119,7 @@ export const boardSlice = createSlice({
       })
       .addCase(getPostDetailDB.fulfilled, (state, action) => {
         state.loading = false;
-        state.postDetail = action.payload.data.postList[0];
+        state.postDetail = action.payload.data.postList;
         // console.log(state.postDetail)
       })
       .addCase(getPostDetailDB.rejected, (state, action) => {

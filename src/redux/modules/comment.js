@@ -44,9 +44,10 @@ export const addCommentDB = createAsyncThunk(
 export const deleteCommentDB = createAsyncThunk(
   'delete/commentDB',
   async (data, thunkAPI) => {
+    console.log(data)
     try {
       const res = await axios.delete(
-        `https://a-fo-back.shop/comment/delete?commentId=${data}`,
+        `https://a-fo-back.shop/comment/delete?commentId=${data.commentId}&postId=${data.postId}`,
       );
       return {res, data};
     } catch (error) {
@@ -59,12 +60,13 @@ export const deleteCommentDB = createAsyncThunk(
 export const editCommentDB = createAsyncThunk(
   'edit/commentMode',
   async (data, thunkAPI) => {
+    console.log(data);
     try {
-      const res = await axios.get(
-        `https://a-fo-back.shop/comment/update`,
+      const res = await axios.patch(
+        `https://a-fo-back.shop/comment/update`, data,
       )
       console.log(res.data)
-      return res.data;
+      return {res, data};
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error);
@@ -106,21 +108,23 @@ export const commentSlice = createSlice({
       })
       .addCase(deleteCommentDB.fulfilled, (state, action) => {
         state.loading = false;
-        state.commentList = state.commentList.filter(list => list.commentId !== action.payload.data);
+        state.commentList = state.commentList.filter(list => list.commentId !== action.payload.data.commentId);
       })
       .addCase(deleteCommentDB.rejected, (state, action) => {
         state.loading = false;
       })
       // ----- 댓글 수정
-      // .addCase(editCommentModeDB.pending, (state, action) => {
-      //   state.loading = true;
-      // })
-      // .addCase(editCommentModeDB.fulfilled, (state, action) => {
-      //   state.loading = false;
-      // })
-      // .addCase(editCommentModeDB.rejected, (state, action) => {
-      //   state.loading = false;
-      // })
+      .addCase(editCommentDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(editCommentDB.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload);
+        state.commentList[0].comment = action.payload.data.comment; 
+      })
+      .addCase(editCommentDB.rejected, (state, action) => {
+        state.loading = false;
+      })
   },
 });
 

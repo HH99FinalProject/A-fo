@@ -39,6 +39,8 @@ const PostDetail = (props) => {
   };
 
   const postDetail = useSelector(state => state.board.postDetail);
+  const p = useSelector(state => state.board);
+  console.log(postDetail, p)
 
   React.useEffect(()=>{
     // 게시글 정보만 가져오는 디스패치
