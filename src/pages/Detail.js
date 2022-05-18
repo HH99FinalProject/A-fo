@@ -11,7 +11,7 @@ import {
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Detail = () => {
-  const infoTotal = ['비자', '은행', '언어', '통신', '시차', '교통'];
+  const infoTotal = ['비자', '은행', '시차', '교통', '언어', '통신'];
 
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
@@ -160,18 +160,12 @@ const Detail = () => {
               width="100%"
               padding="10px 0px"
               backgroundColor="#9FBAFF"
-              border="1px solid black"
+              borderBottom="1px solid #0031DE"
             >
-              <Div row width="1400px" height="60px" border="1px solid black">
+              <Div row width="1400px" height="60px">
                 {targetDetail.map((v, i) => {
                   return (
-                    <Div
-                      key={i}
-                      row
-                      width="100%"
-                      height="60px"
-                      border="1px solid black"
-                    >
+                    <Div key={i} row width="100%" height="60px">
                       <Image flag src={v.flag} />
                       <Text
                         margin="0px 0px 0px 10px"
@@ -193,18 +187,11 @@ const Detail = () => {
               width="100%"
               margin="60px 0px 0px 0px"
               padding="10px 0px"
-              border="1px solid black"
             >
-              <Div row width="1400px" height="60px" border="1px solid black">
+              <Div row width="1400px" height="60px">
                 {targetDetail.map((u, i) => {
                   return (
-                    <Div
-                      key={i}
-                      row
-                      width="100%"
-                      height="60px"
-                      border="1px solid black"
-                    >
+                    <Div key={i} row width="100%" height="60px">
                       <Image flag src={u.flag} />
                       <Text
                         margin="0px 0px 0px 10px"
@@ -237,8 +224,8 @@ const Detail = () => {
                 zIndex="1"
                 width="100%"
                 padding="10px 0px"
-                border="1px solid black"
                 backgroundColor="#9FBAFF"
+                borderBottom="1px solid #0031DE"
               >
                 <Div
                   row
@@ -257,16 +244,10 @@ const Detail = () => {
                     {countryName}
                   </Text>
                 </Div>
-                <Div row width="1400px" height="60px" border="1px solid black">
+                <Div row width="1400px" height="60px">
                   {countryDetail.map((h, i) => {
                     return (
-                      <Div
-                        key={i}
-                        row
-                        width="100%"
-                        height="60px"
-                        border="1px solid black"
-                      >
+                      <Div key={i} row width="100%" height="60px">
                         <Text margin="0px 0px 0px 10px" size="30px" bold>
                           {h.purpose}
                         </Text>
@@ -285,30 +266,17 @@ const Detail = () => {
                 margin="60px 0px 0px 0px"
                 padding="10px 0px"
                 country
-                border="1px solid black"
               >
                 <Image flag src={countryFlag[0]} />
                 <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
                   {countryName}
                 </Text>
               </Div>
-              <Div
-                center
-                position="relative"
-                width="100%"
-                padding="10px 0px"
-                border="1px solid black"
-              >
-                <Div row width="1400px" height="60px" border="1px solid black">
+              <Div center position="relative" width="100%" padding="10px 0px">
+                <Div row width="1400px" height="60px">
                   {countryDetail.map((l, i) => {
                     return (
-                      <Div
-                        key={i}
-                        row
-                        width="100%"
-                        height="60px"
-                        border="1px solid black"
-                      >
+                      <Div key={i} row width="100%" height="60px">
                         <Text margin="0px 0px 0px 10px" size="30px" bold>
                           {l.purpose}
                         </Text>
@@ -324,13 +292,7 @@ const Detail = () => {
       {/* 나라별 선택된 목적 */}
 
       {/* 세부정보 */}
-      <Div
-        center
-        position="relative"
-        width="100%"
-        margin="0px auto 100px auto"
-        border="1px solid black"
-      >
+      <Div center position="relative" width="100%" margin="0px auto 100px auto">
         {infoTotal.map((t, i) => {
           if (i < 2) {
             return (
@@ -363,11 +325,10 @@ const Detail = () => {
               height="45px"
               lineHeight="45px"
               backgroundColor="white"
-              border="1px solid black"
               cursor="pointer"
               _onClick={changeBookMarkToggle}
             >
-              <Text bold backgroundColor="white" border="1px solid black">
+              <Text bold backgroundColor="white">
                 북마크
               </Text>
               <MdOutlineKeyboardArrowDown size={15} />
@@ -426,6 +387,7 @@ const Detail = () => {
                   <Text margin="10px">교통</Text>
                 </Div>
                 {/* 나라별 끝 */}
+
                 <Div
                   center
                   width="100%"
@@ -454,11 +416,10 @@ const Detail = () => {
               height="45px"
               lineHeight="45px"
               backgroundColor="white"
-              border="1px solid black"
               cursor="pointer"
               _onClick={changeBookMarkToggle}
             >
-              <Text bold backgroundColor="white" border="1px solid black">
+              <Text bold backgroundColor="white">
                 북마크
               </Text>
               <MdOutlineKeyboardArrowDown size={15} />

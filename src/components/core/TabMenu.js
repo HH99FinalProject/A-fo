@@ -6,7 +6,7 @@ import { Button, Div, Image, Input, Text } from '../ui';
 
 const TabMenu = () => {
   const dispatch = useDispatch();
-  const infoList = ['비자', '휴대전화', '은행', '언어', '시차', '교통'];
+  const infoList = ['비자', '은행', '시차', '교통', '언어', '통신'];
 
   const SubMain2 = window.location.pathname === '/SubMain2';
 
@@ -61,11 +61,7 @@ const TabMenu = () => {
       >
         {infoList.map((v, i) => {
           return v === '비자' ? (
-            <PurposeBtn
-              key={v + i}
-            >
-              {v}
-            </PurposeBtn>
+            <PurposeBtn key={v + i}>{v}</PurposeBtn>
           ) : v === '통신' ? (
             <PurposeBtn key={v + i} onClick={() => {}}>
               {v}

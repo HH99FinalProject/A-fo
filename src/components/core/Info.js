@@ -1,108 +1,331 @@
-import { conformsTo } from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { zip } from 'lodash';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import styled from 'styled-components';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const Info = (props) => {
-  const dispatch = useDispatch();
-  const infoSubTitle = ['휴대전화 개통방식', '주요 통신사', '추천 요금제'];
-
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
-  // const target = useSelector((state) => state.target.onePickTargetNameE);
-  // const targetVisa = targetDetail?.map((v) => v.Visa);
-  const targetDetail = useSelector((state) => state.target.countryList);
-  const targetInfo = targetDetail?.map((t) => t.BaseInfo.baseInfo);
-  const _targetInfo = targetInfo?.map((x) => x?.map((y) => y.info));
-  // console.log(_targetInfo);
 
   // 나라별 데이터
-  // const vCountry = React.useSelector((state) => state.country.vCountry);
-  // const countryDetail = React.useSelector((state) => state.country.countryList);
+  const vCountry = useSelector((state) => state.country.vCountry);
 
   return (
-    // 목적별
     <>
-      {vTarget && (
-        <Div
-          position="relative"
-          width="100%"
-          padding="40px 0px"
-          overflow="hidden"
-          border="1px solid black"
-          backgroundColor="white"
-        >
+      {/* 비자 */}
+      {props.visa && (
+        <Box>
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
-          {/* 북마크 전 */}
-
           {/* 북마크 후 */}
-          <Button bookmarkBtn complete></Button>
-          {/* 북마크 후 */}
-
-          {infoSubTitle.map((v, i) => {
+          {/* <Button bookmarkBtn complete></Button> */}
+          {props.info?.map((v, i) => {
             return (
-              <Div
-                key={v + i}
-                width="100%"
-                padding="20px"
-                border="1px solid black"
-                backgroundColor="white"
-              >
-                <Text
-                  width="100%"
-                  height="35px"
-                  padding="5px"
-                  backgroundColor="#D2DFFF"
-                  border="1px solid black"
-                  size="16px"
-                  bold
-                >
-                  ● {v}
-                  {/* 주요은행 */}
-                </Text>
-                <Div
-                  width="100%"
-                  lineHeight="20px"
-                  padding="5px"
-                  backgroundColor="#D2DFFF"
-                  border="1px solid black"
-                >
-                  <Ol start="1">
-                    <Li>
-                      {/* 커먼웰스뱅크 */}
-                      <ul>
-                        <li>
-                          {/* 월별관리비용이 청구되지 않는 경우 */}
+              <TitleBox key={v + i}>
+                <Title>● {v.subtitle}</Title>
+                <SubBox>
+                  <Ol>
+                    {v.subInfo?.map((x, j) => {
+                      const ol = true;
+                      return (
+                        <Li ol={ol} key={x + j}>
+                          {x.explain1}
                           <ul>
-                            <li>{/* 1 */}</li>
+                            {x.oneInfo?.map((y, k) => {
+                              return <Li key={y + k}>· {y}</Li>;
+                            })}
                           </ul>
-                        </li>
-                      </ul>
-                    </Li>
+                        </Li>
+                      );
+                    })}
                   </Ol>
-                </Div>
-              </Div>
+                </SubBox>
+              </TitleBox>
             );
           })}
-        </Div>
+        </Box>
+      )}
+
+      {/* 은행 */}
+      {props.bank && (
+        <Box>
+          {/* 북마크 전 */}
+          {/* <Button bookmarkBtn></Button> */}
+          {/* 북마크 후 */}
+          {/* <Button bookmarkBtn complete></Button> */}
+          {(vTarget
+            ? props[props.index]
+            : props.countryInfo[props.index]
+          ).info?.map((l, i) => {
+            return (
+              <TitleBox key={l + i}>
+                <Title>● {l.subtitle}</Title>
+                <SubBox>
+                  <Ol>
+                    {l.subInfo?.map((x, j) => {
+                      const ol = true;
+                      return (
+                        <Li ol={ol} key={x + j}>
+                          {x.explain1}
+                          <ul>
+                            {x.oneInfo?.map((y, k) => {
+                              return (
+                                <Li key={y + k}>
+                                  {y.explain2}
+                                  <Ul>
+                                    {y.twoInfo?.map((z, m) => {
+                                      return <Li key={z + m}>· {z}</Li>;
+                                    })}
+                                  </Ul>
+                                </Li>
+                              );
+                            })}
+                          </ul>
+                        </Li>
+                      );
+                    })}
+                  </Ol>
+                </SubBox>
+              </TitleBox>
+            );
+          })}
+        </Box>
+      )}
+
+      {/* 시차 */}
+      {props.time && (
+        <Box>
+          {/* 북마크 전 */}
+          {/* <Button bookmarkBtn></Button> */}
+          {/* 북마크 후 */}
+          {/* <Button bookmarkBtn complete></Button> */}
+          {(vTarget
+            ? props[props.index]
+            : props.countryInfo[props.index]
+          ).info?.map((l, i) => {
+            return (
+              <TitleBox key={l + i}>
+                <Title>● {l.subtitle}</Title>
+                <SubBox>
+                  <Ol>
+                    {l.subInfo?.map((x, j) => {
+                      const ol = true;
+                      return (
+                        <Li ol={ol} key={x + j}>
+                          {x.explain1}
+                          <ul>
+                            {x.oneInfo?.map((y, k) => {
+                              return (
+                                <Li key={y + k}>
+                                  {y.explain2}
+                                  <Ul>
+                                    {y.twoInfo?.map((z, m) => {
+                                      return <Li key={z + m}>· {z}</Li>;
+                                    })}
+                                  </Ul>
+                                </Li>
+                              );
+                            })}
+                          </ul>
+                        </Li>
+                      );
+                    })}
+                  </Ol>
+                </SubBox>
+              </TitleBox>
+            );
+          })}
+        </Box>
+      )}
+
+      {/* 교통 */}
+      {props.traffic && (
+        <Box>
+          {/* 북마크 전 */}
+          {/* <Button bookmarkBtn></Button> */}
+          {/* 북마크 후 */}
+          {/* <Button bookmarkBtn complete></Button> */}
+          {(vTarget
+            ? props[props.index]
+            : props.countryInfo[props.index]
+          ).info?.map((l, i) => {
+            return (
+              <TitleBox key={l + i}>
+                <Title>● {l.subtitle}</Title>
+                <SubBox>
+                  <Ol>
+                    {l.subInfo?.map((x, j) => {
+                      const ol = true;
+                      return (
+                        <Li ol={ol} key={x + j}>
+                          {x.explain1}
+                          <ul>
+                            {x.oneInfo?.map((y, k) => {
+                              return (
+                                <Li key={y + k}>
+                                  {y.explain2}
+                                  <Ul>
+                                    {y.twoInfo?.map((z, m) => {
+                                      return <Li key={z + m}>· {z}</Li>;
+                                    })}
+                                  </Ul>
+                                </Li>
+                              );
+                            })}
+                          </ul>
+                        </Li>
+                      );
+                    })}
+                  </Ol>
+                </SubBox>
+              </TitleBox>
+            );
+          })}
+        </Box>
+      )}
+
+      {/* 언어 */}
+      {props.language && (
+        <Box>
+          {/* 북마크 전 */}
+          {/* <Button bookmarkBtn></Button> */}
+          {/* 북마크 후 */}
+          {/* <Button bookmarkBtn complete></Button> */}
+          {(vTarget
+            ? props[props.index]
+            : props.countryInfo[props.index]
+          ).info?.map((l, i) => {
+            return (
+              <TitleBox key={l + i}>
+                <Title>● {l.subtitle}</Title>
+                <SubBox>
+                  <Ol>
+                    {l.subInfo?.map((x, j) => {
+                      const ol = true;
+                      return (
+                        <Li ol={ol} key={x + j}>
+                          {x.explain1}
+                          <ul>
+                            {x.oneInfo?.map((y, k) => {
+                              return (
+                                <Li key={y + k}>
+                                  {y.explain2}
+                                  <Ul>
+                                    {y.twoInfo?.map((z, m) => {
+                                      return <Li key={z + m}>· {z}</Li>;
+                                    })}
+                                  </Ul>
+                                </Li>
+                              );
+                            })}
+                          </ul>
+                        </Li>
+                      );
+                    })}
+                  </Ol>
+                </SubBox>
+              </TitleBox>
+            );
+          })}
+        </Box>
+      )}
+
+      {/* 통신 */}
+      {props.phone && (
+        <Box>
+          {/* 북마크 전 */}
+          {/* <Button bookmarkBtn></Button> */}
+          {/* 북마크 후 */}
+          {/* <Button bookmarkBtn complete></Button> */}
+          {(vTarget
+            ? props[props.index]
+            : props.countryInfo[props.index]
+          ).info?.map((l, i) => {
+            return (
+              <TitleBox key={l + i}>
+                <Title>● {l.subtitle}</Title>
+                <SubBox>
+                  <Ol>
+                    {l.subInfo?.map((x, j) => {
+                      const ol = true;
+                      return (
+                        <Li ol={ol} key={x + j}>
+                          {x.explain1}
+                          <ul>
+                            {x.oneInfo?.map((y, k) => {
+                              return (
+                                <Li key={y + k}>
+                                  {y.explain2}
+                                  <Ul>
+                                    {y.twoInfo?.map((z, m) => {
+                                      return <Li key={z + m}>· {z}</Li>;
+                                    })}
+                                  </Ul>
+                                </Li>
+                              );
+                            })}
+                          </ul>
+                        </Li>
+                      );
+                    })}
+                  </Ol>
+                </SubBox>
+              </TitleBox>
+            );
+          })}
+        </Box>
       )}
     </>
-    // 나라별
   );
 };
 
 export default Info;
-
+const Box = styled.div`
+  position: relative;
+  width: 100%;
+  padding: 40px 0px;
+  overflow: hidden;
+  background-color: white;
+`;
+const TitleBox = styled.div`
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+`;
+const Title = styled.p`
+  width: 100%;
+  line-height: 30px;
+  padding: 5px 10px;
+  background-color: #d2dfff;
+  font-size: 16px;
+  font-weight: bold;
+  color: #0031de;
+`;
+const SubBox = styled.div`
+  width: 100%;
+  line-height: 20px;
+  padding: 5px 10px;
+  background-color: #d2dfff;
+  white-space: normal;
+  word-break: break-all;
+`;
 const Ol = styled.ol`
   list-style-type: none;
   width: 100%;
   padding: 0px 5px 0px 20px;
   line-height: 25px;
 `;
-const Li = styled.li`
-  list-style-type: decimal;
+const Ul = styled.ul`
+  list-style-type: none;
   width: 100%;
+  padding: 0px 10px;
+  line-height: 25px;
+`;
+const Li = styled.li`
+  ${(props) => (props.ol ? 'list-style-type: decimal;' : 'list-style:none;')};
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 14px;
 `;

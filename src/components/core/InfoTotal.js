@@ -3,15 +3,28 @@ import { useSelector } from 'react-redux';
 
 import Info from './Info';
 
-import styled from 'styled-components';
 import { Button, Div, Image, Input, Text } from '../ui';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const InfoTotal = (props) => {
+  const visa = props.infoTitle === '비자';
+  const bank = props.infoTitle === '은행';
+  const time = props.infoTitle === '시차';
+  const traffic = props.infoTitle === '교통';
+  const language = props.infoTitle === '언어';
+  const phone = props.infoTitle === '통신';
+
+  // 목적별 데이터
   const vTarget = props.vTarget;
-  const vCountry = props.vCountry;
   const targetDetail = useSelector((state) => state.target.countryList);
+  const targetVisa = targetDetail?.map((v) => v.visa);
+  const targetInfo = targetDetail.map((x, i) => x.BaseInfo.baseInfo);
+
+  // 나라별 데이터
+  const vCountry = props.vCountry;
   const countryDetail = useSelector((state) => state.country.countryList);
+  const countryVisa = countryDetail?.map((v) => v.visa);
+  const countryInfo = countryDetail.map((x, i) => x.BaseInfo.baseInfo);
 
   //   토글
   const isOpen = props.isOpen;
@@ -26,28 +39,26 @@ const InfoTotal = (props) => {
   return (
     <React.Fragment>
       {/* 목적별, 나라별(비자) 선택수에 따라서 바뀌는 형태 */}
-      {(vTarget || (vCountry && props.infoTitle === '비자')) && (
-        <Div center width="1400px" border="1px solid black">
+      {(vTarget || (vCountry && visa)) && (
+        <Div
+          center
+          width="1400px"
+          backgroundColor="white"
+          border="1px solid #0031DE"
+        >
           {/* 토글 */}
           <Div
             row
             width="100%"
             height="100px"
             backgroundColor="#D2DFFF"
-            border="1px solid black"
             cursor="pointer"
             _onClick={() => {
               changeToggle();
             }}
             // ref={ref}
           >
-            <Text
-              width="auto"
-              margin="0px 5px"
-              border="1px solid black"
-              size="25px"
-              bold
-            >
+            <Text width="auto" margin="0px 5px" size="25px" bold>
               {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
@@ -62,15 +73,52 @@ const InfoTotal = (props) => {
               flexDirection="row"
               alignItems="flex-start"
               justifyContent="space-between"
-              border="1px solid black"
+              borderTop="1px solid #0031DE"
             >
-              {vTarget &&
-                targetDetail?.map((t, i) => {
-                  return <Info key={t + i} {...t} />;
-                })}
+              {vTarget && (
+                <>
+                  {visa &&
+                    targetVisa?.map((t, i) => {
+                      return <Info key={t + i} {...t} visa={visa} />;
+                    })}
+                  {bank &&
+                    targetInfo?.map((t, i) => {
+                      return <Info key={t + i} {...t} bank={bank} index={0} />;
+                    })}
+                  {time &&
+                    targetInfo?.map((t, i) => {
+                      return <Info key={t + i} {...t} time={time} index={1} />;
+                    })}
+                  {traffic &&
+                    targetInfo?.map((t, i) => {
+                      return (
+                        <Info key={t + i} {...t} traffic={traffic} index={2} />
+                      );
+                    })}
+                  {language &&
+                    targetInfo?.map((t, i) => {
+                      return (
+                        <Info
+                          key={t + i}
+                          {...t}
+                          language={language}
+                          index={3}
+                        />
+                      );
+                    })}
+                  {phone &&
+                    targetInfo?.map((t, i) => {
+                      return (
+                        <Info key={t + i} {...t} phone={phone} index={4} />
+                      );
+                    })}
+                </>
+              )}
+
               {vCountry &&
-                countryDetail?.map((c, i) => {
-                  return <Info key={c + i} {...c} />;
+                visa &&
+                countryVisa?.map((c, i) => {
+                  return <Info key={c + i} {...c} visa={visa} />;
                 })}
             </Div>
           ) : null}
@@ -79,27 +127,20 @@ const InfoTotal = (props) => {
       )}
 
       {/* 나라별 공통정보 형태 */}
-      {vCountry && props.infoTitle !== '비자' && (
-        <Div center width="1400px" border="1px solid black">
+      {vCountry && !visa && (
+        <Div center width="1400px" border="1px solid #0031DE">
           {/* 토글 */}
           <Div
             row
             width="100%"
             height="100px"
             backgroundColor="#D2DFFF"
-            border="1px solid black"
             cursor="pointer"
             _onClick={() => {
               changeToggle();
             }}
           >
-            <Text
-              width="auto"
-              margin="0px 5px"
-              border="1px solid black"
-              size="25px"
-              bold
-            >
+            <Text width="auto" margin="0px 5px" size="25px" bold>
               {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
@@ -114,9 +155,33 @@ const InfoTotal = (props) => {
               flexDirection="row"
               alignItems="flex-start"
               justifyContent="space-between"
-              border="1px solid black"
+              borderTop="1px solid #0031DE"
             >
-              <Info />
+              <>
+                {bank && (
+                  <Info bank={bank} index={0} countryInfo={countryInfo[0]} />
+                )}
+                {time && (
+                  <Info time={time} index={1} countryInfo={countryInfo[0]} />
+                )}
+                {traffic && (
+                  <Info
+                    traffic={traffic}
+                    index={2}
+                    countryInfo={countryInfo[0]}
+                  />
+                )}
+                {language && (
+                  <Info
+                    language={language}
+                    index={3}
+                    countryInfo={countryInfo[0]}
+                  />
+                )}
+                {phone && (
+                  <Info phone={phone} index={4} countryInfo={countryInfo[0]} />
+                )}
+              </>
             </Div>
           ) : null}
           {/* 내용 */}
