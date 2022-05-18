@@ -1,17 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { deleteCommentDB } from '../../redux/modules/comment';
 
 import { Div, Text } from '../ui';
 
 const Comment = (props) => {
-
+  const dispatch = useDispatch();
   
   const is_login = useSelector(state => state.login.isLogin);
   const userId = useSelector(state => state.login.userInfo.userId);
   const commentUserId = props.comment.userId;
 
-  console.log(commentUserId, userId)
+  console.log(commentUserId, userId);
+
+  const deleteComment = () => {
+    dispatch(deleteCommentDB(props.comment.commentId));
+  }
+
   return (
     <React.Fragment>
       <Div flexStart padding="10px 0">
@@ -32,11 +38,13 @@ const Comment = (props) => {
         </Div>
         {is_login && commentUserId === userId ?
           <>
-            <Div width="5%" textCenter cursor="pointer">
+            <Div width="5%" textCenter cursor="pointer" 
+              _onClick={()=>{  }}>
               <Text size="14px" color="blue">수정</Text>
             </Div>
-            <Div width="5%" textCenter cursor="pointer">
-              <Text size="14px" color="red">삭제</Text>
+            <Div width="5%" textCenter cursor="pointer" 
+              _onClick={()=>{ deleteComment(); }}>
+              <Text size="14px" color="red" >삭제</Text>
             </Div>
           </>
         : null}

@@ -36,12 +36,8 @@ const PostDetail = (props) => {
     dispatch(addCommentDB({commentData, token}));
     setComment('');
   };
-  // React.useEffect(()=>{
-  //   dispatch(getPostDetailDB(postId));
-  // }, [comment])
 
   const postDetail = useSelector(state => state.board.postDetail);
-  // console.log('postDetail=', postDetail);
 
   React.useEffect(()=>{
     // 게시글 정보만 가져오는 디스패치

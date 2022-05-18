@@ -40,6 +40,21 @@ export const addCommentDB = createAsyncThunk(
   }
 );
 
+export const deleteCommentDB = createAsyncThunk(
+  'delete/commentDB',
+  async (data, thunkAPI) => {
+    try {
+      const res = await axios.delete(
+        `https://a-fo-back.shop/comment/delete?commentId=${data}`,
+      );
+      return {res, data};
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
+
 export const commentSlice = createSlice({
   name: 'comment',
   initialState: {commentList: []},
@@ -63,12 +78,22 @@ export const commentSlice = createSlice({
       })
       .addCase(addCommentDB.fulfilled, (state, action) => {
         state.loading = false;
-        // console.log(action.payload.commentInfo);
         state.commentList = action.payload.commentInfo;
       })
       .addCase(addCommentDB.rejected, (state, action) => {
         state.loading = false;
-      });
+      })
+      // ----- 댓글 삭제
+      .addCase(deleteCommentDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteCommentDB.fulfilled, (state, action) => {
+        state.loading = false;
+        state.commentList = state.commentList.filter(list => list.commentId !== action.payload.data);
+      })
+      .addCase(deleteCommentDB.rejected, (state, action) => {
+        state.loading = false;
+      })
   },
 });
 
