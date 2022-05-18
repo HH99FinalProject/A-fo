@@ -42,6 +42,7 @@ export const getPostDetailDB = createAsyncThunk(
         `https://a-fo-back.shop/post/detailRead?postId=${postId}`,
         postId
       );
+      console.log(res)
       return res;
     } catch (error) {
       console.log(error);

@@ -16,6 +16,7 @@ const Article = (props, { loading }) => {
   const postUserId = post.userId;
   const userId = useSelector(state => state.login.userInfo.userId);
   // console.log(userId, postUserId);
+  const viewCount = useSelector(state => state.board.postDetail?.viewCount);
 
   const formData = new FormData();
   formData.append('token', token);
@@ -84,7 +85,7 @@ const Article = (props, { loading }) => {
             <AiOutlineComment /> 10개
           </Text>
           <Text>
-            <AiOutlineEye /> 155회
+            <AiOutlineEye /> {props.postList.viewCount}회
           </Text>
           <Div fontSize="13px">몇일전</Div>
         </Div>

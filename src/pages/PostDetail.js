@@ -16,6 +16,7 @@ const PostDetail = (props) => {
   const [comment, setComment] = React.useState();
 
   const commentList = useSelector(state => state.comment.commentList);
+  console.log(commentList);
   // params값 찾아옴
   const postId = +props.match.params.postId;
 
@@ -103,14 +104,14 @@ const PostDetail = (props) => {
             <Div spaceBetween>
               <Div spaceEvenly margin="20px 0">
                 <div style={{ padding: '5px 0', width: '100px' }}>
-                  <Text>작성자 이름</Text>
+                  <Text>{postDetail?.User.userName}</Text>
                 </div>
                 <Div spaceEvenly>
                   <Div fontSize="13px" width="50px">
                     몇일전
                   </Div>
                   <Text>
-                    <AiOutlineEye /> 155회
+                    <AiOutlineEye /> {postDetail?.viewCount}회
                   </Text>
                 </Div>
               </Div>

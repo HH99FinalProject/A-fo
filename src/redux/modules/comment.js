@@ -8,6 +8,7 @@ export const getCommentDB = createAsyncThunk(
       const res = await axios.get(
         `https://a-fo-back.shop/comment/read?postId=${postId}`,
       );
+      console.log(res.data)
       return res.data;
     } catch (error) {
       console.log(error);
@@ -55,6 +56,22 @@ export const deleteCommentDB = createAsyncThunk(
   }
 )
 
+export const editCommentDB = createAsyncThunk(
+  'edit/commentMode',
+  async (data, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `https://a-fo-back.shop/comment/update`,
+      )
+      console.log(res.data)
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
+
 export const commentSlice = createSlice({
   name: 'comment',
   initialState: {commentList: []},
@@ -94,6 +111,16 @@ export const commentSlice = createSlice({
       .addCase(deleteCommentDB.rejected, (state, action) => {
         state.loading = false;
       })
+      // ----- 댓글 수정
+      // .addCase(editCommentModeDB.pending, (state, action) => {
+      //   state.loading = true;
+      // })
+      // .addCase(editCommentModeDB.fulfilled, (state, action) => {
+      //   state.loading = false;
+      // })
+      // .addCase(editCommentModeDB.rejected, (state, action) => {
+      //   state.loading = false;
+      // })
   },
 });
 
