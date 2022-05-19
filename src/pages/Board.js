@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostDB, getPostDetailDB } from '../redux/modules/board';
+import { getTotalReadDB, getPostDetailDB } from '../redux/modules/board';
 import Post from '../components/core/Post';
 
 import { Header } from '../components/core';
@@ -21,7 +21,7 @@ const Board = (props) => {
   const postList = useSelector((state) => state.board.postList);
   // console.log(postList)
   React.useEffect(() => {
-    dispatch(getPostDB());
+    dispatch(getTotalReadDB());
   }, []);
 
   // 현재페이지 가져오기

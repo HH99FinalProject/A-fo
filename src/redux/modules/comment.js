@@ -20,7 +20,7 @@ export const getCommentDB = createAsyncThunk(
 export const addCommentDB = createAsyncThunk(
   'add/commentDB',
   async (data, thunkAPI) => {
-    // console.log(data);
+    // console.log(data.token);
     try {
       const res = await axios.post(
         'https://a-fo-back.shop/comment/create',

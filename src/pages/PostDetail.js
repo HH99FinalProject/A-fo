@@ -109,8 +109,8 @@ const PostDetail = (props) => {
                   <Text>{postDetail?.User.userName}</Text>
                 </div>
                 <Div spaceEvenly>
-                  <Div fontSize="13px" width="50px">
-                    몇일전
+                  <Div fontSize="13px" width="160px">
+                    {postDetail?.createdAt}
                   </Div>
                   <Text>
                     <AiOutlineEye /> {postDetail?.viewCount}회

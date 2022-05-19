@@ -58,7 +58,7 @@ const Article = (props, { loading }) => {
         <Div width="10%" padding="0 0 0 20px" flexStart >
           {is_login && postUserId === userId ?
             <>
-              <EditBtn onClick={()=>{ editModePost(); }}>수정</EditBtn>
+              <EditBtn onClick={()=>{ editModePost(); history.push(`/postDetail/edit/${post.postId}`)}}>수정</EditBtn>
               <DeleteBtn onClick={()=>{ deletePost(); }}>삭제</DeleteBtn>
             </>
           : null
