@@ -32,15 +32,16 @@ const Comment = (props) => {
 
   const editComment = () => {
     if (changeComment === '') {
-      alert('댓글을 입력해주세요.')
+      alert('댓글을 수정해주세요.');
+    } else {
+      const data = {
+        comment: changeComment,
+        commentId: props.comment.commentId,
+        postId: props.comment.postId,
+      }
+      console.log(data);
+      dispatch(editCommentDB(data))
     }
-    const data = {
-      comment: changeComment,
-      commentId: props.comment.commentId,
-      postId: props.comment.postId,
-    }
-    console.log(data);
-    dispatch(editCommentDB(data))
   }
 
   return (

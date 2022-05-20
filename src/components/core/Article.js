@@ -49,20 +49,11 @@ const Article = (props, { loading }) => {
         >
           <SubTitleEllipsis>{post.subTitle}</SubTitleEllipsis>
         </div>
-        <Div width="40%" padding="0 0 0 20px" cursor="pointer"
+        <Div width="45%" padding="0 0 0 20px" cursor="pointer"
           _onClick={() => {
           history.push(`/postDetail/${post.postId}`);
         }}>
           <TitleEllipsis>{post.title}</TitleEllipsis>
-        </Div>
-        <Div width="10%" padding="0 0 0 20px" flexStart >
-          {is_login && postUserId === userId ?
-            <>
-              <EditBtn onClick={()=>{ editModePost(); history.push(`/postDetail/edit/${post.postId}`)}}>수정</EditBtn>
-              <DeleteBtn onClick={()=>{ deletePost(); }}>삭제</DeleteBtn>
-            </>
-          : null
-          } 
         </Div>
         <Div spaceEvenly width="15%">
           <Div width="45px" fontSize="12px" padding="8px">
@@ -90,6 +81,15 @@ const Article = (props, { loading }) => {
             <AiOutlineEye /> {props.postList.viewCount}회
           </Text>
           <Div fontSize="13px">몇일전</Div>
+        </Div>
+        <Div width="7%" flexStart>
+          {is_login && postUserId === userId ?
+            <>
+              <EditBtn onClick={()=>{ editModePost(); history.push(`/postDetail/edit/${post.postId}`)}}>수정</EditBtn>
+              <DeleteBtn onClick={()=>{ deletePost(); }}>삭제</DeleteBtn>
+            </>
+          : null
+          } 
         </Div>
       </Wrap>
     </React.Fragment>

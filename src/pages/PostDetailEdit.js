@@ -9,7 +9,7 @@ import { actionCreators as imageActions } from '../redux/modules/image';
 
 import { Header } from '../components/core';
 import { Text, Div, Button } from '../components/ui';
-import { addPostDB } from '../redux/modules/board';
+import { editPostDB } from '../redux/modules/board';
 import { getPostRawDataDB } from '../redux/modules/board';
 import { initialRawData } from '../redux/modules/board';
 
@@ -36,16 +36,19 @@ const PostDetailEdit = (props) => {
     setPurposePick(e.target.value);
   };
 
-  const submit = () => {
-    if (!title || !nation || !content) {
-      window.alert('내용을 입력해주세요!');
+  const editPost = () => {
+    if (!title && !nation && !content) {
+      window.alert('내용을 수정해주세요!');
     } else {
-      dispatch(addPostDB({formData, token}));
-      window.alert('글쓰기 완료!');
+      dispatch(editPostDB({formData, token}));
+      window.alert('게시물 수정 완료!');
       history.push('/board');
     }
   };
-
+  
+  // params 값
+  const postId = props.match.params.postId;
+  
   // 이미지 전달할 코드
   const fileInput = useRef(null);
   const formData = new FormData();
@@ -55,6 +58,7 @@ const PostDetailEdit = (props) => {
     formData.append('content', content);
     formData.append('continent', landPick);
     formData.append('target', purposePick);
+    formData.append('postId', postId);
     formData.append(
       'image',
       fileInput.current ? fileInput.current.files[0] : null
@@ -71,8 +75,6 @@ const PostDetailEdit = (props) => {
     };
   };
 
-  // params 값
-  const postId = props.match.params.postId;
   const rawData = useSelector(state => state.board.rawData);
   console.log(postId, rawData);
   
@@ -240,11 +242,11 @@ const PostDetailEdit = (props) => {
                 padding="10px"
                 border="1px solid #000"
                 _onClick={() => {
-                  submit();
+                  editPost();
                 }}
                 backgroundColor="#fff"
               >
-                등록하기
+                변경하기
               </Button>
             </Div>
           </Article>

@@ -97,22 +97,28 @@ export const getPostRawDataDB = createAsyncThunk(
 )
 
 
-// export const editPostDB = createAsyncThunk(
-//   'edit/postDB',
-//   async (data, thunkAPI) => {
-//     console.log(data);
-//     try {
-//       const res = await axios.patch(
-//         `https://a-fo-back.shop/post/update/${data}`, 
-//       )
-//       console.log(res);
-//       return res;
-//     } catch (error) {
-//       console.log(error);
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// )
+export const editPostDB = createAsyncThunk(
+  'edit/postDB',
+  async (formData, thunkAPI) => {
+    console.log(formData);
+    try {
+      const res = await axios.patch(
+        `https://a-fo-back.shop/post/update`, formData.formData, 
+        {
+          headers: {
+            Authorization: formData.token,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
 
 export const boardSlice = createSlice({
   name: 'board',
@@ -195,6 +201,18 @@ export const boardSlice = createSlice({
         state.rawData = action.payload.data.postList;
       })
       .addCase(getPostRawDataDB.rejected, (state, action) => {
+        state.loading = false;
+      })
+
+      // -----게시물 수정완료
+      .addCase(editPostDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(editPostDB.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload);
+      })
+      .addCase(editPostDB.rejected, (state, action) => {
         state.loading = false;
       })
   },

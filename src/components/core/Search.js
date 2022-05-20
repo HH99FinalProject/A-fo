@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { getPostSearchDB } from '../../redux/modules/board';
 import { Button, Div, Image, Input, Text } from '../ui';
+import { HiOutlineSearch } from 'react-icons/hi';
 
 
 
@@ -41,13 +42,16 @@ const Search = () => {
       margin="40px auto 50px"
       padding="10px"
       alignItems="center">
-      <form ref={formRef} onSubmit={onSubmit} style={{width: "70%"}}>  
+        <Div margin="0 0 0 2%">
+          <HiOutlineSearch size={25} color="#fff" />
+        </Div>
+      <form ref={formRef} onSubmit={onSubmit} style={{width: "68%"}}>  
         <input
           ref={inputRef}
           style={{
             width: '100%',
             display: 'inline-block',
-            padding: '10px 15px',
+            padding: '10px 10px',
             fontSize: '20px',
             border: '1px solid #000',
             background: '#d2dfff',
