@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 
@@ -17,6 +17,7 @@ const Detail = () => {
   const vTarget = useSelector((state) => state.target.vTarget);
   const purpose = useSelector((state) => state.target.onePickTargetNameK);
   const targetDetail = useSelector((state) => state.target.countryList);
+  const targetIcon = targetDetail?.map((t) => t.purposeImg);
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
@@ -31,33 +32,27 @@ const Detail = () => {
   };
 
   // -----스크롤 이벤트 시작
-  const [firstScrollY, setFirstScrollY] = React.useState(0);
-  const [secondScrollY, setSecondScrollY] = React.useState(0);
   const [targetStatus, setTargetStatus] = React.useState(false);
   const [btnStatus, setBtnStatus] = React.useState(false);
-
   // 스크롤시 생기는 요소
   const handleFollow = () => {
-    if (firstScrollY > 185) {
-      setFirstScrollY(window.pageYOffset);
+    if (window.pageYOffset > 185 && !targetStatus) {
       setTargetStatus(true);
       setBtnStatus(true);
-    } else {
-      setFirstScrollY(window.pageYOffset);
+    } else if (window.pageYOffset <= 185 && targetStatus) {
       setTargetStatus(false);
       setBtnStatus(false);
     }
   };
-
   // 클릭시 상단으로 가기
   const handleTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-    setSecondScrollY(0);
     setBtnStatus(false);
   };
+  // 이벤트 적용
   React.useEffect(() => {
     const watch = () => {
       window.addEventListener('scroll', handleFollow);
@@ -68,6 +63,13 @@ const Detail = () => {
     };
   });
   // -----스크롤 이벤트 종료
+
+  // 탭메뉴ref
+  const infoRef = useRef('ㅎㅇ');
+  const refClick = () => {
+    console.log(infoRef);
+    infoRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <React.Fragment>
@@ -143,7 +145,7 @@ const Detail = () => {
       {/* 나라별 경로 끝 */}
 
       {/* 탭메뉴 */}
-      <TabMenu />
+      <TabMenu refClick={refClick} />
       {/* 탭메뉴 */}
 
       {/* 정보 시작 */}
@@ -162,6 +164,12 @@ const Detail = () => {
               backgroundColor="#9FBAFF"
               borderBottom="1px solid #0031DE"
             >
+              <Div row position="fixed" top="5px" left="70px" padding="5px 0px">
+                <Image icon src={targetIcon[0]} />
+                <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
+                  {purpose}
+                </Text>
+              </Div>
               <Div row width="1400px" height="60px">
                 {targetDetail.map((v, i) => {
                   return (
@@ -302,6 +310,7 @@ const Detail = () => {
                 vTarget={vTarget}
                 vCountry={vCountry}
                 isOpen
+                ref={infoRef}
               />
             );
           } else {
@@ -311,6 +320,7 @@ const Detail = () => {
                 infoTitle={t}
                 vTarget={vTarget}
                 vCountry={vCountry}
+                ref={infoRef}
               />
             );
           }
@@ -507,14 +517,12 @@ const Detail = () => {
       {/* 상단으로 가기 시작 */}
       {btnStatus && (
         <Button
-          className={btnStatus ? 'topBtn active' : 'topBtn'}
-          backgroundColor="#fff"
           is_float
           _onClick={() => {
             handleTop();
           }}
         >
-          <MdOutlineKeyboardArrowUp size={33} />
+          <MdOutlineKeyboardArrowUp size={30} color="#0031DE" />
         </Button>
       )}
       {/* 상단으로 가기 끝 */}

@@ -192,6 +192,7 @@ const FloatButton = styled.button`
   border-radius: 50%;
   font-size: 20px;
   color: black;
+  border: 1px solid #0031de;
 `;
 
 const TagBtn = styled.button`

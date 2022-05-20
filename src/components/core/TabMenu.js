@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Button, Div, Image, Input, Text } from '../ui';
 
-const TabMenu = () => {
+const TabMenu = (props) => {
   const dispatch = useDispatch();
   const infoList = ['비자', '은행', '시차', '교통', '언어', '통신'];
 
@@ -16,7 +16,7 @@ const TabMenu = () => {
         row
         width="1400px"
         height="40px"
-        margin="60px auto 0px auto"
+        margin="50px auto 30px auto"
         backgroundColor="#B6CBFF"
       >
         <ContinentBtn
@@ -51,6 +51,43 @@ const TabMenu = () => {
     );
   } else {
     return (
+      // <Div
+      //   row
+      //   width="100%"
+      //   height="60px"
+      //   margin="60px auto 30px auto"
+      //   backgroundColor="#D2DFFF"
+      //   border="1px solid #0031DE"
+      // >
+      //   {infoList.map((v, i) => {
+      //     return v === '비자' ? (
+      //       <PurposeBtn key={v + i} id="1">
+      //         {v}
+      //       </PurposeBtn>
+      //     ) : v === '은행' ? (
+      //       <PurposeBtn key={v + i} id="2" onClick={() => {}}>
+      //         {v}
+      //       </PurposeBtn>
+      //     ) : v === '시차' ? (
+      //       <PurposeBtn key={v + i} id="3" onClick={() => {}}>
+      //         {v}
+      //       </PurposeBtn>
+      //     ) : v === '교통' ? (
+      //       <PurposeBtn key={v + i} id="4" onClick={() => {}}>
+      //         {v}
+      //       </PurposeBtn>
+      //     ) : v === '언어' ? (
+      //       <PurposeBtn key={v + i} id="5" onClick={() => {}}>
+      //         {v}
+      //       </PurposeBtn>
+      //     ) : (
+      //       // 마지막 통신
+      //       <PurposeBtn key={v + i} id="6" onClick={() => {}}>
+      //         {v}
+      //       </PurposeBtn>
+      //     );
+      //   })}
+      // </Div>
       <Div
         row
         width="100%"
@@ -60,27 +97,8 @@ const TabMenu = () => {
         border="1px solid #0031DE"
       >
         {infoList.map((v, i) => {
-          return v === '비자' ? (
-            <PurposeBtn key={v + i}>{v}</PurposeBtn>
-          ) : v === '통신' ? (
-            <PurposeBtn key={v + i} onClick={() => {}}>
-              {v}
-            </PurposeBtn>
-          ) : v === '은행' ? (
-            <PurposeBtn key={v + i} onClick={() => {}}>
-              {v}
-            </PurposeBtn>
-          ) : v === '언어' ? (
-            <PurposeBtn key={v + i} onClick={() => {}}>
-              {v}
-            </PurposeBtn>
-          ) : v === '시차' ? (
-            <PurposeBtn key={v + i} onClick={() => {}}>
-              {v}
-            </PurposeBtn>
-          ) : (
-            // 마지막 교통
-            <PurposeBtn key={v + i} onClick={() => {}}>
+          return (
+            <PurposeBtn key={v + i} onClick={props.refClick}>
               {v}
             </PurposeBtn>
           );

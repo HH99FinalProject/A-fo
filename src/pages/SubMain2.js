@@ -1,4 +1,5 @@
 import React from 'react';
+import { debounce, throttle } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { targetSub1DB } from '../redux/modules/target';
@@ -18,6 +19,9 @@ const SubMain2 = () => {
   const countryData_vTarget = useSelector(
     (state) => state.target.purpose?.land
   );
+  const description = useSelector(
+    (state) => state.target.purpose?.description
+  )?.split('A');
   const countryData_vCountry = useSelector((state) => state.country.land);
 
   // Sub1에서 목적 선택시 나라 종류
@@ -78,26 +82,24 @@ const SubMain2 = () => {
   };
 
   // -----스크롤 이벤트
-  const [scrollY, setScrollY] = React.useState(0);
   const [btnStatus, setBtnStatus] = React.useState(false);
+  // 스크롤시 생기는 요소
   const handleFollow = () => {
-    setScrollY(window.pageYOffset);
-    if (scrollY > 200) {
+    if (window.pageYOffset > 200 && !btnStatus) {
       setBtnStatus(true);
-    } else {
+    } else if (window.pageYOffset <= 200 && btnStatus) {
       setBtnStatus(false);
     }
   };
-
+  // 클릭시 상단으로 가기
   const handleTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-    setScrollY(0);
     setBtnStatus(false);
   };
-
+  // 이벤트 적용
   React.useEffect(() => {
     const watch = () => {
       window.addEventListener('scroll', handleFollow);
@@ -171,26 +173,25 @@ const SubMain2 = () => {
         </Text>
         <hr
           style={{
-            width: '800px',
+            width: '700px',
             borderBottom: '4px solid #0031DE',
             margin: '20px 0px 30px 0px',
           }}
         />
-        {/* <Text
-          height="90px"
-          lineHeight="30px"
-          size="20px"
-          color="#0031DE"
-          center
-        >
-          <span style={{ fontWeight: 'bold' }}>워킹홀리데이란,</span> 국가들
-          간에 MOU를 맺어 만 30세까지의 청년들이 1년간
-          <br />
-          취업, 여행, 공부하며 해외 현지 생활, 문화, 언어 학습, 여행 등 경험할
-          수 있는 기회를 제공하는
-          <br />
-          청년 교환 이동성 프로그램(YMP, Youth Mobility Program)입니다.
-        </Text> */}
+        {vTarget &&
+          description?.map((v) => {
+            return (
+              <Text
+                height="35px"
+                lineHeight="35px"
+                size="20px"
+                color="#0031DE"
+                center
+              >
+                {v}
+              </Text>
+            );
+          })}
       </Div>
 
       {/* 탭메뉴 */}
@@ -198,7 +199,7 @@ const SubMain2 = () => {
 
       {/* 목적별 나라 리스트 */}
       {vTarget && (
-        <Div center width="1400px" margin="0px auto">
+        <Div center width="1400px" margin="0px auto 80px auto">
           {countryData_vTarget?.map((v, i, arr) => {
             return (
               <Div
@@ -242,11 +243,24 @@ const SubMain2 = () => {
                   {arr[i].emptyInfo?.map((e, j) => {
                     return (
                       <Div key={e + j} preparingCountry>
-                        <Image flag src={e.flag} />
-                        <Text size="16px" margin="20px 0px">
-                          {e.countryName}
-                        </Text>
-                        <Text size="16px">{e.engName}</Text>
+                        <Div
+                          center
+                          width="234px"
+                          height="234px"
+                          margin="123px 0px 0px 0px"
+                        >
+                          <Text size="22px" bold color="#3A3A3A">
+                            {e.countryName}
+                          </Text>
+                          <Text
+                            margin="25px 0px 40px 0px"
+                            size="12px"
+                            color="#3A3A3A"
+                          >
+                            {e.engName}
+                          </Text>
+                          <Image flag src={e.flag} />
+                        </Div>
                       </Div>
                     );
                   })}
@@ -302,11 +316,24 @@ const SubMain2 = () => {
                   {arr[i].emptyInfo?.map((e, j) => {
                     return (
                       <Div key={e + j} preparingCountry>
-                        <Image flag src={e.flag} />
-                        <Text size="16px" margin="20px 0px">
-                          {e.countryName}
-                        </Text>
-                        <Text size="16px">{e.engName}</Text>
+                        <Div
+                          center
+                          width="234px"
+                          height="234px"
+                          margin="123px 0px 0px 0px"
+                        >
+                          <Text size="22px" bold color="#3A3A3A">
+                            {e.countryName}
+                          </Text>
+                          <Text
+                            margin="25px 0px 40px 0px"
+                            size="12px"
+                            color="#3A3A3A"
+                          >
+                            {e.engName}
+                          </Text>
+                          <Image flag src={e.flag} />
+                        </Div>
                       </Div>
                     );
                   })}
@@ -326,7 +353,7 @@ const SubMain2 = () => {
             handleTop();
           }}
         >
-          <MdOutlineKeyboardArrowUp size={33} />
+          <MdOutlineKeyboardArrowUp size={30} color="#0031DE" />
         </Button>
       )}
       {/* 상단으로 가기 버튼 */}

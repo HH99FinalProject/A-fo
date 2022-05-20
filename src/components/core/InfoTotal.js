@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import Info from './Info';
@@ -6,7 +6,7 @@ import Info from './Info';
 import { Button, Div, Image, Input, Text } from '../ui';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
-const InfoTotal = (props) => {
+const InfoTotal = forwardRef(function InfoTotal(props, ref) {
   const visa = props.infoTitle === '비자';
   const bank = props.infoTitle === '은행';
   const time = props.infoTitle === '시차';
@@ -18,15 +18,15 @@ const InfoTotal = (props) => {
   const vTarget = props.vTarget;
   const targetDetail = useSelector((state) => state.target.countryList);
   const targetVisa = targetDetail?.map((v) => v.visa);
-  const targetInfo = targetDetail.map((x, i) => x.BaseInfo.baseInfo);
+  const targetInfo = targetDetail?.map((x, i) => x.BaseInfo.baseInfo);
 
   // 나라별 데이터
   const vCountry = props.vCountry;
   const countryDetail = useSelector((state) => state.country.countryList);
   const countryVisa = countryDetail?.map((v) => v.visa);
-  const countryInfo = countryDetail.map((x, i) => x.BaseInfo.baseInfo);
+  const countryInfo = countryDetail?.map((x, i) => x.BaseInfo.baseInfo);
 
-  //   토글
+  // 토글
   const isOpen = props.isOpen;
   const [toggle, setToggle] = React.useState(isOpen);
   const changeToggle = () => {
@@ -45,8 +45,10 @@ const InfoTotal = (props) => {
           width="1400px"
           backgroundColor="white"
           border="1px solid #0031DE"
+          ref={ref}
         >
           {/* 토글 */}
+
           <Div
             row
             width="100%"
@@ -56,13 +58,13 @@ const InfoTotal = (props) => {
             _onClick={() => {
               changeToggle();
             }}
-            // ref={ref}
           >
             <Text width="auto" margin="0px 5px" size="25px" bold>
               {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
           </Div>
+
           {/* 토글 */}
 
           {/* 내용 */}
@@ -128,7 +130,7 @@ const InfoTotal = (props) => {
 
       {/* 나라별 공통정보 형태 */}
       {vCountry && !visa && (
-        <Div center width="1400px" border="1px solid #0031DE">
+        <Div center width="1400px" border="1px solid #0031DE" ref={ref}>
           {/* 토글 */}
           <Div
             row
@@ -189,6 +191,6 @@ const InfoTotal = (props) => {
       )}
     </React.Fragment>
   );
-};
+});
 
 export default InfoTotal;
