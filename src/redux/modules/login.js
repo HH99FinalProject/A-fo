@@ -8,6 +8,7 @@ export const kakaoLoginDB = createAsyncThunk(
       const res = await axios.get(
         `https://a-fo-back.shop/oauth/kakao/callback?code=${code}`
       );
+      console.log(res)
       window.location.replace('/');
       return res.data;
     } catch (error) {
