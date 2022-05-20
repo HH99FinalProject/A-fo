@@ -357,7 +357,7 @@ const Box = styled.div`
     color: ${(props) => props.colorHover};
     ${(props) =>
       props.transHover
-        ? `transform: translate(0px, -50px);  transition:transform 0.6s;`
+        ? `transform: translate(0px, -50px);  transition:transform 0.7s;`
         : ''};
     ${(props) =>
       props.slow ? `animation:slow 3s 2s ease-out forwards; ` : ''};
@@ -393,8 +393,8 @@ const Bookmark = styled.div`
   justify-content: center;
   width: 150px;
   height: auto;
-  background-color: white;
-  border: 1px solid black;
+  background-color: #dcffaf;
+  border: 1px solid #5e852c;
 `;
 
 const OverlayModal = styled.div`
@@ -449,10 +449,9 @@ const BottomSheet = styled.div`
 `;
 
 const PreparingCountry = styled.div`
-  display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 234px;
   height: 234px;
   margin: -1px 0px 0px -1px;

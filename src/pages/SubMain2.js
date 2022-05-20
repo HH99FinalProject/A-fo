@@ -173,7 +173,7 @@ const SubMain2 = () => {
         </Text>
         <hr
           style={{
-            width: '700px',
+            width: '650px',
             borderBottom: '4px solid #0031DE',
             margin: '20px 0px 30px 0px',
           }}
@@ -243,17 +243,12 @@ const SubMain2 = () => {
                   {arr[i].emptyInfo?.map((e, j) => {
                     return (
                       <Div key={e + j} preparingCountry>
-                        <Div
-                          center
-                          width="234px"
-                          height="234px"
-                          margin="123px 0px 0px 0px"
-                        >
+                        <Div center width="234px" height="340px">
                           <Text size="22px" bold color="#3A3A3A">
                             {e.countryName}
                           </Text>
                           <Text
-                            margin="25px 0px 40px 0px"
+                            margin="35px 0px 45px 0px"
                             size="12px"
                             color="#3A3A3A"
                           >
@@ -316,17 +311,12 @@ const SubMain2 = () => {
                   {arr[i].emptyInfo?.map((e, j) => {
                     return (
                       <Div key={e + j} preparingCountry>
-                        <Div
-                          center
-                          width="234px"
-                          height="234px"
-                          margin="123px 0px 0px 0px"
-                        >
+                        <Div center width="234px" height="340px">
                           <Text size="22px" bold color="#3A3A3A">
                             {e.countryName}
                           </Text>
                           <Text
-                            margin="25px 0px 40px 0px"
+                            margin="35px 0px 45px 0px"
                             size="12px"
                             color="#3A3A3A"
                           >

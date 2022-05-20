@@ -49,17 +49,11 @@ const CountryCard = (props) => {
             sendAddCountry();
           }}
         >
-          <Div
-            center
-            width="234px"
-            height="234px"
-            margin="63px 0px 0px 0px"
-            transHover
-          >
+          <Div center width="234px" height="345px" transHover>
             <Text size="22px" bold color="#3A3A3A">
               {props.countryName}
             </Text>
-            <Text margin="25px 0px 40px 0px" size="16px" color="#3A3A3A">
+            <Text margin="35px 0px 45px 0px" size="16px" color="#3A3A3A">
               {props.engName}
             </Text>
             <Image flag src={props.flag} />
@@ -88,17 +82,11 @@ const CountryCard = (props) => {
             });
           }}
         >
-          <Div
-            center
-            width="234px"
-            height="234px"
-            margin="63px 0px 0px 0px"
-            transHover
-          >
+          <Div center width="234px" height="345px" transHover>
             <Text size="22px" bold color="#3A3A3A">
               {props.countryName}
             </Text>
-            <Text margin="25px 0px 40px 0px" size="16px" color="#3A3A3A">
+            <Text margin="35px 0px 45px 0px" size="16px" color="#3A3A3A">
               {props.engName}
             </Text>
             <Image flag src={props.flag} />

@@ -13,7 +13,7 @@ ${reset};
 };
 
 html{
-    font-family: "";
+    font-family: "regular";
     background-color:#9FBAFF;
 }
 
