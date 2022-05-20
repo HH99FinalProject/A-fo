@@ -53,14 +53,13 @@ const Search = () => {
             display: 'inline-block',
             padding: '10px 10px',
             fontSize: '20px',
-            border: '1px solid #000',
             background: '#d2dfff',
             outline: 'none',
           }}
           placeholder="검색어를 입력해주세요"
         />
       </form>
-      <Div>
+      <Div backgroundColor="#9fbaff">
         <Select onChange={continentSelect} defaultValue='모든대륙'>
           <option>모든대륙</option>
           <option>아시아</option>
@@ -88,10 +87,12 @@ const Select = styled.select`
   font-size: 14px;
   border: none;
   background: #d2dfff;
+  color: #fff;
   &:focus {
     border: none;
   }
   option {
     background: #fff;
+    color: #fff;
   }
 `;

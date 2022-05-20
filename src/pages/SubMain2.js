@@ -321,7 +321,6 @@ const SubMain2 = () => {
       {/* 상단으로 가기 버튼 */}
       {btnStatus && (
         <Button
-          className={btnStatus ? 'topBtn active' : 'topBtn'}
           is_float
           _onClick={() => {
             handleTop();
