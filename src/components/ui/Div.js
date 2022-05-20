@@ -48,6 +48,7 @@ const Div = (props) => {
     flexFlow,
     flexWrap,
     flexStart,
+    flexColumn,
     flexEnd,
     center,
     row,
@@ -66,6 +67,7 @@ const Div = (props) => {
     preparingCountry,
     fadein,
     slow,
+    transHover,
     BGHover,
     _onClick,
   } = props;
@@ -116,6 +118,7 @@ const Div = (props) => {
     flexFlow,
     flexWrap,
     flexStart,
+    flexColumn,
     flexEnd,
     center,
     row,
@@ -134,6 +137,7 @@ const Div = (props) => {
     preparingCountry,
     fadein,
     slow,
+    transHover,
     BGHover,
   };
   if (bookmark) {
@@ -239,6 +243,7 @@ Div.defaultProps = {
   flexFlow: false,
   flexWrap: false,
   flexStart: false,
+  flexColumn: false,
   flexEnd: false,
   center: false,
   row: false,
@@ -256,6 +261,7 @@ Div.defaultProps = {
   preparingCountry: false,
   fadein: false,
   slow: false,
+  transHover: false,
   BGHover: false,
   _onClick: () => {},
 };
@@ -284,6 +290,10 @@ const Box = styled.div`
   ${(props) =>
     props.flexStart
       ? 'display:flex; flex-direction:row; align-items:center; justify-content:flex-start;'
+      : ''};
+  ${(props) =>
+    props.flexColumn
+      ? 'display:flex; flex-direction:column; align-items:start; justify-content:center;'
       : ''};
   ${(props) =>
     props.flexEnd
@@ -346,8 +356,12 @@ const Box = styled.div`
     opacity: ${(props) => props.opacity};
     color: ${(props) => props.colorHover};
     ${(props) =>
+      props.transHover
+        ? `transform: translate(0px, -50px);  transition:transform 0.6s;`
+        : ''};
+    ${(props) =>
       props.slow ? `animation:slow 3s 2s ease-out forwards; ` : ''};
-    ${(props) => (props.fadein ? `animation:fadein 0.5s ease-in-out;` : '')};
+    ${(props) => (props.fadein ? `animation:fadein 1s ease-in-out;` : '')};
     @keyframes slow {
       0% {
         opacity: 0;
@@ -359,11 +373,10 @@ const Box = styled.div`
     @keyframes fadein {
       0% {
         opacity: 0;
-        transform: translateY(-100px);
+        transform: translateY(-20px);
       }
       100% {
         opacity: 1;
-        transform: none;
       }
     }
   }
@@ -446,6 +459,7 @@ const PreparingCountry = styled.div`
   background-color: #d5d5d5;
   border: 1px solid #0031de;
   opacity: 0.5;
+  overflow: hidden;
 `;
 
 export default Div;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { throttle } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../../redux/configureStore';
 import {
@@ -33,28 +34,36 @@ const CountryCard = (props) => {
       {/* 목적별 시작 */}
       {vTarget && (
         <Div
-          center
           width="234px"
           height="234px"
           margin="-1px 0px 0px -1px"
           backgroundColor={backgroundColor}
+          overflow="hidden"
           border="1px solid #0031DE"
           cursor="pointer"
           BGHover="#DCFFAF"
-          transition="all 0.3s"
+          transition="all 0.6s"
           _onClick={() => {
-            Select();
+            // Select();
             props.showBottomSheet();
             sendAddCountry();
           }}
         >
-          <Text size="18px" bold color="#3A3A3A">
-            {props.countryName}
-          </Text>
-          <Text margin="20px 0px" size="16px" color="#3A3A3A">
-            {props.engName}
-          </Text>
-          <Image flag src={props.flag} />
+          <Div
+            center
+            width="234px"
+            height="234px"
+            margin="63px 0px 0px 0px"
+            transHover
+          >
+            <Text size="22px" bold color="#3A3A3A">
+              {props.countryName}
+            </Text>
+            <Text margin="25px 0px 40px 0px" size="16px" color="#3A3A3A">
+              {props.engName}
+            </Text>
+            <Image flag src={props.flag} />
+          </Div>
         </Div>
       )}
       {/* 목적별 끝 */}
@@ -62,15 +71,15 @@ const CountryCard = (props) => {
       {/* 나라별 */}
       {vCountry && (
         <Div
-          center
           width="234px"
           height="234px"
           margin="-1px 0px 0px -1px"
           backgroundColor="#B6CBFF"
+          overflow="hidden"
           border="1px solid #0031DE"
           cursor="pointer"
           BGHover="#DCFFAF"
-          transition="all 0.3s"
+          transition="all 0.6s"
           _onClick={() => {
             dispatch(setOnePickCountryNameReducer(countryName));
             dispatch(countrySub2DB(countryName));
@@ -79,13 +88,21 @@ const CountryCard = (props) => {
             });
           }}
         >
-          <Text size="16px" color="#3A3A3A">
-            {props.countryName}
-          </Text>
-          <Text margin="20px 0px" size="16px" color="#3A3A3A">
-            {props.engName}
-          </Text>
-          <Image flag src={props.flag} />
+          <Div
+            center
+            width="234px"
+            height="234px"
+            margin="63px 0px 0px 0px"
+            transHover
+          >
+            <Text size="22px" bold color="#3A3A3A">
+              {props.countryName}
+            </Text>
+            <Text margin="25px 0px 40px 0px" size="16px" color="#3A3A3A">
+              {props.engName}
+            </Text>
+            <Image flag src={props.flag} />
+          </Div>
         </Div>
       )}
       {/* 나라별 끝 */}

@@ -11,6 +11,10 @@ const Info = (props) => {
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
+  const countryDetail = useSelector((state) => state.country.countryList);
+  const countryInfo = countryDetail?.map((x, i) => x.BaseInfo.baseInfo);
+
+  React.useEffect(() => {});
 
   return (
     <>
@@ -57,7 +61,7 @@ const Info = (props) => {
           {/* <Button bookmarkBtn complete></Button> */}
           {(vTarget
             ? props[props.index]
-            : props.countryInfo[props.index]
+            : props?.countryInfo[props.index]
           ).info?.map((l, i) => {
             return (
               <TitleBox key={l + i}>
