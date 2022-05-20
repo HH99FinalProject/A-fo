@@ -106,7 +106,7 @@ const Main = () => {
                   width="65px"
                   height="60px"
                   src={mainTarget}
-                  size="conver"
+                  size="cover"
                   repeat="no-repeat"
                   position="center"
                 />

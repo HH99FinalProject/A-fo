@@ -19,6 +19,7 @@ const Image = (props) => {
     repeat,
     route,
     flag,
+    icon,
     cursor,
   } = props;
 
@@ -37,6 +38,7 @@ const Image = (props) => {
     repeat,
     route,
     flag,
+    icon,
     cursor,
   };
 
@@ -56,6 +58,14 @@ const Image = (props) => {
     return (
       <React.Fragment>
         <Flag {...styles}></Flag>
+      </React.Fragment>
+    );
+  }
+
+  if (icon) {
+    return (
+      <React.Fragment>
+        <Icon {...styles}></Icon>
       </React.Fragment>
     );
   }
@@ -90,6 +100,7 @@ Image.defaultProps = {
   repeat: false,
   route: false,
   flag: false,
+  icon: false,
   cursor: '',
 };
 
@@ -146,6 +157,17 @@ const Flag = styled.div`
   background-size: 'contain';
   background-repeat: no-repeat;
   background-position: center;
+`;
+
+const Icon = styled.div`
+  width: 40px;
+  height: 60px;
+  margin: ${(props) => props.margin};
+  background-image: url('${(props) => props.src}');
+  background-size: 'contain';
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid black;
 `;
 
 // //화살표
