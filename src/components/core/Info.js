@@ -12,9 +12,15 @@ const Info = (props) => {
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
   const countryDetail = useSelector((state) => state.country.countryList);
-  const countryInfo = countryDetail?.map((x, i) => x.BaseInfo.baseInfo);
+  const _countryInfo = countryDetail?.map((x, i) => x.BaseInfo.baseInfo);
 
-  React.useEffect(() => {});
+  React.useEffect(() => {
+    if (props.bank) {
+      props.countryInfo = undefined
+        ? (props.countryInfo = _countryInfo[0])
+        : '';
+    }
+  }, []);
 
   return (
     <>
