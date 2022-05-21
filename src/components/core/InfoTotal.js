@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { useRef, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import Info from './Info';
@@ -35,6 +35,11 @@ const InfoTotal = forwardRef(function InfoTotal(props, ref) {
 
   // const scroll = useSelector((state) => state.scroll.scroll);
   // const ref = React.forwardRef((props, ref) => {});
+
+  // 높이값 구하기
+  const [height, setHeight] = React.useState(0);
+  const heightRef = useRef('null');
+  console.log(heightRef.current.height);
 
   return (
     <React.Fragment>
@@ -76,6 +81,8 @@ const InfoTotal = forwardRef(function InfoTotal(props, ref) {
               alignItems="flex-start"
               justifyContent="space-between"
               borderTop="1px solid #0031DE"
+              height={height}
+              ref={heightRef}
             >
               {vTarget && (
                 <>
