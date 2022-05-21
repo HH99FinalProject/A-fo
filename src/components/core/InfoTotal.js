@@ -6,7 +6,7 @@ import Info from './Info';
 import { Button, Div, Image, Input, Text } from '../ui';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
-const InfoTotal = forwardRef(function InfoTotal(props, ref) {
+const InfoTotal = (props) => {
   const visa = props.infoTitle === '비자';
   const bank = props.infoTitle === '은행';
   const time = props.infoTitle === '시차';
@@ -39,7 +39,7 @@ const InfoTotal = forwardRef(function InfoTotal(props, ref) {
   // 높이값 구하기
   const [height, setHeight] = React.useState(0);
   const heightRef = useRef('null');
-  console.log(heightRef.current.height);
+  // console.log(heightRef.current.height);
 
   return (
     <React.Fragment>
@@ -50,7 +50,7 @@ const InfoTotal = forwardRef(function InfoTotal(props, ref) {
           width="1400px"
           backgroundColor="white"
           border="1px solid #0031DE"
-          ref={ref}
+          // ref={ref}
         >
           {/* 토글 */}
 
@@ -137,7 +137,7 @@ const InfoTotal = forwardRef(function InfoTotal(props, ref) {
 
       {/* 나라별 공통정보 형태 */}
       {vCountry && !visa && (
-        <Div center width="1400px" border="1px solid #0031DE" ref={ref}>
+        <Div center width="1400px" border="1px solid #0031DE">
           {/* 토글 */}
           <Div
             row
@@ -198,6 +198,6 @@ const InfoTotal = forwardRef(function InfoTotal(props, ref) {
       )}
     </React.Fragment>
   );
-});
+};
 
 export default InfoTotal;

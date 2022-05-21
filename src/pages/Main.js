@@ -45,7 +45,7 @@ const Main = () => {
           width="1400px"
           margin="0 auto"
         >
-          <Div width="800px" margin="110px 0px">
+          <Div width="800px" margin="70px 0px">
             <Text
               width="320px"
               height="45px"
@@ -74,11 +74,12 @@ const Main = () => {
                 <span style={{ fontWeight: '900' }}>비교하기</span>
               </Text>
             </Div>
+            {/* <hr style={{ width: '600px' }} /> */}
             <Text
               height="35px"
               margin="20px 0px"
               bold
-              size="30px"
+              size="27px"
               color="white"
             >
               한 눈에 비교해 나에게 맞는 해외 생활을 찾아보세요.👀
