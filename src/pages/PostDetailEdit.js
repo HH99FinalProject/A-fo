@@ -15,15 +15,20 @@ import { initialRawData } from '../redux/modules/board';
 
 const PostDetailEdit = (props) => {
   const dispatch = useDispatch();
-
   const preview = useSelector((state) => state.image.preview);
   const token = useSelector((state => state.login.userInfo.token));
+  const rawData = useSelector(state => state.board.rawData);
+  // console.log(postId, rawData);
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [nation, setNation] = useState('');
   const [landPick, setLandPick] = useState('');
   const [purposePick, setPurposePick] = useState('');
+
+  const subTitleRef = useRef();
+  const titleRef = useRef();
+  const contentRef = useRef();
 
   // 내가 선택한 대륙별선택
   const myLandPick = (e) => {
@@ -48,22 +53,39 @@ const PostDetailEdit = (props) => {
   
   // params 값
   const postId = props.match.params.postId;
+
   
   // 이미지 전달할 코드
   const fileInput = useRef(null);
   const formData = new FormData();
   if (fileInput.current) {
-    formData.append('title', title);
-    formData.append('subTitle', nation);
-    formData.append('content', content);
-    formData.append('continent', landPick);
-    formData.append('target', purposePick);
+    title === '' ? formData.append('title', rawData?.title) 
+    : formData.append('title', title);
+    
+    nation === '' ? formData.append('subTitle', rawData?.subTitle)
+    : formData.append('subTitle', nation);
+
+    content === '' ? formData.append('content', rawData?.content)
+    : formData.append('content', content);
+
+    landPick === '' ? formData.append('continent', rawData?.continent)
+    : formData.append('continent', landPick)
+    
+    purposePick === '' ? formData.append('target', rawData?.target)
+    : formData.append('target', purposePick);
+
     formData.append('postId', postId);
+    formData.append('userName', rawData?.userName);
     formData.append(
       'image',
       fileInput.current ? fileInput.current.files[0] : null
     );
+    // 폼데이터 콘솔찍어보기
+    for (var pair of formData.entries()) { 
+      console.log(pair); 
+    }
   }
+  console.log(`title: ${title}`, `nation: ${nation}`, `content: ${content}`);
 
   // 이미지 프리뷰
   const changePreview = (e) => {
@@ -73,11 +95,7 @@ const PostDetailEdit = (props) => {
     reader.onloadend = () => {
       dispatch(imageActions.uploadImageDB(reader.result));
     };
-  };
-
-  const rawData = useSelector(state => state.board.rawData);
-  console.log(postId, rawData);
-  
+  };  
 
   React.useEffect(()=>{
     dispatch(getPostRawDataDB(postId));
@@ -85,6 +103,7 @@ const PostDetailEdit = (props) => {
     // rawData 초기화시켜주기 (수정할때 데이터 한박자 늦음)
     return () => {
       dispatch(initialRawData());
+      dispatch(imageActions.uploadImageDB(null));
     }
   }, [])
 
@@ -109,7 +128,7 @@ const PostDetailEdit = (props) => {
           <Article>
             <Div flexStart>
               <LandTarget>
-                <Div>대륙별 선택</Div>
+                <Div border="1px solid #000">대륙별 선택</Div>
                 <input
                   type="radio"
                   name="nation"
@@ -152,7 +171,7 @@ const PostDetailEdit = (props) => {
                 <label htmlFor="btn5">남미</label>
               </LandTarget>
               <PurposeTarget>
-                <Div>목적별 선택</Div>
+                <Div border="1px solid #000">목적별 선택</Div>
                 <input
                   type="radio"
                   name="purpose"
@@ -195,6 +214,7 @@ const PostDetailEdit = (props) => {
                 onChange={(e) => {
                   setNation(e.target.value);
                 }}
+                // ref={subTitleRef}
               />
             </Div>
             <Div position="relative">
@@ -205,6 +225,7 @@ const PostDetailEdit = (props) => {
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                // ref={titleRef}
               />
               {/* <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div> */}
             </Div>
@@ -246,7 +267,7 @@ const PostDetailEdit = (props) => {
                 }}
                 backgroundColor="#fff"
               >
-                변경하기
+                수정완료
               </Button>
             </Div>
           </Article>
@@ -277,7 +298,7 @@ const Article = styled.div`
 const LandTarget = styled.div`
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   Div {
     padding: 10px;
@@ -292,8 +313,11 @@ const LandTarget = styled.div`
     color: #fff;
     text-align: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     margin-right: 10px;
+  }
+  input[type='radio'] + label:hover {
+    color: #000;
   }
   input[type='radio']:checked + label {
     color: #000;
@@ -310,7 +334,7 @@ const LandTarget = styled.div`
 const PurposeTarget = styled.div`
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   Div {
     padding: 10px;
@@ -325,8 +349,11 @@ const PurposeTarget = styled.div`
     color: #fff;
     text-align: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     margin-right: 10px;
+  }
+  input[type='radio'] + label:hover {
+    color: #000;
   }
   input[type='radio']:checked + label {
     color: #000;
@@ -344,6 +371,7 @@ const PurposeTarget = styled.div`
 const Title = styled.input`
   background: #fff;
   margin: 20px 0;
+  border: 1px solid #000;
   width: 100%;
   font-size: 24px;
   padding: 15px;
@@ -353,6 +381,7 @@ const Title = styled.input`
 const Nation = styled.input`
   margin-top: 20px;
   font-size: 16px;
+  border: 1px solid #000;
   padding: 15px;
   border-radius: 0;
 `;
@@ -360,6 +389,7 @@ const Nation = styled.input`
 const Content = styled.textarea`
   width: 100%;
   height: 600px;
+  border: 1px solid #000;
   padding: 15px;
   border-radius: 0;
   font-size: 16px;

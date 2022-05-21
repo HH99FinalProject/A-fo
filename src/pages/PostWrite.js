@@ -57,6 +57,10 @@ const PostWrite = () => {
       'image',
       fileInput.current ? fileInput.current.files[0] : null
     );
+    // 폼데이터 콘솔찍기
+    // for (var pair of formData.entries()) {
+    //   console.log(pair);
+    // }
   }
 
   // 이미지 프리뷰
@@ -65,9 +69,17 @@ const PostWrite = () => {
     const file = fileInput.current.files[0];
     reader.readAsDataURL(file);
     reader.onloadend = () => {
+      console.log(reader.result);
       dispatch(imageActions.uploadImageDB(reader.result));
     };
   };
+
+  React.useEffect(()=>{
+    // 
+    return () => {
+      dispatch(imageActions.uploadImageDB(null));
+    }
+  }, [])
 
   return (
     <React.Fragment>
@@ -90,7 +102,7 @@ const PostWrite = () => {
           <Article>
             <Div flexStart>
               <LandTarget>
-                <Div>대륙별 선택</Div>
+                <Div border="1px solid #000">대륙별 선택</Div>
                 <input
                   type="radio"
                   name="nation"
@@ -133,7 +145,7 @@ const PostWrite = () => {
                 <label htmlFor="btn5">남미</label>
               </LandTarget>
               <PurposeTarget>
-                <Div>목적별 선택</Div>
+                <Div border="1px solid #000">목적별 선택</Div>
                 <input
                   type="radio"
                   name="purpose"
@@ -222,6 +234,7 @@ const PostWrite = () => {
               <Button
                 padding="10px"
                 border="1px solid #000"
+                bold
                 _onClick={() => {
                   submit();
                 }}
@@ -258,7 +271,7 @@ const Article = styled.div`
 const LandTarget = styled.div`
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   Div {
     padding: 10px;
@@ -273,8 +286,11 @@ const LandTarget = styled.div`
     color: #fff;
     text-align: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     margin-right: 10px;
+  }
+  input[type='radio'] + label:hover {
+    color: #000;
   }
   input[type='radio']:checked + label {
     color: #000;
@@ -291,7 +307,7 @@ const LandTarget = styled.div`
 const PurposeTarget = styled.div`
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   Div {
     padding: 10px;
@@ -306,8 +322,11 @@ const PurposeTarget = styled.div`
     color: #fff;
     text-align: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     margin-right: 10px;
+  }
+  input[type='radio'] + label:hover {
+    color: #000;
   }
   input[type='radio']:checked + label {
     color: #000;
@@ -324,6 +343,7 @@ const PurposeTarget = styled.div`
 
 const Title = styled.input`
   background: #fff;
+  border: 1px solid #000;
   margin: 20px 0;
   width: 100%;
   font-size: 24px;
@@ -333,6 +353,7 @@ const Title = styled.input`
 
 const Nation = styled.input`
   margin-top: 20px;
+  border: 1px solid #000;
   font-size: 16px;
   padding: 15px;
   border-radius: 0;
@@ -341,6 +362,7 @@ const Nation = styled.input`
 const Content = styled.textarea`
   width: 100%;
   height: 600px;
+  border: 1px solid #000;
   padding: 15px;
   border-radius: 0;
   font-size: 16px;

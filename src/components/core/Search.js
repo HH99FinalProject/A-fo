@@ -40,26 +40,26 @@ const Search = () => {
       backgroundColor="#d2dfff"
       border="1px solid #000"
       margin="40px auto 50px"
-      padding="10px"
+      // padding="10px"
       alignItems="center">
         <Div margin="0 0 0 2%">
           <HiOutlineSearch size={25} color="#fff" />
         </Div>
-      <form ref={formRef} onSubmit={onSubmit} style={{width: "68%"}}>  
+      <form ref={formRef} onSubmit={onSubmit} style={{width: "65%"}}>  
         <input
           ref={inputRef}
           style={{
             width: '100%',
             display: 'inline-block',
             padding: '10px 10px',
-            fontSize: '20px',
+            fontSize: '18px',
             background: '#d2dfff',
             outline: 'none',
           }}
           placeholder="검색어를 입력해주세요"
         />
       </form>
-      <Div backgroundColor="#9fbaff">
+      <Div backgroundColor="#9fbaff" borderLeft="1px solid #000" padding="10px">
         <Select onChange={continentSelect} defaultValue='모든대륙'>
           <option>모든대륙</option>
           <option>아시아</option>
@@ -86,13 +86,13 @@ const Select = styled.select`
   padding: 10px;
   font-size: 14px;
   border: none;
-  background: #d2dfff;
+  background: #9fbaff;
   color: #fff;
   &:focus {
     border: none;
   }
   option {
-    background: #fff;
-    color: #fff;
+    background: #9fbaff;
+    font-size:15px;
   }
 `;
