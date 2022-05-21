@@ -8,6 +8,7 @@ import Detail from '../pages/Detail';
 import Main from '../pages/Main';
 import MyPage from '../pages/MyPage';
 import PostDetail from '../pages/PostDetail';
+import PostDetailEdit from '../pages/PostDetailEdit';
 import PostWrite from '../pages/PostWrite';
 import SubMain1 from '../pages/SubMain1';
 import SubMain2 from '../pages/SubMain2';
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/Detail" component={Detail} />
         <Route exact path="/MyPage" component={MyPage} />
         <Route exact path="/PostDetail/:postId" component={PostDetail} />
+        <Route exact path="/PostDetail/edit/:postId" component={PostDetailEdit} />
         <Route exact path="/PostWrite" component={PostWrite} />
         <Route exact path="/SubMain1" component={SubMain1} />
         <Route exact path="/SubMain2" component={SubMain2} />

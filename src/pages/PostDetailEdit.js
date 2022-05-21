@@ -9,19 +9,26 @@ import { actionCreators as imageActions } from '../redux/modules/image';
 
 import { Header } from '../components/core';
 import { Text, Div, Button } from '../components/ui';
-import { addPostDB } from '../redux/modules/board';
+import { editPostDB } from '../redux/modules/board';
+import { getPostRawDataDB } from '../redux/modules/board';
+import { initialRawData } from '../redux/modules/board';
 
-const PostWrite = () => {
+const PostDetailEdit = (props) => {
   const dispatch = useDispatch();
-
   const preview = useSelector((state) => state.image.preview);
   const token = useSelector((state => state.login.userInfo.token));
+  const rawData = useSelector(state => state.board.rawData);
+  // console.log(postId, rawData);
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [nation, setNation] = useState('');
   const [landPick, setLandPick] = useState('');
   const [purposePick, setPurposePick] = useState('');
+
+  const subTitleRef = useRef();
+  const titleRef = useRef();
+  const contentRef = useRef();
 
   // 내가 선택한 대륙별선택
   const myLandPick = (e) => {
@@ -34,34 +41,51 @@ const PostWrite = () => {
     setPurposePick(e.target.value);
   };
 
-  const submit = () => {
-    if (!title || !nation || !content) {
-      window.alert('내용을 입력해주세요!');
+  const editPost = () => {
+    if (!title && !nation && !content) {
+      window.alert('내용을 수정해주세요!');
     } else {
-      dispatch(addPostDB({formData, token}));
-      window.alert('글쓰기 완료!');
+      dispatch(editPostDB({formData, token}));
+      window.alert('게시물 수정 완료!');
       history.push('/board');
     }
   };
+  
+  // params 값
+  const postId = props.match.params.postId;
 
+  
   // 이미지 전달할 코드
   const fileInput = useRef(null);
   const formData = new FormData();
   if (fileInput.current) {
-    formData.append('title', title);
-    formData.append('subTitle', nation);
-    formData.append('content', content);
-    formData.append('continent', landPick);
-    formData.append('target', purposePick);
+    title === '' ? formData.append('title', rawData?.title) 
+    : formData.append('title', title);
+    
+    nation === '' ? formData.append('subTitle', rawData?.subTitle)
+    : formData.append('subTitle', nation);
+
+    content === '' ? formData.append('content', rawData?.content)
+    : formData.append('content', content);
+
+    landPick === '' ? formData.append('continent', rawData?.continent)
+    : formData.append('continent', landPick)
+    
+    purposePick === '' ? formData.append('target', rawData?.target)
+    : formData.append('target', purposePick);
+
+    formData.append('postId', postId);
+    formData.append('userName', rawData?.userName);
     formData.append(
       'image',
       fileInput.current ? fileInput.current.files[0] : null
     );
-    // 폼데이터 콘솔찍기
-    // for (var pair of formData.entries()) {
-    //   console.log(pair);
-    // }
+    // 폼데이터 콘솔찍어보기
+    for (var pair of formData.entries()) { 
+      console.log(pair); 
+    }
   }
+  console.log(`title: ${title}`, `nation: ${nation}`, `content: ${content}`);
 
   // 이미지 프리뷰
   const changePreview = (e) => {
@@ -69,14 +93,16 @@ const PostWrite = () => {
     const file = fileInput.current.files[0];
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      console.log(reader.result);
       dispatch(imageActions.uploadImageDB(reader.result));
     };
-  };
+  };  
 
   React.useEffect(()=>{
-    // 
+    dispatch(getPostRawDataDB(postId));
+
+    // rawData 초기화시켜주기 (수정할때 데이터 한박자 늦음)
     return () => {
+      dispatch(initialRawData());
       dispatch(imageActions.uploadImageDB(null));
     }
   }, [])
@@ -184,20 +210,22 @@ const PostWrite = () => {
               <Nation
                 placeholder="나라를 입력하세요."
                 maxLength={10}
-                value={nation}
+                defaultValue={rawData?.subTitle}
                 onChange={(e) => {
                   setNation(e.target.value);
                 }}
+                // ref={subTitleRef}
               />
             </Div>
             <Div position="relative">
               <Title
                 placeholder="제목을 입력하세요."
                 maxLength={30}
-                value={title}
+                defaultValue={rawData?.title}
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                // ref={titleRef}
               />
               {/* <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div> */}
             </Div>
@@ -206,7 +234,7 @@ const PostWrite = () => {
                 overflow="auto"
                 placeholder="내용을 입력하세요."
                 maxLength={500}
-                value={content}
+                defaultValue={rawData?.content}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
@@ -234,23 +262,22 @@ const PostWrite = () => {
               <Button
                 padding="10px"
                 border="1px solid #000"
-                bold
                 _onClick={() => {
-                  submit();
+                  editPost();
                 }}
                 backgroundColor="#fff"
               >
-                등록하기
+                수정완료
               </Button>
             </Div>
           </Article>
         </Div>
       </Div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default PostWrite;
+export default PostDetailEdit;
 
 const ReturnBtn = styled.button`
   float: right;
@@ -343,8 +370,8 @@ const PurposeTarget = styled.div`
 
 const Title = styled.input`
   background: #fff;
-  border: 1px solid #000;
   margin: 20px 0;
+  border: 1px solid #000;
   width: 100%;
   font-size: 24px;
   padding: 15px;
@@ -353,8 +380,8 @@ const Title = styled.input`
 
 const Nation = styled.input`
   margin-top: 20px;
-  border: 1px solid #000;
   font-size: 16px;
+  border: 1px solid #000;
   padding: 15px;
   border-radius: 0;
 `;

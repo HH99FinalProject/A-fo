@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { addCommentDB, getCommentDB } from '../redux/modules/comment';
 import { getPostDetailDB } from '../redux/modules/board';
+import moment from "moment"; 
+import "moment/locale/ko";
 
 import { Header, Comment } from '../components/core';
 import { Div, Button, Input, Text } from '../components/ui';
@@ -52,7 +54,7 @@ const PostDetail = (props) => {
   // 사진 미업로드시 랜덤사진5장 중 1개 띄우기
   // let num = Math.floor(Math.random() * 5) + 1;
   if(postDetail?.postImageUrl) {
-    var img = `https://a-fo-back.shop${postDetail?.postImageUrl}`;
+    var img = postDetail?.postImageUrl;
   } else {
     var img = `https://countryimage.s3.ap-northeast-2.amazonaws.com/no2.jpg`;
   }
@@ -109,8 +111,8 @@ const PostDetail = (props) => {
                   <Text>{postDetail?.User.userName}</Text>
                 </div>
                 <Div spaceEvenly>
-                  <Div fontSize="13px" width="50px">
-                    몇일전
+                  <Div fontSize="13px" width="160px">
+                    {moment(postDetail?.createdAt).fromNow()}
                   </Div>
                   <Text>
                     <AiOutlineEye /> {postDetail?.viewCount}회

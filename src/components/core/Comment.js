@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
+import moment from "moment"; 
+import "moment/locale/ko";
 
 import { deleteCommentDB, editCommentDB } from '../../redux/modules/comment';
 import { Div, Text } from '../ui';
@@ -32,15 +34,16 @@ const Comment = (props) => {
 
   const editComment = () => {
     if (changeComment === '') {
-      alert('댓글을 입력해주세요.')
+      alert('댓글을 수정해주세요.');
+    } else {
+      const data = {
+        comment: changeComment,
+        commentId: props.comment.commentId,
+        postId: props.comment.postId,
+      }
+      console.log(data);
+      dispatch(editCommentDB(data))
     }
-    const data = {
-      comment: changeComment,
-      commentId: props.comment.commentId,
-      postId: props.comment.postId,
-    }
-    console.log(data);
-    dispatch(editCommentDB(data))
   }
 
   return (
@@ -62,7 +65,7 @@ const Comment = (props) => {
         </Div>
         <Div width="10%">
           <Text textAlign="right" margin="0 30px 0 0">
-            {props.comment.updatedAt}
+            {moment(props.comment.updatedAt).fromNow()}
           </Text>
         </Div>
         {is_login && commentUserId === userId ?

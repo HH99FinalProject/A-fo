@@ -24,9 +24,23 @@ export const addPostDB = createAsyncThunk(
   }
 );
 
-export const getPostDB = createAsyncThunk('get/postDB', async (thunkAPI) => {
+export const getTotalReadDB = createAsyncThunk(
+  'get/postDB', async (data, thunkAPI) => {
   try {
     const res = await axios.get(`https://a-fo-back.shop/post/totalRead`);
+    console.log(res)
+    return res.data.postList;
+  } catch (error) {
+    console.log(error)
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+export const getPostSearchDB = createAsyncThunk(
+  'get/postDB', async (data, thunkAPI) => {
+    console.log(data)
+  try {
+    const res = await axios.get(`https://a-fo-back.shop/post/postSearch?searchWord=${data.keyWord}&continent=${data.selectContinent}&target=${data.selectPurpose}`);
     return res.data.postList;
   } catch (error) {
     console.log(error)
@@ -66,13 +80,37 @@ export const deletePostDB = createAsyncThunk(
   }
 )
 
+export const getPostRawDataDB = createAsyncThunk(
+  'get/postRawDataDB',
+  async (postId, thunkAPI) => {
+    console.log(postId);
+    try {
+      const res = await axios.get(
+        `https://a-fo-back.shop/post/updateRawData?postId=${postId}`,
+      )
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
+
+
 export const editPostDB = createAsyncThunk(
   'edit/postDB',
-  async (data, thunkAPI) => {
-    console.log(data);
+  async (formData, thunkAPI) => {
+    // console.log(formData.token);
     try {
-      const res = await axios.patch(
-        `https://a-fo-back.shop/post/update/${data}`, 
+      const res = await axios.post(
+        `https://a-fo-back.shop/post/update`, formData.formData, 
+        {
+          headers: {
+            Authorization: formData.token,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
       )
       console.log(res);
       return res;
@@ -86,7 +124,12 @@ export const editPostDB = createAsyncThunk(
 export const boardSlice = createSlice({
   name: 'board',
   initialState: {},
-  reducers: {},
+  reducers: {
+    // rawData 초기화 시켜주기 why? 수정할때 데이터가 한박자 늦음
+    initialRawData (state, action) {
+      state.rawData = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       // -----게시물 등록
@@ -98,21 +141,32 @@ export const boardSlice = createSlice({
       })
       .addCase(addPostDB.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error;
       })
+
       // -----전체게시물 불러오기
-      .addCase(getPostDB.pending, (state, action) => {
+      .addCase(getTotalReadDB.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(getPostDB.fulfilled, (state, action) => {
+      .addCase(getTotalReadDB.fulfilled, (state, action) => {
         state.postList = action.payload;
         console.log(state.postList)
         state.loading = false;
       })
-      .addCase(getPostDB.rejected, (state, action) => {
+      .addCase(getTotalReadDB.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error;
       })
+
+      // -----게시물 검색하기
+      // .addCase(getPostSearchDB.pending, (state, action) => {
+      //   state.loading = true;
+      // })
+      // .addCase(getPostSearchDB.fulfilled, (state, action) => {
+      //   state.loading = false;
+      // })
+      // .addCase(getPostSearchDB.rejected, (state, action) => {
+      //   state.loading = false;
+      // })
+      
       // -----세부게시물 불러오기
       .addCase(getPostDetailDB.pending, (state, action) => {
         state.loading = true;
@@ -124,9 +178,8 @@ export const boardSlice = createSlice({
       })
       .addCase(getPostDetailDB.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error;
-        console.log(state.error);
       })
+
       // -----게시물 삭제
       .addCase(deletePostDB.pending, (state, action) => {
         state.loading = true;
@@ -139,19 +192,33 @@ export const boardSlice = createSlice({
       .addCase(deletePostDB.rejected, (state, action) => {
         state.loading = false;
       })
-      // -----게시물 수정
-      // .addCase(deletePostDB.pending, (state, action) => {
-      //   state.loading = true;
-      // })
-      // .addCase(deletePostDB.fulfilled, (state, action) => {
-      //   state.loading = false;
-      // })
-      // .addCase(deletePostDB.rejected, (state, action) => {
-      //   state.loading = false;
-      // })
+
+      // -----게시물 수정모드 진입시에 받는 원본글 데이터
+      .addCase(getPostRawDataDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getPostRawDataDB.fulfilled, (state, action) => {
+        state.loading = false;
+        state.rawData = action.payload.data.postList;
+      })
+      .addCase(getPostRawDataDB.rejected, (state, action) => {
+        state.loading = false;
+      })
+
+      // -----게시물 수정완료
+      .addCase(editPostDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(editPostDB.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload);
+      })
+      .addCase(editPostDB.rejected, (state, action) => {
+        state.loading = false;
+      })
   },
 });
 
-export const { addPost, getPost, getPostDetail } = boardSlice.actions;
+export const { initialRawData } = boardSlice.actions;
 
 export default boardSlice;
