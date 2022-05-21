@@ -330,6 +330,6 @@ const Ul = styled.ul`
 const Li = styled.li`
   ${(props) => (props.ol ? 'list-style-type: decimal;' : 'list-style:none;')};
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 14px;
 `;

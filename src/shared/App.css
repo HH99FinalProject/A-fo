@@ -1,4 +1,9 @@
 @font-face {
-  font-family: '';
-  src: url('');
+  font-family: 'light';
+  src: url('../styles/fonts/Pretendard-Light.ttf');
+}
+
+@font-face {
+  font-family: 'regular';
+  src: url('../styles/fonts/Pretendard-Regular.ttf');
 }
