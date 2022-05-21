@@ -21,7 +21,8 @@ const Article = (props, { loading }) => {
   const formData = new FormData();
   formData.append('token', token);
   formData.append('postId', postId);
-
+  console.log(props.postList.createdAt);
+  console.log(props.postList);
   const deletePost = () => {
     if (window.confirm('정말로 삭제하시겠어요?') === true) {
       dispatch(deletePostDB(postId));
