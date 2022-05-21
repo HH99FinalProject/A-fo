@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { addCommentDB, getCommentDB } from '../redux/modules/comment';
 import { getPostDetailDB } from '../redux/modules/board';
+import moment from "moment"; 
+import "moment/locale/ko";
 
 import { Header, Comment } from '../components/core';
 import { Div, Button, Input, Text } from '../components/ui';
@@ -110,7 +112,7 @@ const PostDetail = (props) => {
                 </div>
                 <Div spaceEvenly>
                   <Div fontSize="13px" width="160px">
-                    {postDetail?.createdAt}
+                    {moment(postDetail?.createdAt).fromNow()}
                   </Div>
                   <Text>
                     <AiOutlineEye /> {postDetail?.viewCount}회

@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { history } from '../../redux/configureStore';
+import moment from "moment"; 
+import "moment/locale/ko";
 
 import { deleteCommentDB, editCommentDB } from '../../redux/modules/comment';
 import { Div, Text } from '../ui';
@@ -63,7 +65,7 @@ const Comment = (props) => {
         </Div>
         <Div width="10%">
           <Text textAlign="right" margin="0 30px 0 0">
-            {props.comment.updatedAt}
+            {moment(props.comment.updatedAt).fromNow()}
           </Text>
         </Div>
         {is_login && commentUserId === userId ?

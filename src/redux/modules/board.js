@@ -28,6 +28,7 @@ export const getTotalReadDB = createAsyncThunk(
   'get/postDB', async (data, thunkAPI) => {
   try {
     const res = await axios.get(`https://a-fo-back.shop/post/totalRead`);
+    console.log(res)
     return res.data.postList;
   } catch (error) {
     console.log(error)
@@ -100,9 +101,9 @@ export const getPostRawDataDB = createAsyncThunk(
 export const editPostDB = createAsyncThunk(
   'edit/postDB',
   async (formData, thunkAPI) => {
-    console.log(formData);
+    // console.log(formData.token);
     try {
-      const res = await axios.patch(
+      const res = await axios.post(
         `https://a-fo-back.shop/post/update`, formData.formData, 
         {
           headers: {
