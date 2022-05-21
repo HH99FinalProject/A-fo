@@ -160,14 +160,13 @@ const Flag = styled.div`
 `;
 
 const Icon = styled.div`
-  width: 40px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   margin: ${(props) => props.margin};
   background-image: url('${(props) => props.src}');
   background-size: 'contain';
   background-repeat: no-repeat;
   background-position: center;
-  border: 1px solid black;
 `;
 
 // //화살표

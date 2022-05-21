@@ -17,7 +17,7 @@ const Detail = () => {
   const vTarget = useSelector((state) => state.target.vTarget);
   const purpose = useSelector((state) => state.target.onePickTargetNameK);
   const targetDetail = useSelector((state) => state.target.countryList);
-  const targetIcon = targetDetail?.map((t) => t.purposeImg);
+  const targetIcon = targetDetail?.map((t) => t.purposeImgSmall);
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
@@ -65,7 +65,7 @@ const Detail = () => {
   // -----스크롤 이벤트 종료
 
   // 탭메뉴ref
-  const infoRef = useRef('ㅎㅇ');
+  const infoRef = useRef('스크롤');
   const refClick = () => {
     console.log(infoRef);
     infoRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -165,7 +165,7 @@ const Detail = () => {
               borderBottom="1px solid #0031DE"
             >
               <Div row position="fixed" top="5px" left="70px" padding="5px 0px">
-                <Image icon src={targetIcon[0]} />
+                <Image icon margin="5px 0px 0px 0px" src={targetIcon[0]} />
                 <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
                   {purpose}
                 </Text>
@@ -189,31 +189,39 @@ const Detail = () => {
               </Div>
             </Div>
           ) : (
-            <Div
-              center
-              position="relative"
-              width="100%"
-              margin="60px 0px 0px 0px"
-              padding="10px 0px"
-            >
-              <Div row width="1400px" height="60px">
-                {targetDetail.map((u, i) => {
-                  return (
-                    <Div key={i} row width="100%" height="60px">
-                      <Image flag src={u.flag} />
-                      <Text
-                        margin="0px 0px 0px 10px"
-                        size="30px"
-                        color="white"
-                        bold
-                      >
-                        {u.countryName}
-                      </Text>
-                    </Div>
-                  );
-                })}
+            <>
+              <Div
+                row
+                position="relative"
+                width="100%"
+                margin="60px 0px 30px 0px"
+                padding="10px 0px"
+              >
+                <Image flag src={targetIcon[0]} />
+                <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
+                  {purpose}
+                </Text>
               </Div>
-            </Div>
+              <Div center position="relative" width="100%" padding="10px 0px">
+                <Div row width="1400px" height="60px">
+                  {targetDetail.map((u, i) => {
+                    return (
+                      <Div key={i} row width="100%" height="60px">
+                        <Image flag src={u.flag} />
+                        <Text
+                          margin="0px 0px 0px 10px"
+                          size="30px"
+                          color="white"
+                          bold
+                        >
+                          {u.countryName}
+                        </Text>
+                      </Div>
+                    );
+                  })}
+                </Div>
+              </Div>
+            </>
           )}
         </>
       )}
@@ -256,6 +264,7 @@ const Detail = () => {
                   {countryDetail.map((h, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
+                        <Image flag src={h.purposeImgSmall} />
                         <Text margin="0px 0px 0px 10px" size="30px" bold>
                           {h.purpose}
                         </Text>
@@ -271,9 +280,8 @@ const Detail = () => {
                 row
                 position="relative"
                 width="100%"
-                margin="60px 0px 0px 0px"
+                margin="60px 0px 30px 0px"
                 padding="10px 0px"
-                country
               >
                 <Image flag src={countryFlag[0]} />
                 <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
@@ -285,6 +293,7 @@ const Detail = () => {
                   {countryDetail.map((l, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
+                        <Image flag src={l.purposeImgSmall} />
                         <Text margin="0px 0px 0px 10px" size="30px" bold>
                           {l.purpose}
                         </Text>
@@ -334,11 +343,11 @@ const Detail = () => {
               width="100%"
               height="45px"
               lineHeight="45px"
-              backgroundColor="white"
+              backgroundColor="#DCFFAF"
               cursor="pointer"
               _onClick={changeBookMarkToggle}
             >
-              <Text bold backgroundColor="white">
+              <Text bold backgroundColor="#DCFFAF">
                 북마크
               </Text>
               <MdOutlineKeyboardArrowDown size={15} />
@@ -374,8 +383,9 @@ const Detail = () => {
                 <Div
                   width="100%"
                   margin="5px 0px"
-                  backgroundColor="#D2DFFF"
-                  border="1px solid black"
+                  backgroundColor="white"
+                  borderTop="1px solid #5E852C"
+                  borderBottom="1px solid #5E852C"
                 >
                   <Text margin="10px" size="20px" bold>
                     워홀
@@ -387,8 +397,9 @@ const Detail = () => {
                 <Div
                   width="100%"
                   margin="5px 0px"
-                  backgroundColor="#D2DFFF"
-                  border="1px solid black"
+                  backgroundColor="white"
+                  borderTop="1px solid #5E852C"
+                  borderBottom="1px solid #5E852C"
                 >
                   <Text margin="10px" size="20px" bold>
                     유학
@@ -402,13 +413,12 @@ const Detail = () => {
                   center
                   width="100%"
                   height="70px"
-                  backgroundColor="white"
-                  border="1px solid black"
+                  backgroundColor="#DCFFAF"
                 >
                   <Button
                     padding="10px 15px"
                     backgroundColor="white"
-                    border="1px solid black"
+                    border="1px solid #5E852C"
                     radius="10px"
                   >
                     완료
@@ -425,11 +435,11 @@ const Detail = () => {
               width="100%"
               height="45px"
               lineHeight="45px"
-              backgroundColor="white"
+              backgroundColor="#DCFFAF"
               cursor="pointer"
               _onClick={changeBookMarkToggle}
             >
-              <Text bold backgroundColor="white">
+              <Text bold backgroundColor="#DCFFAF">
                 북마크
               </Text>
               <MdOutlineKeyboardArrowDown size={15} />
@@ -465,8 +475,9 @@ const Detail = () => {
                 <Div
                   width="100%"
                   margin="5px 0px"
-                  backgroundColor="#D2DFFF"
-                  border="1px solid black"
+                  backgroundColor="white"
+                  borderTop="1px solid #5E852C"
+                  borderBottom="1px solid #5E852C"
                 >
                   <Text margin="10px" size="20px" bold>
                     워홀
@@ -478,8 +489,9 @@ const Detail = () => {
                 <Div
                   width="100%"
                   margin="5px 0px"
-                  backgroundColor="#D2DFFF"
-                  border="1px solid black"
+                  backgroundColor="white"
+                  borderTop="1px solid #5E852C"
+                  borderBottom="1px solid #5E852C"
                 >
                   <Text margin="10px" size="20px" bold>
                     유학
@@ -492,14 +504,13 @@ const Detail = () => {
                   center
                   width="100%"
                   height="70px"
-                  backgroundColor="white"
-                  border="1px solid black"
+                  backgroundColor="#DCFFAF"
                 >
                   <Button
                     padding="10px 15px"
                     backgroundColor="white"
-                    border="1px solid black"
                     radius="10px"
+                    border="1px solid #5E852C"
                   >
                     완료
                   </Button>
