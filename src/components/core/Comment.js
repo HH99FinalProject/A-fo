@@ -50,9 +50,14 @@ const Comment = (props) => {
     <React.Fragment>
       <Div flexStart padding="10px 0">
         <Div width="10%">
-          <Text bold margin="0 0 0 20px">
-            {props.comment.userName}
+        {is_login && commentUserId === userId ?
+          <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
+            {props.comment.userName} (me)
           </Text>
+        : <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
+          {props.comment.userName}
+      </Text>
+        }
         </Div>
         <Div width="70%">
           {/* getState가 true면 원래댓글, false면 수정모드input */}
@@ -64,7 +69,7 @@ const Comment = (props) => {
             </Ellipsis>}
         </Div>
         <Div width="10%">
-          <Text textAlign="right" margin="0 30px 0 0">
+          <Text textAlign="right" margin="0 30px 0 0" letterSpacing="1px">
             {moment(props.comment.updatedAt).fromNow()}
           </Text>
         </Div>
@@ -92,4 +97,5 @@ const Ellipsis = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: 1px;
 `;

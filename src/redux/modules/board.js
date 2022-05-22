@@ -7,7 +7,7 @@ export const addPostDB = createAsyncThunk(
     // console.log(formData)
     try {
       const res = await axios.post(
-        `https://a-fo-back.shop/post/create`,
+        `http://a-fo-back.shop/post/create`,
         formData.formData,
         {
           headers: {
@@ -27,7 +27,7 @@ export const addPostDB = createAsyncThunk(
 export const getTotalReadDB = createAsyncThunk(
   'get/postDB', async (data, thunkAPI) => {
   try {
-    const res = await axios.get(`https://a-fo-back.shop/post/totalRead`);
+    const res = await axios.get(`http://a-fo-back.shop/post/totalRead`);
     console.log(res)
     return res.data.postList;
   } catch (error) {
@@ -40,7 +40,7 @@ export const getPostSearchDB = createAsyncThunk(
   'get/postDB', async (data, thunkAPI) => {
     console.log(data)
   try {
-    const res = await axios.get(`https://a-fo-back.shop/post/postSearch?searchWord=${data.keyWord}&continent=${data.selectContinent}&target=${data.selectPurpose}`);
+    const res = await axios.get(`http://a-fo-back.shop/post/postSearch?searchWord=${data.keyWord}&continent=${data.selectContinent}&target=${data.selectPurpose}`);
     return res.data.postList;
   } catch (error) {
     console.log(error)
@@ -53,7 +53,7 @@ export const getPostDetailDB = createAsyncThunk(
   async (postId, thunkAPI) => {
     try {
       const res = await axios.get(
-        `https://a-fo-back.shop/post/detailRead?postId=${postId}`,
+        `http://a-fo-back.shop/post/detailRead?postId=${postId}`,
         postId
       );
       console.log(res)
@@ -71,7 +71,7 @@ export const deletePostDB = createAsyncThunk(
     console.log(postId);
     try {
       const res = await axios.delete(
-        `https://a-fo-back.shop/post/delete?postId=${postId}`,
+        `http://a-fo-back.shop/post/delete?postId=${postId}`,
       )
       return {res, postId};
     } catch (error) {
@@ -86,7 +86,7 @@ export const getPostRawDataDB = createAsyncThunk(
     console.log(postId);
     try {
       const res = await axios.get(
-        `https://a-fo-back.shop/post/updateRawData?postId=${postId}`,
+        `http://a-fo-back.shop/post/updateRawData?postId=${postId}`,
       )
       console.log(res);
       return res;
@@ -104,7 +104,7 @@ export const editPostDB = createAsyncThunk(
     // console.log(formData.token);
     try {
       const res = await axios.post(
-        `https://a-fo-back.shop/post/update`, formData.formData, 
+        `http://a-fo-back.shop/post/update`, formData.formData, 
         {
           headers: {
             Authorization: formData.token,

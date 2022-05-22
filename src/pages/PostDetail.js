@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { addCommentDB, getCommentDB } from '../redux/modules/comment';
-import { getPostDetailDB } from '../redux/modules/board';
+import { getPostDetailDB, deletePostDB } from '../redux/modules/board';
 import moment from "moment"; 
 import "moment/locale/ko";
 
@@ -16,9 +16,14 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
   
   const [comment, setComment] = React.useState();
+  const postDetail = useSelector(state => state.board.postDetail);
+  const is_login = useSelector(state => state.login.isLogin);
+  const userId = useSelector(state => state.login.userInfo.userId);
+  const postUserId = postDetail?.userId;
+  console.log(postDetail)
 
   const commentList = useSelector(state => state.comment.commentList);
-  console.log(commentList);
+  // console.log(commentList);
   // params값 찾아옴
   const postId = +props.match.params.postId;
 
@@ -31,7 +36,7 @@ const PostDetail = (props) => {
     comment: comment,
     postId: postId,
   }
-  console.log(commentData);
+  // console.log(commentData);
 
   // 댓글작성
   const addComment = () => {
@@ -40,9 +45,6 @@ const PostDetail = (props) => {
     setComment('');
   };
 
-  const postDetail = useSelector(state => state.board.postDetail);
-  const p = useSelector(state => state.board);
-  console.log(postDetail, p)
 
   React.useEffect(()=>{
     // 게시글 정보만 가져오는 디스패치
@@ -59,6 +61,12 @@ const PostDetail = (props) => {
     var img = `https://countryimage.s3.ap-northeast-2.amazonaws.com/no2.jpg`;
   }
 
+  const deletePost = () => {
+    if (window.confirm('정말로 삭제하시겠어요?') === true) {
+      dispatch(deletePostDB(postId));
+      history.push('/board');
+    }
+  }
 
   return (
     <React.Fragment>
@@ -79,62 +87,78 @@ const PostDetail = (props) => {
 
         <Div margin="60px 0 0 0">
           <Wrap>
-            <Div flexStart>
-              <div
-                style={{
-                  width: '10%',
-                  borderRight: '1px solid #bdbdbd',
-                  padding: '5px 0',
-                }}
-              >
-                <Text bold size="20px" color="#7b7b7b">
-                  {postDetail?.subTitle}
-                </Text>
-              </div>
-              <Div padding="0 0 0 20px">
-                <Text size="16px" bold>
-                  {postDetail?.title}
-                </Text>
-              </Div>
-              <Div row width="15%">
-                <Div fontSize="10px" padding="8px" margin="0 10px 0 0">
-                  {postDetail?.target}
+            <Div display="flex">
+              <Div flexStart width="92%">
+                <div
+                  style={{
+                    width: '10%',
+                    borderRight: '1px solid #bdbdbd',
+                    padding: '5px 0',
+                  }}>
+                  <Text bold size="20px" color="#7b7b7b" letterSpacing="1px">
+                    {postDetail?.subTitle}
+                  </Text>
+                </div>
+                
+                <Div padding="0 0 0 20px">
+                  <Text size="18px" bold letterSpacing="1px">
+                    {postDetail?.title}
+                  </Text>
                 </Div>
-                <Div fontSize="10px" padding="8px">
-                  {postDetail?.continent}
+                
+                <Div row width="15%">
+                  <Div fontSize="14px" padding="8px" margin="0 10px 0 0">
+                    {postDetail?.target}
+                  </Div>
+                  <Div fontSize="14px" padding="8px">
+                    {postDetail?.continent}
+                  </Div>
                 </Div>
               </Div>
+
+              {is_login && postUserId === userId ? 
+              <Div width="8%" spaceEvenly>
+                <Div>
+                  <Text cursor="pointer" color="blue" letterSpacing="1px"
+                    _onClick={()=>{ history.push(`/postDetail/edit/${postDetail?.postId}`)}}>수정</Text>
+                </Div>
+                <Div margin="0 0 0 20px">
+                  <Text cursor="pointer" color="red" letterSpacing="1px"
+                    _onClick={()=>{ deletePost(); }}>삭제</Text>
+                </Div>
+              </Div>
+              : null}
             </Div>
             <Div spaceBetween>
               <Div spaceEvenly margin="20px 0">
                 <div style={{ padding: '5px 0', width: '100px' }}>
-                  <Text>{postDetail?.User.userName}</Text>
+                  <Text letterSpacing="1px">{postDetail?.User.userName}</Text>
                 </div>
                 <Div spaceEvenly>
                   <Div fontSize="13px" width="160px">
                     {moment(postDetail?.createdAt).fromNow()}
                   </Div>
-                  <Text>
+                  <Text letterSpacing="1px">
                     <AiOutlineEye /> {postDetail?.viewCount}회
                   </Text>
                 </Div>
               </Div>
               <Div row>
-                <Text>
-                  <AiOutlineComment /> 10개
+                <Text letterSpacing="1px">
+                  <AiOutlineComment /> {postDetail?.commentCount}개
                 </Text>
-                <Text margin="0 0 0 20px">
+                <Text margin="0 0 0 20px" letterSpacing="1px">
                   <CgHeart /> 10개
                 </Text>
               </Div>
             </Div>
-            <Div>
+            <Div borderTop="3px solid #ccc">
               <Text
                 size="16px"
                 lineHeight="1.2em"
                 textAlign="justify"
-                letterSpacing="0.02em"
-                margin="0 0 10px 0"
+                letterSpacing="0.05em"
+                margin="20px 0"
               >
                 {postDetail?.content}
               </Text>
@@ -152,18 +176,17 @@ const PostDetail = (props) => {
                 value={comment}
                 onSubmit={addComment}
                 is_submit
-                borderRadius="0"
-              />
+                borderRadius="0"/>
               <button
                 style={{
+                  margin:"0 0 0 20px",
                   padding: '10px',
                   background: '#7b7b7b',
                   color: '#fff',
                 }}
                 onClick={() => {
                   addComment();
-                }}
-              >
+                }}>
                 댓글작성
               </button>
             </Div>
@@ -183,16 +206,6 @@ const PostDetail = (props) => {
 
 export default PostDetail;
 
-// const Article = styled.div`
-//   display: flex;
-//   align-items: center;
-//   padding: 10px;
-//   border-radius: 10px;
-//   background: #eee;
-//   margin-bottom: 10px;
-//   font-size: 20px;
-// `;
-
 const ReturnBtn = styled.button`
   float: right;
   padding: 10px;
@@ -203,7 +216,7 @@ const ReturnBtn = styled.button`
 const Wrap = styled.div`
   position: relative;
   align-items: center;
-  padding: 20px;
+  padding: 40px;
   background: #fff;
   margin-bottom: 20px;
   font-size: 20px;

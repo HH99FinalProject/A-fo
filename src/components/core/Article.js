@@ -14,14 +14,15 @@ const Article = (props, { loading }) => {
   const token = useSelector(state => state.login.userInfo.token);
   const is_login = useSelector(state => state.login.isLogin);
   const post = props.postList;
-  const postId = post.postId; // 각 글의 postId
-  const postUserId = post.userId;
+  console.log(post)
+  const postId = post?.postId; // 각 글의 postId
+  const postUserId = post?.userId;
   const userId = useSelector(state => state.login.userInfo.userId);
   // console.log(props.postList, post)
   const formData = new FormData();
   formData.append('token', token);
   formData.append('postId', postId);
-  console.log(props.postList.createdAt);
+  console.log(props.postList?.createdAt);
   console.log(props.postList);
   const deletePost = () => {
     if (window.confirm('정말로 삭제하시겠어요?') === true) {
@@ -34,56 +35,44 @@ const Article = (props, { loading }) => {
   }
   return (
     <React.Fragment>
-      <Wrap>
+      <Wrap onClick={() => {
+          history.push(`/postDetail/${post?.postId}`);
+        }}>
+        <div
+          style={{
+            width: '14%',
+            borderRight: '1px solid #bdbdbd',
+            padding: '5px 0',
+          }}> 
+          <SubTitleEllipsis>{post?.subTitle}</SubTitleEllipsis>
+        </div>
+        <Div width="47%" padding="0 0 0 20px">
+          <TitleEllipsis>{post?.title}</TitleEllipsis>
+        </Div>
+        <Div spaceEvenly width="20%">
+          <Div width="45px" fontSize="14px">
+            {post?.target}
+          </Div>
+          <Div width="80px" fontSize="14px">
+            {post?.continent}
+          </Div>
+        </Div>
         <div
           style={{
             width: '10%',
             borderRight: '1px solid #bdbdbd',
-            padding: '5px 0',
-          }}
-        >
-          <SubTitleEllipsis>{post.subTitle}</SubTitleEllipsis>
-        </div>
-        <Div width="45%" padding="0 0 0 20px" cursor="pointer"
-          _onClick={() => {
-          history.push(`/postDetail/${post.postId}`);
-        }}>
-          <TitleEllipsis>{post.title}</TitleEllipsis>
-        </Div>
-        <Div spaceEvenly width="15%">
-          <Div width="45px" fontSize="12px" padding="8px">
-            {post.target}
-          </Div>
-          <Div width="80px" fontSize="12px" padding="8px">
-            {post.continent}
-          </Div>
-        </Div>
-        <div
-          style={{
-            width: '7%',
-            borderRight: '1px solid #bdbdbd',
             padding: '10px 0',
-          }}
-        >
-          <Text>{props.postList.User.userName}</Text>
+          }}>
+          <Text>😀 {props.postList?.User.userName}</Text>
         </div>
-        <Div width="18%" spaceEvenly>
+        <Div width="20%" spaceEvenly>
           <Text>
-            <AiOutlineComment /> {props.postList.commentCount}개
+            <AiOutlineComment /> {props.postList?.commentCount}개
           </Text>
           <Text>
-            <AiOutlineEye /> {props.postList.viewCount}회
+            <AiOutlineEye /> {props.postList?.viewCount}회
           </Text>
-          <Div fontSize="13px" width="70px">{moment(props.postList.createdAt).fromNow()}</Div>
-        </Div>
-        <Div width="7%" flexStart>
-          {is_login && postUserId === userId ?
-            <>
-              <EditBtn onClick={()=>{ history.push(`/postDetail/edit/${post.postId}`)}}>수정</EditBtn>
-              <DeleteBtn onClick={()=>{ deletePost(); }}>삭제</DeleteBtn>
-            </>
-          : null
-          } 
+          <Div fontSize="13px" width="70px">{moment(props.postList?.createdAt).fromNow()}</Div>
         </Div>
       </Wrap>
     </React.Fragment>
@@ -99,6 +88,7 @@ const Wrap = styled.div`
   background: #fff;
   border-bottom: 1px solid #000;
   font-size: 20px;
+  cursor: pointer;
   &:hover {
     background: #d2dfff;
   }
@@ -107,6 +97,7 @@ const Wrap = styled.div`
 const SubTitleEllipsis = styled.div`
   width: 120px;
   min-height: 30px;
+  margin-left: 20px;
   padding: 10px;
   background: #5281FA;
   border-radius: 20px;
@@ -117,25 +108,16 @@ const SubTitleEllipsis = styled.div`
   font-size: 17px;
   color: #fff;
   text-align: center;
+  letter-spacing: 0.1em;
 `;
 
 const TitleEllipsis = styled.div`
   width: 400px;
+  margin-left: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-  font-size: 16px;
-`;
-
-const EditBtn = styled.div`
-  font-size: 14px;
-  font-weight: 700;
-  margin-right: 20px;
-  cursor: pointer;
-`;
-const DeleteBtn = styled.div`
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
+  font-size: 18px;
+  letter-spacing: 1px;
 `;
