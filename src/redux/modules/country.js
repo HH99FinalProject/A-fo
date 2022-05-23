@@ -7,7 +7,7 @@ export const countryMainDB = createAsyncThunk(
   'country/countryMainDB',
   async (thunkAPI) => {
     try {
-      const res = await axios.get('http://a-fo-back.shop/main/allCountry');
+      const res = await axios.get('https://a-fo-back.link/main/allCountry');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -20,7 +20,7 @@ export const countrySub2DB = createAsyncThunk(
   async (countryName, thunkAPI) => {
     try {
       const res = await axios.get(
-        `http://a-fo-back.shop/sub1/filtering/country?countryName=${countryName}`
+        `https://a-fo-back.link/sub1/filtering/country?countryName=${countryName}`
       );
       return res.data;
     } catch (error) {
@@ -34,7 +34,7 @@ export const CountrySub1DB = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.get(
-        `http://a-fo-back.shop/sub2/filtering/target?targetName1=${data.targetName1}&targetName2=${data.targetName2}&targetName3=${data.targetName3}&targetName4=${data.targetName4}&countryName=${data.countryName}`
+        `https://a-fo-back.link/sub2/filtering/target?targetName1=${data.targetName1}&targetName2=${data.targetName2}&targetName3=${data.targetName3}&targetName4=${data.targetName4}&countryName=${data.countryName}`
       );
       return res.data;
     } catch (error) {

@@ -181,7 +181,7 @@ const PostWrite = () => {
             <Div position="relative">
               <Title
                 placeholder="제목을 입력하세요."
-                maxLength={30}
+                maxLength={40}
                 value={title}
                 onChange={(e) => {
                   setTitle(e.target.value);

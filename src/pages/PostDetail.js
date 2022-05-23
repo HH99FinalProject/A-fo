@@ -55,10 +55,11 @@ const PostDetail = (props) => {
 
   // 사진 미업로드시 랜덤사진5장 중 1개 띄우기
   // let num = Math.floor(Math.random() * 5) + 1;
+  console.log('이미지url:', typeof postDetail?.postImageUrl);
   if(postDetail?.postImageUrl) {
     var img = postDetail?.postImageUrl;
   } else {
-    var img = `https://countryimage.s3.ap-northeast-2.amazonaws.com/no2.jpg`;
+    var img = `https://a-fo-bucket2.s3.ap-northeast-2.amazonaws.com/A-fo_default.jpg`;
   }
 
   const deletePost = () => {

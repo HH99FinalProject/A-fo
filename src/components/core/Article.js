@@ -6,31 +6,22 @@ import moment from "moment";
 import "moment/locale/ko";
 
 import { Div, Text } from '../ui';
-import { deletePostDB, editPostDB, getPostDB } from '../../redux/modules/board';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Article = (props, { loading }) => {
+const Article = (props) => {
   const dispatch = useDispatch();
   const token = useSelector(state => state.login.userInfo.token);
   const is_login = useSelector(state => state.login.isLogin);
-  const post = props.postList;
-  console.log(post)
+  const post = props.post;
   const postId = post?.postId; // 각 글의 postId
   const postUserId = post?.userId;
   const userId = useSelector(state => state.login.userInfo.userId);
-  // console.log(props.postList, post)
+  // console.log(props)
   const formData = new FormData();
   formData.append('token', token);
   formData.append('postId', postId);
-  console.log(props.postList?.createdAt);
-  console.log(props.postList);
-  const deletePost = () => {
-    if (window.confirm('정말로 삭제하시겠어요?') === true) {
-      dispatch(deletePostDB(postId));
-    }
-  }
 
-  if (loading) {
+  if (props.loading) {
     return <h2>...loading</h2>;
   }
   return (
@@ -63,16 +54,18 @@ const Article = (props, { loading }) => {
             borderRight: '1px solid #bdbdbd',
             padding: '10px 0',
           }}>
-          <Text>😀 {props.postList?.User.userName}</Text>
+            {is_login && postUserId === userId ?
+            <Text>{post?.User.userName} 😀</Text>
+            : <Text>{post?.User.userName}</Text>}
         </div>
         <Div width="20%" spaceEvenly>
           <Text>
-            <AiOutlineComment size="20"/> {props.postList?.commentCount}개
+            <AiOutlineComment size="20"/> {post?.commentCount}개
           </Text>
           <Text>
-            <AiOutlineEye size="20" /> {props.postList?.viewCount}회
+            <AiOutlineEye size="20" /> {post?.viewCount}회
           </Text>
-          <Div fontSize="14px" width="70px">{moment(props.postList?.createdAt).fromNow()}</Div>
+          <Div fontSize="14px" width="70px">{moment(post?.createdAt).fromNow()}</Div>
         </Div>
       </Wrap>
     </React.Fragment>
@@ -112,7 +105,7 @@ const SubTitleEllipsis = styled.div`
 `;
 
 const TitleEllipsis = styled.div`
-  width: 400px;
+  width: 430px;
   margin-left: 10px;
   white-space: nowrap;
   overflow: hidden;

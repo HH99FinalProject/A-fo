@@ -52,7 +52,7 @@ const Comment = (props) => {
         <Div width="15%">
         {is_login && commentUserId === userId ?
           <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
-            {props.comment.userName} (me)
+            {props.comment.userName} 😀
           </Text>
         : <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
           {props.comment.userName}
@@ -68,7 +68,7 @@ const Comment = (props) => {
               {props.comment.comment}
             </Ellipsis>}
         </Div>
-        <Div width="11%" border="1px solid #000">
+        <Div width="11%">
           <Text textAlign="right" margin="0 40px 0 0" letterSpacing="1px">
             {moment(props.comment.updatedAt).fromNow()}
           </Text>

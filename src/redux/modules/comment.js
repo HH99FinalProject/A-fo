@@ -6,7 +6,7 @@ export const getCommentDB = createAsyncThunk(
   async (postId, thunkAPI) => {
     try {
       const res = await axios.get(
-        `http://a-fo-back.shop/comment/read?postId=${postId}`,
+        `https://a-fo-back.link/comment/read?postId=${postId}`,
       );
       console.log(res.data)
       return res.data;
@@ -23,7 +23,7 @@ export const addCommentDB = createAsyncThunk(
     // console.log(data.token);
     try {
       const res = await axios.post(
-        'http://a-fo-back.shop/comment/create',
+        'https://a-fo-back.link/comment/create',
         data.commentData,
         {
           headers: {
@@ -47,7 +47,7 @@ export const deleteCommentDB = createAsyncThunk(
     console.log(data)
     try {
       const res = await axios.delete(
-        `http://a-fo-back.shop/comment/delete?commentId=${data.commentId}&postId=${data.postId}`,
+        `https://a-fo-back.link/comment/delete?commentId=${data.commentId}&postId=${data.postId}`,
       );
       return {res, data};
     } catch (error) {
@@ -63,7 +63,7 @@ export const editCommentDB = createAsyncThunk(
     console.log(data);
     try {
       const res = await axios.patch(
-        `http://a-fo-back.shop/comment/update`, data,
+        `https://a-fo-back.link/comment/update`, data,
       )
       console.log(res.data)
       return {res, data};

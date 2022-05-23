@@ -6,7 +6,7 @@ export const kakaoLoginDB = createAsyncThunk(
   async (code, thunkAPI) => {
     try {
       const res = await axios.get(
-        `http://a-fo-back.shop/oauth/kakao/callback?code=${code}`
+        `https://a-fo-back.link/oauth/kakao/callback?code=${code}`
       );
       console.log(res)
       window.location.replace('/');
