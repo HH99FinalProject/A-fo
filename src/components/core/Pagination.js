@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ pageNumbers, postsPerPage, totalPosts, paginate }) => {
 
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  // const pageNumbers = [];
+  // for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  //   pageNumbers.push(i);
+  // }
   
+
   return (
     <div>
       <nav>
         <PageUl className="pagination">
           {pageNumbers.map((number) => (
-            <PageLi key={number} className="page-item">
-              <PageSpan onClick={() => paginate(number)} className="page-link">
+            <PageLi key={number} className="page-item" onClick={() => {paginate(number)}}>
+              <PageSpan  className="page-link">
                 {number}
               </PageSpan>
             </PageLi>
@@ -43,10 +44,10 @@ const PageLi = styled.li`
   padding: 5px;
   width: 25px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  margin: 3px;
   &:hover {
     cursor: pointer;
-    background-color: #dedede;
+    background-color: #d2dfff;
   }
   &:focus::after {
     color: white;

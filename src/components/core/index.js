@@ -9,7 +9,7 @@ import Info from './Info';
 import InfoTotal from './InfoTotal';
 import Kakao from './Kakao';
 import Pagenation from './Pagination';
-import Post from './Post';
+import Posts from './Posts';
 import Search from './Search';
 import TabMenu from './TabMenu';
 import TargetCard from './TargetCard';
@@ -26,7 +26,7 @@ export {
   InfoTotal,
   Kakao,
   Pagenation,
-  Post,
+  Posts,
   Search,
   TabMenu,
   TargetCard,

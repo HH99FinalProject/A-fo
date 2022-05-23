@@ -26,10 +26,6 @@ const PostDetailEdit = (props) => {
   const [landPick, setLandPick] = useState('');
   const [purposePick, setPurposePick] = useState('');
 
-  const subTitleRef = useRef();
-  const titleRef = useRef();
-  const contentRef = useRef();
-
   // 내가 선택한 대륙별선택
   const myLandPick = (e) => {
     console.log(e.target.value);
@@ -106,7 +102,13 @@ const PostDetailEdit = (props) => {
       dispatch(imageActions.uploadImageDB(null));
     }
   }, [])
-
+  const image = rawData?.postImageUrl;
+  console.log(image)
+  if(image) {
+    var img = image;
+  } else {
+    var img = `https://a-fo-bucket2.s3.ap-northeast-2.amazonaws.com/A-fo_default.jpg`;
+  }
   return (
     <React.Fragment>
       <Header></Header>
@@ -213,9 +215,7 @@ const PostDetailEdit = (props) => {
                 defaultValue={rawData?.subTitle}
                 onChange={(e) => {
                   setNation(e.target.value);
-                }}
-                // ref={subTitleRef}
-              />
+                }} />
             </Div>
             <Div position="relative">
               <Title
@@ -224,10 +224,7 @@ const PostDetailEdit = (props) => {
                 defaultValue={rawData?.title}
                 onChange={(e) => {
                   setTitle(e.target.value);
-                }}
-                // ref={titleRef}
-              />
-              {/* <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div> */}
+                }}/>
             </Div>
             <Div position="relative">
               <Content
@@ -237,17 +234,16 @@ const PostDetailEdit = (props) => {
                 defaultValue={rawData?.content}
                 onChange={(e) => {
                   setContent(e.target.value);
-                }}
-              />
-              <Div width="200px">
-                <img
-                  style={{
-                    borderRadius: '20px',
-                    width: '100%',
-                    margin: '10px',
-                  }}
-                  src={preview ? preview : null}
-                />
+                }} />
+              <Div width="300px">
+                {preview ? 
+                  <img
+                    style={{
+                      width: '100%',
+                      margin: '10px 0',
+                    }}
+                    src={preview} />
+                : <img src={img} style={{width: "100%", margin: "10px 0"}} alt="이미지"/>}
               </Div>
               <input
                 style={{ fontSize: '15px' }}

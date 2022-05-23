@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useSelector, useDispatch } from 'react-redux';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { Editor } from '@toast-ui/react-editor';
-import { Viewer } from '@toast-ui/react-editor';
 import { actionCreators as imageActions } from '../redux/modules/image';
 
 import { Header } from '../components/core';
@@ -75,7 +73,6 @@ const PostWrite = () => {
   };
 
   React.useEffect(()=>{
-    // 
     return () => {
       dispatch(imageActions.uploadImageDB(null));
     }
@@ -108,16 +105,14 @@ const PostWrite = () => {
                   name="nation"
                   value="오세아니아"
                   id="btn1"
-                  onClick={myLandPick}
-                />
+                  onClick={myLandPick}/>
                 <label htmlFor="btn1">오세아니아</label>
                 <input
                   type="radio"
                   name="nation"
                   value="아시아"
                   id="btn2"
-                  onClick={myLandPick}
-                />
+                  onClick={myLandPick}/>
                 <label htmlFor="btn2">아시아</label>
                 <input
                   type="radio"
@@ -132,16 +127,14 @@ const PostWrite = () => {
                   name="nation"
                   value="북미"
                   id="btn4"
-                  onClick={myLandPick}
-                />
+                  onClick={myLandPick}/>
                 <label htmlFor="btn4">북미</label>
                 <input
                   type="radio"
                   name="nation"
                   value="남미"
                   id="btn5"
-                  onClick={myLandPick}
-                />
+                  onClick={myLandPick}/>
                 <label htmlFor="btn5">남미</label>
               </LandTarget>
               <PurposeTarget>
@@ -151,32 +144,28 @@ const PostWrite = () => {
                   name="purpose"
                   value="워홀"
                   id="btn6"
-                  onClick={myPurposePick}
-                />
+                  onClick={myPurposePick}/>
                 <label htmlFor="btn6">워홀</label>
                 <input
                   type="radio"
                   name="purpose"
                   value="이민"
                   id="btn7"
-                  onClick={myPurposePick}
-                />
+                  onClick={myPurposePick}/>
                 <label htmlFor="btn7">이민</label>
                 <input
                   type="radio"
                   name="purpose"
                   value="취업"
                   id="btn8"
-                  onClick={myPurposePick}
-                />
+                  onClick={myPurposePick}/>
                 <label htmlFor="btn8">취업</label>
                 <input
                   type="radio"
                   name="purpose"
                   value="유학"
                   id="btn9"
-                  onClick={myPurposePick}
-                />
+                  onClick={myPurposePick}/>
                 <label htmlFor="btn9">유학</label>
               </PurposeTarget>
             </Div>
@@ -187,19 +176,16 @@ const PostWrite = () => {
                 value={nation}
                 onChange={(e) => {
                   setNation(e.target.value);
-                }}
-              />
+                }}/>
             </Div>
             <Div position="relative">
               <Title
                 placeholder="제목을 입력하세요."
-                maxLength={30}
+                maxLength={40}
                 value={title}
                 onChange={(e) => {
                   setTitle(e.target.value);
-                }}
-              />
-              {/* <div style={{position:"absolute", top:"40px", right:"15px", background: "#fff"}}>({titleCount}/30)</div> */}
+                }}/>
             </Div>
             <Div position="relative">
               <Content
@@ -209,8 +195,7 @@ const PostWrite = () => {
                 value={content}
                 onChange={(e) => {
                   setContent(e.target.value);
-                }}
-              />
+                }}/>
               <Div width="200px">
                 <img
                   style={{
@@ -218,8 +203,7 @@ const PostWrite = () => {
                     width: '100%',
                     margin: '10px',
                   }}
-                  src={preview ? preview : null}
-                />
+                  src={preview ? preview : null}/>
               </Div>
               <input
                 style={{ fontSize: '15px' }}
@@ -227,19 +211,17 @@ const PostWrite = () => {
                 type="file"
                 ref={fileInput}
                 onChange={changePreview}
-                id="file"
-              />
+                id="file"/>
             </Div>
             <Div flexEnd>
               <Button
                 padding="10px"
                 border="1px solid #000"
                 bold
+                backgroundColor="#fff"
                 _onClick={() => {
                   submit();
-                }}
-                backgroundColor="#fff"
-              >
+                }}>
                 등록하기
               </Button>
             </Div>
