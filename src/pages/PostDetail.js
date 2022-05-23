@@ -152,13 +152,13 @@ const PostDetail = (props) => {
                 </Text>
               </Div>
             </Div>
-            <Div borderTop="3px solid #ccc">
+            <Div borderTop="2px solid #ccc">
               <Text
                 size="16px"
                 lineHeight="1.2em"
                 textAlign="justify"
                 letterSpacing="0.05em"
-                margin="20px 0"
+                margin="40px 0 20px 0"
               >
                 {postDetail?.content}
               </Text>

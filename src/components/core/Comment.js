@@ -49,7 +49,7 @@ const Comment = (props) => {
   return (
     <React.Fragment>
       <Div flexStart padding="10px 0">
-        <Div width="10%">
+        <Div width="15%">
         {is_login && commentUserId === userId ?
           <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
             {props.comment.userName} (me)
@@ -62,27 +62,29 @@ const Comment = (props) => {
         <Div width="70%">
           {/* getState가 true면 원래댓글, false면 수정모드input */}
           {editMode ?
-            <input defaultValue={props.comment.comment} 
+            <input defaultValue={props.comment.comment}
               onChange={(e)=>{ setChangeComment(e.target.value); console.log(e.target.value); }} ></input>
           : <Ellipsis>
               {props.comment.comment}
             </Ellipsis>}
         </Div>
-        <Div width="10%">
-          <Text textAlign="right" margin="0 30px 0 0" letterSpacing="1px">
+        <Div width="11%" border="1px solid #000">
+          <Text textAlign="right" margin="0 40px 0 0" letterSpacing="1px">
             {moment(props.comment.updatedAt).fromNow()}
           </Text>
         </Div>
         {is_login && commentUserId === userId ?
           <>
-            <Div width="5%" textCenter cursor="pointer" >
+            <Div width="4%" textCenter cursor="pointer"> 
               {editMode ? 
-              <Text size="14px" color="blue" _onClick={()=>{ setEditMode(false); editComment(); }} >수정완료</Text>
-              : <Text size="14px" color="blue" _onClick={()=>{ setEditMode(true); }} >수정</Text>}
+              <Text size="14px" color="blue" letterSpacing="1px"
+                _onClick={()=>{ setEditMode(false); editComment(); }} >수정완료</Text>
+              : <Text size="14px" color="blue" letterSpacing="1px"
+                _onClick={()=>{ setEditMode(true); }} >수정</Text>}
             </Div>
-            <Div width="5%" textCenter cursor="pointer" 
+            <Div width="4%" textCenter cursor="pointer" letterSpacing="1px"
               _onClick={()=>{ deleteComment(); }}>
-              <Text size="14px" color="red" >삭제</Text>
+              <Text size="14px" color="red" letterSpacing="1px" >삭제</Text>
             </Div>
           </>
         : null}
@@ -98,4 +100,5 @@ const Ellipsis = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: 1px;
+  font-size: 18px;
 `;

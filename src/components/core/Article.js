@@ -67,12 +67,12 @@ const Article = (props, { loading }) => {
         </div>
         <Div width="20%" spaceEvenly>
           <Text>
-            <AiOutlineComment /> {props.postList?.commentCount}개
+            <AiOutlineComment size="20"/> {props.postList?.commentCount}개
           </Text>
           <Text>
-            <AiOutlineEye /> {props.postList?.viewCount}회
+            <AiOutlineEye size="20" /> {props.postList?.viewCount}회
           </Text>
-          <Div fontSize="13px" width="70px">{moment(props.postList?.createdAt).fromNow()}</Div>
+          <Div fontSize="14px" width="70px">{moment(props.postList?.createdAt).fromNow()}</Div>
         </Div>
       </Wrap>
     </React.Fragment>
