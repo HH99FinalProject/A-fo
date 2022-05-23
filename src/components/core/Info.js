@@ -8,17 +8,26 @@ import { Button, Div, Image, Input, Text } from '../ui';
 const Info = (props) => {
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
+  const height = props.height;
+  console.log(props.height);
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
   const countryDetail = useSelector((state) => state.country.countryList);
-  const countryInfo = countryDetail?.map((x, i) => x.BaseInfo.baseInfo);
+  const countryList = countryDetail?.map((x, i) => x);
+  const countryInfo = countryList[0]?.BaseInfo?.baseInfo;
+
+  // React.useEffect(() => {
+  //   if (props.bank) {
+  //     props.countryInfo = countryInfo;
+  //   }
+  // }, []);
 
   return (
     <>
       {/* 비자 */}
       {props.visa && (
-        <Box>
+        <Box height={height}>
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
@@ -57,10 +66,7 @@ const Info = (props) => {
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
           {/* <Button bookmarkBtn complete></Button> */}
-          {(vTarget
-            ? props[props.index]
-            : props?.countryInfo[props.index]
-          ).info?.map((l, i) => {
+          {(vTarget ? props[0] : props?.countryInfo[0]).info?.map((l, i) => {
             return (
               <TitleBox key={l + i}>
                 <Title>● {l.subtitle}</Title>
@@ -103,10 +109,7 @@ const Info = (props) => {
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
           {/* <Button bookmarkBtn complete></Button> */}
-          {(vTarget
-            ? props[props.index]
-            : props.countryInfo[props.index]
-          ).info?.map((l, i) => {
+          {(vTarget ? props[1] : props.countryInfo[1]).info?.map((l, i) => {
             return (
               <TitleBox key={l + i}>
                 <Title>● {l.subtitle}</Title>
@@ -149,10 +152,7 @@ const Info = (props) => {
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
           {/* <Button bookmarkBtn complete></Button> */}
-          {(vTarget
-            ? props[props.index]
-            : props.countryInfo[props.index]
-          ).info?.map((l, i) => {
+          {(vTarget ? props[2] : props.countryInfo[2]).info?.map((l, i) => {
             return (
               <TitleBox key={l + i}>
                 <Title>● {l.subtitle}</Title>
@@ -195,10 +195,7 @@ const Info = (props) => {
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
           {/* <Button bookmarkBtn complete></Button> */}
-          {(vTarget
-            ? props[props.index]
-            : props.countryInfo[props.index]
-          ).info?.map((l, i) => {
+          {(vTarget ? props[3] : props.countryInfo[3]).info?.map((l, i) => {
             return (
               <TitleBox key={l + i}>
                 <Title>● {l.subtitle}</Title>
@@ -241,10 +238,7 @@ const Info = (props) => {
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
           {/* <Button bookmarkBtn complete></Button> */}
-          {(vTarget
-            ? props[props.index]
-            : props.countryInfo[props.index]
-          ).info?.map((l, i) => {
+          {(vTarget ? props[4] : props.countryInfo[4]).info?.map((l, i) => {
             return (
               <TitleBox key={l + i}>
                 <Title>● {l.subtitle}</Title>
@@ -284,12 +278,15 @@ const Info = (props) => {
 };
 
 export default Info;
+
 const Box = styled.div`
   position: relative;
   width: 100%;
+  height: ${(props) => (props.height ? '{height}' : null)};
   padding: 40px 0px;
   overflow: hidden;
   background-color: white;
+  border-left: 1px solid red;
 `;
 const TitleBox = styled.div`
   width: 100%;

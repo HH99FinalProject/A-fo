@@ -6,7 +6,7 @@ export const targetSub1DB = createAsyncThunk(
   async (purpose, thunkAPI) => {
     try {
       const res = await axios.get(
-        `https://a-fo-back.shop/sub1/filtering/target?purpose=${purpose}`
+        `https://a-fo-back.link/sub1/filtering/target?purpose=${purpose}`
       );
       return res.data;
     } catch (error) {
@@ -20,7 +20,7 @@ export const targetSub2DB = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.get(
-        `https://a-fo-back.shop/sub2/filtering/country?countryName1=${data.countryName1}&countryName2=${data.countryName2}&countryName3=${data.countryName3}&countryName4=${data.countryName4}&targetName=${data.targetName}`
+        `https://a-fo-back.link/sub2/filtering/country?countryName1=${data.countryName1}&countryName2=${data.countryName2}&countryName3=${data.countryName3}&countryName4=${data.countryName4}&targetName=${data.targetName}`
       );
       return res.data;
     } catch (error) {

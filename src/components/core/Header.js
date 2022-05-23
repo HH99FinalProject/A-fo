@@ -29,6 +29,7 @@ const Header = () => {
             spaceBetween
             width="auto"
             height="50px"
+            margin="0px 0px 0px -10px"
             cursor="pointer"
             _onClick={() => {
               history.replace('/');
@@ -83,7 +84,8 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            <Div spaceBetween width="300px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="300px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 bold
@@ -95,7 +97,7 @@ const Header = () => {
               >
                 커뮤니티
               </Button>
-              <Button
+              {/* <Button
                 height="50px"
                 bold
                 color="#0031DE"
@@ -105,7 +107,7 @@ const Header = () => {
                 }}
               >
                 마이페이지
-              </Button>
+              </Button> */}
               <Button
                 height="50px"
                 bold
@@ -139,8 +141,9 @@ const Header = () => {
         <Div spaceBetween width="1400px" margin="0 auto">
           <Div
             spaceBetween
-            width="auto"
+            width="100px"
             height="50px"
+            margin="0px 0px 0px -10px"
             padding="0px 10px"
             cursor="pointer"
             _onClick={() => {
@@ -194,7 +197,8 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            <Div spaceBetween width="300px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="300px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 color="#0031DE"
@@ -205,7 +209,7 @@ const Header = () => {
               >
                 커뮤니티
               </Button>
-              <Button
+              {/* <Button
                 height="50px"
                 color="#0031DE"
                 bold
@@ -214,7 +218,7 @@ const Header = () => {
                 }}
               >
                 마이페이지
-              </Button>
+              </Button> */}
               <Button
                 height="50px"
                 color="#0031DE"

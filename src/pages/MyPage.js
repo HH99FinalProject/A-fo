@@ -1,12 +1,10 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 
-import Article from '../components/core/Article';
-import Bookmark from '../components/core/Bookmark';
+import { Header, Article, Bookmark } from '../components/core';
 import Modal from '../shared/Modal';
 import Profile from '../components/modal/Profile';
 
-import { Header } from '../components/core';
 import styled from 'styled-components';
 import { Div, Text, Image, Button } from '../components/ui';
 
@@ -64,9 +62,9 @@ const MyPage = () => {
           </Text>
           <Hr />
           {/* 내가 쓴 글 리스트 불러와서 map으로 뿌리기 */}
+          {/* <Article />
           <Article />
-          <Article />
-          <Article />
+          <Article /> */}
           {/* 페이지네이션 */}
           <Div center margin="10px 0">
             <Text>페이지네이션[1][2][3][4][5][6]</Text>

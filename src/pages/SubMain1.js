@@ -206,7 +206,7 @@ const SubMain1 = (props) => {
               </Text>
               <hr
                 style={{
-                  width: '550px',
+                  width: '620px',
                   borderBottom: '4px solid #0031DE',
                   margin: '20px 0px 30px 0px',
                 }}

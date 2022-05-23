@@ -13,12 +13,13 @@ import {
 
 import { Header } from '../components/core';
 import { Div, Text, Image } from '../components/ui';
-import mainBackground from '../styles/images/mainBG.png';
-import footer from '../styles/images/footer.png';
+import mainBG from '../styles/images/mainBG.png';
+import footer from '../styles/images/footer.gif';
 import arrow from '../styles/images/arrow.png';
 import mainCountry from '../styles/images/mainCountry.png';
 import mainTarget from '../styles/images/mainTarget.png';
 import mainPick from '../styles/images/mainPick.png';
+import '../shared/App.css';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Main = () => {
       <Header></Header>
       <Div
         width="100%"
-        src={mainBackground}
+        src={mainBG}
         backgroundColor="#406bff"
         backgroundSize="contain"
         repeat="no-repeat"
@@ -63,24 +64,42 @@ const Main = () => {
             <Div
               flexStart
               height="200px"
-              margin="40px 0px"
+              margin="30px 0px 0px 0px"
               padding="10px 0px"
-              borderBottom="3px solid white"
             >
-              <Text size="70px" lineHeight="90px" color="white">
-                <span style={{ fontWeight: '900' }}>해외 정보</span>의 모든 것
+              <Text
+                size="70px"
+                lineHeight="90px"
+                color="white"
+                letterSpacing="3px"
+              >
+                <span style={{ fontWeight: '900', fontFamily: 'black' }}>
+                  해외 정보
+                </span>
+                의 모든 것
                 <br />
-                <span style={{ fontWeight: '900' }}>에이포</span>에서{' '}
-                <span style={{ fontWeight: '900' }}>비교하기</span>
+                <span style={{ fontWeight: '900', fontFamily: 'black' }}>
+                  에이포
+                </span>
+                에서{' '}
+                <span style={{ fontWeight: '900', fontFamily: 'black' }}>
+                  비교하기
+                </span>
               </Text>
             </Div>
-            {/* <hr style={{ width: '600px' }} /> */}
+            <hr
+              style={{
+                width: '590px',
+                borderBottom: '3px solid white',
+                margin: '0px 0px 30px 0px',
+              }}
+            />
             <Text
               height="35px"
               margin="20px 0px"
-              bold
-              size="27px"
+              size="26px"
               color="white"
+              letterSpacing="1px"
             >
               한 눈에 비교해 나에게 맞는 해외 생활을 찾아보세요.👀
             </Text>

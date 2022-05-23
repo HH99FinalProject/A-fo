@@ -7,3 +7,8 @@
   font-family: 'regular';
   src: url('../styles/fonts/Pretendard-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'black';
+  src: url('../styles/fonts/Pretendard-Black.ttf');
+}

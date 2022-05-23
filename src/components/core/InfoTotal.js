@@ -24,7 +24,8 @@ const InfoTotal = (props) => {
   const vCountry = props.vCountry;
   const countryDetail = useSelector((state) => state.country.countryList);
   const countryVisa = countryDetail?.map((v) => v.visa);
-  const countryInfo = countryDetail?.map((x, i) => x.BaseInfo.baseInfo);
+  const countryList = countryDetail?.map((x, i) => x);
+  const countryInfo = countryList[0]?.BaseInfo?.baseInfo;
 
   // 토글
   const isOpen = props.isOpen;
@@ -33,13 +34,15 @@ const InfoTotal = (props) => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
-  // const scroll = useSelector((state) => state.scroll.scroll);
-  // const ref = React.forwardRef((props, ref) => {});
-
   // 높이값 구하기
   const [height, setHeight] = React.useState(0);
-  const heightRef = useRef('null');
-  // console.log(heightRef.current.height);
+  const ref = useRef('null');
+  // console.log(document.querySelector('.a').offsetHeight);
+  React.useEffect(() => {
+    if (ref.current) {
+      setHeight(ref.current.offsetHeight);
+    }
+  }, []);
 
   return (
     <React.Fragment>
@@ -50,10 +53,8 @@ const InfoTotal = (props) => {
           width="1400px"
           backgroundColor="white"
           border="1px solid #0031DE"
-          // ref={ref}
         >
           {/* 토글 */}
-
           <Div
             row
             width="100%"
@@ -74,34 +75,47 @@ const InfoTotal = (props) => {
 
           {/* 내용 */}
           {toggle ? (
-            <Div
-              width="100%"
-              display="flex"
-              flexDirection="row"
-              alignItems="flex-start"
-              justifyContent="space-between"
-              borderTop="1px solid #0031DE"
-              height={height}
-              ref={heightRef}
+            <div
+              className="a"
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
+                width: '100%',
+                borderTop: '1px solid #0031DE',
+              }}
+              ref={ref}
             >
               {vTarget && (
                 <>
                   {visa &&
                     targetVisa?.map((t, i) => {
-                      return <Info key={t + i} {...t} visa={visa} />;
+                      return (
+                        <Info key={t + i} {...t} visa={visa} height={height} />
+                      );
                     })}
                   {bank &&
                     targetInfo?.map((t, i) => {
-                      return <Info key={t + i} {...t} bank={bank} index={0} />;
+                      return (
+                        <Info key={t + i} {...t} bank={bank} height={height} />
+                      );
                     })}
                   {time &&
                     targetInfo?.map((t, i) => {
-                      return <Info key={t + i} {...t} time={time} index={1} />;
+                      return (
+                        <Info key={t + i} {...t} time={time} height={height} />
+                      );
                     })}
                   {traffic &&
                     targetInfo?.map((t, i) => {
                       return (
-                        <Info key={t + i} {...t} traffic={traffic} index={2} />
+                        <Info
+                          key={t + i}
+                          {...t}
+                          traffic={traffic}
+                          height={height}
+                        />
                       );
                     })}
                   {language &&
@@ -111,14 +125,19 @@ const InfoTotal = (props) => {
                           key={t + i}
                           {...t}
                           language={language}
-                          index={3}
+                          height={height}
                         />
                       );
                     })}
                   {phone &&
                     targetInfo?.map((t, i) => {
                       return (
-                        <Info key={t + i} {...t} phone={phone} index={4} />
+                        <Info
+                          key={t + i}
+                          {...t}
+                          phone={phone}
+                          height={height}
+                        />
                       );
                     })}
                 </>
@@ -129,7 +148,7 @@ const InfoTotal = (props) => {
                 countryVisa?.map((c, i) => {
                   return <Info key={c + i} {...c} visa={visa} />;
                 })}
-            </Div>
+            </div>
           ) : null}
           {/* 내용 */}
         </Div>
@@ -167,29 +186,15 @@ const InfoTotal = (props) => {
               borderTop="1px solid #0031DE"
             >
               <>
-                {bank && (
-                  <Info bank={bank} index={0} countryInfo={countryInfo[0]} />
-                )}
-                {time && (
-                  <Info time={time} index={1} countryInfo={countryInfo[0]} />
-                )}
+                {bank && <Info bank={bank} countryInfo={countryInfo} />}
+                {time && <Info time={time} countryInfo={countryInfo} />}
                 {traffic && (
-                  <Info
-                    traffic={traffic}
-                    index={2}
-                    countryInfo={countryInfo[0]}
-                  />
+                  <Info traffic={traffic} countryInfo={countryInfo} />
                 )}
                 {language && (
-                  <Info
-                    language={language}
-                    index={3}
-                    countryInfo={countryInfo[0]}
-                  />
+                  <Info language={language} countryInfo={countryInfo} />
                 )}
-                {phone && (
-                  <Info phone={phone} index={4} countryInfo={countryInfo[0]} />
-                )}
+                {phone && <Info phone={phone} countryInfo={countryInfo} />}
               </>
             </Div>
           ) : null}

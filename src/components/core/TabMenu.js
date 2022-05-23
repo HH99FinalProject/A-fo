@@ -90,17 +90,25 @@ const TabMenu = (props) => {
       // </Div>
       <Div
         row
-        width="100%"
-        height="60px"
-        margin="60px auto 30px auto"
-        backgroundColor="#D2DFFF"
-        border="1px solid #0031DE"
+        width="1400px"
+        height="40px"
+        margin="0px auto"
+        backgroundColor="#B6CBFF"
       >
         {infoList.map((v, i) => {
           return (
-            <PurposeBtn key={v + i} onClick={props.refClick}>
+            <Button
+              width="100px"
+              margin="0px 70px"
+              backgroundColor="#b6cbff"
+              size="15px"
+              bold
+              color="#3a3a3a"
+              key={v + i}
+              onClick={props.refClick}
+            >
               {v}
-            </PurposeBtn>
+            </Button>
           );
         })}
       </Div>
@@ -111,19 +119,10 @@ const TabMenu = (props) => {
 export default TabMenu;
 
 const ContinentBtn = styled.button`
-  margin: 0px 20px;
+  width: 100px;
+  margin: 0px 100px;
   background: #b6cbff;
-  margin: 0px 50px;
   font-size: 15px;
-  font-weight: bold;
-  color: #3a3a3a;
-`;
-
-const PurposeBtn = styled.button`
-  margin: 0px 20px;
-  background: #d2dfff;
-  margin: 0px 50px;
-  font-size: 18px;
   font-weight: bold;
   color: #3a3a3a;
 `;

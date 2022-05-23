@@ -36,10 +36,10 @@ const Detail = () => {
   const [btnStatus, setBtnStatus] = React.useState(false);
   // 스크롤시 생기는 요소
   const handleFollow = () => {
-    if (window.pageYOffset > 185 && !targetStatus) {
+    if (window.pageYOffset > 395 && !targetStatus) {
       setTargetStatus(true);
       setBtnStatus(true);
-    } else if (window.pageYOffset <= 185 && targetStatus) {
+    } else if (window.pageYOffset <= 395 && targetStatus) {
       setTargetStatus(false);
       setBtnStatus(false);
     }
@@ -144,10 +144,6 @@ const Detail = () => {
       )}
       {/* 나라별 경로 끝 */}
 
-      {/* 탭메뉴 */}
-      <TabMenu refClick={refClick} />
-      {/* 탭메뉴 */}
-
       {/* 정보 시작 */}
       {/* 목적별 선택된 나라 */}
       {vTarget && (
@@ -160,17 +156,22 @@ const Detail = () => {
               right="0px"
               zIndex="1"
               width="100%"
-              padding="10px 0px"
               backgroundColor="#9FBAFF"
               borderBottom="1px solid #0031DE"
             >
-              <Div row position="fixed" top="5px" left="70px" padding="5px 0px">
+              <TabMenu refClick={refClick} />
+              <Div row position="fixed" top="50px" left="20px">
                 <Image icon margin="5px 0px 0px 0px" src={targetIcon[0]} />
-                <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
+                <Text
+                  margin="0px 0px 0px 10px"
+                  size="40px"
+                  color="#0031DE"
+                  bold
+                >
                   {purpose}
                 </Text>
               </Div>
-              <Div row width="1400px" height="60px">
+              <Div row width="1400px" height="60px" margin="10px 0px">
                 {targetDetail.map((v, i) => {
                   return (
                     <Div key={i} row width="100%" height="60px">
@@ -190,19 +191,27 @@ const Detail = () => {
             </Div>
           ) : (
             <>
+              <Div center width="100%" margin="70px 0px ">
+                <Div
+                  row
+                  position="relative"
+                  padding="10px 0px"
+                  borderBottom="3px solid #0031DE"
+                >
+                  <Image icon src={targetIcon[0]} margin="0px 10px 0px -10px" />
+                  <Text size="40px" color="#0031DE" bold>
+                    {purpose}
+                  </Text>
+                </Div>
+              </Div>
+              <TabMenu refClick={refClick} />
               <Div
-                row
+                center
                 position="relative"
                 width="100%"
-                margin="60px 0px 30px 0px"
-                padding="10px 0px"
+                margin="60px 0px 0px 0px"
+                padding="20px 0px"
               >
-                <Image flag src={targetIcon[0]} />
-                <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
-                  {purpose}
-                </Text>
-              </Div>
-              <Div center position="relative" width="100%" padding="10px 0px">
                 <Div row width="1400px" height="60px">
                   {targetDetail.map((u, i) => {
                     return (
@@ -239,33 +248,32 @@ const Detail = () => {
                 right="0px"
                 zIndex="1"
                 width="100%"
-                padding="10px 0px"
                 backgroundColor="#9FBAFF"
                 borderBottom="1px solid #0031DE"
               >
-                <Div
-                  row
-                  position="fixed"
-                  top="5px"
-                  left="70px"
-                  padding="10px 0px"
-                >
+                <TabMenu refClick={refClick} />
+                <Div row position="fixed" top="50px" left="20px">
                   <Image flag src={countryFlag[0]} />
                   <Text
                     margin="0px 0px 0px 10px"
-                    size="30px"
-                    color="white"
+                    size="40px"
+                    color="#0031DE"
                     bold
                   >
                     {countryName}
                   </Text>
                 </Div>
-                <Div row width="1400px" height="60px">
+                <Div row width="1400px" height="60px" margin="10px 0px">
                   {countryDetail.map((h, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
                         <Image flag src={h.purposeImgSmall} />
-                        <Text margin="0px 0px 0px 10px" size="30px" bold>
+                        <Text
+                          margin="0px 0px 0px 10px"
+                          size="30px"
+                          color="white"
+                          bold
+                        >
                           {h.purpose}
                         </Text>
                       </Div>
@@ -276,25 +284,38 @@ const Detail = () => {
             </>
           ) : (
             <>
+              <Div center width="100%" margin="70px 0px ">
+                <Div
+                  row
+                  position="relative"
+                  padding="10px 0px"
+                  borderBottom="3px solid #0031DE"
+                >
+                  <Image flag src={countryFlag[0]} margin="0px 20px 0px 0px" />
+                  <Text size="40px" color="#0031DE" bold>
+                    {countryName}
+                  </Text>
+                </Div>
+              </Div>
+              <TabMenu refClick={refClick} />
               <Div
-                row
+                center
                 position="relative"
                 width="100%"
-                margin="60px 0px 30px 0px"
-                padding="10px 0px"
+                margin="60px 0px 0px 0px"
+                padding="20px 0px"
               >
-                <Image flag src={countryFlag[0]} />
-                <Text margin="0px 0px 0px 10px" size="30px" color="white" bold>
-                  {countryName}
-                </Text>
-              </Div>
-              <Div center position="relative" width="100%" padding="10px 0px">
                 <Div row width="1400px" height="60px">
                   {countryDetail.map((l, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
                         <Image flag src={l.purposeImgSmall} />
-                        <Text margin="0px 0px 0px 10px" size="30px" bold>
+                        <Text
+                          margin="0px 0px 0px 10px"
+                          size="30px"
+                          bold
+                          color="white"
+                        >
                           {l.purpose}
                         </Text>
                       </Div>
@@ -334,9 +355,8 @@ const Detail = () => {
             );
           }
         })}
-
         {/* 북마크 시작 */}
-        {targetStatus ? (
+        {/* {targetStatus ? (
           <Div bookmark bookmarkFix>
             <Div
               row
@@ -351,12 +371,12 @@ const Detail = () => {
                 북마크
               </Text>
               <MdOutlineKeyboardArrowDown size={15} />
-            </Div>
-            {/* 북마크 토글 */}
-            {bookMarkToggle ? (
-              <React.Fragment>
-                {/* 목적별 시작 */}
-                {/* <Div width="100%" margin="5px 0px" border="1px solid black">
+            </Div> */}
+        {/* 북마크 토글 */}
+        {/* {bookMarkToggle ? (
+              <React.Fragment> */}
+        {/* 목적별 시작 */}
+        {/* <Div width="100%" margin="5px 0px" border="1px solid black">
               <Text margin="10px" size="20px" bold>
                 호주
               </Text>
@@ -378,9 +398,9 @@ const Detail = () => {
               </Text>
               <Text margin="10px">대사관</Text>
             </Div> */}
-                {/* 목적별 끝 */}
-                {/* 나라별 시작 */}
-                <Div
+        {/* 목적별 끝 */}
+        {/* 나라별 시작 */}
+        {/* <Div
                   width="100%"
                   margin="5px 0px"
                   backgroundColor="white"
@@ -406,10 +426,9 @@ const Detail = () => {
                   </Text>
                   <Text margin="10px">비자</Text>
                   <Text margin="10px">교통</Text>
-                </Div>
-                {/* 나라별 끝 */}
-
-                <Div
+                </Div> */}
+        {/* 나라별 끝 */}
+        {/* <Div
                   center
                   width="100%"
                   height="70px"
@@ -425,9 +444,9 @@ const Detail = () => {
                   </Button>
                 </Div>
               </React.Fragment>
-            ) : null}
-            {/* 북마크 토글 */}
-          </Div>
+            ) : null} */}
+        {/* 북마크 토글 */}
+        {/* </Div>
         ) : (
           <Div bookmark>
             <Div
@@ -443,12 +462,12 @@ const Detail = () => {
                 북마크
               </Text>
               <MdOutlineKeyboardArrowDown size={15} />
-            </Div>
-            {/* 북마크 토글 */}
-            {bookMarkToggle ? (
-              <React.Fragment>
-                {/* 목적별 시작 */}
-                {/* <Div width="100%" margin="5px 0px" border="1px solid black">
+            </Div> */}
+        {/* 북마크 토글 */}
+        {/* {bookMarkToggle ? (
+              <React.Fragment> */}
+        {/* 목적별 시작 */}
+        {/* <Div width="100%" margin="5px 0px" border="1px solid black">
               <Text margin="10px" size="20px" bold>
                 호주
               </Text>
@@ -470,9 +489,9 @@ const Detail = () => {
               </Text>
               <Text margin="10px">대사관</Text>
             </Div> */}
-                {/* 목적별 끝 */}
-                {/* 나라별 시작 */}
-                <Div
+        {/* 목적별 끝 */}
+        {/* 나라별 시작 */}
+        {/* <Div
                   width="100%"
                   margin="5px 0px"
                   backgroundColor="white"
@@ -498,9 +517,9 @@ const Detail = () => {
                   </Text>
                   <Text margin="10px">비자</Text>
                   <Text margin="10px">교통</Text>
-                </Div>
-                {/* 나라별 끝 */}
-                <Div
+                </Div> */}
+        {/* 나라별 끝 */}
+        {/* <Div
                   center
                   width="100%"
                   height="70px"
@@ -515,11 +534,11 @@ const Detail = () => {
                     완료
                   </Button>
                 </Div>
-              </React.Fragment>
-            ) : null}
-            {/* 북마크 토글 */}
-          </Div>
-        )}
+              </React.Fragment> */}
+        {/* ) : null} */}
+        {/* 북마크 토글 */}
+        {/* </Div>
+        )} */}
         {/* 북마크 끝 */}
       </Div>
       {/* 세부정보 */}
