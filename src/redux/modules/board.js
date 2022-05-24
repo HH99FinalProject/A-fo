@@ -4,7 +4,6 @@ import axios from 'axios';
 export const addPostDB = createAsyncThunk(
   'add/postDB',
   async (formData, thunkAPI) => {
-    // console.log(formData)
     try {
       const res = await axios.post(
         `https://a-fo-back.link/post/create`,
@@ -25,11 +24,12 @@ export const addPostDB = createAsyncThunk(
 );
 
 export const getTotalReadDB = createAsyncThunk(
-  'get/postDB', async (data, thunkAPI) => {
+  'get/totalReadDB', async (pageNum, thunkAPI) => {
+    console.log(pageNum)
   try {
-    const res = await axios.get(`https://a-fo-back.link/post/totalRead`);
-    // console.log(res);
-    return res.data.postList;
+    const res = await axios.get(`https://a-fo-back.link/post/totalRead?pageNum=${pageNum}`);
+    console.log(res);
+    return res.data;
   } catch (error) {
     console.log(error)
     return thunkAPI.rejectWithValue(error);
@@ -37,11 +37,12 @@ export const getTotalReadDB = createAsyncThunk(
 });
 
 export const getPostSearchDB = createAsyncThunk(
-  'get/postDB', async (data, thunkAPI) => {
-    console.log(data)
+  'get/postSearchDB', async (data, thunkAPI) => {
+    // console.log(data)
   try {
-    const res = await axios.get(`https://a-fo-back.link/post/postSearch?searchWord=${data.keyWord}&continent=${data.selectContinent}&target=${data.selectPurpose}`);
-    return res.data.postList;
+    const res = await axios.get(`https://a-fo-back.link/post/postSearch?searchWord=${data.keyWord}&continent=${data.selectContinent}&target=${data.selectPurpose}&pageNum=${data.currentPage}`);
+    console.log(res.data)
+    return res.data;
   } catch (error) {
     console.log(error)
     return thunkAPI.rejectWithValue(error);
@@ -83,7 +84,6 @@ export const deletePostDB = createAsyncThunk(
 export const getPostRawDataDB = createAsyncThunk(
   'get/postRawDataDB',
   async (postId, thunkAPI) => {
-    console.log(postId);
     try {
       const res = await axios.get(
         `https://a-fo-back.link/post/updateRawData?postId=${postId}`,
@@ -101,7 +101,6 @@ export const getPostRawDataDB = createAsyncThunk(
 export const editPostDB = createAsyncThunk(
   'edit/postDB',
   async (formData, thunkAPI) => {
-    // console.log(formData.token);
     try {
       const res = await axios.post(
         `https://a-fo-back.link/post/update`, formData.formData, 
@@ -148,8 +147,9 @@ export const boardSlice = createSlice({
         state.loading = true;
       })
       .addCase(getTotalReadDB.fulfilled, (state, action) => {
-        state.postList = action.payload;
-        // console.log(state.postList);
+        console.log(action.payload)
+        state.postList = action.payload.postList;
+        state.postLength = action.payload.postLength;
         state.loading = false;
       })
       .addCase(getTotalReadDB.rejected, (state, action) => {
@@ -157,15 +157,17 @@ export const boardSlice = createSlice({
       })
 
       // -----게시물 검색하기
-      // .addCase(getPostSearchDB.pending, (state, action) => {
-      //   state.loading = true;
-      // })
-      // .addCase(getPostSearchDB.fulfilled, (state, action) => {
-      //   state.loading = false;
-      // })
-      // .addCase(getPostSearchDB.rejected, (state, action) => {
-      //   state.loading = false;
-      // })
+      .addCase(getPostSearchDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getPostSearchDB.fulfilled, (state, action) => {
+        state.loading = false;
+        state.postList = action.payload.postList;
+        state.postLength = action.payload.postLength;
+      })
+      .addCase(getPostSearchDB.rejected, (state, action) => {
+        state.loading = false;
+      })
       
       // -----세부게시물 불러오기
       .addCase(getPostDetailDB.pending, (state, action) => {

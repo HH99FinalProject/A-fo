@@ -5,7 +5,7 @@ import { logoutReducer } from '../../redux/modules/login';
 
 import Modal from '../../shared/Modal';
 import Login from '../modal/Login';
-import { Button, Div, Image, Input, Text } from '../ui';
+import { Button, Div, Image } from '../ui';
 import logo from '../../styles/images/logo.png';
 import profile from '../../styles/images/profile.png';
 

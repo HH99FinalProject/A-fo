@@ -3,10 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
 import { getPostSearchDB } from '../../redux/modules/board';
-import { Button, Div, Image, Input, Text } from '../ui';
+import { Div } from '../ui';
 import { HiOutlineSearch } from 'react-icons/hi';
-
-
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -24,7 +22,6 @@ const Search = () => {
     dispatch(getPostSearchDB(data));
     formRef.current.reset();
   }
-  // continent === undefined ? '모든대륙' : continent;
   
   const continentSelect = (e) => {
     setContinent(e.target.value);
@@ -32,7 +29,7 @@ const Search = () => {
   const purposeSelect = (e) => {
     setPurpose(e.target.value);
   }
-  console.log(continent, purpose);
+  // console.log(continent, purpose);
   return (
     <Div
       spaceBetween
