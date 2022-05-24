@@ -171,16 +171,23 @@ const PostDetail = (props) => {
 
           <Wrap>
             <Div spaceBetween width="100%">
-              <Input
+              <input
                 placeholder="댓글 입력란입니다."
-                _onChange={onChange}
+                style={{
+                  width: "90%",
+                  height: "40px",
+                  fontSize: "18px",
+                  padding: "0 10px",
+                  borderRadius: "0"
+                }}
+                onChange={onChange}
                 value={comment}
                 onSubmit={addComment}
-                is_submit
-                borderRadius="0"/>
+                is_submit/>
               <button
                 style={{
                   margin:"0 0 0 20px",
+                  height: "40px",
                   padding: '10px',
                   background: '#7b7b7b',
                   color: '#fff',

@@ -62,20 +62,20 @@ const Comment = (props) => {
         <Div width="70%">
           {/* getState가 true면 원래댓글, false면 수정모드input */}
           {editMode ?
-            <input defaultValue={props.comment.comment}
+            <input defaultValue={props.comment.comment} style={{width: "100%"}}
               onChange={(e)=>{ setChangeComment(e.target.value); console.log(e.target.value); }} ></input>
           : <Ellipsis>
               {props.comment.comment}
             </Ellipsis>}
         </Div>
-        <Div width="11%">
+        <Div width="10%">
           <Text textAlign="right" margin="0 40px 0 0" letterSpacing="1px">
             {moment(props.comment.updatedAt).fromNow()}
           </Text>
         </Div>
         {is_login && commentUserId === userId ?
           <>
-            <Div width="4%" textCenter cursor="pointer"> 
+            <Div width="5%" textCenter cursor="pointer"> 
               {editMode ? 
               <Text size="14px" color="blue" letterSpacing="1px"
                 _onClick={()=>{ setEditMode(false); editComment(); }} >수정완료</Text>
