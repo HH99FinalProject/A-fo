@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 
@@ -65,10 +65,10 @@ const Detail = () => {
   // -----스크롤 이벤트 종료
 
   // 탭메뉴ref
-  const infoRef = useRef('스크롤');
+  const infoRef = React.useRef('스크롤');
   const refClick = () => {
-    console.log(infoRef);
-    infoRef.current?.scrollIntoView({ behavior: 'smooth' });
+    console.log(infoRef.current);
+    infoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -175,7 +175,7 @@ const Detail = () => {
                 {targetDetail.map((v, i) => {
                   return (
                     <Div key={i} row width="100%" height="60px">
-                      <Image flag src={v.flag} />
+                      <Image flag src={v.flagSmall} />
                       <Text
                         margin="0px 0px 0px 10px"
                         size="30px"
@@ -216,7 +216,7 @@ const Detail = () => {
                   {targetDetail.map((u, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
-                        <Image flag src={u.flag} />
+                        <Image flag src={u.flagSmall} />
                         <Text
                           margin="0px 0px 0px 10px"
                           size="30px"

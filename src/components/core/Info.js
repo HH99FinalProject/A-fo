@@ -1,15 +1,13 @@
-import { zip } from 'lodash';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import styled from 'styled-components';
 import { Button, Div, Image, Input, Text } from '../ui';
 
-const Info = (props) => {
+const Info = (props, ref) => {
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
-  const height = props.height;
-  console.log(props.height);
+  // console.log(props.height);
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
@@ -27,7 +25,18 @@ const Info = (props) => {
     <>
       {/* 비자 */}
       {props.visa && (
-        <Box height={height}>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: props.height,
+            marginLeft: '-1px',
+            padding: '40px 0px',
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            borderLeft: '1px solid #0031DE',
+          }}
+        >
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
@@ -56,12 +65,23 @@ const Info = (props) => {
               </TitleBox>
             );
           })}
-        </Box>
+        </div>
       )}
 
       {/* 은행 */}
       {props.bank && (
-        <Box>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: props.height,
+            marginLeft: '-1px',
+            padding: '40px 0px',
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            borderLeft: '1px solid #0031DE',
+          }}
+        >
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
@@ -99,12 +119,23 @@ const Info = (props) => {
               </TitleBox>
             );
           })}
-        </Box>
+        </div>
       )}
 
       {/* 시차 */}
       {props.time && (
-        <Box>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            // height: props.height,
+            marginLeft: '-1px',
+            padding: '40px 0px',
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            borderLeft: '1px solid #0031DE',
+          }}
+        >
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
@@ -142,12 +173,23 @@ const Info = (props) => {
               </TitleBox>
             );
           })}
-        </Box>
+        </div>
       )}
 
       {/* 교통 */}
       {props.traffic && (
-        <Box>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            // height: props.height,
+            marginLeft: '-1px',
+            padding: '40px 0px',
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            borderLeft: '1px solid #0031DE',
+          }}
+        >
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
@@ -185,12 +227,23 @@ const Info = (props) => {
               </TitleBox>
             );
           })}
-        </Box>
+        </div>
       )}
 
       {/* 언어 */}
       {props.language && (
-        <Box>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            // height: props.height,
+            marginLeft: '-1px',
+            padding: '40px 0px',
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            borderLeft: '1px solid #0031DE',
+          }}
+        >
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
@@ -228,12 +281,23 @@ const Info = (props) => {
               </TitleBox>
             );
           })}
-        </Box>
+        </div>
       )}
 
       {/* 통신 */}
       {props.phone && (
-        <Box>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            // height: props.height,
+            marginLeft: '-1px',
+            padding: '40px 0px',
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            borderLeft: '1px solid #0031DE',
+          }}
+        >
           {/* 북마크 전 */}
           {/* <Button bookmarkBtn></Button> */}
           {/* 북마크 후 */}
@@ -271,7 +335,7 @@ const Info = (props) => {
               </TitleBox>
             );
           })}
-        </Box>
+        </div>
       )}
     </>
   );
@@ -279,15 +343,6 @@ const Info = (props) => {
 
 export default Info;
 
-const Box = styled.div`
-  position: relative;
-  width: 100%;
-  height: ${(props) => (props.height ? '{height}' : null)};
-  padding: 40px 0px;
-  overflow: hidden;
-  background-color: white;
-  border-left: 1px solid red;
-`;
 const TitleBox = styled.div`
   width: 100%;
   padding: 20px;

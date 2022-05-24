@@ -82,7 +82,7 @@ const BottomSheet = (props) => {
               {props.addList.map((v, i) => {
                 return (
                   <Text
-                    key={v.id}
+                    key={v}
                     width="190px"
                     height="60px"
                     lineHeight="60px"

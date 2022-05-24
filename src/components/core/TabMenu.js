@@ -51,43 +51,6 @@ const TabMenu = (props) => {
     );
   } else {
     return (
-      // <Div
-      //   row
-      //   width="100%"
-      //   height="60px"
-      //   margin="60px auto 30px auto"
-      //   backgroundColor="#D2DFFF"
-      //   border="1px solid #0031DE"
-      // >
-      //   {infoList.map((v, i) => {
-      //     return v === '비자' ? (
-      //       <PurposeBtn key={v + i} id="1">
-      //         {v}
-      //       </PurposeBtn>
-      //     ) : v === '은행' ? (
-      //       <PurposeBtn key={v + i} id="2" onClick={() => {}}>
-      //         {v}
-      //       </PurposeBtn>
-      //     ) : v === '시차' ? (
-      //       <PurposeBtn key={v + i} id="3" onClick={() => {}}>
-      //         {v}
-      //       </PurposeBtn>
-      //     ) : v === '교통' ? (
-      //       <PurposeBtn key={v + i} id="4" onClick={() => {}}>
-      //         {v}
-      //       </PurposeBtn>
-      //     ) : v === '언어' ? (
-      //       <PurposeBtn key={v + i} id="5" onClick={() => {}}>
-      //         {v}
-      //       </PurposeBtn>
-      //     ) : (
-      //       // 마지막 통신
-      //       <PurposeBtn key={v + i} id="6" onClick={() => {}}>
-      //         {v}
-      //       </PurposeBtn>
-      //     );
-      //   })}
-      // </Div>
       <Div
         row
         width="1400px"
@@ -105,7 +68,7 @@ const TabMenu = (props) => {
               bold
               color="#3a3a3a"
               key={v + i}
-              onClick={props.refClick}
+              _onClick={props.refClick}
             >
               {v}
             </Button>

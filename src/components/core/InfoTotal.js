@@ -6,7 +6,7 @@ import Info from './Info';
 import { Button, Div, Image, Input, Text } from '../ui';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
-const InfoTotal = (props) => {
+const InfoTotal = forwardRef((props, ref) => {
   const visa = props.infoTitle === '비자';
   const bank = props.infoTitle === '은행';
   const time = props.infoTitle === '시차';
@@ -36,11 +36,10 @@ const InfoTotal = (props) => {
 
   // 높이값 구하기
   const [height, setHeight] = React.useState(0);
-  const ref = useRef('null');
-  // console.log(document.querySelector('.a').offsetHeight);
+  const heightRef = useRef('null');
   React.useEffect(() => {
-    if (ref.current) {
-      setHeight(ref.current.offsetHeight);
+    if (heightRef.current) {
+      setHeight(heightRef.current.offsetHeight);
     }
   }, []);
 
@@ -48,35 +47,58 @@ const InfoTotal = (props) => {
     <React.Fragment>
       {/* 목적별, 나라별(비자) 선택수에 따라서 바뀌는 형태 */}
       {(vTarget || (vCountry && visa)) && (
-        <Div
-          center
-          width="1400px"
-          backgroundColor="white"
-          border="1px solid #0031DE"
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '1400px',
+            backgroundColor: 'white',
+            border: '1px solid #0031DE',
+          }}
+
+          // center
+          // width="1400px"
+          // backgroundColor="white"
+          // border="1px solid #0031DE"
         >
           {/* 토글 */}
-          <Div
-            row
-            width="100%"
-            height="100px"
-            backgroundColor="#D2DFFF"
-            cursor="pointer"
-            _onClick={() => {
-              changeToggle();
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              height: '100px',
+              backgroundColor: '#D2DFFF',
+              cursor: 'pointer',
             }}
+            ref={ref}
+            onClick={changeToggle}
           >
+            {/* <p
+              style={{
+                width: 'auto',
+                margin: '0px 5px',
+                fontSize: '25px',
+                fontWeight: 'bold',
+              }}
+            >
+              {props.infoTitle}
+            </p> */}
             <Text width="auto" margin="0px 5px" size="25px" bold>
               {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
-          </Div>
+          </div>
 
           {/* 토글 */}
 
           {/* 내용 */}
           {toggle ? (
             <div
-              className="a"
               style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -85,7 +107,7 @@ const InfoTotal = (props) => {
                 width: '100%',
                 borderTop: '1px solid #0031DE',
               }}
-              ref={ref}
+              // ref={heightRef}
             >
               {vTarget && (
                 <>
@@ -146,12 +168,14 @@ const InfoTotal = (props) => {
               {vCountry &&
                 visa &&
                 countryVisa?.map((c, i) => {
-                  return <Info key={c + i} {...c} visa={visa} />;
+                  return (
+                    <Info key={c + i} {...c} visa={visa} height={height} />
+                  );
                 })}
             </div>
           ) : null}
           {/* 내용 */}
-        </Div>
+        </div>
       )}
 
       {/* 나라별 공통정보 형태 */}
@@ -203,6 +227,6 @@ const InfoTotal = (props) => {
       )}
     </React.Fragment>
   );
-};
+});
 
 export default InfoTotal;
