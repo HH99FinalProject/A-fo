@@ -176,9 +176,7 @@ const SubMain1 = (props) => {
             <Button
               color="#0031DE"
               _onClick={() => {
-                history.push({
-                  pathname: '/SubMain2',
-                });
+                history.push('/SubMain2');
               }}
             >
               나라별

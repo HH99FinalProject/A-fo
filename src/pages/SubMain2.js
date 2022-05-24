@@ -129,9 +129,7 @@ const SubMain2 = () => {
           <Button
             color="#0031DE"
             _onClick={() => {
-              history.push({
-                pathname: '/SubMain1',
-              });
+              history.push('/SubMain1');
             }}
           >
             목적별
