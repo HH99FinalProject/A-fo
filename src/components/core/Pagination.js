@@ -1,20 +1,29 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { getTotalReadDB } from "../../redux/modules/board";
 
-const Pagination = ({ pageNumbers, postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
 
-  // const pageNumbers = [];
-  // for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-  //   pageNumbers.push(i);
-  // }
-  
+  console.log(postsPerPage, totalPosts, paginate);
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  const dispatch = useDispatch();
+
+  // console.log(pageNumbers);
 
   return (
     <div>
       <nav>
         <PageUl className="pagination">
           {pageNumbers.map((number) => (
-            <PageLi key={number} className="page-item" onClick={() => {paginate(number)}}>
+            <PageLi key={number} className="page-item" onClick={() => {
+              paginate(number);
+              dispatch(getTotalReadDB(number));
+              console.log(number)
+              }}>
               <PageSpan  className="page-link">
                 {number}
               </PageSpan>
