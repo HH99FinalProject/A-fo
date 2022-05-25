@@ -2,13 +2,10 @@ import React, { useReducer, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useSelector, useDispatch } from 'react-redux';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import { Editor } from '@toast-ui/react-editor';
-import { Viewer } from '@toast-ui/react-editor';
 import { actionCreators as imageActions } from '../redux/modules/image';
 
 import { Header } from '../components/core';
-import { Text, Div, Button } from '../components/ui';
+import { Div, Button } from '../components/ui';
 import { editPostDB } from '../redux/modules/board';
 import { getPostRawDataDB } from '../redux/modules/board';
 import { initialRawData } from '../redux/modules/board';
@@ -18,7 +15,6 @@ const PostDetailEdit = (props) => {
   const preview = useSelector((state) => state.image.preview);
   const token = useSelector((state => state.login.userInfo.token));
   const rawData = useSelector(state => state.board.rawData);
-  // console.log(postId, rawData);
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -28,12 +24,10 @@ const PostDetailEdit = (props) => {
 
   // 내가 선택한 대륙별선택
   const myLandPick = (e) => {
-    console.log(e.target.value);
     setLandPick(e.target.value);
   };
   // 내가 선택한 목적별선택
   const myPurposePick = (e) => {
-    console.log(e.target.value);
     setPurposePick(e.target.value);
   };
 
@@ -77,11 +71,10 @@ const PostDetailEdit = (props) => {
       fileInput.current ? fileInput.current.files[0] : null
     );
     // 폼데이터 콘솔찍어보기
-    for (var pair of formData.entries()) { 
-      console.log(pair); 
-    }
+    // for (var pair of formData.entries()) { 
+    //   console.log(pair); 
+    // }
   }
-  console.log(`title: ${title}`, `nation: ${nation}`, `content: ${content}`);
 
   // 이미지 프리뷰
   const changePreview = (e) => {
@@ -101,9 +94,9 @@ const PostDetailEdit = (props) => {
       dispatch(initialRawData());
       dispatch(imageActions.uploadImageDB(null));
     }
-  }, [])
+  }, []);
+  
   const image = rawData?.postImageUrl;
-  console.log(image)
   if(image) {
     var img = image;
   } else {

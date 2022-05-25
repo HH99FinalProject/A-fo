@@ -8,10 +8,8 @@ export const getCommentDB = createAsyncThunk(
       const res = await axios.get(
         `https://a-fo-back.link/comment/read?postId=${postId}`,
       );
-      console.log(res.data)
       return res.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -44,7 +42,6 @@ export const addCommentDB = createAsyncThunk(
 export const deleteCommentDB = createAsyncThunk(
   'delete/commentDB',
   async (data, thunkAPI) => {
-    console.log(data)
     try {
       const res = await axios.delete(
         `https://a-fo-back.link/comment/delete?commentId=${data.commentId}&postId=${data.postId}`,
@@ -60,15 +57,12 @@ export const deleteCommentDB = createAsyncThunk(
 export const editCommentDB = createAsyncThunk(
   'edit/commentMode',
   async (data, thunkAPI) => {
-    console.log(data);
     try {
       const res = await axios.patch(
         `https://a-fo-back.link/comment/update`, data,
       )
-      console.log(res.data)
       return {res, data};
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -119,7 +113,6 @@ export const commentSlice = createSlice({
       })
       .addCase(editCommentDB.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.commentList[0].comment = action.payload.data.comment; 
       })
       .addCase(editCommentDB.rejected, (state, action) => {

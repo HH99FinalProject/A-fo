@@ -15,9 +15,10 @@ export const addPostDB = createAsyncThunk(
           },
         }
       );
+      console.log(res.data);
       return res.data;
     } catch (error) {
-      console.log(error)
+      console.log(error.response.data);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -25,13 +26,10 @@ export const addPostDB = createAsyncThunk(
 
 export const getTotalReadDB = createAsyncThunk(
   'get/totalReadDB', async (pageNum, thunkAPI) => {
-    console.log(pageNum)
   try {
     const res = await axios.get(`https://a-fo-back.link/post/totalRead?pageNum=${pageNum}`);
-    console.log(res);
     return res.data;
   } catch (error) {
-    console.log(error)
     return thunkAPI.rejectWithValue(error);
   }
 });
@@ -41,10 +39,8 @@ export const getPostSearchDB = createAsyncThunk(
     // console.log(data)
   try {
     const res = await axios.get(`https://a-fo-back.link/post/postSearch?searchWord=${data.keyWord}&continent=${data.selectContinent}&target=${data.selectPurpose}&pageNum=${data.currentPage}`);
-    console.log(res.data)
     return res.data;
   } catch (error) {
-    console.log(error)
     return thunkAPI.rejectWithValue(error);
   }
 });
@@ -57,10 +53,8 @@ export const getPostDetailDB = createAsyncThunk(
         `https://a-fo-back.link/post/detailRead?postId=${postId}`,
         postId
       );
-      console.log(res)
       return res;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -69,7 +63,6 @@ export const getPostDetailDB = createAsyncThunk(
 export const deletePostDB = createAsyncThunk(
   'delete/postDB',
   async (postId, thunkAPI) => {
-    console.log(postId);
     try {
       const res = await axios.delete(
         `https://a-fo-back.link/post/delete?postId=${postId}`,
@@ -88,10 +81,8 @@ export const getPostRawDataDB = createAsyncThunk(
       const res = await axios.get(
         `https://a-fo-back.link/post/updateRawData?postId=${postId}`,
       )
-      console.log(res);
       return res;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -140,6 +131,7 @@ export const boardSlice = createSlice({
       })
       .addCase(addPostDB.rejected, (state, action) => {
         state.loading = false;
+        state.errorMsg = action.payload?.response.data.msg;
       })
 
       // -----전체게시물 불러오기
@@ -147,7 +139,6 @@ export const boardSlice = createSlice({
         state.loading = true;
       })
       .addCase(getTotalReadDB.fulfilled, (state, action) => {
-        console.log(action.payload)
         state.postList = action.payload.postList;
         state.postLength = action.payload.postLength;
         state.loading = false;

@@ -16,6 +16,7 @@ import WorldMap from '../pages/WorldMap';
 
 import { Kakao } from '../components/core';
 import { GlobalStyle } from '../components/ui';
+import Google from '../components/core/Google';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Route exact path="/" component={Main} />
         <Route exact path="/oauth/kakao/callback" component={Kakao}></Route>
+        <Route exact path="/oauth/google/callback" component={Google}></Route>
         <Route exact path="/Board" component={Board} />
         <Route exact path="/Detail" component={Detail} />
         <Route exact path="/MyPage" component={MyPage} />

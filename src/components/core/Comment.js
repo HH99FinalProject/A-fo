@@ -17,9 +17,6 @@ const Comment = (props) => {
   const userId = useSelector(state => state.login.userInfo.userId);
   const commentUserId = props.comment.userId;
 
-  console.log(commentUserId, userId);
-  console.log(props)
-
   const deleteComment = () => {
     const data = {
       commentId: props.comment.commentId,
@@ -30,8 +27,6 @@ const Comment = (props) => {
     }
   }
 
-  const ref = useRef(null);
-
   const editComment = () => {
     if (changeComment === '') {
       alert('댓글을 수정해주세요.');
@@ -41,7 +36,6 @@ const Comment = (props) => {
         commentId: props.comment.commentId,
         postId: props.comment.postId,
       }
-      console.log(data);
       dispatch(editCommentDB(data))
     }
   }
