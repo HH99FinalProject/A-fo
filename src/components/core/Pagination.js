@@ -12,8 +12,6 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   }
   const dispatch = useDispatch();
 
-  // console.log(pageNumbers);
-
   return (
     <div>
       <nav>

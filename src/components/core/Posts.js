@@ -7,7 +7,6 @@ const Posts = ({ posts, postList, loading }) => {
     return <h2>...loading</h2>;
   }
   
-  // console.log(posts, postList);
   return (
     <>
       {postList?.map((post, i) => {
