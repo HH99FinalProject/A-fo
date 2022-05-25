@@ -20,6 +20,7 @@ const Image = (props) => {
     route,
     flag,
     icon,
+    small,
     cursor,
   } = props;
 
@@ -39,6 +40,7 @@ const Image = (props) => {
     route,
     flag,
     icon,
+    small,
     cursor,
   };
 
@@ -101,6 +103,7 @@ Image.defaultProps = {
   route: false,
   flag: false,
   icon: false,
+  small: false,
   cursor: '',
 };
 
@@ -149,8 +152,8 @@ const ImageCircle = styled.div`
 `;
 
 const Flag = styled.div`
-  width: 50px;
-  height: 50px;
+  ${(props) =>
+    props.small ? 'width:35px; height:35px;' : 'width:50px; height:50px;'};
   margin: ${(props) => props.margin};
   border-radius: 50%;
   background-image: url('${(props) => props.src}');
@@ -160,8 +163,8 @@ const Flag = styled.div`
 `;
 
 const Icon = styled.div`
-  width: 50px;
-  height: 50px;
+  ${(props) =>
+    props.small ? 'width:35px; height:35px;' : 'width:50px; height:50px;'};
   margin: ${(props) => props.margin};
   background-image: url('${(props) => props.src}');
   background-size: 'contain';

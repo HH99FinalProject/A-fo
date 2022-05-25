@@ -5,9 +5,12 @@ import { logoutReducer } from '../../redux/modules/login';
 
 import Modal from '../../shared/Modal';
 import Login from '../modal/Login';
-import { Button, Div, Image } from '../ui';
+
+import styled from 'styled-components';
+import { Button, Div, Image, Text } from '../ui';
 import logo from '../../styles/images/logo.png';
 import profile from '../../styles/images/profile.png';
+import survey from '../../styles/images/survey.png';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -133,6 +136,17 @@ const Header = () => {
           )}
           {/* 로그인 후 */}
         </Div>
+        <Link target="_blank" href="https://forms.gle/HQvmVAaozLWNxhnY9">
+          <Image
+            width="40px"
+            height="40px"
+            size="cover"
+            repeat="no-repeat"
+            position="center"
+            src={survey}
+          />
+          설문하고 커피받기!
+        </Link>
       </Div>
     );
   } else {
@@ -242,8 +256,36 @@ const Header = () => {
           )}
           {/* 로그인 후 */}
         </Div>
+        <Link target="_blank" href="https://forms.gle/HQvmVAaozLWNxhnY9">
+          <Image
+            width="40px"
+            height="40px"
+            size="cover"
+            repeat="no-repeat"
+            position="center"
+            src={survey}
+          />
+          설문하고 커피받기!
+        </Link>
       </Div>
     );
   }
 };
 export default Header;
+
+const Link = styled.a`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 79px;
+  border-left: 2px solid #0031de;
+  background-color: #dcffaf;
+  font-weight: bold;
+  font-size: 15px;
+  color: #0031de;
+`;

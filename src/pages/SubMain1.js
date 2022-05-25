@@ -91,6 +91,7 @@ const SubMain1 = (props) => {
         {vTarget && (
           <Div flexStart width="1400px" margin=" 10px auto">
             <Button
+              size="15px"
               color="#0031DE"
               _onClick={() => {
                 history.push('/');
@@ -99,7 +100,9 @@ const SubMain1 = (props) => {
               Home
             </Button>
             <RiArrowRightSLine size="15" color="#0031DE" />
-            <Text color="#0031DE">목적별</Text>
+            <Button size="15px" color="#0031DE" cursor="text">
+              목적별
+            </Button>
           </Div>
         )}
         {/* 경로 끝 */}
@@ -165,6 +168,7 @@ const SubMain1 = (props) => {
         {vCountry && (
           <Div flexStart width="1400px" margin=" 10px auto">
             <Button
+              size="15px"
               color="#0031DE"
               _onClick={() => {
                 history.push('/');
@@ -174,6 +178,7 @@ const SubMain1 = (props) => {
             </Button>
             <RiArrowRightSLine size="15" color="#0031DE" />
             <Button
+              size="15px"
               color="#0031DE"
               _onClick={() => {
                 history.push('/SubMain2');
@@ -182,7 +187,9 @@ const SubMain1 = (props) => {
               나라별
             </Button>
             <RiArrowRightSLine size="15" color="#0031DE" />
-            <Text color="#0031DE">{countryName}</Text>
+            <Button size="15px" color="#0031DE" cursor="text">
+              {countryName}
+            </Button>
           </Div>
         )}
         {/* 경로 끝 */}
@@ -220,6 +227,7 @@ const SubMain1 = (props) => {
                     vCountry={vCountry}
                     showBottomSheet={showBottomSheet}
                     addTarget={addTarget}
+                    addListLength={addList.length}
                   />
                 );
               })}

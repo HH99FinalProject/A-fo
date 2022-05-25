@@ -23,12 +23,16 @@ const TargetCard = (props) => {
   const vCountry = props.vCountry;
 
   // 클릭시 배경색 바뀌기
-  const [backgroundColor, setBackgroundColor] = React.useState('#D2DFFF');
+  const [backgroundColor, setBackgroundColor] = React.useState('#B6CBFF');
+  const addListLength = props.addListLength;
   const Select = () => {
-    backgroundColor === '#D2DFFF'
-      ? setBackgroundColor('#fafbb9')
-      : setBackgroundColor('#D2DFFF');
+    backgroundColor === '#B6CBFF' && addListLength < 4
+      ? setBackgroundColor('white')
+      : setBackgroundColor('#B6CBFF');
   };
+  if (backgroundColor === 'white' && addListLength === 0) {
+    setBackgroundColor('#B6CBFF');
+  }
 
   // 부모로 값 전달(for바텀시트)
   const sendAddTarget = () => {
@@ -161,7 +165,7 @@ const TargetCard = (props) => {
           transition="all 0.3s"
           backgroundColor={backgroundColor}
           _onClick={() => {
-            // Select();
+            Select();
             props.showBottomSheet();
             sendAddTarget();
           }}

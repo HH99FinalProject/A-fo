@@ -21,6 +21,7 @@ const Button = (props) => {
     radius,
     backgroundColor,
     BG,
+    cursor,
     color,
     colorHover,
     size,
@@ -54,6 +55,7 @@ const Button = (props) => {
     radius,
     backgroundColor,
     BG,
+    cursor,
     color,
     colorHover,
     size,
@@ -140,6 +142,7 @@ Button.defaultProps = {
   radius: 'false',
   backgroundColor: '',
   BG: '',
+  cursor: '',
   color: '',
   colorHover: false,
   size: '14px',
@@ -177,6 +180,7 @@ const ButtonDefault = styled.button`
   font-weight: ${(props) => (props.bold ? '600' : '400')};
   &:hover {
     background-color: ${(props) => props.BG};
+    cursor: ${(props) => props.cursor};
     opacity: ${(props) => props.opacity};
     color: ${(props) => props.colorHover};
   }

@@ -4,10 +4,7 @@ import { history } from '../redux/configureStore';
 
 import { Header, InfoTotal, TabMenu } from '../components/core';
 import { Button, Div, Image, Input, Text } from '../components/ui';
-import {
-  MdOutlineKeyboardArrowUp,
-  MdOutlineKeyboardArrowDown,
-} from 'react-icons/md';
+import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
 const Detail = () => {
@@ -65,10 +62,12 @@ const Detail = () => {
   // -----스크롤 이벤트 종료
 
   // 탭메뉴ref
-  const infoRef = React.useRef('스크롤');
-  const refClick = () => {
-    console.log(infoRef.current);
-    infoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const infoRef = React.useRef([]);
+  const refClick = (index) => {
+    infoRef.current[index].scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
   };
 
   return (
@@ -78,7 +77,9 @@ const Detail = () => {
       {vTarget && (
         <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            size="15px"
             color="#0031DE"
+            cursor="pointer"
             _onClick={() => {
               history.push('/');
             }}
@@ -87,7 +88,9 @@ const Detail = () => {
           </Button>
           <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            size="15px"
             color="#0031DE"
+            cursor="pointer"
             _onClick={() => {
               history.push('/SubMain1');
             }}
@@ -96,7 +99,9 @@ const Detail = () => {
           </Button>
           <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            size="15px"
             color="#0031DE"
+            cursor="pointer"
             _onClick={() => {
               history.push('/SubMain2');
             }}
@@ -104,7 +109,9 @@ const Detail = () => {
             {purpose}
           </Button>
           <RiArrowRightSLine size={15} color="#0031DE" />
-          <Text color="#0031DE">정보</Text>
+          <Button size="15px" color="#0031DE" cursor="text">
+            정보
+          </Button>
         </Div>
       )}
       {/* 목적별 경로 끝 */}
@@ -113,6 +120,7 @@ const Detail = () => {
       {vCountry && (
         <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            size="15px"
             color="#0031DE"
             _onClick={() => {
               history.push('/');
@@ -122,6 +130,7 @@ const Detail = () => {
           </Button>
           <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            size="15px"
             color="#0031DE"
             _onClick={() => {
               history.push('/SubMain2');
@@ -131,6 +140,7 @@ const Detail = () => {
           </Button>
           <RiArrowRightSLine size={15} color="#0031DE" />
           <Button
+            size="15px"
             color="#0031DE"
             _onClick={() => {
               history.push('/SubMain1');
@@ -139,7 +149,9 @@ const Detail = () => {
             {countryName}
           </Button>
           <RiArrowRightSLine size={15} color="#0031DE" />
-          <Text color="#0031DE">정보</Text>
+          <Button size="15px" color="#0031DE" cursor="text">
+            정보
+          </Button>
         </Div>
       )}
       {/* 나라별 경로 끝 */}
@@ -164,7 +176,7 @@ const Detail = () => {
                 <Image icon margin="5px 0px 0px 0px" src={targetIcon[0]} />
                 <Text
                   margin="0px 0px 0px 10px"
-                  size="40px"
+                  size="35px"
                   color="#0031DE"
                   bold
                 >
@@ -175,10 +187,10 @@ const Detail = () => {
                 {targetDetail.map((v, i) => {
                   return (
                     <Div key={i} row width="100%" height="60px">
-                      <Image flag src={v.flagSmall} />
+                      <Image flag small src={v.flagSmall} />
                       <Text
                         margin="0px 0px 0px 10px"
-                        size="30px"
+                        size="25px"
                         color="white"
                         bold
                       >
@@ -199,7 +211,7 @@ const Detail = () => {
                   borderBottom="3px solid #0031DE"
                 >
                   <Image icon src={targetIcon[0]} margin="0px 10px 0px -10px" />
-                  <Text size="40px" color="#0031DE" bold>
+                  <Text size="35px" color="#0031DE" bold>
                     {purpose}
                   </Text>
                 </Div>
@@ -216,10 +228,10 @@ const Detail = () => {
                   {targetDetail.map((u, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
-                        <Image flag src={u.flagSmall} />
+                        <Image flag small src={u.flagSmall} />
                         <Text
                           margin="0px 0px 0px 10px"
-                          size="30px"
+                          size="25px"
                           color="white"
                           bold
                         >
@@ -256,7 +268,7 @@ const Detail = () => {
                   <Image flag src={countryFlag[0]} />
                   <Text
                     margin="0px 0px 0px 10px"
-                    size="40px"
+                    size="35px"
                     color="#0031DE"
                     bold
                   >
@@ -267,10 +279,10 @@ const Detail = () => {
                   {countryDetail.map((h, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
-                        <Image flag src={h.purposeImgSmall} />
+                        <Image icon small src={h.purposeImgSmall} />
                         <Text
                           margin="0px 0px 0px 10px"
-                          size="30px"
+                          size="25px"
                           color="white"
                           bold
                         >
@@ -292,7 +304,7 @@ const Detail = () => {
                   borderBottom="3px solid #0031DE"
                 >
                   <Image flag src={countryFlag[0]} margin="0px 20px 0px 0px" />
-                  <Text size="40px" color="#0031DE" bold>
+                  <Text size="35px" color="#0031DE" bold>
                     {countryName}
                   </Text>
                 </Div>
@@ -309,10 +321,10 @@ const Detail = () => {
                   {countryDetail.map((l, i) => {
                     return (
                       <Div key={i} row width="100%" height="60px">
-                        <Image flag src={l.purposeImgSmall} />
+                        <Image icon small src={l.purposeImgSmall} />
                         <Text
                           margin="0px 0px 0px 10px"
-                          size="30px"
+                          size="25px"
                           bold
                           color="white"
                         >
@@ -335,12 +347,12 @@ const Detail = () => {
           if (i < 2) {
             return (
               <InfoTotal
-                key={i}
+                key={t + i}
                 infoTitle={t}
                 vTarget={vTarget}
                 vCountry={vCountry}
                 isOpen
-                ref={infoRef}
+                ref={(el) => (infoRef.current[i] = el)}
               />
             );
           } else {
@@ -350,7 +362,7 @@ const Detail = () => {
                 infoTitle={t}
                 vTarget={vTarget}
                 vCountry={vCountry}
-                ref={infoRef}
+                ref={(el) => (infoRef.current[i] = el)}
               />
             );
           }

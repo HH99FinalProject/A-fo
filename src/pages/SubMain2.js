@@ -1,5 +1,4 @@
 import React from 'react';
-import { debounce, throttle } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { targetSub1DB } from '../redux/modules/target';
@@ -116,8 +115,9 @@ const SubMain2 = () => {
       <Header></Header>
       {/* 목적별 경로 시작 */}
       {vTarget && (
-        <Div flexStart width="1400px" margin=" 10px auto" color="#0031DE">
+        <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            size="15px"
             color="#0031DE"
             _onClick={() => {
               history.push('/');
@@ -127,6 +127,7 @@ const SubMain2 = () => {
           </Button>
           <RiArrowRightSLine size="15" color="#0031DE" />
           <Button
+            size="15px"
             color="#0031DE"
             _onClick={() => {
               history.push('/SubMain1');
@@ -135,7 +136,9 @@ const SubMain2 = () => {
             목적별
           </Button>
           <RiArrowRightSLine size="15" color="#0031DE" />
-          <Text color="#0031DE">{purpose}</Text>
+          <Button size="15px" color="#0031DE" cursor="text">
+            {purpose}
+          </Button>
         </Div>
       )}
       {/* 목적별 경로 끝 */}
@@ -144,6 +147,7 @@ const SubMain2 = () => {
       {vCountry && (
         <Div flexStart width="1400px" margin=" 10px auto">
           <Button
+            size="15px"
             color="#0031DE"
             _onClick={() => {
               history.push('/');
@@ -152,7 +156,9 @@ const SubMain2 = () => {
             Home
           </Button>
           <RiArrowRightSLine size="15" color="#0031DE" />
-          <Text color="#0031DE">나라별</Text>
+          <Button size="15px" color="#0031DE" cursor="text">
+            나라별
+          </Button>
         </Div>
       )}
       {/* 나라별 경로 끝 */}

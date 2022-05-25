@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import React from 'react';
 
-import { Button, Div, Image, Input, Text } from '../ui';
+import styled from 'styled-components';
+import { Button, Div } from '../ui';
 
 const TabMenu = (props) => {
-  const dispatch = useDispatch();
   const infoList = ['비자', '은행', '시차', '교통', '언어', '통신'];
-
   const SubMain2 = window.location.pathname === '/SubMain2';
 
   if (SubMain2) {
@@ -61,14 +58,16 @@ const TabMenu = (props) => {
         {infoList.map((v, i) => {
           return (
             <Button
+              key={v + i}
               width="100px"
               margin="0px 70px"
               backgroundColor="#b6cbff"
               size="15px"
               bold
               color="#3a3a3a"
-              key={v + i}
-              _onClick={props.refClick}
+              _onClick={() => {
+                props.refClick(i);
+              }}
             >
               {v}
             </Button>

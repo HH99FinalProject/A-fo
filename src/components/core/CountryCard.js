@@ -23,6 +23,9 @@ const CountryCard = (props) => {
       ? setBackgroundColor('white')
       : setBackgroundColor('#B6CBFF');
   };
+  if (backgroundColor === 'white' && addListLength === 0) {
+    setBackgroundColor('#B6CBFF');
+  }
 
   // 부모로 값 전달(for바텀시트)
   const sendAddCountry = () => {
@@ -44,7 +47,7 @@ const CountryCard = (props) => {
           BGHover="#DCFFAF"
           transition="all 0.6s"
           _onClick={() => {
-            // Select();
+            Select();
             props.showBottomSheet();
             sendAddCountry();
           }}

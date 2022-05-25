@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import { Button, Div, Image, Input, Text } from '../ui';
 
 const Info = (props, ref) => {
+  // console.log(props.height);
+
   // 목적별 데이터
   const vTarget = useSelector((state) => state.target.vTarget);
-  // console.log(props.height);
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
@@ -29,12 +30,12 @@ const Info = (props, ref) => {
           style={{
             position: 'relative',
             width: '100%',
-            height: props.height,
-            marginLeft: '-1px',
+            // height: props.height,
+            // marginLeft: '-1px',
             padding: '40px 0px',
             overflow: 'hidden',
             backgroundColor: 'white',
-            borderLeft: '1px solid #0031DE',
+            // borderLeft: '1px solid #0031DE',
           }}
         >
           {/* 북마크 전 */}
@@ -74,12 +75,12 @@ const Info = (props, ref) => {
           style={{
             position: 'relative',
             width: '100%',
-            height: props.height,
-            marginLeft: '-1px',
+            // height: props.height,
+            // marginLeft: '-1px',
             padding: '40px 0px',
             overflow: 'hidden',
             backgroundColor: 'white',
-            borderLeft: '1px solid #0031DE',
+            // borderLeft: '1px solid #0031DE',
           }}
         >
           {/* 북마크 전 */}
@@ -129,11 +130,11 @@ const Info = (props, ref) => {
             position: 'relative',
             width: '100%',
             // height: props.height,
-            marginLeft: '-1px',
+            // marginLeft: '-1px',
             padding: '40px 0px',
             overflow: 'hidden',
             backgroundColor: 'white',
-            borderLeft: '1px solid #0031DE',
+            // borderLeft: '1px solid #0031DE',
           }}
         >
           {/* 북마크 전 */}
@@ -183,11 +184,11 @@ const Info = (props, ref) => {
             position: 'relative',
             width: '100%',
             // height: props.height,
-            marginLeft: '-1px',
+            // marginLeft: '-1px',
             padding: '40px 0px',
             overflow: 'hidden',
             backgroundColor: 'white',
-            borderLeft: '1px solid #0031DE',
+            // borderLeft: '1px solid #0031DE',
           }}
         >
           {/* 북마크 전 */}
@@ -237,11 +238,11 @@ const Info = (props, ref) => {
             position: 'relative',
             width: '100%',
             // height: props.height,
-            marginLeft: '-1px',
+            // marginLeft: '-1px',
             padding: '40px 0px',
             overflow: 'hidden',
             backgroundColor: 'white',
-            borderLeft: '1px solid #0031DE',
+            // borderLeft: '1px solid #0031DE',
           }}
         >
           {/* 북마크 전 */}
@@ -291,11 +292,11 @@ const Info = (props, ref) => {
             position: 'relative',
             width: '100%',
             // height: props.height,
-            marginLeft: '-1px',
+            // marginLeft: '-1px',
             padding: '40px 0px',
             overflow: 'hidden',
             backgroundColor: 'white',
-            borderLeft: '1px solid #0031DE',
+            // borderLeft: '1px solid #0031DE',
           }}
         >
           {/* 북마크 전 */}

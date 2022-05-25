@@ -47,21 +47,11 @@ const InfoTotal = forwardRef((props, ref) => {
     <React.Fragment>
       {/* 목적별, 나라별(비자) 선택수에 따라서 바뀌는 형태 */}
       {(vTarget || (vCountry && visa)) && (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '1400px',
-            backgroundColor: 'white',
-            border: '1px solid #0031DE',
-          }}
-
-          // center
-          // width="1400px"
-          // backgroundColor="white"
-          // border="1px solid #0031DE"
+        <Div
+          center
+          width="1400px"
+          backgroundColor="white"
+          border="1px solid #0031DE"
         >
           {/* 토글 */}
           <div
@@ -78,22 +68,11 @@ const InfoTotal = forwardRef((props, ref) => {
             ref={ref}
             onClick={changeToggle}
           >
-            {/* <p
-              style={{
-                width: 'auto',
-                margin: '0px 5px',
-                fontSize: '25px',
-                fontWeight: 'bold',
-              }}
-            >
-              {props.infoTitle}
-            </p> */}
-            <Text width="auto" margin="0px 5px" size="25px" bold>
+            <Text width="auto" margin="0px 5px" size="20px" bold>
               {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
           </div>
-
           {/* 토글 */}
 
           {/* 내용 */}
@@ -175,28 +154,32 @@ const InfoTotal = forwardRef((props, ref) => {
             </div>
           ) : null}
           {/* 내용 */}
-        </div>
+        </Div>
       )}
 
       {/* 나라별 공통정보 형태 */}
       {vCountry && !visa && (
         <Div center width="1400px" border="1px solid #0031DE">
           {/* 토글 */}
-          <Div
-            row
-            width="100%"
-            height="100px"
-            backgroundColor="#D2DFFF"
-            cursor="pointer"
-            _onClick={() => {
-              changeToggle();
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              height: '100px',
+              backgroundColor: '#D2DFFF',
+              cursor: 'pointer',
             }}
+            ref={ref}
+            onClick={changeToggle}
           >
-            <Text width="auto" margin="0px 5px" size="25px" bold>
+            <Text width="auto" margin="0px 5px" size="20px" bold>
               {props.infoTitle}
             </Text>
             <MdOutlineKeyboardArrowDown size={20} />
-          </Div>
+          </div>
           {/* 토글 */}
 
           {/* 내용 */}
