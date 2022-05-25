@@ -10,6 +10,7 @@ import { Header, Comment } from '../components/core';
 import { Div, Button, Input, Text } from '../components/ui';
 import styled from 'styled-components';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
+import { FiThumbsUp } from 'react-icons/fi';
 import { CgHeart } from 'react-icons/cg';
 
 const PostDetail = (props) => {
@@ -136,21 +137,22 @@ const PostDetail = (props) => {
                   <Text letterSpacing="1px">{postDetail?.User.userName}</Text>
                 </div>
                 <Div spaceEvenly>
-                  <Div fontSize="13px" width="160px">
+                  <Div fontSize="14px" width="160px">
                     {moment(postDetail?.createdAt).fromNow()}
                   </Div>
-                  <Text letterSpacing="1px">
-                    <AiOutlineEye /> {postDetail?.viewCount}회
-                  </Text>
+                  <AiOutlineEye size={20} /> 
+                  <Text margin="0 0 0 5px" letterSpacing="1px">{postDetail?.viewCount}회</Text>
                 </Div>
               </Div>
               <Div row>
-                <Text letterSpacing="1px">
-                  <AiOutlineComment /> {postDetail?.commentCount}개
-                </Text>
-                <Text margin="0 0 0 20px" letterSpacing="1px">
-                  <CgHeart /> 10개
-                </Text>
+                <Div row margin="0 20px">
+                  <AiOutlineComment size={20} />  
+                  <Text margin="0 0 0 5px" letterSpacing="1px">{postDetail?.commentCount}개</Text>
+                </Div>
+                <Div row>
+                  <FiThumbsUp onClick={()=> {window.alert('준비중입니다!')}} style={{cursor:"pointer"}} size={20} />
+                  <Text margin="0 0 0 5px" letterSpacing="1px">10개</Text>
+                </Div>
               </Div>
             </Div>
             <Div borderTop="2px solid #ccc">
@@ -219,6 +221,11 @@ const ReturnBtn = styled.button`
   padding: 10px;
   background: #fff;
   border: 1px solid #000;
+  color: #7b7b7b;
+  &:hover {
+    color: #000;
+    font-weight: 700;
+  }
 `;
 
 const Wrap = styled.div`

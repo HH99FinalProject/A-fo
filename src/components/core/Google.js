@@ -1,63 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { LoginDB } from '../../redux/modules/login';
-import GoogleLogin from 'react-google-login';
-import axios from 'axios';
+import { googleLoginDB } from '../../redux/modules/login';
 
-const clientId =
-  '536352689591-7udk6o1rggekm61noab7imn027c8jnh5.apps.googleusercontent.com';
+const Google = (props) => {
+  const dispatch = useDispatch();
 
-export default function GoogleButton() {
-  const onSuccess = async (response) => {
-    console.log(response);
+  // 인가코드
+  let code = new URL(window.location.href).searchParams.get('code');
 
-    await axios.get(`https://a-fo-back.shop/oauth/google/callback`, {
-      headers: {
-        Autorization: response.accessToken,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
-  };
+  React.useEffect(async () => {
+    await dispatch(googleLoginDB(code));
+  }, []);
 
-  const onFailure = (error) => {
-    console.log(error);
-  };
+  return null;
+};
 
-  return (
-    <BtnWrap>
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="구글로 1초만에 시작하기"
-        responseType={'id_token'}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        className="googleBtn"
-      />
-    </BtnWrap>
-  );
-}
-
-const BtnWrap = styled.div`
-  /* background: gray; */
-  .googleBtn {
-    /* background: red !important; */
-    border-radius: 30px !important;
-    margin-left: -107px !important;
-    width: 400px !important;
-    height: 60px !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-    box-shadow: none !important;
-    border: 1px solid black !important;
-
-    div {
-      margin-left: 60px !important;
-      margin-top: 5px !important;
-    }
-    span {
-      font-weight: 700 !important;
-      color: #000;
-    }
-  }
-`;
+export default Google;
