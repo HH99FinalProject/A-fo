@@ -50,7 +50,7 @@ const Article = (props) => {
         </Div>
         <div
           style={{
-            width: '10%',
+            width: '8%',
             borderRight: '1px solid #bdbdbd',
             padding: '10px 0',
           }}>
@@ -58,14 +58,18 @@ const Article = (props) => {
             <Text>{post?.User.userName} 😀</Text>
             : <Text>{post?.User.userName}</Text>}
         </div>
-        <Div width="20%" spaceEvenly>
-          <Text>
-            <AiOutlineComment size="20"/> {post?.commentCount}개
-          </Text>
-          <Text>
-            <AiOutlineEye size="20" /> {post?.viewCount}회
-          </Text>
-          <Div fontSize="14px" width="70px">{moment(post?.createdAt).fromNow()}</Div>
+        <Div width="22%" spaceEvenly>
+          <Div row>
+            <AiOutlineComment size="20"/>
+            <Text margin="0 0 0 5px">{post?.commentCount}개</Text>
+          </Div>
+          <Div row>
+            <AiOutlineEye size="20" />
+            <Text margin="0 0 0 5px">{post?.viewCount}회</Text>
+          </Div>
+          <Div fontSize="14px">
+            {moment(post?.createdAt).fromNow()}
+          </Div>
         </Div>
       </Wrap>
     </React.Fragment>

@@ -17,6 +17,22 @@ export const kakaoLoginDB = createAsyncThunk(
   }
 );
 
+export const googleLoginDB = createAsyncThunk(
+  'login/googleLoginDB',
+  async (code, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `https://a-fo-back.link/oauth/google/callback/?code=${code}`
+      );
+      console.log(res)
+      window.location.replace('/');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const loginSlice = createSlice({
   name: 'login',
   initialState: {
@@ -50,7 +66,20 @@ export const loginSlice = createSlice({
       .addCase(kakaoLoginDB.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
-      });
+      })
+      // 구글 로그인
+      .addCase(googleLoginDB.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(googleLoginDB.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userInfo = action.payload.result;
+        state.isLogin = true;
+      })
+      .addCase(googleLoginDB.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      })
   },
 });
 

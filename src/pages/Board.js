@@ -54,7 +54,6 @@ const Board = (props) => {
   // 현재페이지 가져오기
   const indexOfLastPost = currentPage * postsPerPage; // 1*20 = 20번 포스트
   const indexOfFirstPost = indexOfLastPost - postsPerPage; // 20-20 = 0번 포스트
-  // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // 0~10번까지 포스트
   const currentPosts = (tmp) => {
     let currentPosts = 0;
     currentPosts = tmp?.slice(indexOfFirstPost, indexOfLastPost);
@@ -62,7 +61,6 @@ const Board = (props) => {
   }
   
   React.useEffect(() => {
-    // setLoading(true);  
     dispatch(getTotalReadDB(currentPage));
   }, []);
 
@@ -75,17 +73,15 @@ const Board = (props) => {
     <React.Fragment>
       <Header></Header>
       <Div width="1400px" margin="100px auto 50px auto">
-        <Text textAlign="center" size="36px" bold>
-          자유 게시판
+        <Text textAlign="center" size="36px" bold letterSpacing="0.1em">
+          커뮤니티
         </Text>
-        {/* <Search /> */}
         <Div
           spaceBetween
           width="840px"
           backgroundColor="#d2dfff"
           border="1px solid #000"
           margin="40px auto 50px"
-          // padding="10px"
           alignItems="center">
             <Div margin="0 0 0 2%">
               <HiOutlineSearch size={25} color="#fff" />
@@ -110,7 +106,7 @@ const Board = (props) => {
               <option>아시아</option>
               <option>유럽</option>
               <option>오세아니아</option>
-              <option>남아메리카</option>
+              {/* <option>남아메리카</option> */}
               <option>북아메리카</option>
             </Select>
             <Select onChange={purposeSelect} defaultValue='모든목적'>
@@ -129,12 +125,11 @@ const Board = (props) => {
           }}>
           글쓰기
         </PostBtn>
-        <Div margin="100px 0 0 0" border="1px solid #000">
+        <Div margin="100px 0 0 0" border="1px solid #000" borderBottom="0">
           {/* map으로 돌리기 */}
           <Posts posts={currentPosts(posts)} postList={postList} loading={loading} />
         </Div>
         <Pagination
-          // pageNumbers={[1,2,3,4]}
           postsPerPage={postsPerPage}
           totalPosts={totalPostsLength}
           paginate={setCurrentPage}
@@ -152,6 +147,10 @@ const PostBtn = styled.button`
   border: 1px solid #000;
   background: #fff;
   color: #7b7b7b;
+  &:hover {
+    color: #000;
+    font-weight: 700;
+  }
 `;
 
 const Select = styled.select`
@@ -160,8 +159,13 @@ const Select = styled.select`
   border: none;
   background: #9fbaff;
   color: #fff;
+  &:hover {
+    font-weight:700;
+    color: #000;
+  }
   &:focus {
     border: none;
+    color: #000;
   }
   option {
     background: #9fbaff;
