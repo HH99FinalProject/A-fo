@@ -173,7 +173,7 @@ const TargetCard = (props) => {
           <Image
             width="60px"
             height="80px"
-            src={props.purposeImg}
+            src={props.purposeImgBig}
             size="contain"
             repeat="no-repeat"
             position="center"

@@ -136,7 +136,7 @@ const Header = () => {
           )}
           {/* 로그인 후 */}
         </Div>
-        <Link target="_blank" href="https://forms.gle/HQvmVAaozLWNxhnY9">
+        <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
           <Image
             width="40px"
             height="40px"
@@ -145,7 +145,8 @@ const Header = () => {
             position="center"
             src={survey}
           />
-          설문하고 커피받기!
+          설문하고
+          <br /> 커피받기!
         </Link>
       </Div>
     );
@@ -256,7 +257,7 @@ const Header = () => {
           )}
           {/* 로그인 후 */}
         </Div>
-        <Link target="_blank" href="https://forms.gle/HQvmVAaozLWNxhnY9">
+        <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
           <Image
             width="40px"
             height="40px"
@@ -265,7 +266,8 @@ const Header = () => {
             position="center"
             src={survey}
           />
-          설문하고 커피받기!
+          설문하고
+          <br /> 커피받기!
         </Link>
       </Div>
     );
@@ -281,8 +283,9 @@ const Link = styled.a`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 180px;
+  width: 130px;
   height: 79px;
+  line-height: 20px;
   border-left: 2px solid #0031de;
   background-color: #dcffaf;
   font-weight: bold;

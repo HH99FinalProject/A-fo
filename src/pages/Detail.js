@@ -14,7 +14,7 @@ const Detail = () => {
   const vTarget = useSelector((state) => state.target.vTarget);
   const purpose = useSelector((state) => state.target.onePickTargetNameK);
   const targetDetail = useSelector((state) => state.target.countryList);
-  const targetIcon = targetDetail?.map((t) => t.purposeImgSmall);
+  const targetIcon = targetDetail?.map((t) => t.purposeImg);
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
