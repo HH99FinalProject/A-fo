@@ -7,9 +7,7 @@ import { getPostSearchDB } from '../redux/modules/board';
 import { HiOutlineSearch } from 'react-icons/hi';
 
 import { Header } from '../components/core';
-import { Div, Text, Image, Button, Input } from '../components/ui';
-// import Search from '../components/core/Search';
-// import Article from '../components/core/Article';
+import { Div, Text } from '../components/ui';
 import Pagination from '../components/core/Pagination';
 import { Posts } from '../components/core';
 
@@ -22,12 +20,8 @@ const Board = (props) => {
   const postsPerPage = 5; // 페이지당 포스트 개수
 
   const totalPostsLength = useSelector(state => state.board.postLength);
-  const searchPostsLength = useSelector(state => state.board.postList)?.length;
-  console.log(totalPostsLength, searchPostsLength);
   const postList = useSelector((state) => state.board.postList);
   const is_login = useSelector(state => state.login.isLogin);
-  console.log(postList, posts)
-  
   
   const inputRef = useRef();
   const formRef = useRef();

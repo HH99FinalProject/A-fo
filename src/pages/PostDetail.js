@@ -21,10 +21,9 @@ const PostDetail = (props) => {
   const is_login = useSelector(state => state.login.isLogin);
   const userId = useSelector(state => state.login.userInfo.userId);
   const postUserId = postDetail?.userId;
-  console.log(postDetail)
 
   const commentList = useSelector(state => state.comment.commentList);
-  // console.log(commentList);
+  
   // params값 찾아옴
   const postId = +props.match.params.postId;
 
@@ -37,7 +36,6 @@ const PostDetail = (props) => {
     comment: comment,
     postId: postId,
   }
-  // console.log(commentData);
 
   // 댓글작성
   const addComment = () => {
@@ -54,9 +52,6 @@ const PostDetail = (props) => {
     dispatch(getCommentDB(postId));
   }, [])
 
-  // 사진 미업로드시 랜덤사진5장 중 1개 띄우기
-  // let num = Math.floor(Math.random() * 5) + 1;
-  console.log('이미지url:', typeof postDetail?.postImageUrl);
   if(postDetail?.postImageUrl) {
     var img = postDetail?.postImageUrl;
   } else {
