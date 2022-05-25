@@ -50,7 +50,19 @@ const Header = () => {
 
           {/* 로그인 전 */}
           {!isLogin && (
-            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="330px" height="50px" lineHeight="50px">
+              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+                <Image
+                  width="40px"
+                  height="40px"
+                  size="cover"
+                  repeat="no-repeat"
+                  position="center"
+                  src={survey}
+                />
+                설문하고 커피받기!
+              </Link>
               <Button
                 height="50px"
                 bold
@@ -87,8 +99,19 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            // <Div spaceBetween width="300px" height="50px" lineHeight="50px">
-            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="400px" height="50px" lineHeight="50px">
+              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+                <Image
+                  width="40px"
+                  height="40px"
+                  size="cover"
+                  repeat="no-repeat"
+                  position="center"
+                  src={survey}
+                />
+                설문하고 커피받기!
+              </Link>
               <Button
                 height="50px"
                 bold
@@ -136,18 +159,6 @@ const Header = () => {
           )}
           {/* 로그인 후 */}
         </Div>
-        <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
-          <Image
-            width="40px"
-            height="40px"
-            size="cover"
-            repeat="no-repeat"
-            position="center"
-            src={survey}
-          />
-          설문하고
-          <br /> 커피받기!
-        </Link>
       </Div>
     );
   } else {
@@ -177,7 +188,19 @@ const Header = () => {
 
           {/* 로그인 전 */}
           {!isLogin && (
-            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="330px" height="50px" lineHeight="50px">
+              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+                <Image
+                  width="40px"
+                  height="40px"
+                  size="cover"
+                  repeat="no-repeat"
+                  position="center"
+                  src={survey}
+                />
+                설문하고 커피받기!
+              </Link>
               <Button
                 height="50px"
                 color="#0031DE"
@@ -212,8 +235,19 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            // <Div spaceBetween width="300px" height="50px" lineHeight="50px">
-            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="400px" height="50px" lineHeight="50px">
+              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+                <Image
+                  width="40px"
+                  height="40px"
+                  size="cover"
+                  repeat="no-repeat"
+                  position="center"
+                  src={survey}
+                />
+                설문하고 커피받기!
+              </Link>
               <Button
                 height="50px"
                 color="#0031DE"
@@ -257,18 +291,6 @@ const Header = () => {
           )}
           {/* 로그인 후 */}
         </Div>
-        <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
-          <Image
-            width="40px"
-            height="40px"
-            size="cover"
-            repeat="no-repeat"
-            position="center"
-            src={survey}
-          />
-          설문하고
-          <br /> 커피받기!
-        </Link>
       </Div>
     );
   }
@@ -276,18 +298,15 @@ const Header = () => {
 export default Header;
 
 const Link = styled.a`
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 130px;
-  height: 79px;
+  width: 180px;
+  height: 50px;
   line-height: 20px;
-  border-left: 2px solid #0031de;
   background-color: #dcffaf;
+  border-radius: 10px;
   font-weight: bold;
   font-size: 15px;
   color: #0031de;

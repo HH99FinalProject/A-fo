@@ -14,7 +14,7 @@ const Detail = () => {
   const vTarget = useSelector((state) => state.target.vTarget);
   const purpose = useSelector((state) => state.target.onePickTargetNameK);
   const targetDetail = useSelector((state) => state.target.countryList);
-  const targetIcon = targetDetail?.map((t) => t.purposeImg);
+  const targetIcon = targetDetail?.map((t) => t.purposeImgSmall);
 
   // 나라별 데이터
   const vCountry = useSelector((state) => state.country.vCountry);
@@ -33,10 +33,17 @@ const Detail = () => {
   const [btnStatus, setBtnStatus] = React.useState(false);
   // 스크롤시 생기는 요소
   const handleFollow = () => {
-    if (window.pageYOffset > 395 && !targetStatus) {
+    // if (window.pageYOffset > 395 && !targetStatus) {
+    //   setTargetStatus(true);
+    //   setBtnStatus(true);
+    // } else if (window.pageYOffset <= 395 && targetStatus) {
+    //   setTargetStatus(false);
+    //   setBtnStatus(false);
+    // }
+    if (window.pageYOffset > 435 && !targetStatus) {
       setTargetStatus(true);
       setBtnStatus(true);
-    } else if (window.pageYOffset <= 395 && targetStatus) {
+    } else if (window.pageYOffset <= 435 && targetStatus) {
       setTargetStatus(false);
       setBtnStatus(false);
     }
@@ -174,12 +181,7 @@ const Detail = () => {
               <TabMenu refClick={refClick} />
               <Div row position="fixed" top="50px" left="20px">
                 <Image icon margin="5px 0px 0px 0px" src={targetIcon[0]} />
-                <Text
-                  margin="0px 0px 0px 10px"
-                  size="35px"
-                  color="#0031DE"
-                  bold
-                >
+                <Text margin="0px 0px 0px 5px" size="35px" color="#0031DE" bold>
                   {purpose}
                 </Text>
               </Div>
@@ -267,8 +269,8 @@ const Detail = () => {
                 <Div row position="fixed" top="50px" left="20px">
                   <Image flag src={countryFlag[0]} />
                   <Text
-                    margin="0px 0px 0px 10px"
-                    size="35px"
+                    margin="0px 0px 0px 5px"
+                    size="32px"
                     color="#0031DE"
                     bold
                   >
