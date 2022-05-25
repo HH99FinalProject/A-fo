@@ -146,7 +146,7 @@ const Header = () => {
             src={survey}
           />
           설문하고
-          <br /> 커피받기!!
+          <br /> 커피받기!
         </Link>
       </Div>
     );
