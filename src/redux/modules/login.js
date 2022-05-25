@@ -8,7 +8,6 @@ export const kakaoLoginDB = createAsyncThunk(
       const res = await axios.get(
         `https://a-fo-back.link/oauth/kakao/callback?code=${code}`
       );
-      console.log(res)
       window.location.replace('/');
       return res.data;
     } catch (error) {
@@ -24,7 +23,6 @@ export const googleLoginDB = createAsyncThunk(
       const res = await axios.get(
         `https://a-fo-back.link/oauth/google/callback/?code=${code}`
       );
-      console.log(res)
       window.location.replace('/');
       return res.data;
     } catch (error) {

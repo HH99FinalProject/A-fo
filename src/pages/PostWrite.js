@@ -14,6 +14,8 @@ const PostWrite = () => {
 
   const preview = useSelector((state) => state.image.preview);
   const token = useSelector((state => state.login.userInfo.token));
+  const errorMsg = useSelector(state => state.board.errorMsg);
+  console.log(errorMsg);
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -67,7 +69,6 @@ const PostWrite = () => {
     const file = fileInput.current.files[0];
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      console.log(reader.result);
       dispatch(imageActions.uploadImageDB(reader.result));
     };
   };

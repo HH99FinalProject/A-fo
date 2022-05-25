@@ -7,7 +7,7 @@ import Modal from '../../shared/Modal';
 import Login from '../modal/Login';
 
 import styled from 'styled-components';
-import { Button, Div, Image, Text } from '../ui';
+import { Button, Div, Image } from '../ui';
 import logo from '../../styles/images/logo.png';
 import profile from '../../styles/images/profile.png';
 import survey from '../../styles/images/survey.png';
