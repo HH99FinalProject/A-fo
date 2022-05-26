@@ -158,7 +158,14 @@ const PostDetail = (props) => {
                 letterSpacing="0.05em"
                 margin="40px 0 20px 0"
               >
-                {postDetail?.content}
+                {postDetail?.content.split("\n").map((line) => {
+                  return (
+                    <span>
+                      {line}
+                      <br />
+                    </span>
+                  )
+                })}
               </Text>
               <Div width="300px">
                 <img width='100%' src={img} alt='이미지입니다'/>
