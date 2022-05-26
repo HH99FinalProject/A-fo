@@ -273,6 +273,7 @@ const Header = () => {
                 color="#0031DE"
                 bold
                 _onClick={() => {
+                  dispatch(logoutReducer());
                   history.replace('/');
                 }}
               >
