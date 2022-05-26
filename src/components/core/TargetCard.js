@@ -67,7 +67,7 @@ const TargetCard = (props) => {
             <Image
               width="60px"
               height="80px"
-              src={immigration}
+              src={workingHoliday}
               size="contain"
               repeat="no-repeat"
               position="center"
@@ -77,7 +77,7 @@ const TargetCard = (props) => {
             <Image
               width="60px"
               height="80px"
-              src={work}
+              src={study}
               size="contain"
               repeat="no-repeat"
               position="center"
@@ -87,7 +87,7 @@ const TargetCard = (props) => {
             <Image
               width="60px"
               height="80px"
-              src={study}
+              src={work}
               size="contain"
               repeat="no-repeat"
               position="center"
@@ -97,7 +97,7 @@ const TargetCard = (props) => {
             <Image
               width="60px"
               height="80px"
-              src={workingHoliday}
+              src={immigration}
               size="contain"
               repeat="no-repeat"
               position="center"
