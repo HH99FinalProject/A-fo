@@ -14,28 +14,28 @@ const SubMain1 = (props) => {
   const targetList_vCountry = useSelector((state) => state.country.land);
   const targetList_vTarget = [
     {
-      korean: '이민',
-      english: 'immigrationVisa',
+      korean: '워홀',
+      english: 'workingHolidayVisa',
       id: 1,
-      explain: '장기 해외 살이!',
-    },
-    {
-      korean: '취업',
-      english: 'workVisa',
-      id: 2,
-      explain: '해외 직장 생활!',
+      explain: '중단기 해외 살이!',
     },
     {
       korean: '유학',
       english: 'studyVisa',
-      id: 3,
+      id: 2,
       explain: '해외 학교 생활!',
     },
     {
-      korean: '워홀',
-      english: 'workingHolidayVisa',
+      korean: '취업',
+      english: 'workVisa',
+      id: 3,
+      explain: '해외 직장 생활!',
+    },
+    {
+      korean: '이민',
+      english: 'immigrationVisa',
       id: 4,
-      explain: '중단기 해외 살이!',
+      explain: '장기 해외 살이!',
     },
   ];
   const countryName = useSelector((state) => state.country.onePickCountryName);
