@@ -17,7 +17,7 @@ const Board = (props) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // 현재페이지
-  const postsPerPage = 5; // 페이지당 포스트 개수
+  const postsPerPage = 10; // 페이지당 포스트 개수
 
   const totalPostsLength = useSelector(state => state.board.postLength);
   const postList = useSelector((state) => state.board.postList);
