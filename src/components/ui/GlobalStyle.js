@@ -13,6 +13,7 @@ ${reset};
 };
 
 html{
+    min-width : 1440px;
     font-family: "regular";
     background-color:#9FBAFF;
 }

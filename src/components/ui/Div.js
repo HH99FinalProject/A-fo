@@ -69,6 +69,7 @@ const Div = (props) => {
     slow,
     transHover,
     BGHover,
+    resWidth,
     _onClick,
   } = props;
 
@@ -139,6 +140,7 @@ const Div = (props) => {
     slow,
     transHover,
     BGHover,
+    resWidth,
   };
   if (bookmark) {
     return (
@@ -263,6 +265,7 @@ Div.defaultProps = {
   slow: false,
   transHover: false,
   BGHover: false,
+  resWidth: false,
   _onClick: () => {},
 };
 
@@ -350,6 +353,9 @@ const Box = styled.div`
   ${(props) => (props.textCenter ? `text-align:center;` : '')};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};
+  @media screen and (max-width: 767px) {
+    ${(props) => (props.resWidth ? `width: 100vw;` : '')};
+  }
   &:hover {
     cursor: ${(props) => props.cursor};
     background-color: ${(props) => props.BGHover};
