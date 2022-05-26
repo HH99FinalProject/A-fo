@@ -52,16 +52,16 @@ const Header = () => {
           {!isLogin && (
             // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
             <Div spaceBetween width="330px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/YNVkk7CsVms21rho7">
+              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
                 <Image
                   width="40px"
                   height="40px"
-                  size="cover"
+                  size="contain"
                   repeat="no-repeat"
                   position="center"
                   src={survey}
                 />
-                설문하고 커피받기!
+                설문하고 상품받기!
               </Link>
               <Button
                 height="50px"
@@ -101,16 +101,16 @@ const Header = () => {
           {isLogin && (
             // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
             <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/YNVkk7CsVms21rho7">
+              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
                 <Image
                   width="40px"
                   height="40px"
-                  size="cover"
+                  size="contain"
                   repeat="no-repeat"
                   position="center"
                   src={survey}
                 />
-                설문하고 커피받기!
+                설문하고 상품받기!
               </Link>
               <Button
                 height="50px"
@@ -190,16 +190,16 @@ const Header = () => {
           {!isLogin && (
             // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
             <Div spaceBetween width="330px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/YNVkk7CsVms21rho7">
+              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
                 <Image
                   width="40px"
                   height="40px"
-                  size="cover"
+                  size="contain"
                   repeat="no-repeat"
                   position="center"
                   src={survey}
                 />
-                설문하고 커피받기!
+                설문하고 상품받기!
               </Link>
               <Button
                 height="50px"
@@ -237,16 +237,16 @@ const Header = () => {
           {isLogin && (
             // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
             <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/YNVkk7CsVms21rho7">
+              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
                 <Image
                   width="40px"
                   height="40px"
-                  size="cover"
+                  size="contain"
                   repeat="no-repeat"
                   position="center"
                   src={survey}
                 />
-                설문하고 커피받기!
+                설문하고 상품받기!
               </Link>
               <Button
                 height="50px"
