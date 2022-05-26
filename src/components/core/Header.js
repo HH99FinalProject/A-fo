@@ -61,7 +61,7 @@ const Header = () => {
                   position="center"
                   src={survey}
                 />
-                설문하고 상품받기
+                설문하고 상품받기!
               </Link>
               <Button
                 height="50px"
