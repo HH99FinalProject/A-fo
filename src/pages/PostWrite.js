@@ -350,4 +350,5 @@ const Content = styled.textarea`
   border-radius: 0;
   font-size: 16px;
   resize: none;
+  line-height: 1.2em;
 `;
