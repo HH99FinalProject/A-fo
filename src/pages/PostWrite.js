@@ -73,6 +73,20 @@ const PostWrite = () => {
     };
   };
 
+  const ref = useRef();
+  const onTestChange = () => {
+    var key = window.event.keyCode;
+
+    // If the user has pressed enter
+    if (key === 13) {
+        ref.current.value = ref.current.value + "\n*";
+        return false;
+    }
+    else {
+        return true;
+    }
+  }
+
   React.useEffect(()=>{
     return () => {
       dispatch(imageActions.uploadImageDB(null));
@@ -194,6 +208,8 @@ const PostWrite = () => {
                 placeholder="내용을 입력하세요."
                 maxLength={500}
                 value={content}
+                ref={ref}
+                onKeyPress={()=>{ onTestChange() }}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}/>
