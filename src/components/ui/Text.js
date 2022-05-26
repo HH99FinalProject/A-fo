@@ -28,6 +28,7 @@ const Text = (props) => {
     cursor,
     opacity,
     colorHover,
+    boldHover,
     decorationHover,
     transform,
     transition,
@@ -60,6 +61,7 @@ const Text = (props) => {
     cursor,
     opacity,
     colorHover,
+    boldHover,
     decorationHover,
     transform,
     transition,
@@ -99,6 +101,7 @@ Text.defaultProps = {
   cursor: '',
   opacity: '',
   colorHover: false,
+  boldHover: false,
   decorationHover: false,
   transform: '',
   transition: '',
@@ -130,6 +133,7 @@ const P = styled.p`
   text-align: ${(props) => props.textAlign};
   &:hover {
     cursor: ${(props) => props.cursor};
+    font-weight: ${(props) => props.boldHover};
     opacity: ${(props) => props.opacity};
     color: ${(props) => props.colorHover};
     text-decoration: ${(props) => props.decorationHover};
