@@ -67,6 +67,7 @@ const TabMenu = (props) => {
               size="15px"
               bold
               color="#3a3a3a"
+              colorHover="#fff"
               _onClick={() => {
                 props.refClick(i);
               }}
@@ -89,4 +90,7 @@ const ContinentBtn = styled.button`
   font-size: 15px;
   font-weight: bold;
   color: #3a3a3a;
+  &:hover {
+    color: #fff;
+  }
 `;
