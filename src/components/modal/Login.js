@@ -9,12 +9,12 @@ import { FcGoogle } from 'react-icons/fc';
 const Login = () => {
   // 카카오
   const REST_API_KEY = 'ebb64769e9ae562700e77df6554c840d';
-  const REDIRECT_URI = 'http://localhost:3000/oauth/kakao/callback';
+  const REDIRECT_URI = 'https://a-fo.kr/oauth/kakao/callback';
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   // 구글
   const GOOGLE_CLIENT_ID= '401350303064-ff7qfe7m9fh9n3s7l4qsucn339itheqj.apps.googleusercontent.com';
-  const GOOGLE_REDIRECT_URL = 'http://localhost:3000/oauth/google/callback/';
+  const GOOGLE_REDIRECT_URL = 'https://a-fo.kr/oauth/google/callback/';
   const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URL}&scope=https://www.googleapis.com/auth/userinfo.profile&response_type=code`;
   return (
     <React.Fragment>
