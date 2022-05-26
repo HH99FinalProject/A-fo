@@ -175,7 +175,10 @@ const PostDetail = (props) => {
                   height: "40px",
                   fontSize: "18px",
                   padding: "0 10px",
-                  borderRadius: "0"
+                  borderRadius: "0",
+                  lineHeight: "1.6em",
+                  fontFamily: "inherit",
+                  letterSpacing: "0.05em",
                 }}
                 onChange={onChange}
                 value={comment}

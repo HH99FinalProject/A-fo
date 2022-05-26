@@ -330,16 +330,22 @@ const Title = styled.input`
   margin: 20px 0;
   width: 100%;
   font-size: 24px;
-  padding: 15px;
+  padding: 10px;
   border-radius: 0;
+  line-height: 1.2em;
+  font-family: inherit;
+  letter-spacing: 0.05em;
 `;
 
 const Nation = styled.input`
   margin-top: 20px;
   border: 1px solid #000;
   font-size: 16px;
-  padding: 15px;
+  padding: 10px;
   border-radius: 0;
+  line-height: 1.2em;
+  font-family: inherit;
+  letter-spacing: 0.05em;
 `;
 
 const Content = styled.textarea`
@@ -351,4 +357,6 @@ const Content = styled.textarea`
   font-size: 16px;
   resize: none;
   line-height: 1.2em;
+  font-family: inherit;
+  letter-spacing: 0.05em;
 `;

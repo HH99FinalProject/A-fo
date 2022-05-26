@@ -56,7 +56,7 @@ const Comment = (props) => {
         <Div width="70%">
           {/* getState가 true면 원래댓글, false면 수정모드input */}
           {editMode ?
-            <input defaultValue={props.comment.comment} style={{width: "100%"}}
+            <input defaultValue={props.comment.comment} style={{width: "100%", padding: "10px", fontFamily: "inherit", letterSpacing: "0.05em", borderRadius: "0"}}
               onChange={(e)=>{ setChangeComment(e.target.value); console.log(e.target.value); }} ></input>
           : <Ellipsis>
               {props.comment.comment}
