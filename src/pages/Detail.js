@@ -213,7 +213,7 @@ const Detail = () => {
                   borderBottom="3px solid #0031DE"
                 >
                   <Image icon src={targetIcon[0]} margin="0px 10px 0px -10px" />
-                  <Text size="35px" color="#0031DE" bold>
+                  <Text size="25px" color="#0031DE" bold>
                     {purpose}
                   </Text>
                 </Div>
@@ -270,7 +270,7 @@ const Detail = () => {
                   <Image flag src={countryFlag[0]} />
                   <Text
                     margin="0px 0px 0px 5px"
-                    size="32px"
+                    size="25px"
                     color="#0031DE"
                     bold
                   >
