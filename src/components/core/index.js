@@ -3,7 +3,8 @@ import Bookmark from './Bookmark';
 import BottomSheet from './BottomSheet';
 import Comment from './Comment';
 import CountryCard from './CountryCard';
-import Goolgle from './Google';
+import Footer from './Footer';
+import Google from './Google';
 import Header from './Header';
 import Info from './Info';
 import InfoTotal from './InfoTotal';
@@ -20,7 +21,8 @@ export {
   BottomSheet,
   Comment,
   CountryCard,
-  Goolgle,
+  Footer,
+  Google,
   Header,
   Info,
   InfoTotal,

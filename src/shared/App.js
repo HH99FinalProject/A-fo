@@ -14,9 +14,8 @@ import SubMain1 from '../pages/SubMain1';
 import SubMain2 from '../pages/SubMain2';
 import WorldMap from '../pages/WorldMap';
 
-import { Kakao } from '../components/core';
+import { Kakao, Google } from '../components/core';
 import { GlobalStyle } from '../components/ui';
-import Google from '../components/core/Google';
 
 function App() {
   return (
@@ -30,7 +29,11 @@ function App() {
         <Route exact path="/Detail" component={Detail} />
         <Route exact path="/MyPage" component={MyPage} />
         <Route exact path="/PostDetail/:postId" component={PostDetail} />
-        <Route exact path="/PostDetail/edit/:postId" component={PostDetailEdit} />
+        <Route
+          exact
+          path="/PostDetail/edit/:postId"
+          component={PostDetailEdit}
+        />
         <Route exact path="/PostWrite" component={PostWrite} />
         <Route exact path="/SubMain1" component={SubMain1} />
         <Route exact path="/SubMain2" component={SubMain2} />

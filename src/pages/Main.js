@@ -11,7 +11,7 @@ import {
   countryMainDB,
 } from '../redux/modules/country';
 
-import { Header } from '../components/core';
+import { Header, Footer } from '../components/core';
 import { Div, Text, Image } from '../components/ui';
 import mainBG from '../styles/images/mainBG.png';
 import footer from '../styles/images/footer.gif';
@@ -247,6 +247,7 @@ const Main = () => {
           backgroundPosition="center"
         ></Div>
       </Div>
+      {/* <Footer /> */}
     </React.Fragment>
   );
 };
