@@ -55,6 +55,7 @@ const TabMenu = (props) => {
         height="40px"
         margin="0px auto"
         backgroundColor="#B6CBFF"
+        colorHover="#fff"
       >
         {infoList.map((v, i) => {
           return (
