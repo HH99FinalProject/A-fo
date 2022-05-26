@@ -52,7 +52,7 @@ const Header = () => {
           {!isLogin && (
             // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
             <Div spaceBetween width="330px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+              <Link target="_blank" href="https://forms.gle/jj2Ubbs2AH4yFfdF7">
                 <Image
                   width="40px"
                   height="40px"
@@ -101,7 +101,7 @@ const Header = () => {
           {isLogin && (
             // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
             <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+              <Link target="_blank" href="https://forms.gle/jj2Ubbs2AH4yFfdF7">
                 <Image
                   width="40px"
                   height="40px"
@@ -190,7 +190,7 @@ const Header = () => {
           {!isLogin && (
             // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
             <Div spaceBetween width="330px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+              <Link target="_blank" href="https://forms.gle/jj2Ubbs2AH4yFfdF7">
                 <Image
                   width="40px"
                   height="40px"
@@ -237,7 +237,7 @@ const Header = () => {
           {isLogin && (
             // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
             <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/x2F5sxPKtSafGg3eA">
+              <Link target="_blank" href="https://forms.gle/jj2Ubbs2AH4yFfdF7">
                 <Image
                   width="40px"
                   height="40px"
