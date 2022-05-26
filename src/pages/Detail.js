@@ -181,7 +181,7 @@ const Detail = () => {
               <TabMenu refClick={refClick} />
               <Div row position="fixed" top="50px" left="20px">
                 <Image icon margin="5px 0px 0px 0px" src={targetIcon[0]} />
-                <Text margin="0px 0px 0px 5px" size="35px" color="#0031DE" bold>
+                <Text margin="0px 0px 0px 5px" size="25px" color="#0031DE" bold>
                   {purpose}
                 </Text>
               </Div>
@@ -213,7 +213,7 @@ const Detail = () => {
                   borderBottom="3px solid #0031DE"
                 >
                   <Image icon src={targetIcon[0]} margin="0px 10px 0px -10px" />
-                  <Text size="25px" color="#0031DE" bold>
+                  <Text size="35px" color="#0031DE" bold>
                     {purpose}
                   </Text>
                 </Div>
