@@ -85,7 +85,7 @@ const PostDetail = (props) => {
         <Div margin="60px 0 0 0">
           <Wrap>
             <Div display="flex">
-              <Div flexStart width="92%">
+              <Div flexStart width="88%">
                 <div
                   style={{
                     width: '10%',
@@ -97,58 +97,58 @@ const PostDetail = (props) => {
                   </Text>
                 </div>
                 
-                <Div padding="0 0 0 20px">
-                  <Text size="18px" bold letterSpacing="1px">
+                <Div margin="0 0 0 20px">
+                  <Text size="21px" bold letterSpacing="1px">
                     {postDetail?.title}
                   </Text>
                 </Div>
                 
-                <Div row width="15%">
-                  <Div fontSize="14px" padding="8px" margin="0 10px 0 0">
+                <Div row margin="0 0 0 20px">
+                  <Div fontSize="16px" margin="0 20px 0 0">
                     {postDetail?.target}
                   </Div>
-                  <Div fontSize="14px" padding="8px">
+                  <Div fontSize="16px">
                     {postDetail?.continent}
                   </Div>
                 </Div>
               </Div>
 
               {is_login && postUserId === userId ? 
-              <Div width="8%" spaceEvenly>
+              <Div width="12%" spaceEvenly>
                 <Div>
-                  <Text cursor="pointer" color="blue" letterSpacing="1px"
-                    _onClick={()=>{ history.push(`/postDetail/edit/${postDetail?.postId}`)}}>수정</Text>
+                  <Text cursor="pointer" letterSpacing="1px" width="60px" boldHover="bold"
+                    _onClick={()=>{ history.push(`/postDetail/edit/${postDetail?.postId}`)}}>수정하기</Text>
                 </Div>
                 <Div margin="0 0 0 20px">
-                  <Text cursor="pointer" color="red" letterSpacing="1px"
-                    _onClick={()=>{ deletePost(); }}>삭제</Text>
+                  <Text cursor="pointer" letterSpacing="1px" width="60px" boldHover="bold"
+                    _onClick={()=>{ deletePost(); }}>삭제하기</Text>
                 </Div>
               </Div>
               : null}
             </Div>
-            <Div spaceBetween>
+            <Div flexStart>
               <Div spaceEvenly margin="20px 0">
-                <div style={{ padding: '5px 0', width: '100px' }}>
-                  <Text letterSpacing="1px">{postDetail?.User.userName}</Text>
-                </div>
+                <Div padding="5px 0" width="135px">
+                  <Text size="16px" letterSpacing="1px">{postDetail?.User.userName}</Text>
+                </Div>
                 <Div spaceEvenly>
-                  <Div fontSize="14px" width="160px">
+                  <Div fontSize="14px" margin="0 20px 0 0">
                     {moment(postDetail?.createdAt).fromNow()}
                   </Div>
                   <AiOutlineEye size={20} /> 
                   <Text margin="0 0 0 5px" letterSpacing="1px">{postDetail?.viewCount}회</Text>
                 </Div>
               </Div>
-              <Div row>
-                <Div row margin="0 20px">
-                  <AiOutlineComment size={20} />  
-                  <Text margin="0 0 0 5px" letterSpacing="1px">{postDetail?.commentCount}개</Text>
-                </Div>
-                <Div row>
+              <Div row margin="0 20px">
+                <AiOutlineComment size={20} />  
+                <Text margin="0 0 0 5px" letterSpacing="1px">{postDetail?.commentCount}개</Text>
+              </Div>
+              {/* <Div row> */}
+                {/* <Div row>
                   <FiThumbsUp onClick={()=> {window.alert('준비중입니다!')}} style={{cursor:"pointer"}} size={20} />
                   <Text margin="0 0 0 5px" letterSpacing="1px">10개</Text>
-                </Div>
-              </Div>
+                </Div> */}
+              {/* </Div> */}
             </Div>
             <Div borderTop="2px solid #ccc">
               <Text
