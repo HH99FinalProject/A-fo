@@ -43,16 +43,17 @@ const Comment = (props) => {
   return (
     <React.Fragment>
       <Div flexStart padding="10px 0">
+
         <Div width="15%">
-        {is_login && commentUserId === userId ?
-          <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
-            {props.comment.userName} 😀
-          </Text>
-        : <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
-          {props.comment.userName}
-      </Text>
-        }
+          {is_login && commentUserId === userId ?
+            <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
+              {props.comment.userName} 😀
+            </Text>
+          : <Text bold margin="0 0 0 20px" letterSpacing="1px" size="16px">
+              {props.comment.userName}
+            </Text>}
         </Div>
+
         <Div width="70%">
           {/* getState가 true면 원래댓글, false면 수정모드input */}
           {editMode ?
@@ -62,11 +63,13 @@ const Comment = (props) => {
               {props.comment.comment}
             </Ellipsis>}
         </Div>
+
         <Div width="10%">
           <Text textAlign="right" margin="0 40px 0 0" letterSpacing="1px">
             {moment(props.comment.updatedAt).fromNow()}
           </Text>
         </Div>
+
         {is_login && commentUserId === userId ?
           <>
             <Div width="5%" textCenter cursor="pointer"> 
@@ -82,6 +85,7 @@ const Comment = (props) => {
             </Div>
           </>
         : null}
+
       </Div>
     </React.Fragment>
   );
