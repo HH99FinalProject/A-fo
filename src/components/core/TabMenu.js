@@ -15,6 +15,7 @@ const TabMenu = (props) => {
         height="40px"
         margin="50px auto 30px auto"
         backgroundColor="#B6CBFF"
+        colorHover="#fff"
       >
         <ContinentBtn
           onClick={() => {
