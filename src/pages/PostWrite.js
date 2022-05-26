@@ -130,13 +130,13 @@ const PostWrite = () => {
                   id="btn4"
                   onClick={myLandPick}/>
                 <label htmlFor="btn4">북미</label>
-                <input
+                {/* <input
                   type="radio"
                   name="nation"
                   value="남미"
                   id="btn5"
                   onClick={myLandPick}/>
-                <label htmlFor="btn5">남미</label>
+                <label htmlFor="btn5">남미</label> */}
               </LandTarget>
               <PurposeTarget>
                 <Div border="1px solid #000">목적별 선택</Div>
