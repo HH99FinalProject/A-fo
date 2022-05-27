@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { history } from '../../redux/configureStore';
 import moment from "moment"; 
 import "moment/locale/ko";
 
@@ -17,8 +16,6 @@ const Comment = (props) => {
   const userId = useSelector(state => state.login.userInfo.userId);
   const commentUserId = props.comment.userId;
 
-  const ccc = useSelector(state => state);
-  console.log(ccc)
 
   const deleteComment = () => {
     const data = {
