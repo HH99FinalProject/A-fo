@@ -17,6 +17,9 @@ const Comment = (props) => {
   const userId = useSelector(state => state.login.userInfo.userId);
   const commentUserId = props.comment.userId;
 
+  const ccc = useSelector(state => state);
+  console.log(ccc)
+
   const deleteComment = () => {
     const data = {
       commentId: props.comment.commentId,
