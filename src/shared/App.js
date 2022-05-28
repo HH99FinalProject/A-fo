@@ -13,6 +13,7 @@ import PostWrite from '../pages/PostWrite';
 import SubMain1 from '../pages/SubMain1';
 import SubMain2 from '../pages/SubMain2';
 import WorldMap from '../pages/WorldMap';
+import Chat from '../pages/Chat';
 
 import { Kakao, Google } from '../components/core';
 import { GlobalStyle } from '../components/ui';
@@ -38,6 +39,7 @@ function App() {
         <Route exact path="/SubMain1" component={SubMain1} />
         <Route exact path="/SubMain2" component={SubMain2} />
         <Route exact path="/WorldMap" component={WorldMap} />
+        <Route exact path="/Chat" component={Chat} />
       </ConnectedRouter>
     </React.Fragment>
   );
