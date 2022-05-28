@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import io from 'socket.io-client';
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { GrPowerReset } from 'react-icons/gr';
 
@@ -16,6 +16,15 @@ const Chat = () => {
   const [room, setRoom] = useState('');
   const [join, setJoin] = useState('');
   const [showChat, setShowChat] = useState(false);
+
+  const isLogin = useSelector((state) => state.login.isLogin);
+  const userInfo = useSelector((state) => state.login.userInfo);
+  React.useEffect(() => {
+    if (isLogin) {
+      setUserName(userInfo.userName);
+      setRoom(userInfo.userId);
+    }
+  }, []);
 
   const joinRoom = () => {
     if (userName !== '' && room !== '') {
@@ -63,6 +72,33 @@ const Chat = () => {
         <Div width="70%">
           <Div height="80%" borderBottom="1px solid #0031de" padding="40px 30px">
             대화내용 들어올곳
+            {!showChat ? (
+              <div className="joinChatContainer">
+                <h3>채팅방 참여하기</h3>
+                <input
+                  type="text"
+                  placeholder="John..."
+                  onChange={(event) => {
+                    setUserName(event.target.value);
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Room ID..."
+                  onChange={(event) => {
+                    setRoom(event.target.value);
+                  }}
+                />
+                <button onClick={joinRoom}>메세지 보내기</button>
+              </div>
+            ) : (
+              <Chat
+                socket={socket}
+                username={userName}
+                room={room}
+                onLeaveRoom={onLeaveRoom}
+              />
+            )}
           </Div>
           <Div spaceBetween height="20%" padding="40px" backgroundColor="#fff">
             <Textarea />
