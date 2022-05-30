@@ -1,27 +1,34 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
 
-import { Div, Text } from "../ui";
-
+import { Div, Text } from '../ui';
 
 const MyChats = () => {
-  
   return (
     <React.Fragment>
-      <Div spaceBetween padding="10px 20px" position="relative" height="86px" 
-        backgroundColor="#fff" borderBottom="1px solid #0031de"
-        _onClick={()=>{}} cursor="pointer">
+      <Div
+        spaceBetween
+        padding="10px 20px"
+        position="relative"
+        height="86px"
+        backgroundColor="#fff"
+        borderBottom="1px solid #0031de"
+        _onClick={() => {}}
+        cursor="pointer"
+      >
         <Div position="absolute" right="20px" top="10px">
           <Text color="#aaa">2021-05-28</Text>
         </Div>
         <Div flexStart>
           <EllipsisName>UsernameConversation</EllipsisName>
-          <EllipsisContent>ConversationConversationConversation</EllipsisContent>
+          <EllipsisContent>
+            ConversationConversationConversation
+          </EllipsisContent>
         </Div>
       </Div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default MyChats;
 

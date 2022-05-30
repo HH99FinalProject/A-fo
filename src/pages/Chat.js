@@ -71,8 +71,19 @@ const Chat = (props) => {
     <React.Fragment>
       <Header />
       <Wrap>
-        <Div width="30%" borderRight="1px solid #0031de">
-          <Div height="86px" backgroundColor="#4378ff" center row>
+        <Div
+          float="left"
+          width="30%"
+          borderRight="1px solid #0031de"
+          backgroundColor="white"
+        >
+          <Div
+            height="86px"
+            backgroundColor="#4378ff"
+            center
+            row
+            borderBottom="1px solid #0031de"
+          >
             <Text size="24px" color="#fff" letterSpacing="0.1em">
               메세지
             </Text>
@@ -99,7 +110,7 @@ const Chat = (props) => {
           </Div>
         </Div>
 
-        <Div width="70%">
+        <ChatBox>
           <Button
             padding="10px 20px"
             backgroundColor="#4378ff"
@@ -108,27 +119,9 @@ const Chat = (props) => {
           >
             나가기
           </Button>
-          <Div
-            height="80%"
-            borderBottom="1px solid #0031de"
-            padding="40px 30px"
-          >
-            <div
-              style={{
-                height: 'calc(450px - (45px + 70px))',
-                border: '1px solid #263238',
-                background: '#fff',
-                position: 'relative',
-              }}
-            >
-              <ScrollToBottom
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  overflowY: 'scroll',
-                  overflowX: 'hidden',
-                }}
-              >
+          <Div position="relative" height="100%" borderTop="1px solid #0031de">
+            <div className="chat-body">
+              <ScrollToBottom className="message-container">
                 {messageList.map((messageContent, i) => {
                   return (
                     <Box
@@ -157,7 +150,17 @@ const Chat = (props) => {
               </ScrollToBottom>
             </div>
           </Div>
-          <Div spaceBetween height="20%" padding="40px" backgroundColor="#fff">
+          <Div
+            spaceBetween
+            position="absolute"
+            bottom="0"
+            right="0"
+            width="70%"
+            height="20%"
+            padding="40px"
+            backgroundColor="#fff"
+            borderTop="1px solid #0031de"
+          >
             <Input
               type="text"
               value={currentMessage}
@@ -179,7 +182,7 @@ const Chat = (props) => {
               보내기
             </Button>
           </Div>
-        </Div>
+        </ChatBox>
       </Wrap>
     </React.Fragment>
   );
@@ -188,23 +191,35 @@ const Chat = (props) => {
 export default Chat;
 
 const Wrap = styled.div`
+  position: relative;
   display: flex;
   width: 1400px;
   height: 91vh;
-  margin: 0 auto;
+  margin: 0 auto 100px auto;
   border: 1px solid #0031de;
   border-top: none;
 `;
 
-const Input = styled.input`
-  border: none;
-  font-family: inherit;
-  resize: none;
-  width: 85%;
-  height: 100px;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 0;
+const ChatBox = styled.div`
+  float: right;
+  width: 70%;
+  height: 80%;
+
+  .chat-body {
+    position: relative;
+    height: calc(780px - (45px + 70px));
+
+    .message-container {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    .message-container::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const Box = styled.div`
@@ -224,4 +239,15 @@ const Box = styled.div`
     justify-content: flex-end;
     background-color: cornflowerblue;
   }
+`;
+
+const Input = styled.input`
+  border: none;
+  font-family: inherit;
+  resize: none;
+  width: 85%;
+  height: 100px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 0;
 `;
