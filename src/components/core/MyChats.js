@@ -1,9 +1,17 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { getDetailDB } from '../../redux/modules/chat';
 
 import { Div, Text } from '../ui';
 
-const MyChats = () => {
+const MyChats = (props) => {
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.login.userInfo.userId);
+  const DMList = useSelector(state => state.chat.detailChat);
+  console.log(DMList);
+  console.log(props.chat.room);
+
   return (
     <React.Fragment>
       <Div
@@ -13,16 +21,16 @@ const MyChats = () => {
         height="86px"
         backgroundColor="#fff"
         borderBottom="1px solid #0031de"
-        _onClick={() => {}}
+        _onClick={() => { dispatch(getDetailDB(props.room)) }}
         cursor="pointer"
       >
         <Div position="absolute" right="20px" top="10px">
-          <Text color="#aaa">2021-05-28</Text>
+          <Text color="#aaa">{props.updatedAt}</Text>
         </Div>
         <Div flexStart>
-          <EllipsisName>UsernameConversation</EllipsisName>
+          <EllipsisName>{props.targetAuthor}</EllipsisName>
           <EllipsisContent>
-            ConversationConversationConversation
+            {props.message}
           </EllipsisContent>
         </Div>
       </Div>

@@ -10,6 +10,7 @@ import targetSlice from './modules/target';
 import boardSlice from './modules/board';
 import image from './modules/image';
 import loginSlice from './modules/login';
+import chatSlice from './modules/chat';
 
 export const history = createBrowserHistory();
 
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   board: boardSlice.reducer,
   login: loginSlice.reducer,
   image: image,
+  chat: chatSlice.reducer
 });
 
 const persistConfig = {
