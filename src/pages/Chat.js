@@ -28,16 +28,18 @@ const Chat = (props) => {
 
   const chatList = useSelector((state) => state.chat.chatList);
   const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
+  console.log(isChat);
   const DMList = useSelector((state) => state.chat.DMList);
 
   React.useEffect(() => {
     // 기존 채팅유무 확인
-    if (isChat) {
+    if (chatList[isChat]) {
       // 기존채팅이 있으면 리스트로 뿌려주고
+      dispatch(getChatListDB(authorId));
       setUsername(userInfo.userName);
       setRoom(chatList[isChat]?.room);
+      console.log(chatList);
       socket.emit('join_room', room);
-      dispatch(getChatListDB(authorId));
       dispatch(getDetailDB(chatList[isChat]?.room));
     } else {
       // 없으면 새로 방만들고
@@ -45,6 +47,7 @@ const Chat = (props) => {
       setRoom(Number(userInfo.userId) + Number(targetAuthorId));
       socket.emit('join_room', room);
       dispatch(getChatListDB(authorId));
+      console.log('gg');
     }
   }, []);
 
@@ -66,6 +69,28 @@ const Chat = (props) => {
         authorId: userInfo.userId,
         targetAuthor: targetAuthor,
         targetAuthorId: targetAuthorId,
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ':' +
+          new Date(Date.now()).getMinutes(),
+      };
+
+      await socket?.emit('send_message', messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage('');
+    }
+    dispatch(getChatListDB(authorId));
+  };
+
+  const _sendMessage = async () => {
+    if (currentMessage !== '') {
+      const messageData = {
+        room: DMList[0]?.room,
+        author: username,
+        authorId: userInfo.userId,
+        targetAuthor: DMList[0]?.targetAuthor,
+        targetAuthorId: DMList[0]?.targetAuthorId,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
@@ -134,7 +159,7 @@ const Chat = (props) => {
           <Div position="relative" height="100%" backgroundColor="#9FBAFF">
             <div className="chat-body">
               <ScrollToBottom className="message-container">
-                {isChat ? (
+                {chatList[isChat] ? (
                   <>
                     <Box>
                       <div>
@@ -189,33 +214,59 @@ const Chat = (props) => {
                     })}
                   </>
                 ) : (
-                  messageList.map((messageContent, i) => {
-                    return (
-                      <Box
-                        key={messageContent + i}
-                        id={
-                          username === messageContent.author ? 'you' : 'other'
-                        }
-                      >
-                        <div>
-                          <div className="message-content">
-                            <p>{messageContent.message}</p>
+                  <>
+                    <Box>
+                      <div>
+                        {DMList?.map((v, i) => {
+                          return (
+                            <>
+                              <div className="message-content">
+                                <p>{v.message}</p>
+                              </div>
+                              <div className="message-meta">
+                                <p id="time">{v.udatedAt}</p>
+                                <p
+                                  style={{
+                                    marginLeft: '10px',
+                                    fontWeight: 'bold',
+                                  }}
+                                >
+                                  {v.author}
+                                </p>
+                              </div>
+                            </>
+                          );
+                        })}
+                      </div>
+                    </Box>
+                    {messageList.map((messageContent, i) => {
+                      return (
+                        <Box
+                          key={messageContent + i}
+                          id={
+                            username === messageContent.author ? 'you' : 'other'
+                          }
+                        >
+                          <div>
+                            <div className="message-content">
+                              <p>{messageContent.message}</p>
+                            </div>
+                            <div className="message-meta">
+                              <p id="time">{messageContent.time}</p>
+                              <p
+                                style={{
+                                  marginLeft: '10px',
+                                  fontWeight: 'bold',
+                                }}
+                              >
+                                {messageContent.author}
+                              </p>
+                            </div>
                           </div>
-                          <div className="message-meta">
-                            <p id="time">{messageContent.time}</p>
-                            <p
-                              style={{
-                                marginLeft: '10px',
-                                fontWeight: 'bold',
-                              }}
-                            >
-                              {messageContent.author}
-                            </p>
-                          </div>
-                        </div>
-                      </Box>
-                    );
-                  })
+                        </Box>
+                      );
+                    })}
+                  </>
                 )}
               </ScrollToBottom>
             </div>
@@ -238,17 +289,31 @@ const Chat = (props) => {
                 event.key === 'Enter' && sendMessage();
               }}
             />
-            <Button
-              backgroundColor="#fff"
-              color="#0031de"
-              bold
-              size="24px"
-              _onClick={() => {
-                sendMessage();
-              }}
-            >
-              보내기
-            </Button>
+            {!chatList[isChat] && !targetAuthorId ? (
+              <Button
+                backgroundColor="#fff"
+                color="#0031de"
+                bold
+                size="24px"
+                _onClick={() => {
+                  _sendMessage();
+                }}
+              >
+                보내기
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="#fff"
+                color="#0031de"
+                bold
+                size="24px"
+                _onClick={() => {
+                  sendMessage();
+                }}
+              >
+                보내기
+              </Button>
+            )}
           </Div>
         </ChatBox>
       </Wrap>

@@ -117,23 +117,23 @@ const PostDetail = (props) => {
                     right="0"
                     padding="10px 0px"
                   >
-                    {postUserId !== userId ?
-                    <Button
-                      backgroundColor="white"
-                      size="16px"
-                      _onClick={() => {
-                        history.push({
-                          pathname: '/Chat',
-                          state: {
-                            targetAuthorId: postDetail.userId,
-                            targetAuthor: postDetail.User.userName,
-                          },
-                        });
-                      }}
-                    >
-                      메세지 보내기
-                    </Button>
-                    : null}
+                    {postUserId !== userId ? (
+                      <Button
+                        backgroundColor="white"
+                        size="16px"
+                        _onClick={() => {
+                          history.push({
+                            pathname: '/Chat',
+                            state: {
+                              targetAuthorId: postDetail.userId,
+                              targetAuthor: postDetail.User.userName,
+                            },
+                          });
+                        }}
+                      >
+                        메세지 보내기
+                      </Button>
+                    ) : null}
                   </Div>
                 )}
               </Div>
