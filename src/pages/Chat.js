@@ -19,8 +19,8 @@ const Chat = (props) => {
   const userInfo = useSelector((state) => state.login.userInfo);
   const [username, setUsername] = React.useState('');
   const [room, setRoom] = React.useState('');
-  const targetAuthor = location.state.targetAuthor;
-  const targetAuthorId = location.state.targetAuthorId;
+  const targetAuthor = location.state?.targetAuthor;
+  const targetAuthorId = location.state?.targetAuthorId;
 
   React.useEffect(() => {
     if (isLogin) {
@@ -77,13 +77,7 @@ const Chat = (props) => {
           borderRight="1px solid #0031de"
           backgroundColor="white"
         >
-          <Div
-            height="86px"
-            backgroundColor="#4378ff"
-            center
-            row
-            borderBottom="1px solid #0031de"
-          >
+          <Div height="88px" backgroundColor="#4378ff" center row>
             <Text size="24px" color="#fff" letterSpacing="0.1em">
               메세지
             </Text>
@@ -107,11 +101,12 @@ const Chat = (props) => {
             <MyChats />
             <MyChats />
             <MyChats />
+            <MyChats />
           </Div>
         </Div>
 
         <ChatBox>
-          <Div width="100%" height="40px">
+          <Div width="100%" height="40px" backgroundColor="#9FBAFF">
             <Button
               float="right"
               width="80px"
@@ -123,7 +118,7 @@ const Chat = (props) => {
               나가기
             </Button>
           </Div>
-          <Div position="relative" height="100%">
+          <Div position="relative" height="100%" backgroundColor="#9FBAFF">
             <div className="chat-body">
               <ScrollToBottom className="message-container">
                 {messageList.map((messageContent, i) => {
@@ -156,11 +151,7 @@ const Chat = (props) => {
           </Div>
           <Div
             spaceBetween
-            position="absolute"
-            bottom="0"
-            right="0"
-            width="70%"
-            height="20%"
+            width="100%"
             padding="40px"
             backgroundColor="#fff"
             borderTop="1px solid #0031de"
@@ -202,12 +193,14 @@ const Wrap = styled.div`
   margin: 0 auto 100px auto;
   border: 1px solid #0031de;
   border-top: none;
+  background-color: white;
 `;
 
 const ChatBox = styled.div`
+  position: relative;
   float: right;
   width: 71%;
-  height: 80%;
+  height: 75%;
 
   .chat-body {
     position: relative;
