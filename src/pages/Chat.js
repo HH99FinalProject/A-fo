@@ -1,44 +1,71 @@
-import React, { useState } from "react";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import ScrollToBottom from 'react-scroll-to-bottom';
 import io from 'socket.io-client';
-import { useSelector } from "react-redux";
-import styled from "styled-components";
+import { history } from '../redux/configureStore';
+
+import { Header, MyChats } from '../components/core';
+
+import styled from 'styled-components';
 import { GrPowerReset } from 'react-icons/gr';
+import { Button, Div, Text } from '../components/ui';
 
-import { Header } from "../components/core";
-import MyChats from "../components/core/MyChats";
-import { Button, Div, Text } from "../components/ui";
+const socket = io.connect('https://a-fo-back.shop', { path: '/socket.io' });
 
-const socket = io.connect('http://3.34.98.41', { path: '/socket.io' });
-
-const Chat = () => {
-
-  const [userName, setUserName] = useState('');
-  const [room, setRoom] = useState('');
-  const [join, setJoin] = useState('');
-  const [showChat, setShowChat] = useState(false);
-
+const Chat = (props) => {
+  const location = useLocation();
   const isLogin = useSelector((state) => state.login.isLogin);
   const userInfo = useSelector((state) => state.login.userInfo);
+  const [username, setUsername] = React.useState('');
+  const [room, setRoom] = React.useState('');
+  const targetAuthor = location.state.targetAuthor;
+  const targetAuthorId = location.state.targetAuthorId;
+
   React.useEffect(() => {
     if (isLogin) {
-      setUserName(userInfo.userName);
-      setRoom(userInfo.userId);
+      setUsername(userInfo.userName);
+      setRoom(Number(userInfo.userId) + Number(targetAuthorId));
+      socket.emit('join_room', room);
     }
   }, []);
 
-  const joinRoom = () => {
-    if (userName !== '' && room !== '') {
-      socket.emit('join_room', room);
-      setShowChat(true);
-    }
-  };
   const onLeaveRoom = () => {
-    //on= 연결 , emit = 전송
     socket.emit('leave-room', room, () => setRoom(null));
     setTimeout(() => {
-      window.location.pathname = '/';
+      history.push('/');
     }, 1000);
   };
+
+  const [currentMessage, setCurrentMessage] = React.useState('');
+  const [messageList, setMessageList] = React.useState([]);
+
+  const sendMessage = async () => {
+    if (currentMessage !== '') {
+      const messageData = {
+        room: room,
+        author: username,
+        authorId: userInfo.userId,
+        targetAuthor: targetAuthor,
+        targetAuthorId: targetAuthorId,
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ':' +
+          new Date(Date.now()).getMinutes(),
+      };
+
+      await socket?.emit('send_message', messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage('');
+    }
+  };
+
+  React.useEffect(() => {
+    socket?.on('receive_message', (data) => {
+      setMessageList((list) => [...list, data]);
+    });
+  }, [socket]);
 
   return (
     <React.Fragment>
@@ -46,11 +73,15 @@ const Chat = () => {
       <Wrap>
         <Div width="30%" borderRight="1px solid #0031de">
           <Div height="86px" backgroundColor="#4378ff" center row>
-            <Text size="24px" color="#fff" letterSpacing="0.1em">메세지</Text>
-            <GrPowerReset size="25" style={{margin:"0 5px", cursor:"pointer"}}/>
+            <Text size="24px" color="#fff" letterSpacing="0.1em">
+              메세지
+            </Text>
+            <GrPowerReset
+              size="25"
+              style={{ margin: '0 5px', cursor: 'pointer' }}
+            />
           </Div>
           <Div overflow="auto" height="90%">
-
             {/* map으로 돌려야함 */}
             {/* 채팅리스트.map((v, i) => { return <Mychats /> }) */}
             <MyChats />
@@ -65,53 +96,96 @@ const Chat = () => {
             <MyChats />
             <MyChats />
             <MyChats />
-
           </Div>
         </Div>
 
         <Div width="70%">
-          <Div height="80%" borderBottom="1px solid #0031de" padding="40px 30px">
-            대화내용 들어올곳
-            {!showChat ? (
-              <div className="joinChatContainer">
-                <h3>채팅방 참여하기</h3>
-                <input
-                  type="text"
-                  placeholder="John..."
-                  onChange={(event) => {
-                    setUserName(event.target.value);
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="Room ID..."
-                  onChange={(event) => {
-                    setRoom(event.target.value);
-                  }}
-                />
-                <button onClick={joinRoom}>메세지 보내기</button>
-              </div>
-            ) : (
-              <Chat
-                socket={socket}
-                username={userName}
-                room={room}
-                onLeaveRoom={onLeaveRoom}
-              />
-            )}
+          <Button
+            padding="10px 20px"
+            backgroundColor="#4378ff"
+            color="#fff"
+            _onClick={onLeaveRoom}
+          >
+            나가기
+          </Button>
+          <Div
+            height="80%"
+            borderBottom="1px solid #0031de"
+            padding="40px 30px"
+          >
+            <div
+              style={{
+                height: 'calc(450px - (45px + 70px))',
+                border: '1px solid #263238',
+                background: '#fff',
+                position: 'relative',
+              }}
+            >
+              <ScrollToBottom
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  overflowY: 'scroll',
+                  overflowX: 'hidden',
+                }}
+              >
+                {messageList.map((messageContent, i) => {
+                  return (
+                    <Box
+                      key={messageContent + i}
+                      id={username === messageContent.author ? 'you' : 'other'}
+                    >
+                      <div>
+                        <div className="message-content">
+                          <p>{messageContent.message}</p>
+                        </div>
+                        <div className="message-meta">
+                          <p id="time">{messageContent.time}</p>
+                          <p
+                            style={{
+                              marginLeft: '10px',
+                              fontWeight: 'bold',
+                            }}
+                          >
+                            {messageContent.author}
+                          </p>
+                        </div>
+                      </div>
+                    </Box>
+                  );
+                })}
+              </ScrollToBottom>
+            </div>
           </Div>
           <Div spaceBetween height="20%" padding="40px" backgroundColor="#fff">
-            <Textarea />
-            <Button backgroundColor="#fff" color="#0031de" bold size="24px">보내기</Button>
+            <Input
+              type="text"
+              value={currentMessage}
+              placeholder="메시지를 입력하세요."
+              onChange={(event) => {
+                setCurrentMessage(event.target.value);
+              }}
+              onKeyPress={(event) => {
+                event.key === 'Enter' && sendMessage();
+              }}
+            />
+            <Button
+              backgroundColor="#fff"
+              color="#0031de"
+              bold
+              size="24px"
+              _onClick={sendMessage}
+            >
+              보내기
+            </Button>
           </Div>
         </Div>
       </Wrap>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default Chat;
-
 
 const Wrap = styled.div`
   display: flex;
@@ -122,25 +196,7 @@ const Wrap = styled.div`
   border-top: none;
 `;
 
-const EllipsisName = styled.div`
-  width: 90px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-right: 20px;
-  color: #0031de;
-  font-size: 16px;
-`;
-
-const EllipsisContent = styled.div`
-  width: 260px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 16px;
-`;
-
-const Textarea = styled.textarea`
+const Input = styled.input`
   border: none;
   font-family: inherit;
   resize: none;
@@ -149,4 +205,23 @@ const Textarea = styled.textarea`
   padding: 10px;
   font-size: 18px;
   border-radius: 0;
+`;
+
+const Box = styled.div`
+  height: auto;
+  padding: 10px;
+  display: flex;
+  #you {
+    justify-content: flex-end;
+  }
+  #you .message-content {
+    justify-content: flex-start;
+  }
+  #other {
+    justify-content: flex-start;
+  }
+  #other .message-content {
+    justify-content: flex-end;
+    background-color: cornflowerblue;
+  }
 `;

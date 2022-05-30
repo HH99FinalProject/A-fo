@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
 import { addCommentDB, getCommentDB } from '../redux/modules/comment';
 import { getPostDetailDB, deletePostDB } from '../redux/modules/board';
-import moment from "moment"; 
-import "moment/locale/ko";
+import moment from 'moment';
+import 'moment/locale/ko';
 
+import Chat from './Chat';
 import { Header, Comment } from '../components/core';
 import { Div, Button, Input, Text } from '../components/ui';
 import styled from 'styled-components';
@@ -15,15 +16,15 @@ import { CgHeart } from 'react-icons/cg';
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
-  
+
   const [comment, setComment] = React.useState();
-  const postDetail = useSelector(state => state.board.postDetail);
-  const is_login = useSelector(state => state.login.isLogin);
-  const userId = useSelector(state => state.login.userInfo.userId);
+  const postDetail = useSelector((state) => state.board.postDetail);
+  const is_login = useSelector((state) => state.login.isLogin);
+  const userId = useSelector((state) => state.login.userInfo.userId);
   const postUserId = postDetail?.userId;
 
-  const commentList = useSelector(state => state.comment.commentList);
-  
+  const commentList = useSelector((state) => state.comment.commentList);
+
   // params값 찾아옴
   const postId = +props.match.params.postId;
 
@@ -31,28 +32,27 @@ const PostDetail = (props) => {
     setComment(e.target.value);
   };
 
-  const token = useSelector((state => state.login.userInfo.token));
+  const token = useSelector((state) => state.login.userInfo.token);
   const commentData = {
     comment: comment,
     postId: postId,
-  }
+  };
 
   // 댓글작성
   const addComment = () => {
     if (!token) alert('로그인이 필요한 서비스입니다.');
-    dispatch(addCommentDB({commentData, token}));
+    dispatch(addCommentDB({ commentData, token }));
     setComment('');
   };
 
-
-  React.useEffect(()=>{
+  React.useEffect(() => {
     // 게시글 정보만 가져오는 디스패치
     dispatch(getPostDetailDB(postId));
     // 댓글만 가져오는 디스패치
     dispatch(getCommentDB(postId));
-  }, [])
+  }, []);
 
-  if(postDetail?.postImageUrl) {
+  if (postDetail?.postImageUrl) {
     var img = postDetail?.postImageUrl;
   } else {
     var img = `https://a-fo-bucket2.s3.ap-northeast-2.amazonaws.com/A-fo_default.jpg`;
@@ -63,7 +63,7 @@ const PostDetail = (props) => {
       dispatch(deletePostDB(postId));
       history.push('/board');
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -85,66 +85,106 @@ const PostDetail = (props) => {
         <Div margin="60px 0 0 0">
           <Wrap>
             <Div display="flex">
-              <Div flexStart width="88%">
+              <Div flexStart position="relative" width="100%">
                 <div
                   style={{
                     width: '10%',
                     borderRight: '1px solid #bdbdbd',
                     padding: '5px 0',
-                  }}>
+                  }}
+                >
                   <Text bold size="20px" color="#7b7b7b" letterSpacing="1px">
                     {postDetail?.subTitle}
                   </Text>
                 </div>
-                
+
                 <Div margin="0 0 0 20px">
                   <Text size="21px" bold letterSpacing="1px">
                     {postDetail?.title}
                   </Text>
                 </Div>
-                
+
                 <Div row margin="0 0 0 20px">
                   <Div fontSize="16px" margin="0 20px 0 0">
                     {postDetail?.target}
                   </Div>
-                  <Div fontSize="16px">
-                    {postDetail?.continent}
-                  </Div>
+                  <Div fontSize="16px">{postDetail?.continent}</Div>
+                </Div>
+                <Div position="absolute" top="10" right="0" padding="10px 0px">
+                  <Button
+                    backgroundColor="white"
+                    size="16px"
+                    _onClick={() => {
+                      history.push({
+                        pathname: '/Chat',
+                        state: {
+                          targetAuthorId: postDetail.userId,
+                          targetAuthor: postDetail.User.userName,
+                        },
+                      });
+                    }}
+                  >
+                    메세지 보내기
+                  </Button>
                 </Div>
               </Div>
 
-              {is_login && postUserId === userId ? 
-              <Div width="12%" spaceEvenly>
-                <Div>
-                  <Text cursor="pointer" letterSpacing="1px" width="60px" boldHover="bold"
-                    _onClick={()=>{ history.push(`/postDetail/edit/${postDetail?.postId}`)}}>수정하기</Text>
+              {is_login && postUserId === userId ? (
+                <Div width="12%" spaceEvenly>
+                  <Div>
+                    <Text
+                      cursor="pointer"
+                      letterSpacing="1px"
+                      width="60px"
+                      boldHover="bold"
+                      _onClick={() => {
+                        history.push(`/postDetail/edit/${postDetail?.postId}`);
+                      }}
+                    >
+                      수정하기
+                    </Text>
+                  </Div>
+                  <Div margin="0 0 0 20px">
+                    <Text
+                      cursor="pointer"
+                      letterSpacing="1px"
+                      width="60px"
+                      boldHover="bold"
+                      _onClick={() => {
+                        deletePost();
+                      }}
+                    >
+                      삭제하기
+                    </Text>
+                  </Div>
                 </Div>
-                <Div margin="0 0 0 20px">
-                  <Text cursor="pointer" letterSpacing="1px" width="60px" boldHover="bold"
-                    _onClick={()=>{ deletePost(); }}>삭제하기</Text>
-                </Div>
-              </Div>
-              : null}
+              ) : null}
             </Div>
             <Div flexStart>
               <Div spaceEvenly margin="20px 0">
                 <Div padding="5px 0" width="135px">
-                  <Text size="16px" letterSpacing="1px">{postDetail?.User.userName}</Text>
+                  <Text size="16px" letterSpacing="1px">
+                    {postDetail?.User.userName}
+                  </Text>
                 </Div>
                 <Div spaceEvenly>
                   <Div fontSize="14px" margin="0 20px 0 0">
                     {moment(postDetail?.createdAt).fromNow()}
                   </Div>
-                  <AiOutlineEye size={20} /> 
-                  <Text margin="0 0 0 5px" letterSpacing="1px">{postDetail?.viewCount}회</Text>
+                  <AiOutlineEye size={20} />
+                  <Text margin="0 0 0 5px" letterSpacing="1px">
+                    {postDetail?.viewCount}회
+                  </Text>
                 </Div>
               </Div>
               <Div row margin="0 20px">
-                <AiOutlineComment size={20} />  
-                <Text margin="0 0 0 5px" letterSpacing="1px">{postDetail?.commentCount}개</Text>
+                <AiOutlineComment size={20} />
+                <Text margin="0 0 0 5px" letterSpacing="1px">
+                  {postDetail?.commentCount}개
+                </Text>
               </Div>
               {/* <Div row> */}
-                {/* <Div row>
+              {/* <Div row>
                   <FiThumbsUp onClick={()=> {window.alert('준비중입니다!')}} style={{cursor:"pointer"}} size={20} />
                   <Text margin="0 0 0 5px" letterSpacing="1px">10개</Text>
                 </Div> */}
@@ -158,17 +198,17 @@ const PostDetail = (props) => {
                 letterSpacing="0.05em"
                 margin="40px 0 20px 0"
               >
-                {postDetail?.content.split("\n").map((line) => {
+                {postDetail?.content.split('\n').map((line) => {
                   return (
-                    <span>
+                    <span key={line}>
                       {line}
                       <br />
                     </span>
-                  )
+                  );
                 })}
               </Text>
               <Div width="300px">
-                <img width='100%' src={img} alt='이미지입니다'/>
+                <img width="100%" src={img} alt="이미지입니다" />
               </Div>
             </Div>
           </Wrap>
@@ -178,30 +218,32 @@ const PostDetail = (props) => {
               <input
                 placeholder="댓글 입력란입니다."
                 style={{
-                  width: "90%",
-                  height: "40px",
-                  fontSize: "18px",
-                  padding: "0 10px",
-                  borderRadius: "0",
-                  lineHeight: "1.6em",
-                  fontFamily: "inherit",
-                  letterSpacing: "0.05em",
+                  width: '90%',
+                  height: '40px',
+                  fontSize: '18px',
+                  padding: '0 10px',
+                  borderRadius: '0',
+                  lineHeight: '1.6em',
+                  fontFamily: 'inherit',
+                  letterSpacing: '0.05em',
                 }}
                 onChange={onChange}
                 value={comment}
                 onSubmit={addComment}
-                is_submit/>
+                is_submit
+              />
               <button
                 style={{
-                  margin:"0 0 0 20px",
-                  height: "40px",
+                  margin: '0 0 0 20px',
+                  height: '40px',
                   padding: '10px',
                   background: '#7b7b7b',
                   color: '#fff',
                 }}
                 onClick={() => {
                   addComment();
-                }}>
+                }}
+              >
                 댓글작성
               </button>
             </Div>

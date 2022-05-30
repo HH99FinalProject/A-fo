@@ -77,7 +77,7 @@ export const loginSlice = createSlice({
       .addCase(googleLoginDB.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
-      })
+      });
   },
 });
 

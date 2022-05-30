@@ -9,6 +9,7 @@ import Header from './Header';
 import Info from './Info';
 import InfoTotal from './InfoTotal';
 import Kakao from './Kakao';
+import MyChats from './MyChats';
 import Pagenation from './Pagination';
 import Posts from './Posts';
 import Search from './Search';
@@ -27,6 +28,7 @@ export {
   Info,
   InfoTotal,
   Kakao,
+  MyChats,
   Pagenation,
   Posts,
   Search,

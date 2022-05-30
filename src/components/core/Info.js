@@ -16,17 +16,18 @@ const Info = (props, ref) => {
   const countryList = countryDetail?.map((x, i) => x);
   const countryInfo = countryList[0]?.BaseInfo?.baseInfo;
 
-  // React.useEffect(() => {
-  //   if (props.bank) {
-  //     props.countryInfo = countryInfo;
-  //   }
-  // }, []);
+  React.useEffect(() => {
+    if (props.bank) {
+      document.getElementsByClassName('bank');
+    }
+  }, []);
 
   return (
     <>
       {/* 비자 */}
       {props.visa && (
         <div
+          className="bank"
           style={{
             position: 'relative',
             width: '100%',
@@ -70,7 +71,7 @@ const Info = (props, ref) => {
       )}
 
       {/* 은행 */}
-      {props.bank && (
+      {!!props.bank && (
         <div
           style={{
             position: 'relative',
