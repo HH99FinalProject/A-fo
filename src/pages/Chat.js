@@ -26,14 +26,17 @@ const Chat = (props) => {
   const targetAuthorId = location.state?.targetAuthorId;
   const authorId = userId;
 
-  const chatList = useSelector(state => state.chat.chatList);
+  const chatList = useSelector((state) => state.chat.chatList);
   const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
-  const DMList = useSelector(state => state.chat.DMList);
+  const DMList = useSelector((state) => state.chat.DMList);
 
   React.useEffect(() => {
     // 기존 채팅유무 확인
     if (isChat) {
       // 기존채팅이 있으면 리스트로 뿌려주고
+      setUsername(userInfo.userName);
+      setRoom(chatList[isChat]?.room);
+      socket.emit('join_room', room);
       dispatch(getChatListDB(authorId));
       dispatch(getDetailDB(chatList[isChat]?.room));
     } else {
@@ -131,66 +134,89 @@ const Chat = (props) => {
           <Div position="relative" height="100%" backgroundColor="#9FBAFF">
             <div className="chat-body">
               <ScrollToBottom className="message-container">
-                {isChat ?
+                {isChat ? (
+                  <>
+                    <Box>
+                      <div>
+                        {DMList?.map((v, i) => {
+                          return (
+                            <>
+                              <div className="message-content">
+                                <p>{v.message}</p>
+                              </div>
+                              <div className="message-meta">
+                                <p id="time">{v.udatedAt}</p>
+                                <p
+                                  style={{
+                                    marginLeft: '10px',
+                                    fontWeight: 'bold',
+                                  }}
+                                >
+                                  {v.author}
+                                </p>
+                              </div>
+                            </>
+                          );
+                        })}
+                      </div>
+                    </Box>
+                    {messageList.map((messageContent, i) => {
+                      return (
+                        <Box
+                          key={messageContent + i}
+                          id={
+                            username === messageContent.author ? 'you' : 'other'
+                          }
+                        >
+                          <div>
+                            <div className="message-content">
+                              <p>{messageContent.message}</p>
+                            </div>
+                            <div className="message-meta">
+                              <p id="time">{messageContent.time}</p>
+                              <p
+                                style={{
+                                  marginLeft: '10px',
+                                  fontWeight: 'bold',
+                                }}
+                              >
+                                {messageContent.author}
+                              </p>
+                            </div>
+                          </div>
+                        </Box>
+                      );
+                    })}
+                  </>
+                ) : (
                   messageList.map((messageContent, i) => {
                     return (
                       <Box
                         key={messageContent + i}
-                        id={username === messageContent.author ? 'you' : 'other'}
+                        id={
+                          username === messageContent.author ? 'you' : 'other'
+                        }
                       >
                         <div>
-                          {DMList.map((v, i) => {
-                            return (
-                              <>
-                                <div className="message-content">
-                                  <p>{v.message}</p>
-                                </div>
-                                <div className="message-meta">
-                                  <p id="time">{v.udatedAt}</p>
-                                  <p
-                                    style={{
-                                      marginLeft: '10px',
-                                      fontWeight: 'bold',
-                                    }}
-                                  >
-                                    {v.author}
-                                  </p>
-                                </div>
-                              </>
-                            )
-                          })}
+                          <div className="message-content">
+                            <p>{messageContent.message}</p>
+                          </div>
+                          <div className="message-meta">
+                            <p id="time">{messageContent.time}</p>
+                            <p
+                              style={{
+                                marginLeft: '10px',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              {messageContent.author}
+                            </p>
+                          </div>
                         </div>
                       </Box>
                     );
                   })
-                : 
-                messageList.map((messageContent, i) => {
-                  return (
-                    <Box
-                      key={messageContent + i}
-                      id={username === messageContent.author ? 'you' : 'other'}
-                    >
-                      <div>
-                        <div className="message-content">
-                          <p>{messageContent.message}</p>
-                        </div>
-                        <div className="message-meta">
-                          <p id="time">{messageContent.time}</p>
-                          <p
-                            style={{
-                              marginLeft: '10px',
-                              fontWeight: 'bold',
-                            }}
-                          >
-                            {messageContent.author}
-                          </p>
-                        </div>
-                      </div>
-                    </Box>
-                  );
-                })
-                }
-                
+                )}
               </ScrollToBottom>
             </div>
           </Div>
