@@ -110,23 +110,30 @@ const PostDetail = (props) => {
                   </Div>
                   <Div fontSize="16px">{postDetail?.continent}</Div>
                 </Div>
-                <Div position="absolute" top="10" right="0" padding="10px 0px">
-                  <Button
-                    backgroundColor="white"
-                    size="16px"
-                    _onClick={() => {
-                      history.push({
-                        pathname: '/Chat',
-                        state: {
-                          targetAuthorId: postDetail.userId,
-                          targetAuthor: postDetail.User.userName,
-                        },
-                      });
-                    }}
+                {is_login && (
+                  <Div
+                    position="absolute"
+                    top="10"
+                    right="0"
+                    padding="10px 0px"
                   >
-                    메세지 보내기
-                  </Button>
-                </Div>
+                    <Button
+                      backgroundColor="white"
+                      size="16px"
+                      _onClick={() => {
+                        history.push({
+                          pathname: '/Chat',
+                          state: {
+                            targetAuthorId: postDetail.userId,
+                            targetAuthor: postDetail.User.userName,
+                          },
+                        });
+                      }}
+                    >
+                      메세지 보내기
+                    </Button>
+                  </Div>
+                )}
               </Div>
 
               {is_login && postUserId === userId ? (
