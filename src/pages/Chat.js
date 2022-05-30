@@ -111,15 +111,19 @@ const Chat = (props) => {
         </Div>
 
         <ChatBox>
-          <Button
-            padding="10px 20px"
-            backgroundColor="#4378ff"
-            color="#fff"
-            _onClick={onLeaveRoom}
-          >
-            나가기
-          </Button>
-          <Div position="relative" height="100%" borderTop="1px solid #0031de">
+          <Div width="100%" height="40px">
+            <Button
+              float="right"
+              width="80px"
+              height="40px"
+              backgroundColor="#4378ff"
+              color="#fff"
+              _onClick={onLeaveRoom}
+            >
+              나가기
+            </Button>
+          </Div>
+          <Div position="relative" height="100%">
             <div className="chat-body">
               <ScrollToBottom className="message-container">
                 {messageList.map((messageContent, i) => {
@@ -202,7 +206,7 @@ const Wrap = styled.div`
 
 const ChatBox = styled.div`
   float: right;
-  width: 70%;
+  width: 71%;
   height: 80%;
 
   .chat-body {
@@ -226,17 +230,34 @@ const Box = styled.div`
   height: auto;
   padding: 10px;
   display: flex;
+  .message-content {
+    width: auto;
+    height: auto;
+    min-height: 40px;
+    max-width: 120px;
+    background-color: #0031de;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
   #you {
     justify-content: flex-end;
   }
   #you .message-content {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
   #other {
     justify-content: flex-start;
   }
   #other .message-content {
-    justify-content: flex-end;
+    justify-content: flex-start;
     background-color: cornflowerblue;
   }
 `;
