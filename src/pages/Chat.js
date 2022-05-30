@@ -87,26 +87,22 @@ const Chat = (props) => {
           borderRight="1px solid #0031de"
           backgroundColor="white"
         >
-          <Div
-            height="86px"
-            backgroundColor="#4378ff"
-            center
-            row
-            borderBottom="1px solid #0031de"
-          >
+          <Div height="88px" backgroundColor="#4378ff" center row>
             <Text size="24px" color="#fff" letterSpacing="0.1em">
               메세지
             </Text>
             <GrPowerReset
               size="25"
               style={{ margin: '0 5px', cursor: 'pointer' }}
-              onClick={()=>{ dispatch(getChatListDB(authorId)); }}
+              onClick={() => {
+                dispatch(getChatListDB(authorId));
+              }}
             />
           </Div>
           <Div overflow="auto" height="90%">
             {/* map으로 돌려야함 */}
             {chatList.map((chat, i) => {
-              return <MyChats key={chat + i} chat={chat} />
+              return <MyChats key={chat + i} chat={chat} />;
             })}
           </Div>
         </Div>
@@ -114,7 +110,7 @@ const Chat = (props) => {
         {/* <DefaultBox>메세지를 클릭해주세요!</DefaultBox> */}
 
         <ChatBox>
-          <Div width="100%" height="40px">
+          <Div width="100%" height="40px" backgroundColor="#9FBAFF">
             <Button
               float="right"
               width="80px"
@@ -126,7 +122,7 @@ const Chat = (props) => {
               나가기
             </Button>
           </Div>
-          <Div position="relative" height="100%">
+          <Div position="relative" height="100%" backgroundColor="#9FBAFF">
             <div className="chat-body">
               <ScrollToBottom className="message-container">
                 {messageList.map((messageContent, i) => {
@@ -159,11 +155,7 @@ const Chat = (props) => {
           </Div>
           <Div
             spaceBetween
-            position="absolute"
-            bottom="0"
-            right="0"
-            width="70%"
-            height="20%"
+            width="100%"
             padding="40px"
             backgroundColor="#fff"
             borderTop="1px solid #0031de"
@@ -184,7 +176,9 @@ const Chat = (props) => {
               color="#0031de"
               bold
               size="24px"
-              _onClick={()=>{ sendMessage(); }}
+              _onClick={() => {
+                sendMessage();
+              }}
             >
               보내기
             </Button>
@@ -205,12 +199,14 @@ const Wrap = styled.div`
   margin: 0 auto 100px auto;
   border: 1px solid #0031de;
   border-top: none;
+  background-color: white;
 `;
 
 const ChatBox = styled.div`
+  position: relative;
   float: right;
   width: 71%;
-  height: 80%;
+  height: 75%;
 
   .chat-body {
     position: relative;
