@@ -117,6 +117,7 @@ const PostDetail = (props) => {
                     right="0"
                     padding="10px 0px"
                   >
+                    {postUserId !== userId ?
                     <Button
                       backgroundColor="white"
                       size="16px"
@@ -132,6 +133,7 @@ const PostDetail = (props) => {
                     >
                       메세지 보내기
                     </Button>
+                    : null}
                   </Div>
                 )}
               </Div>

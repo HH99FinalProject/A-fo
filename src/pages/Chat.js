@@ -27,14 +27,20 @@ const Chat = (props) => {
   const authorId = userId;
 
   const chatList = useSelector(state => state.chat.chatList);
-  console.log(chatList)
+  const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
+  const DMList = useSelector(state => state.chat.DMList);
 
   React.useEffect(() => {
-    if (isLogin) {
+    // 기존 채팅유무 확인
+    if (isChat) {
+      // 기존채팅이 있으면 리스트로 뿌려주고
+      dispatch(getChatListDB(authorId));
+      dispatch(getDetailDB(chatList[isChat]?.room));
+    } else {
+      // 없으면 새로 방만들고
       setUsername(userInfo.userName);
       setRoom(Number(userInfo.userId) + Number(targetAuthorId));
       socket.emit('join_room', room);
-      console.log(authorId);
       dispatch(getChatListDB(authorId));
     }
   }, []);
@@ -125,7 +131,40 @@ const Chat = (props) => {
           <Div position="relative" height="100%" backgroundColor="#9FBAFF">
             <div className="chat-body">
               <ScrollToBottom className="message-container">
-                {messageList.map((messageContent, i) => {
+                {isChat ?
+                  messageList.map((messageContent, i) => {
+                    return (
+                      <Box
+                        key={messageContent + i}
+                        id={username === messageContent.author ? 'you' : 'other'}
+                      >
+                        <div>
+                          {DMList.map((v, i) => {
+                            return (
+                              <>
+                                <div className="message-content">
+                                  <p>{v.message}</p>
+                                </div>
+                                <div className="message-meta">
+                                  <p id="time">{v.udatedAt}</p>
+                                  <p
+                                    style={{
+                                      marginLeft: '10px',
+                                      fontWeight: 'bold',
+                                    }}
+                                  >
+                                    {v.author}
+                                  </p>
+                                </div>
+                              </>
+                            )
+                          })}
+                        </div>
+                      </Box>
+                    );
+                  })
+                : 
+                messageList.map((messageContent, i) => {
                   return (
                     <Box
                       key={messageContent + i}
@@ -149,7 +188,9 @@ const Chat = (props) => {
                       </div>
                     </Box>
                   );
-                })}
+                })
+                }
+                
               </ScrollToBottom>
             </div>
           </Div>

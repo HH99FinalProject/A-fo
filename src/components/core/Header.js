@@ -65,17 +65,6 @@ const Header = () => {
               </Link>
               <Button
                 height="50px"
-                color="#0031DE"
-                backgroundColor="white"
-                bold
-                _onClick={() => {
-                  history.push('/Chat');
-                }}
-              >
-                메세지
-              </Button>
-              <Button
-                height="50px"
                 bold
                 color="#0031DE"
                 backgroundColor="white"
@@ -223,16 +212,6 @@ const Header = () => {
                 />
                 설문하고 상품받기!
               </Link>
-              <Button
-                height="50px"
-                color="#0031DE"
-                bold
-                _onClick={() => {
-                  history.push('/Chat');
-                }}
-              >
-                메세지
-              </Button>
               <Button
                 height="50px"
                 color="#0031DE"
