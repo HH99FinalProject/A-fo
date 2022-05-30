@@ -39,7 +39,7 @@ function App() {
         <Route exact path="/SubMain1" component={SubMain1} />
         <Route exact path="/SubMain2" component={SubMain2} />
         <Route exact path="/WorldMap" component={WorldMap} />
-        <Route exact path="/Chat/:room" component={Chat} />
+        <Route exact path="/Chat" component={Chat} />
       </ConnectedRouter>
     </React.Fragment>
   );

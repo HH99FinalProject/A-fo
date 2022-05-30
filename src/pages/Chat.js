@@ -27,6 +27,7 @@ const Chat = (props) => {
   const authorId = userId;
 
   const chatList = useSelector(state => state.chat.chatList);
+  console.log(chatList)
 
   React.useEffect(() => {
     if (isLogin) {

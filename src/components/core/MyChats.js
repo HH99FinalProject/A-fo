@@ -7,7 +7,7 @@ import { Div, Text } from '../ui';
 
 const MyChats = (props) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.login.userInfo.userId);
+  const userName = useSelector((state) => state.login.userInfo.userName);
   const DMList = useSelector(state => state.chat.detailChat);
   console.log(DMList);
   console.log(props.chat.room);
@@ -21,16 +21,19 @@ const MyChats = (props) => {
         height="86px"
         backgroundColor="#fff"
         borderBottom="1px solid #0031de"
-        _onClick={() => { dispatch(getDetailDB(props.room)) }}
+        _onClick={() => { dispatch(getDetailDB(props.chat.room)); }}
         cursor="pointer"
       >
         <Div position="absolute" right="20px" top="10px">
-          <Text color="#aaa">{props.updatedAt}</Text>
+          <Text color="#aaa">{props.chat.updatedAt}</Text>
         </Div>
         <Div flexStart>
-          <EllipsisName>{props.targetAuthor}</EllipsisName>
+          {userName === props.chat.author ? 
+            <EllipsisName>{props.chat.targetAuthor}</EllipsisName>
+            : <EllipsisName>{props.chat.author}</EllipsisName>
+          }
           <EllipsisContent>
-            {props.message}
+            {props.chat.message}
           </EllipsisContent>
         </Div>
       </Div>
