@@ -113,7 +113,8 @@ export const commentSlice = createSlice({
       })
       .addCase(editCommentDB.fulfilled, (state, action) => {
         state.loading = false;
-        state.commentList[0].comment = action.payload.data.comment; 
+        const idx = state.commentList.findIndex((a) => a.commentId == action.payload.data.commentId);
+        state.commentList[idx].comment = action.payload.data.comment;
       })
       .addCase(editCommentDB.rejected, (state, action) => {
         state.loading = false;
