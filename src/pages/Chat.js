@@ -132,7 +132,7 @@ const Chat = (props) => {
               size="25"
               style={{ margin: '0 5px', cursor: 'pointer' }}
               onClick={() => {
-                dispatch(getChatListDB(authorId));
+                window.location.replace("/chat");
               }}
             />
           </Div>
@@ -154,18 +154,15 @@ const Chat = (props) => {
             spaceBetween
           >
             <Div width="100%" center height="100%">
-              {/* {isChat === -1 ? null
-              : <Div color="#fff">{targetAuthor}님과의 대화방에 참여하셨습니다.</Div>
-              } */}
               {targetAuthorId ? (
                 <Div color="#fff">
                   {targetAuthor}님과의 대화방에 참여하셨습니다.
                 </Div>
-              ) : (
+              ) : DMList ? (
                 <Div color="#fff">
                   {DMList[0]?.targetAuthor}님과의 대화방에 참여하셨습니다.
                 </Div>
-              )}
+              ) : null}
             </Div>
             <Div>
               <Button
