@@ -17,6 +17,7 @@ const Header = () => {
   const isLogin = useSelector((state) => state.login.isLogin);
   const [openModal, setOpenModal] = React.useState(false);
   const main = window.location.pathname === '/';
+  const only = true;
 
   if (main) {
     return (
@@ -118,7 +119,13 @@ const Header = () => {
                 backgroundColor="white"
                 bold
                 _onClick={() => {
-                  history.push('/Chat');
+                  // history.push('/Chat');
+                  history.push({
+                    pathname: '/Chat',
+                    state: {
+                      only: only,
+                    },
+                  });
                 }}
               >
                 메세지
