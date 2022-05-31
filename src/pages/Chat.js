@@ -17,6 +17,7 @@ const socket = io.connect('https://a-fo-back.shop', { path: '/socket.io' });
 const Chat = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const only = location.state?.only;
   const isLogin = useSelector((state) => state.login.isLogin);
   const userId = useSelector((state) => state.login.userInfo.userId);
   const userInfo = useSelector((state) => state.login.userInfo);
@@ -132,7 +133,7 @@ const Chat = (props) => {
               size="25"
               style={{ margin: '0 5px', cursor: 'pointer' }}
               onClick={() => {
-                dispatch(getChatListDB(authorId));
+                // dispatch(getChatListDB(authorId));
               }}
             />
           </Div>
@@ -147,198 +148,205 @@ const Chat = (props) => {
         {/* <DefaultBox>메세지를 클릭해주세요!</DefaultBox> */}
 
         <ChatBox>
-          <Div
-            width="100%"
-            height="40px"
-            backgroundColor="#9FBAFF"
-            spaceBetween
-          >
-            <Div width="100%" center height="100%">
-              {/* {isChat === -1 ? null
-              : <Div color="#fff">{targetAuthor}님과의 대화방에 참여하셨습니다.</Div>
-              } */}
-              {targetAuthorId ? (
-                <Div color="#fff">
-                  {targetAuthor}님과의 대화방에 참여하셨습니다.
-                </Div>
-              ) : (
-                <Div color="#fff">
-                  {DMList[0]?.targetAuthor}님과의 대화방에 참여하셨습니다.
-                </Div>
-              )}
-            </Div>
-            <Div>
-              <Button
-                float="right"
-                width="80px"
+          {only && !DMList ? (
+            '??'
+          ) : (
+            <>
+              <Div
+                width="100%"
                 height="40px"
-                backgroundColor="#4378ff"
-                color="#fff"
-                _onClick={onLeaveRoom}
+                backgroundColor="#9FBAFF"
+                spaceBetween
               >
-                나가기
-              </Button>
-            </Div>
-          </Div>
-          <Div height="100%" backgroundColor="#9FBAFF">
-            <div className="chat-body">
-              <ScrollToBottom className="message-container">
-                {chatList[isChat] ? (
-                  <>
-                    <Box>
-                      <div>
-                        {DMList?.map((v, i) => {
-                          return (
-                            <>
-                              <div className="message-content">
-                                <p>{v.message}</p>
-                              </div>
-                              <div className="message-meta">
-                                <p id="time">{v.udatedAt}</p>
-                                <p
-                                  style={{
-                                    marginLeft: '10px',
-                                    fontWeight: 'bold',
-                                  }}
-                                >
-                                  {v.author}
-                                </p>
-                              </div>
-                            </>
-                          );
-                        })}
-                      </div>
-                    </Box>
-                    {messageList.map((messageContent, i) => {
-                      return (
-                        <Box
-                          key={messageContent + i}
-                          id={
-                            username === messageContent.author ? 'you' : 'other'
-                          }
-                        >
+                <Div width="100%" center height="100%">
+                  {targetAuthorId ? (
+                    <Div color="#fff">
+                      {targetAuthor}님과의 대화방에 참여하셨습니다.
+                    </Div>
+                  ) : DMList ? (
+                    <Div color="#fff">
+                      {DMList[0]?.targetAuthor}님과의 대화방에 참여하셨습니다.
+                    </Div>
+                  ) : null}
+                </Div>
+                <Div>
+                  <Button
+                    float="right"
+                    width="80px"
+                    height="40px"
+                    backgroundColor="#4378ff"
+                    color="#fff"
+                    _onClick={onLeaveRoom}
+                  >
+                    나가기
+                  </Button>
+                </Div>
+              </Div>
+              <Div height="100%" backgroundColor="#9FBAFF">
+                <div className="chat-body">
+                  <ScrollToBottom className="message-container">
+                    {chatList[isChat] ? (
+                      <>
+                        <Box>
                           <div>
-                            <div className="message-content">
-                              <p>{messageContent.message}</p>
-                            </div>
-                            <div className="message-meta">
-                              <p id="time">{messageContent.time}</p>
-                              <p
-                                style={{
-                                  marginLeft: '10px',
-                                  fontWeight: 'bold',
-                                }}
-                              >
-                                {messageContent.author}
-                              </p>
-                            </div>
+                            {DMList?.map((v, i) => {
+                              return (
+                                <>
+                                  <div className="message-content">
+                                    <p>{v.message}</p>
+                                  </div>
+                                  <div className="message-meta">
+                                    <p id="time">{v.udatedAt}</p>
+                                    <p
+                                      style={{
+                                        marginLeft: '10px',
+                                        fontWeight: 'bold',
+                                      }}
+                                    >
+                                      {v.author}
+                                    </p>
+                                  </div>
+                                </>
+                              );
+                            })}
                           </div>
                         </Box>
-                      );
-                    })}
-                  </>
+                        {messageList.map((messageContent, i) => {
+                          return (
+                            <Box
+                              key={messageContent + i}
+                              id={
+                                username === messageContent.author
+                                  ? 'you'
+                                  : 'other'
+                              }
+                            >
+                              <div>
+                                <div className="message-content">
+                                  <p>{messageContent.message}</p>
+                                </div>
+                                <div className="message-meta">
+                                  <p id="time">{messageContent.time}</p>
+                                  <p
+                                    style={{
+                                      marginLeft: '10px',
+                                      fontWeight: 'bold',
+                                    }}
+                                  >
+                                    {messageContent.author}
+                                  </p>
+                                </div>
+                              </div>
+                            </Box>
+                          );
+                        })}
+                      </>
+                    ) : (
+                      <>
+                        <Box>
+                          <div>
+                            {DMList?.map((v, i) => {
+                              return (
+                                <>
+                                  <div className="message-content">
+                                    <p>{v.message}</p>
+                                  </div>
+                                  <div className="message-meta">
+                                    <p id="time">{v.udatedAt}</p>
+                                    <p
+                                      style={{
+                                        marginLeft: '10px',
+                                        fontWeight: 'bold',
+                                      }}
+                                    >
+                                      {v.author}
+                                    </p>
+                                  </div>
+                                </>
+                              );
+                            })}
+                          </div>
+                        </Box>
+                        {messageList.map((messageContent, i) => {
+                          return (
+                            <Box
+                              key={messageContent + i}
+                              id={
+                                username === messageContent.author
+                                  ? 'you'
+                                  : 'other'
+                              }
+                            >
+                              <div>
+                                <div className="message-content">
+                                  <p>{messageContent.message}</p>
+                                </div>
+                                <div className="message-meta">
+                                  <p id="time">{messageContent.time}</p>
+                                  <p
+                                    style={{
+                                      marginLeft: '10px',
+                                      fontWeight: 'bold',
+                                    }}
+                                  >
+                                    {messageContent.author}
+                                  </p>
+                                </div>
+                              </div>
+                            </Box>
+                          );
+                        })}
+                      </>
+                    )}
+                  </ScrollToBottom>
+                </div>
+              </Div>
+              <Div
+                spaceBetween
+                width="100%"
+                padding="40px"
+                backgroundColor="#fff"
+                // borderTop="1px solid #0031de"
+              >
+                <Input
+                  type="text"
+                  value={currentMessage}
+                  placeholder="메시지를 입력하세요."
+                  onChange={(event) => {
+                    setCurrentMessage(event.target.value);
+                  }}
+                  onKeyPress={(event) => {
+                    event.key === 'Enter' && sendMessage();
+                  }}
+                />
+                {!chatList[isChat] && !targetAuthorId ? (
+                  <Button
+                    backgroundColor="#fff"
+                    color="#0031de"
+                    bold
+                    size="24px"
+                    _onClick={() => {
+                      _sendMessage();
+                    }}
+                  >
+                    보내기
+                  </Button>
                 ) : (
-                  <>
-                    <Box>
-                      <div>
-                        {DMList?.map((v, i) => {
-                          return (
-                            <>
-                              <div className="message-content">
-                                <p>{v.message}</p>
-                              </div>
-                              <div className="message-meta">
-                                <p id="time">{v.udatedAt}</p>
-                                <p
-                                  style={{
-                                    marginLeft: '10px',
-                                    fontWeight: 'bold',
-                                  }}
-                                >
-                                  {v.author}
-                                </p>
-                              </div>
-                            </>
-                          );
-                        })}
-                      </div>
-                    </Box>
-                    {messageList.map((messageContent, i) => {
-                      return (
-                        <Box
-                          key={messageContent + i}
-                          id={
-                            username === messageContent.author ? 'you' : 'other'
-                          }
-                        >
-                          <div>
-                            <div className="message-content">
-                              <p>{messageContent.message}</p>
-                            </div>
-                            <div className="message-meta">
-                              <p id="time">{messageContent.time}</p>
-                              <p
-                                style={{
-                                  marginLeft: '10px',
-                                  fontWeight: 'bold',
-                                }}
-                              >
-                                {messageContent.author}
-                              </p>
-                            </div>
-                          </div>
-                        </Box>
-                      );
-                    })}
-                  </>
+                  <Button
+                    backgroundColor="#fff"
+                    color="#0031de"
+                    bold
+                    size="24px"
+                    _onClick={() => {
+                      sendMessage();
+                    }}
+                  >
+                    보내기
+                  </Button>
                 )}
-              </ScrollToBottom>
-            </div>
-          </Div>
-          <Div
-            spaceBetween
-            width="100%"
-            padding="40px"
-            backgroundColor="#fff"
-            // borderTop="1px solid #0031de"
-          >
-            <Input
-              type="text"
-              value={currentMessage}
-              placeholder="메시지를 입력하세요."
-              onChange={(event) => {
-                setCurrentMessage(event.target.value);
-              }}
-              onKeyPress={(event) => {
-                event.key === 'Enter' && sendMessage();
-              }}
-            />
-            {!chatList[isChat] && !targetAuthorId ? (
-              <Button
-                backgroundColor="#fff"
-                color="#0031de"
-                bold
-                size="24px"
-                _onClick={() => {
-                  _sendMessage();
-                }}
-              >
-                보내기
-              </Button>
-            ) : (
-              <Button
-                backgroundColor="#fff"
-                color="#0031de"
-                bold
-                size="24px"
-                _onClick={() => {
-                  sendMessage();
-                }}
-              >
-                보내기
-              </Button>
-            )}
-          </Div>
+              </Div>
+            </>
+          )}
         </ChatBox>
       </Wrap>
     </React.Fragment>
