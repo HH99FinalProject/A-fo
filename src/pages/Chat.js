@@ -28,7 +28,8 @@ const Chat = (props) => {
   const targetAuthorId = location.state?.targetAuthorId;
   const authorId = userId;
 
-  console.log(targetAuthor);
+  console.log(only)
+  console.log(targetAuthor, targetAuthorId);
 
   const chatList = useSelector((state) => state.chat.chatList);
   const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
@@ -138,7 +139,7 @@ const Chat = (props) => {
             />
           </Div>
           <Div overflow="auto" height="90%">
-            {/* map으로 돌려야함 */}
+            {/* 채팅목록리스트 */}
             {chatList.map((chat, i) => {
               return <MyChats key={chat + i} chat={chat} />;
             })}

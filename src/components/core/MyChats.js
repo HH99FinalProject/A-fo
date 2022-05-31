@@ -8,7 +8,7 @@ import { Div, Text } from '../ui';
 const MyChats = (props) => {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.login.userInfo.userName);
-  const DMList = useSelector(state => state.chat.detailChat);
+  const DMList = useSelector(state => state.chat.DMList);
   console.log(DMList);
   console.log(props.chat.room);
 
