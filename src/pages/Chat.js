@@ -20,11 +20,14 @@ const Chat = (props) => {
   const isLogin = useSelector((state) => state.login.isLogin);
   const userId = useSelector((state) => state.login.userInfo.userId);
   const userInfo = useSelector((state) => state.login.userInfo);
+  const userName = useSelector((state) => state.login.userInfo.userName);
   const [username, setUsername] = React.useState('');
   const [room, setRoom] = React.useState('');
   const targetAuthor = location.state?.targetAuthor;
   const targetAuthorId = location.state?.targetAuthorId;
   const authorId = userId;
+
+  console.log(targetAuthor)
 
   const chatList = useSelector((state) => state.chat.chatList);
   const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
@@ -142,21 +145,28 @@ const Chat = (props) => {
         </Div>
 
         {/* <DefaultBox>메세지를 클릭해주세요!</DefaultBox> */}
-
+        
         <ChatBox>
-          <Div width="100%" height="40px" backgroundColor="#9FBAFF">
-            <Button
-              float="right"
-              width="80px"
-              height="40px"
-              backgroundColor="#4378ff"
-              color="#fff"
-              _onClick={onLeaveRoom}
-            >
-              나가기
-            </Button>
+          <Div width="100%" height="40px" backgroundColor="#9FBAFF" spaceBetween>
+            <Div width="100%" center height="100%">
+              {isChat === -1 ? null
+              : <Div color="#fff">{targetAuthor}님과의 대화방에 참여하셨습니다.</Div>
+              }
+            </Div>
+            <Div>
+              <Button
+                float="right"
+                width="80px"
+                height="40px"
+                backgroundColor="#4378ff"
+                color="#fff"
+                _onClick={onLeaveRoom}
+              >
+                나가기
+              </Button>
+            </Div>
           </Div>
-          <Div position="relative" height="100%" backgroundColor="#9FBAFF">
+          <Div height="100%" backgroundColor="#9FBAFF">
             <div className="chat-body">
               <ScrollToBottom className="message-container">
                 {chatList[isChat] ? (
@@ -276,7 +286,7 @@ const Chat = (props) => {
             width="100%"
             padding="40px"
             backgroundColor="#fff"
-            borderTop="1px solid #0031de"
+            // borderTop="1px solid #0031de"
           >
             <Input
               type="text"
@@ -324,25 +334,22 @@ const Chat = (props) => {
 export default Chat;
 
 const Wrap = styled.div`
-  position: relative;
   display: flex;
   width: 1400px;
   height: 91vh;
-  margin: 0 auto 100px auto;
+  margin: 0 auto;
   border: 1px solid #0031de;
   border-top: none;
   background-color: white;
 `;
 
 const ChatBox = styled.div`
-  position: relative;
-  float: right;
   width: 71%;
-  height: 75%;
+  height: 600px;
 
   .chat-body {
-    position: relative;
-    height: calc(780px - (45px + 70px));
+    /* border: 1px solid blue; */
+    height: 100%;
 
     .message-container {
       width: 100%;
@@ -358,7 +365,7 @@ const ChatBox = styled.div`
 `;
 
 const Box = styled.div`
-  height: auto;
+  /* height: auto; */
   padding: 10px;
   display: flex;
   .message-content {
@@ -402,12 +409,4 @@ const Input = styled.input`
   padding: 10px;
   font-size: 18px;
   border-radius: 0;
-`;
-
-const DefaultBox = styled.div`
-  float: right;
-  text-align: center;
-  background: #fff;
-  width: 71%;
-  height: 80%;
 `;
