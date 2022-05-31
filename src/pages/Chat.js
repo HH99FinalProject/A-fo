@@ -27,7 +27,7 @@ const Chat = (props) => {
   const targetAuthorId = location.state?.targetAuthorId;
   const authorId = userId;
 
-  console.log(targetAuthor)
+  console.log(targetAuthor);
 
   const chatList = useSelector((state) => state.chat.chatList);
   const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
@@ -145,13 +145,27 @@ const Chat = (props) => {
         </Div>
 
         {/* <DefaultBox>메세지를 클릭해주세요!</DefaultBox> */}
-        
+
         <ChatBox>
-          <Div width="100%" height="40px" backgroundColor="#9FBAFF" spaceBetween>
+          <Div
+            width="100%"
+            height="40px"
+            backgroundColor="#9FBAFF"
+            spaceBetween
+          >
             <Div width="100%" center height="100%">
-              {isChat === -1 ? null
+              {/* {isChat === -1 ? null
               : <Div color="#fff">{targetAuthor}님과의 대화방에 참여하셨습니다.</Div>
-              }
+              } */}
+              {targetAuthorId ? (
+                <Div color="#fff">
+                  {targetAuthor}님과의 대화방에 참여하셨습니다.
+                </Div>
+              ) : (
+                <Div color="#fff">
+                  {DMList[0]?.targetAuthor}님과의 대화방에 참여하셨습니다.
+                </Div>
+              )}
             </Div>
             <Div>
               <Button
