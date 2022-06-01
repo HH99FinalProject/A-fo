@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getDetailDB } from '../../redux/modules/chat';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 import { Div, Text } from '../ui';
 
@@ -25,7 +27,7 @@ const MyChats = (props) => {
         cursor="pointer"
       >
         <Div position="absolute" right="20px" top="10px">
-          <Text color="#aaa">{props.chat.updatedAt}</Text>
+          <Text color="#aaa">{moment(props.chat.updatedAt).fromNow()}</Text>
         </Div>
         <Div flexStart>
           {userName === props.chat.author ? 

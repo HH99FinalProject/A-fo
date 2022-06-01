@@ -11,6 +11,7 @@ import { Header, MyChats } from '../components/core';
 import styled from 'styled-components';
 import { GrPowerReset } from 'react-icons/gr';
 import { Button, Div, Text } from '../components/ui';
+import { FiSend } from 'react-icons/fi';
 
 const socket = io.connect('https://a-fo-back.shop', { path: '/socket.io' });
 
@@ -149,7 +150,15 @@ const Chat = (props) => {
 
         <ChatBox>
           {only && !DMList ? (
-            '??'
+              <Div
+              width="100%"
+              height="850px"
+              backgroundColor="#9FBAFF"
+              center
+              >
+                <Div center margin="0 0 30px 0"><FiSend color='#fff' size={40} /></Div>
+                <Text size="28px" color="#fff">대화를 눌러 메세지를 보내보세요!</Text>
+              </Div>
           ) : (
             <>
               <Div
@@ -364,6 +373,17 @@ const Wrap = styled.div`
   border-top: none;
   background-color: white;
 `;
+
+const Robby = styled.div`
+  background: #9fbaff;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52%;
+  height: 93%;
+`;
+
 
 const ChatBox = styled.div`
   width: 71%;

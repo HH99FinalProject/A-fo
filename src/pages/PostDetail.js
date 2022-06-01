@@ -11,8 +11,7 @@ import { Header, Comment } from '../components/core';
 import { Div, Button, Input, Text } from '../components/ui';
 import styled from 'styled-components';
 import { AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
-import { FiThumbsUp } from 'react-icons/fi';
-import { CgHeart } from 'react-icons/cg';
+import { FiSend } from 'react-icons/fi';
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -118,9 +117,7 @@ const PostDetail = (props) => {
                     padding="10px 0px"
                   >
                     {postUserId !== userId ? (
-                      <Button
-                        backgroundColor="white"
-                        size="16px"
+                      <Div flexStart cursor="pointer"
                         _onClick={() => {
                           history.push({
                             pathname: '/Chat',
@@ -129,10 +126,10 @@ const PostDetail = (props) => {
                               targetAuthor: postDetail.User.userName,
                             },
                           });
-                        }}
-                      >
-                        메세지 보내기
-                      </Button>
+                      }}>
+                        <FiSend />
+                        <Text size="20px" color="#000" margin="0 0 0 5px">메세지 보내기</Text>
+                      </Div>
                     ) : null}
                   </Div>
                 )}
