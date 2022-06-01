@@ -150,15 +150,14 @@ const Chat = (props) => {
 
         <ChatBox>
           {only && !DMList ? (
-              <Div
-              width="100%"
-              height="850px"
-              backgroundColor="#9FBAFF"
-              center
-              >
-                <Div center margin="0 0 30px 0"><FiSend color='#fff' size={40} /></Div>
-                <Text size="28px" color="#fff">대화를 눌러 메세지를 보내보세요!</Text>
+            <Div width="100%" height="850px" backgroundColor="#9FBAFF" center>
+              <Div center margin="0 0 30px 0">
+                <FiSend color="#fff" size={40} />
               </Div>
+              <Text size="28px" color="#fff">
+                대화를 눌러 메세지를 보내보세요!
+              </Text>
+            </Div>
           ) : (
             <>
               <Div
@@ -197,7 +196,9 @@ const Chat = (props) => {
                     {chatList[isChat] ? (
                       <>
                         <Box>
-                          <div>
+                          <div
+                            id={userId === DMList[0].authorId ? 'you' : 'other'}
+                          >
                             {DMList?.map((v, i) => {
                               return (
                                 <>
@@ -205,7 +206,7 @@ const Chat = (props) => {
                                     <p>{v.message}</p>
                                   </div>
                                   <div className="message-meta">
-                                    <p id="time">{v.udatedAt}</p>
+                                    <p id="time">{v.updatedAt}</p>
                                     <p
                                       style={{
                                         marginLeft: '10px',
@@ -253,7 +254,9 @@ const Chat = (props) => {
                     ) : (
                       <>
                         <Box>
-                          <div>
+                          <div
+                            id={userId === DMList[0].authorId ? 'you' : 'other'}
+                          >
                             {DMList?.map((v, i) => {
                               return (
                                 <>
@@ -261,7 +264,7 @@ const Chat = (props) => {
                                     <p>{v.message}</p>
                                   </div>
                                   <div className="message-meta">
-                                    <p id="time">{v.udatedAt}</p>
+                                    <p id="time">{v.updatedAt}</p>
                                     <p
                                       style={{
                                         marginLeft: '10px',
@@ -384,7 +387,6 @@ const Robby = styled.div`
   height: 93%;
 `;
 
-
 const ChatBox = styled.div`
   width: 71%;
   height: 600px;
@@ -432,13 +434,15 @@ const Box = styled.div`
   }
   #you .message-content {
     justify-content: flex-end;
+    background-color: white;
   }
   #other {
     justify-content: flex-start;
   }
   #other .message-content {
     justify-content: flex-start;
-    background-color: cornflowerblue;
+    background-color: green;
+    border: 1px solid black;
   }
 `;
 
