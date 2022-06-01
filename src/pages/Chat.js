@@ -37,6 +37,7 @@ const Chat = (props) => {
   const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
   console.log(isChat);
   const DMList = useSelector((state) => state.chat.DMList);
+  const isAuthor = DMList?.map((v) => v.authorId) === userId;
 
   React.useEffect(() => {
     // 기존 채팅유무 확인
@@ -198,51 +199,68 @@ const Chat = (props) => {
                     {chatList[isChat] ? (
                       <>
                         <Box>
-                          <div
-                            id={userId === DMList[0].authorId ? 'you' : 'other'}
-                          >
-                            {DMList?.map((v, i) => {
-                              return (
-                                <>
-                                  <div className="message-content">
-                                    <p>{v.message}</p>
-                                  </div>
-                                  <div className="message-meta">
-                                    <p id="time">
-                                      {moment(v.updatedAt).fromNow()}
-                                    </p>
-                                    <p
-                                      style={{
-                                        marginLeft: '10px',
-                                        fontWeight: 'bold',
-                                      }}
-                                    >
-                                      {v.author}
-                                    </p>
-                                  </div>
-                                </>
-                              );
-                            })}
-                          </div>
+                          {DMList?.map((v, i) => {
+                            return (
+                              <div
+                                className={
+                                  v.authorId === userId ? 'right' : 'left'
+                                }
+                              >
+                                <div
+                                  className={
+                                    v.authorId === userId
+                                      ? 'message-content-user'
+                                      : 'message-content-target'
+                                  }
+                                >
+                                  <p>{v.message}</p>
+                                </div>
+                                <div className="message-meta">
+                                  <p id="time">
+                                    {moment(v.updatedAt).fromNow()}
+                                  </p>
+                                  <p
+                                    style={{
+                                      marginLeft: '10px',
+                                      fontWeight: 'bold',
+                                    }}
+                                  >
+                                    {v.author}
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </Box>
                         {messageList.map((messageContent, i) => {
                           return (
                             <Box
                               key={messageContent + i}
-                              id={
-                                username === messageContent.author
-                                  ? 'you'
-                                  : 'other'
-                              }
+                              // id={
+                              //   username === messageContent.author
+                              //     ? 'you'
+                              //     : 'other'
+                              // }
                             >
-                              <div>
-                                <div className="message-content">
+                              <div
+                                className={
+                                  username === messageContent.author
+                                    ? 'right'
+                                    : 'left'
+                                }
+                              >
+                                <div
+                                  // className="message-content"
+                                  className={
+                                    username === messageContent.author
+                                      ? 'message-content-user'
+                                      : 'message-content-target'
+                                  }
+                                >
                                   <p>{messageContent.message}</p>
                                 </div>
                                 <div className="message-meta">
-                                  <p id="time">
-                                    {moment(messageContent.time).fromNow()}
-                                  </p>
+                                  <p id="time">{messageContent.time}</p>
                                   <p
                                     style={{
                                       marginLeft: '10px',
@@ -260,13 +278,21 @@ const Chat = (props) => {
                     ) : (
                       <>
                         <Box>
-                          <div
-                            id={userId === DMList[0].authorId ? 'you' : 'other'}
-                          >
+                          <div>
                             {DMList?.map((v, i) => {
                               return (
-                                <>
-                                  <div className="message-content">
+                                <div
+                                  className={
+                                    v.authorId === userId ? 'right' : 'left'
+                                  }
+                                >
+                                  <div
+                                    className={
+                                      v.authorId === userId
+                                        ? 'message-content-user'
+                                        : 'message-content-target'
+                                    }
+                                  >
                                     <p>{v.message}</p>
                                   </div>
                                   <div className="message-meta">
@@ -282,7 +308,7 @@ const Chat = (props) => {
                                       {v.author}
                                     </p>
                                   </div>
-                                </>
+                                </div>
                               );
                             })}
                           </div>
@@ -291,20 +317,30 @@ const Chat = (props) => {
                           return (
                             <Box
                               key={messageContent + i}
-                              id={
-                                username === messageContent.author
-                                  ? 'you'
-                                  : 'other'
-                              }
+                              // id={
+                              //   username === messageContent.author
+                              //     ? 'you'
+                              //     : 'other'
+                              // }
                             >
-                              <div>
-                                <div className="message-content">
+                              <div
+                                className={
+                                  username === messageContent.author
+                                    ? 'right'
+                                    : 'left'
+                                }
+                              >
+                                <div
+                                  className={
+                                    username === messageContent.author
+                                      ? 'message-content-user'
+                                      : 'message-content-target'
+                                  }
+                                >
                                   <p>{messageContent.message}</p>
                                 </div>
                                 <div className="message-meta">
-                                  <p id="time">
-                                    {moment(messageContent.time).fromNow()}
-                                  </p>
+                                  <p id="time">{messageContent.time}</p>
                                   <p
                                     style={{
                                       marginLeft: '10px',
@@ -420,8 +456,8 @@ const ChatBox = styled.div`
 
 const Box = styled.div`
   /* height: auto; */
+  position: relative;
   padding: 10px;
-  display: flex;
   .message-content {
     width: auto;
     height: auto;
@@ -438,13 +474,13 @@ const Box = styled.div`
     padding-left: 5px;
     overflow-wrap: break-word;
     word-break: break-word;
+    border: 1px solid red;
   }
   #you {
     justify-content: flex-end;
   }
   #you .message-content {
     justify-content: flex-end;
-    background-color: white;
   }
   #other {
     justify-content: flex-start;
@@ -453,6 +489,50 @@ const Box = styled.div`
     justify-content: flex-start;
     background-color: green;
     border: 1px solid black;
+  }
+  .message-content-user {
+    width: auto;
+    height: auto;
+    min-height: 40px;
+    max-width: 120px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    background-color: #0031de;
+  }
+  .message-content-target {
+    width: auto;
+    height: auto;
+    min-height: 40px;
+    max-width: 120px;
+    border-radius: 5px;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    background-color: white;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
