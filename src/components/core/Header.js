@@ -51,19 +51,7 @@ const Header = () => {
 
           {/* 로그인 전 */}
           {!isLogin && (
-            // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
-            <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
-                <Image
-                  width="40px"
-                  height="40px"
-                  size="contain"
-                  repeat="no-repeat"
-                  position="center"
-                  src={survey}
-                />
-                설문하고 상품받기!
-              </Link>
+            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 bold
@@ -100,19 +88,7 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
-            <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
-                <Image
-                  width="40px"
-                  height="40px"
-                  size="contain"
-                  repeat="no-repeat"
-                  position="center"
-                  src={survey}
-                />
-                설문하고 상품받기!
-              </Link>
+            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 color="#0031DE"
@@ -164,7 +140,7 @@ const Header = () => {
               >
                 로그아웃
               </Button>
-              <Image
+              {/* <Image
                 shape="circle"
                 width="35px"
                 height="35px"
@@ -172,7 +148,7 @@ const Header = () => {
                 size="cover"
                 position="center"
                 border="1px solid #0031DE"
-              />
+              /> */}
             </Div>
           )}
           {/* 로그인 후 */}
@@ -206,19 +182,7 @@ const Header = () => {
 
           {/* 로그인 전 */}
           {!isLogin && (
-            // <Div spaceBetween width="140px" height="50px" lineHeight="50px">
-            <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
-                <Image
-                  width="40px"
-                  height="40px"
-                  size="contain"
-                  repeat="no-repeat"
-                  position="center"
-                  src={survey}
-                />
-                설문하고 상품받기!
-              </Link>
+            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 color="#0031DE"
@@ -253,19 +217,7 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
-            <Div spaceBetween width="400px" height="50px" lineHeight="50px">
-              <Link target="_blank" href="https://forms.gle/XxtUSJ21fDVNkGK87">
-                <Image
-                  width="40px"
-                  height="40px"
-                  size="contain"
-                  repeat="no-repeat"
-                  position="center"
-                  src={survey}
-                />
-                설문하고 상품받기!
-              </Link>
+            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 color="#0031DE"
@@ -307,7 +259,7 @@ const Header = () => {
               >
                 로그아웃
               </Button>
-              <Image
+              {/* <Image
                 shape="circle"
                 width="35px"
                 height="35px"
@@ -315,7 +267,7 @@ const Header = () => {
                 size="cover"
                 position="center"
                 border="1px solid #0031DE"
-              />
+              /> */}
             </Div>
           )}
           {/* 로그인 후 */}

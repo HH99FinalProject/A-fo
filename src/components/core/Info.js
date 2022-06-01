@@ -17,9 +17,7 @@ const Info = (props, ref) => {
   const countryInfo = countryList[0]?.BaseInfo?.baseInfo;
 
   React.useEffect(() => {
-    if (props.bank) {
-      document.getElementsByClassName('bank');
-    }
+    // document.getElementsByClassName('bank') ? countryInfo !== undefined : null;
   }, []);
 
   return (
@@ -27,7 +25,6 @@ const Info = (props, ref) => {
       {/* 비자 */}
       {props.visa && (
         <div
-          className="bank"
           style={{
             position: 'relative',
             width: '100%',
@@ -71,8 +68,9 @@ const Info = (props, ref) => {
       )}
 
       {/* 은행 */}
-      {!!props.bank && (
+      {props?.bank ? (
         <div
+          className="bank"
           style={{
             position: 'relative',
             width: '100%',
@@ -91,21 +89,21 @@ const Info = (props, ref) => {
           {(vTarget ? props[0] : props?.countryInfo[0]).info?.map((l, i) => {
             return (
               <TitleBox key={l + i}>
-                <Title>● {l.subtitle}</Title>
+                <Title>● {l?.subtitle}</Title>
                 <SubBox>
                   <Ol>
                     {l.subInfo?.map((x, j) => {
                       const ol = true;
                       return (
                         <Li ol={ol} key={x + j}>
-                          {x.explain1}
+                          {x?.explain1}
                           <ul>
-                            {x.oneInfo?.map((y, k) => {
+                            {x?.oneInfo?.map((y, k) => {
                               return (
                                 <Li key={y + k}>
-                                  {y.explain2}
+                                  {y?.explain2}
                                   <Ul>
-                                    {y.twoInfo?.map((z, m) => {
+                                    {y?.twoInfo?.map((z, m) => {
                                       return <Li key={z + m}>· {z}</Li>;
                                     })}
                                   </Ul>
@@ -122,7 +120,7 @@ const Info = (props, ref) => {
             );
           })}
         </div>
-      )}
+      ) : null}
 
       {/* 시차 */}
       {props.time && (

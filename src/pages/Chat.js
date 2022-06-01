@@ -133,7 +133,7 @@ const Chat = (props) => {
               size="25"
               style={{ margin: '0 5px', cursor: 'pointer' }}
               onClick={() => {
-                window.location.replace("/chat");
+                window.location.replace('/chat');
               }}
             />
           </Div>
