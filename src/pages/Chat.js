@@ -15,29 +15,29 @@ import { GrPowerReset } from 'react-icons/gr';
 import { Button, Div, Text } from '../components/ui';
 import { FiSend } from 'react-icons/fi';
 
-const socket = io.connect('https://a-fo-back.shop', { path: '/socket.io' });
+// const socket = io.connect('https://a-fo-back.shop', { path: '/socket.io' });
 
 const Chat = (props) => {
+  const [socket, setSocket] = React.useState();
+
+  React.useEffect(() => {
+    setSocket(io.connect('https://a-fo-back.shop'));
+  }, []);
+
   const dispatch = useDispatch();
   const location = useLocation();
   const only = location.state?.only;
-  const isLogin = useSelector((state) => state.login.isLogin);
   const userId = useSelector((state) => state.login.userInfo.userId);
   const userInfo = useSelector((state) => state.login.userInfo);
-  const userName = useSelector((state) => state.login.userInfo.userName);
   const [username, setUsername] = React.useState('');
   const [room, setRoom] = React.useState('');
   const targetAuthor = location.state?.targetAuthor;
   const targetAuthorId = location.state?.targetAuthorId;
   const authorId = userId;
 
-  console.log(targetAuthor);
-
   const chatList = useSelector((state) => state.chat.chatList);
   const isChat = chatList.findIndex((i) => i.targetAuthorId === targetAuthorId);
-  console.log(isChat);
   const DMList = useSelector((state) => state.chat.DMList);
-  const isAuthor = DMList?.map((v) => v.authorId) === userId;
 
   React.useEffect(() => {
     // 기존 채팅유무 확인
@@ -53,7 +53,7 @@ const Chat = (props) => {
       // 없으면 새로 방만들고
       setUsername(userInfo.userName);
       setRoom(Number(userInfo.userId) + Number(targetAuthorId));
-      socket.emit('join_room', room);
+      socket?.emit('join_room', room);
       dispatch(getChatListDB(authorId));
       console.log('gg');
     }
@@ -234,14 +234,7 @@ const Chat = (props) => {
                         </Box>
                         {messageList.map((messageContent, i) => {
                           return (
-                            <Box
-                              key={messageContent + i}
-                              // id={
-                              //   username === messageContent.author
-                              //     ? 'you'
-                              //     : 'other'
-                              // }
-                            >
+                            <Box key={messageContent + i}>
                               <div
                                 className={
                                   username === messageContent.author
@@ -250,7 +243,6 @@ const Chat = (props) => {
                                 }
                               >
                                 <div
-                                  // className="message-content"
                                   className={
                                     username === messageContent.author
                                       ? 'message-content-user'
@@ -315,14 +307,7 @@ const Chat = (props) => {
                         </Box>
                         {messageList.map((messageContent, i) => {
                           return (
-                            <Box
-                              key={messageContent + i}
-                              // id={
-                              //   username === messageContent.author
-                              //     ? 'you'
-                              //     : 'other'
-                              // }
-                            >
+                            <Box key={messageContent + i}>
                               <div
                                 className={
                                   username === messageContent.author
@@ -364,7 +349,6 @@ const Chat = (props) => {
                 width="100%"
                 padding="40px"
                 backgroundColor="#fff"
-                // borderTop="1px solid #0031de"
               >
                 <Input
                   type="text"
