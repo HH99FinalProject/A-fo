@@ -5,6 +5,8 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import io from 'socket.io-client';
 import { history } from '../redux/configureStore';
 import { getChatListDB, getDetailDB } from '../redux/modules/chat';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 import { Header, MyChats } from '../components/core';
 
@@ -205,7 +207,7 @@ const Chat = (props) => {
                                     <p>{v.message}</p>
                                   </div>
                                   <div className="message-meta">
-                                    <p id="time">{v.udatedAt}</p>
+                                    <p id="time">{moment(v.updatedAt).fromNow()}</p>
                                     <p
                                       style={{
                                         marginLeft: '10px',
@@ -235,7 +237,7 @@ const Chat = (props) => {
                                   <p>{messageContent.message}</p>
                                 </div>
                                 <div className="message-meta">
-                                  <p id="time">{messageContent.time}</p>
+                                  <p id="time">{moment(messageContent.time).fromNow()}</p>
                                   <p
                                     style={{
                                       marginLeft: '10px',
@@ -261,7 +263,7 @@ const Chat = (props) => {
                                     <p>{v.message}</p>
                                   </div>
                                   <div className="message-meta">
-                                    <p id="time">{v.udatedAt}</p>
+                                    <p id="time">{moment(v.updatedAt).fromNow()}</p>
                                     <p
                                       style={{
                                         marginLeft: '10px',
@@ -291,7 +293,7 @@ const Chat = (props) => {
                                   <p>{messageContent.message}</p>
                                 </div>
                                 <div className="message-meta">
-                                  <p id="time">{messageContent.time}</p>
+                                  <p id="time">{moment(messageContent.time).fromNow()}</p>
                                   <p
                                     style={{
                                       marginLeft: '10px',
