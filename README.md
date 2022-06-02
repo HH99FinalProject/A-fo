@@ -16,8 +16,8 @@
 | 이름          | 설명               | 
 | ------------- | -------------------|
 | React v17.0.2 | Javascript library |
-| s3            | storage service    |
-| CloudFront    | web service        |  
+| s3            | Storage service    |
+| CloudFront    | Web service        |  
 | Git Action    | CI/CD              |
 
 
@@ -90,7 +90,7 @@
 - 프론드엔드
   - 이윤지 : https://github.com/uoohs2
   - 조영민 : https://github.com/alonjoe
-  - 
+  
 - 백엔드
   - 이태성 : https://github.com/qwe1234k
   - 유지웅 : https://github.com/JiwoongYoo1
