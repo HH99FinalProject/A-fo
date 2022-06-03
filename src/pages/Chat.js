@@ -142,7 +142,6 @@ const Chat = (props) => {
             />
           </Div>
           <Div overflow="auto" height="90%">
-            {/* map으로 돌려야함 */}
             {chatList.map((chat, i) => {
               return <MyChats key={chat + i} chat={chat} />;
             })}
@@ -176,7 +175,10 @@ const Chat = (props) => {
                     </Div>
                   ) : DMList ? (
                     <Div color="#fff">
-                      {DMList[0]?.targetAuthor}님과의 대화방에 참여하셨습니다.
+                      {DMList[0]?.targetAuthor === userInfo.userName
+                        ? DMList[0]?.author
+                        : DMList[0]?.targetAuthor}
+                      님과의 대화방에 참여하셨습니다.
                     </Div>
                   ) : null}
                 </Div>

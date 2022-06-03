@@ -10,9 +10,7 @@ import { Div, Text } from '../ui';
 const MyChats = (props) => {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.login.userInfo.userName);
-  const DMList = useSelector(state => state.chat.detailChat);
-  console.log(DMList);
-  console.log(props.chat.room);
+  const DMList = useSelector((state) => state.chat.DMList);
 
   return (
     <React.Fragment>
@@ -23,20 +21,21 @@ const MyChats = (props) => {
         height="86px"
         backgroundColor="#fff"
         borderBottom="1px solid #0031de"
-        _onClick={() => { dispatch(getDetailDB(props.chat.room)); }}
+        _onClick={() => {
+          dispatch(getDetailDB(props.chat.room));
+        }}
         cursor="pointer"
       >
         <Div position="absolute" right="20px" top="10px">
           <Text color="#aaa">{moment(props.chat.updatedAt).fromNow()}</Text>
         </Div>
         <Div flexStart>
-          {userName === props.chat.author ? 
+          {userName === props.chat.author ? (
             <EllipsisName>{props.chat.targetAuthor}</EllipsisName>
-            : <EllipsisName>{props.chat.author}</EllipsisName>
-          }
-          <EllipsisContent>
-            {props.chat.message}
-          </EllipsisContent>
+          ) : (
+            <EllipsisName>{props.chat.author}</EllipsisName>
+          )}
+          <EllipsisContent>{props.chat.message}</EllipsisContent>
         </Div>
       </Div>
     </React.Fragment>
