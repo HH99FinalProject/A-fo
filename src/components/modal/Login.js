@@ -36,7 +36,7 @@ const Login = () => {
         <Text center margin="40px" color="black" size="16px">
           커뮤니티에서 더 다양한 정보를 확인하세요.
         </Text>
-        {/* <Div
+        <Div
           BGHover="#ffe43B"
           row
           width="400px"
@@ -49,7 +49,7 @@ const Login = () => {
         >
           <RiKakaoTalkFill size={45} />
           <KakaoA href={KAKAO_AUTH_URL}>카카오로 1초만에 시작하기</KakaoA>
-        </Div> */}
+        </Div>
         <Div
           BGHover="#eee"
           row
