@@ -87,7 +87,8 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 bold
@@ -199,7 +200,8 @@ const Header = () => {
 
           {/* 로그인 후 */}
           {isLogin && (
-            <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            // <Div spaceBetween width="200px" height="50px" lineHeight="50px">
+            <Div spaceBetween width="140px" height="50px" lineHeight="50px">
               <Button
                 height="50px"
                 color="#0031DE"
@@ -249,18 +251,3 @@ const Header = () => {
   }
 };
 export default Header;
-
-const Link = styled.a`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 180px;
-  height: 50px;
-  line-height: 20px;
-  background-color: #dcffaf;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 15px;
-  color: #0031de;
-`;
