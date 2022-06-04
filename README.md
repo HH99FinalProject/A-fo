@@ -94,7 +94,8 @@
   - 이윤지 : https://github.com/uoohs2
   - 조영민 : https://github.com/alonjoe
   
-- 백엔드
+- 백엔드 
+  - 프로젝트 : https://github.com/qwe1234k/HH99FinalProject_BE
   - 이태성 : https://github.com/qwe1234k
   - 유지웅 : https://github.com/JiwoongYoo1
   - 윤석일 : https://github.com/IcandoDeveloper
